@@ -36,6 +36,10 @@ function ($, Router, Profile, configHandlebars) {
       // Get the absolute root.
       var root = location.protocol + "//" + location.host + "/";
 
+
+      if(href.attr === "#")
+        return;
+
       console.log("redirecting to: " + href.attr);
 
       // Ensure the root is part of the anchor href, meaning it's relative.

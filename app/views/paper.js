@@ -7,9 +7,18 @@ define([
 
 	return Backbone.View.extend({
 
+		el: $("[data-role=content]"),
+
 		id: "paper-page",
 
 		paper: null,
+
+		events: {
+
+			"click #about-tab"		: "renderAboutTab",
+			"click #comments-tab"	: "renderCommentsTab"
+
+		},
 
 		initialize: function (args)
 		{
@@ -54,46 +63,86 @@ define([
 			//limpa a pagina anterior do DOM
 			$("[data-role=page]:first").remove();
 
+			return this;
+
 
 
 		},
 
 
 		render: function () {
-
-
-
 			var paper = this.paper.attributes;
-
 
 			var context = {
 				title : paper.name,
 				datetime : "12/05 12:30",
-				roomName : paper.local.name,
-				roomId : paper.local.id,
-				description : paper.description,
-				speakers : paper.speakers
+				room_name : paper.local.name,
+				room_id : paper.local.id
 			};
 
 			var source   = $("#paper-template").html();
 			var template = Handlebars.compile(source);
-
 			var html = template(context);
 
-
 			$("[data-role=content]").append(html);
-
 			this.enhanceJQMComponentsAPI();
-
-
 
 			//faz refresh da pagina, para ficar com os estilos do jQM
 			$("#paper-page").trigger("create");
 
 
-			
+			this.renderAboutTab();
+			this.setElement($("[data-role=content]"));
+
+			return this;
 
 		},
+
+
+		renderAboutTab: function () {
+			console.log("about tab");
+
+			var paper = this.paper.attributes;
+
+			var context = {
+				description : paper.description,
+				speakers : paper.speakers
+			};
+
+			var source   = $("#paper-about-tab-template").html();
+			var template = Handlebars.compile(source);
+			var html = template(context);
+
+			$("#tab-content").html(html);
+			$("#paper-page").trigger("create");
+		},
+
+
+		renderCommentsTab: function () {
+
+			console.log("comments");
+
+			var paper = this.paper.attributes;
+
+			var context = {
+				comments: paper.comments
+			};
+
+
+
+			var source   = $("#comments-tab-template").html();
+			var template = Handlebars.compile(source);
+			var html = template(context);
+
+			console.log(context);
+
+			
+
+			$("#tab-content").html(html);
+			$("#paper-page").trigger("create");
+
+		},
+
 
 		enhanceJQMComponentsAPI: function () {
     // changePage

@@ -46,11 +46,11 @@
       <div class="ui-grid-a">
         <div class="ui-block-a">
           <div class="ui-btn paper-info">
-            <span class="center-text" id="event-day">{{roomName}}</span>
+            <span class="center-text" id="event-day">{{room_name}}</span>
           </div>
         </div>
         <div class="ui-block-b">
-          <a href="#local/{{roomId}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+          <a href="#local/{{room_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
             Pág. Sala
           </a>
         </div>
@@ -65,7 +65,7 @@
             <button type="button" data-theme="f">Votar</button>
         </div>
         <div class="ui-block-b">
-          <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+          <a href="#ranking/paper" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
             Ranking
           </a>
         </div>
@@ -78,54 +78,72 @@
 
       <div data-role="navbar">
         <ul>
-          <li><a href="#" data-theme="f" class="ui-btn-active">Sobre</a></li>
-          <li><a href="#" data-theme="f">Comentários</a></li>
-          <li><a href="#" data-theme="f">Perguntas</a></li>
+          <li><a data-theme="f" class="ui-btn-active" id="about-tab">Sobre</a></li>
+          <li><a data-theme="f" id="comments-tab">Comentários</a></li>
+          <li><a data-theme="f" id="questions-tab">Perguntas</a></li>
         </ul>
       </div>
 
       <br>
 
+      <div id="tab-content">
 
-      <div id="abstract" data-role="collapsible" data-collapsed="false" data-mini="true" data-theme="b" >
-          <h4>Abstract</h4>
-          <p>
-            {{description}}
-          </p>
       </div>
-
-      <br>
-
-      <h2>Autor</h2>
-
-      {{#each speakers}}
-        {{> userinfo this}}
-      {{/each}}
-
-      <button type="button" data-theme="a">Novo Comentário</button>
-
-
-     
-
-      <hr>
 
 
   </script>
 
 
+  <script type="text/x-handlebars-template" id="paper-about-tab-template">
+
+    <div id="abstract" data-role="collapsible" data-collapsed="false" data-mini="true" data-theme="b" >
+      <h4>Abstract</h4>
+        <p>
+          {{description}}
+        </p>
+    </div>
+
+    <br>
+
+    <h2>Autor</h2>
+
+    {{#each speakers}}
+      {{> userinfo this}}
+    {{/each}}
+  </script>
+
+
+
+
+  <script type="text/x-handlebars-template" id="comments-tab-template">
+
+    <button type="button" data-theme="a">Novo Comentário</button>
+
+    <br>
+
+    {{#each comments}}
+      {{> comment this}}
+      <br>
+      <br>
+    {{/each}}
+
+    <br>
+  </script>
+
+
   <!-- Comentário -->
-  <script type="text/x-handlebars-template" id="comment-template">
+  <script type="text/x-handlebars-template" id="comment-partial">
     <div class="comment" data-theme="e">
       <div class="ui-grid-a">
         <div class="ui-block-a">
           <div class="ui-btn">
-            <span id="comment-author-firstname">{{firstName}}</span>
+            <span id="comment-author-firstname">{{getFirstName author_name}}</span>
             <br>
-            <span id="comment-author-lastname">{{lastName}}</span>
+            <span id="comment-author-lastname">{{getLastName author_name}}</span>
           </div>
         </div>
         <div class="ui-block-b">
-          <a class="comment-author-link" href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+          <a class="comment-author-link" href="#profile/{{author_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
             Perfil
           </a>
         </div>

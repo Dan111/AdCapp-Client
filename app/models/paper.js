@@ -14,7 +14,7 @@ function ($, Backbone) {
 			name: null,
 			hour:0,
 			duration:0,
-			isScheduled: false,
+			is_scheduled: false,
 			local: null,
 			ranking:null,
 			speakers:null,
