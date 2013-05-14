@@ -8,53 +8,38 @@ require([
 ],
 
 function ($, Router, Profile, configHandlebars) {
+  
+  //Inicialização do router global, responsável pela transição de páginas
+  var router = new Router();
 
+  // Trigger the initial route and enable HTML5 History API support, set the
+  // root folder to '/' by default.  Change in app.js.
+  Backbone.history.start();
 
+  //Mostra o body só depois do jqm ter inicializado
+  $("body").show();
 
-  //$('#profile').live('pageshow', function(event){
+  //Configura o handlebars (ver ficheiro handlebars.config)
+  configHandlebars();
 
-    // Define your master router on the application namespace and trigger all
-    // navigation from this instance.
-    var router = new Router();
+  //Faz rendering da página profile
+  //Futuramente isto será retirado e substituído pelo menu inicial
+  new Profile();
 
-    // Trigger the initial route and enable HTML5 History API support, set the
-    // root folder to '/' by default.  Change in app.js.
-    Backbone.history.start();
+  //Redireciona os links <a> para o router do Backbone
+  $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
 
-    $("body").show();
+    var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
 
-    configHandlebars();
+    if(href.attr === "#")
+      return;
 
-    new Profile();
+    console.log("redirecting to: " + href.attr);
+    evt.preventDefault();
+    Backbone.history.navigate(href.attr, true);
 
-    // All navigation that is relative should be passed through the navigate
-    // method, to be processed by the router. If the link has a `data-bypass`
-    // attribute, bypass the delegation completely.
-    $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
-      // Get the absolute anchor href.
-      var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
-      // Get the absolute root.
-      var root = location.protocol + "//" + location.host + "/";
+  });
 
-
-      if(href.attr === "#")
-        return;
-
-      console.log("redirecting to: " + href.attr);
-
-      // Ensure the root is part of the anchor href, meaning it's relative.
-      // if (href.prop.slice(0, root.length) === root) {
-        // Stop the default event to ensure the link will not cause a page
-        // refresh.
-        evt.preventDefault();
-
-        // `Backbone.history.navigate` is sufficient for all Routers and will
-        // trigger the correct events. The Router's internal `navigate` method
-        // calls this anyways.  The fragment is sliced from the root.
-        Backbone.history.navigate(href.attr, true);
-      //}
-    });
-  //});
 
 
 });

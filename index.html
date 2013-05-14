@@ -21,12 +21,6 @@
   <!-- ********* -->
 
 
-<script type="text/x-handlebars-template"  id="lorem-partial">
-  <p>lorem ipsum lorem ipsum</p>
-
-</script>
-
-
   <!-- Página de Palestra -->
   <script type="text/x-handlebars-template"  id="paper-template">
 
@@ -89,11 +83,10 @@
       <div id="tab-content">
 
       </div>
-
-
   </script>
 
 
+  <!-- Tab sobre da página de palestra -->
   <script type="text/x-handlebars-template" id="paper-about-tab-template">
 
     <div id="abstract" data-role="collapsible" data-collapsed="false" data-mini="true" data-theme="b" >
@@ -114,7 +107,7 @@
 
 
 
-
+  <!-- Lista de comentários -->
   <script type="text/x-handlebars-template" id="comments-tab-template">
 
     <button type="button" data-theme="a">Novo Comentário</button>
@@ -165,6 +158,9 @@
     </div>
   </script>
 
+
+
+
   <!-- Informação do utilizador (avatar, nome, instituição, área) -->
   <script type="text/x-handlebars-template" id="user-info-partial">
 
@@ -183,10 +179,12 @@
           <span class="profile-area">{{area}}</span >
         </div>
     </div>
-
   </script>
 
 
+
+
+  <!-- Layout básico da aplicação (header e div de conteudo) -->
   <script type="text/x-handlebars-template" id="layout-template">
 
     <div data-role="page" id="{{pageId}}">
@@ -200,16 +198,15 @@
       <div data-role="content">
 
       </div>
-
     </div>
-
-
   </script>
 
 
 </head>
 
 
+
+<!-- Página inicial -->
 <body style="display:none">
 
 
@@ -268,9 +265,6 @@
       </div>
     </div>
 
-
-<!--   // <script src="vendor/jam/jquery/dist/jquery.min.js"></script>
-  // <script src="vendor/libs/jquerymobile.js"></script> -->
 
   <script data-main="app/config" src="vendor/jam/require.js"></script>
 

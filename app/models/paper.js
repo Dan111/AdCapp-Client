@@ -19,7 +19,8 @@ function ($, Backbone) {
 			ranking:null,
 			speakers:null,
 			description: "Sem descrição",
-			themes: null
+			themes: null,
+			comments: null
 
 		},
 
@@ -31,6 +32,7 @@ function ($, Backbone) {
 			// this.questions = new Questions;
 			// this.questions.url = '/papers/' + this.id + '/questions';
 
+			//adiciona o id do modelo ao url, para o Backbone poder fazer fetch da informação
 			this.url += this.id;
 
 
@@ -82,7 +84,20 @@ Exemplo da API:
 
 	description: "lorem ipsum",
 
-	themes: ["tema1", "tema2"]
+	themes: ["tema1", "tema2"],
+
+	"comments": [
+        {
+            "author_id": 1,
+            "author_name": "José da Maia",
+            "comment": "Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. "
+        },
+        {
+            "author_id": 2,
+            "author_name": "Carlos Manuel do Rosário",
+            "comment": "Sed felis orci, scelerisque vel gravida a, commodo lacinia elit. Maecenas vel turpis tincidunt ligula ultrices consequat. Aliquam ipsum sapien, pretium non venenatis et, dictum non purus. Aliquam aliquam facilisis est in dictum. Vestibulum at arcu vehicula erat mollis lacinia a sit amet erat. Sed sapien eros, consectetur id tincidunt. "
+        }
+    ]
 
 }
 */

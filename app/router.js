@@ -18,17 +18,13 @@ function (Backbone, PaperView) {
     },
 
     index: function() {
-
       console.log("ROUTE: homepage");
-
     },
 
     paper: function(id) {
-
-      console.log("paper");
+      console.log("ROUTE: paper");
 
       new PaperView({modelId: id});
-console.log("paper2");
     }
   });
 
