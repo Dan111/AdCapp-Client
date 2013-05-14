@@ -1,0 +1,16 @@
+{
+  "name": "AdCapp Client",
+  "version": "0.01",
+
+  "jam": {
+    "packageDir": "./vendor/jam",
+    "baseUrl": "./app",
+
+    "config": {
+      "paths": {
+        "templates": "./app/templates"
+      }
+    }
+  }
+}
+

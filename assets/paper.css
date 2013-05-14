@@ -1,0 +1,50 @@
+
+/*PÁGINA DE PALESTRA*/
+
+.full-btn {
+	width: 100%;
+}
+
+.paper-info {
+	font-size: 1.5em;
+	height:100%;
+	text-align: center;
+	height:30px;
+ 	line-height:30px;
+}
+
+#paper-title {
+	margin:0;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+
+.profile-pic-wrapper {
+	display: table-cell;
+    vertical-align: middle;
+}
+
+.profile-pic {
+
+	border-radius: 100px;
+
+}
+
+.profile-lastname {
+	font-size: 2em;
+	display: block;
+	margin-bottom: 0em;
+}
+
+.comment-author {
+	height:30px;
+ 	line-height:30px;
+}
+
+#abstract, .comment-content {
+	font-size: 1.2em;
+}
+
+[data-role=content] {
+	background-color: rgb(240, 239, 231);
+}

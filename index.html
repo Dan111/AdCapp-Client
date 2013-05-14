@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>AdCapp Client</title>
+
+  <link rel="stylesheet" href="assets/jquery.mobile.flatui.css">
+  <link rel="stylesheet" href="assets/profile.css">
+  <link rel="stylesheet" href="assets/paper.css">
+
+
+
+
+  <!-- Application container. -->
+
+  <!-- ********* -->
+  <!-- Templates -->
+  <!-- ********* -->
+
+
+<script type="text/x-handlebars-template"  id="lorem-partial">
+  <p>lorem ipsum lorem ipsum</p>
+
+</script>
+
+
+  <!-- Página de Palestra -->
+  <script type="text/x-handlebars-template"  id="paper-template">
+
+      <h1 id="paper-title">{{title}}</h1>
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-btn paper-info">
+            <span id="event-day">{{datetime}}</span>
+          </div>
+        </div>
+        <div class="ui-block-b">
+          <button type="button" data-theme="d">Ad. Agenda</button>
+        </div>
+      </div>
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-btn paper-info">
+            <span class="center-text" id="event-day">{{roomName}}</span>
+          </div>
+        </div>
+        <div class="ui-block-b">
+          <a href="#local/{{roomId}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+            Pág. Sala
+          </a>
+        </div>
+      </div>
+
+
+      <br>
+
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+            <button type="button" data-theme="f">Votar</button>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+            Ranking
+          </a>
+        </div>
+      </div>
+
+
+      <hr>
+      <br>
+
+
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#" data-theme="f" class="ui-btn-active">Sobre</a></li>
+          <li><a href="#" data-theme="f">Comentários</a></li>
+          <li><a href="#" data-theme="f">Perguntas</a></li>
+        </ul>
+      </div>
+
+      <br>
+
+
+      <div id="abstract" data-role="collapsible" data-collapsed="false" data-mini="true" data-theme="b" >
+          <h4>Abstract</h4>
+          <p>
+            {{description}}
+          </p>
+      </div>
+
+      <br>
+
+      <h2>Autor</h2>
+
+      {{#each speakers}}
+        {{> userinfo this}}
+      {{/each}}
+
+      <button type="button" data-theme="a">Novo Comentário</button>
+
+
+     
+
+      <hr>
+
+
+  </script>
+
+
+  <!-- Comentário -->
+  <script type="text/x-handlebars-template" id="comment-template">
+    <div class="comment" data-theme="e">
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-btn">
+            <span id="comment-author-firstname">{{firstName}}</span>
+            <br>
+            <span id="comment-author-lastname">{{lastName}}</span>
+          </div>
+        </div>
+        <div class="ui-block-b">
+          <a class="comment-author-link" href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+            Perfil
+          </a>
+        </div>
+      </div>
+
+      <p class="comment-content">
+        {{comment}}
+      </p>
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+
+        </div>
+        <div class="ui-block-b">
+          
+        </div>
+      </div>
+
+    </div>
+  </script>
+
+  <!-- Informação do utilizador (avatar, nome, instituição, área) -->
+  <script type="text/x-handlebars-template" id="user-info-partial">
+
+    <div class="ui-grid-a">
+        <div class="ui-block-a profile-pic-wrapper">
+          <img class="profile-pic" src="assets/profile.png" alt="Profile" height="130px" width="130px"/>
+        </div>
+        <div class="ui-block-b">
+          <span class="profile-firstname">{{getFirstName name}}</span >
+          <br>
+          <span class="profile-lastname">{{getLastName name}}</span>
+          <br>
+          <span class="profile-institution">{{institution}}</span >
+          <br>
+          <br>
+          <span class="profile-area">{{area}}</span >
+        </div>
+    </div>
+
+  </script>
+
+
+  <script type="text/x-handlebars-template" id="layout-template">
+
+    <div data-role="page" id="{{pageId}}">
+
+      <div data-role="header">
+        <a href="#" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
+        <h1>Paper</h1>
+        <a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
+      </div>
+
+      <div data-role="content">
+
+      </div>
+
+    </div>
+
+
+  </script>
+
+
+</head>
+
+
+<body style="display:none">
+
+
+    <div data-role="page" id="profile">
+      <div data-role="header">
+        <a href="#" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
+        <h1>Main Menu</h1>
+        <a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
+      </div>
+
+      <div data-role="content">
+
+        <h1 id="paper-title">Data Management</h1>
+
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <div class="ui-btn paper-info">
+              <span id="event-day">12/05 12:30</span>
+            </div>
+          </div>
+          <div class="ui-block-b">
+            <button type="button" data-theme="d">Ad. Agenda</button>
+          </div>
+        </div>
+
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <div class="ui-btn paper-info">
+              <span class="center-text" id="event-day">Sala 112</span>
+            </div>
+          </div>
+          <div class="ui-block-b">
+            <a href="#paper/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+              Pág. Sala
+            </a>
+          </div>
+        </div>
+
+
+        <br>
+
+        <div id="author-ranking">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <button type="button" data-theme="f">Votar</button>
+            </div>
+            <div class="ui-block-b">
+              <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+                Ranking
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+<!--   // <script src="vendor/jam/jquery/dist/jquery.min.js"></script>
+  // <script src="vendor/libs/jquerymobile.js"></script> -->
+
+  <script data-main="app/config" src="vendor/jam/require.js"></script>
+
+</body>
+</html>
