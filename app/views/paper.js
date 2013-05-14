@@ -2,14 +2,21 @@ define([
     "jquery",
     "backbone",
     "handlebars",
-    "models/paper"
-], function ($, Backbone, Handlebars, PaperModel) {
+    "models/paper",
+    "views/basicview"
+], function ($, Backbone, Handlebars, PaperModel, BasicView) {
 
 	return Backbone.View.extend({
 
 		el: $("[data-role=content]"),
 
 		id: "paper-page",
+		pageName: "Palestra",
+
+		template: "paper-template",
+		aboutTabTemplate: "paper-about-tab-template",
+		commentsTabTemplate: "comments-tab-template",
+
 
 		paper: null,
 
@@ -43,29 +50,29 @@ define([
 
 		renderLayout: function () {
 
-			var source   = $("#layout-template").html();
-			var template = Handlebars.compile(source);
+			var pid = this.id;
+			var name = this.pageName;
 
-			var pid = this.id
-
-			var context = {pageId: pid};
-			var html = template(context);
+			var context = {page_id: pid, page_name: name};
+			var html = this.compileTemplate("layout-template", context);
 
 			//adiciona página ao body
 			$("body").append(html);
 			this.enhanceJQMComponentsAPI();
 
-
-
-			//faz refresh da pagina, para ficar com os estilos do jQM
-			$("#paper-page").trigger("create");
-
 			//limpa a pagina anterior do DOM
-			$("[data-role=page]:first").remove();
+			this.removePreviousPageFromDOM();
 
 			return this;
+		},
 
+		compileTemplate: function (templateName, context) {
 
+			var source   = $("#" + templateName).html();
+			var template = Handlebars.compile(source);
+			var html = template(context);
+
+			return html;
 
 		},
 
@@ -80,16 +87,10 @@ define([
 				room_id : paper.local.id
 			};
 
-			var source   = $("#paper-template").html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
+			var html = this.compileTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
 			this.enhanceJQMComponentsAPI();
-
-			//faz refresh da pagina, para ficar com os estilos do jQM
-			$("#paper-page").trigger("create");
-
 
 			this.renderAboutTab();
 			this.setElement($("[data-role=content]"));
@@ -109,18 +110,18 @@ define([
 				speakers : paper.speakers
 			};
 
-			var source   = $("#paper-about-tab-template").html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
+			var html = this.compileTemplate(this.aboutTabTemplate, context);
 
 			$("#tab-content").html(html);
-			$("#paper-page").trigger("create");
+			$("#" + this.id).trigger("create");
+
+			return this;
 		},
 
 
 		renderCommentsTab: function () {
 
-			console.log("comments");
+			console.log("comments tab");
 
 			var paper = this.paper.attributes;
 
@@ -128,18 +129,13 @@ define([
 				comments: paper.comments
 			};
 
+			var html = this.compileTemplate(this.commentsTabTemplate, context);	
 
-
-			var source   = $("#comments-tab-template").html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
-
-			console.log(context);
-
-			
 
 			$("#tab-content").html(html);
-			$("#paper-page").trigger("create");
+			$("#" + this.id).trigger("create");
+
+			return this;
 
 		},
 
@@ -149,11 +145,14 @@ define([
              $.mobile.changePage("#" + this.id, {
                  changeHash: false
              });
+
+             $("#" + this.id).trigger("create");
          },
     // Add page to DOM
-         addPageToDOMAndRenderJQM: function () {
-             $("main").append($(this.el));
-             $("#profile").page();
+         removePreviousPageFromDOM: function () {
+             // $("main").append($(this.el));
+             // $("#profile").page();
+             $("[data-role=page]:first").remove();
          }
 
 
