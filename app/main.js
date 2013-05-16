@@ -24,7 +24,7 @@ function ($, Router, Profile, configHandlebars) {
 
   //Faz rendering da página profile
   //Futuramente isto será retirado e substituído pelo menu inicial
-  new Profile();
+  //new Profile();
 
   //Redireciona os links <a> para o router do Backbone
   $(document).on("click", "a[href]:not([data-bypass])", function(evt) {

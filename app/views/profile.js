@@ -1,112 +1,174 @@
 define([
     "jquery",
     "backbone",
-    "handlebars"
-], function ($, Backbone, Handlebars) {
+    "handlebars",
+    "models/user",
+    "views/basicview"
+], function ($, Backbone, Handlebars, UserModel, BasicView) {
 
     return Backbone.View.extend({
-        id : "ProfileGeneralView", 
-        getHeaderTitle : function () {
-            return "Perfil";
+
+        el: $("[data-role=content]"),
+
+        id: "profile-page",
+        pageName: "Perfil",
+
+        template: "profile-template",
+        generalInfoTemplate: "general-info-template",
+        moreContactsTemplate: "more-contacts-template",
+
+
+        user: null,
+
+        events: {
+
+            'click #add-user' : 'addUser',
+            'click #vote'     : 'vote',
+            'click #general'  : 'renderGeneral',
+            'click #contacts' : 'renderContacts'
+
         },
 
-        getSpecificTemplateValues : function () {
-            this.user ={
-                name: 'Antonio Mendes', 
-                lastname: 'mendes',
-                email: 'Unknown',
-                password: 'Unknown', 
-                institution: 'FCT',
-                area:'Informatica',
-                image: 'None',
-                publish_schedule: false,
-                votes: 0,
-                author: true};
-            return this.user;
-        },
-        events : function () {
-            // merged events of BasicView, to add an older fix for back button functionality
-            return _.extend({
-                'click #add-user': 'addUser',
-                'click #vote': 'vote',
-                'click #contacts': 'renderContacts'
-            }, this.constructor.__super__.events);
+        initialize: function (args)
+        {
+            _.bindAll(this);
+
+            var modelId = args.modelId;
+
+            var self = this;
+
+            this.user = new UserModel({id: modelId});
+            this.user.fetch({
+                success: function () {
+                    self.renderLayout();
+                    self.render();
+                }
+            });
+
+
+
         },
 
-        initialize: function() {
+
+        renderLayout: function () {
+
+            var pid = this.id;
+            var name = this.pageName;
+
+            var context = {page_id: pid, page_name: name};
+            var html = this.compileTemplate("layout-template", context);
+
+            //adiciona página ao body
+            $("body").append(html);
+            this.enhanceJQMComponentsAPI();
+
+            //limpa a pagina anterior do DOM
+            this.removePreviousPageFromDOM();
+
+            return this;
+        },
+
+        compileTemplate: function (templateName, context) {
+
+            var source   = $("#" + templateName).html();
+            var template = Handlebars.compile(source);
+            var html = template(context);
+
+            return html;
+
+        },
+
+
+        render: function () {
+            var user = this.user.attributes;
+             
+            var context = {
+                user : user,
+                author : user.author
+            };
+
+            var html = this.compileTemplate(this.template, context);
+
+            $("[data-role=content]").append(html);
+            this.enhanceJQMComponentsAPI();
+
+            this.renderGeneral();
+            this.setElement($("[data-role=content]"));
+
+            return this;
+
+        },
+
+        addUser: function()
+        {
+
+        },
+
+        vote: function()
+        {
+
+        },
+
+        renderGeneral: function() {
+            console.log("general tab");
+
+            var user = this.user.attributes;
+
+            var context = {
+                idNextEvent : user.nextEvent.idNextEvent,
+                nameNextEvent : user.nextEvent.nameNextEvent,
+                userId : user.id,
+                events : user.events,
+                bio : user.bio
+            };
+
             
+            var html = this.compileTemplate(this.generalInfoTemplate, context);
 
-            this.render();
-        },
+            $("#option-menu").html(html);
+            $("#" + this.id).trigger("create");
 
-        
-        addUser: function() {
-            
-        },
-
-        vote: function() {
-
+            return this;
         },
 
         renderContacts: function() {
-            
+            console.log("social contacts tab");
+
+            var user = this.user.attributes;
+
+            var context = {
+                website : user.socialContacts.website,
+                linkedin : user.socialContacts.linkedin,
+                facebook : user.socialContacts.facebook,
+                twitter : user.socialContacts.twitter
+            };
+
+            var html = this.compileTemplate(this.moreContactsTemplate, context);
+
+            $("#option-menu").html(html);
+            $("#" + this.id).trigger("create");
+
+            return this;
         },
 
-         render: function () {
-             this.cleanupPossiblePageDuplicationInDOM();
 
-             $("div#author-ranking").html('<a href="#index" id="vote" data-role="button" data-theme="d" >Votar</a>');
-/*             this.addPageToDOMAndRenderJQM();
-             this.enhanceJQMComponentsAPI();*/
-             $("#vote").buttonMarkup( "refresh" );
-             console.log("RENDER");
-
-             console.log("template");
-
-
-         },
-    // // Generate HTML using the Handlebars templates
-    //      getTemplateResult: function (templateDefinitionID, templateValues) {
-    //          return window.JST[templateDefinitionID](templateValues);
-    //      },
-    // // Collect all template paramters and merge them
-    //      getBasicPageTemplateResult: function () {
-    //          var templateValues = {
-    //              templatePartialPageID: this.id,
-    //              headerTitle: this.getHeaderTitle()
-    //          };
-    //          var specific = this.getSpecificTemplateValues();
-    //          $.extend(templateValues, this.getSpecificTemplateValues());
-    //          return this.getTemplateResult(this.getTemplateID(), templateValues);
-    //      },
-    //      getRequestedPageTemplateResult: function () {
-    //          this.getBasicPageTemplateResult();
-    //      },
-         enhanceJQMComponentsAPI: function () {
+        enhanceJQMComponentsAPI: function () {
     // changePage
              $.mobile.changePage("#" + this.id, {
-                 changeHash: false,
-                 role: this.role
+                 changeHash: false
              });
+
+             $("#" + this.id).trigger("create");
          },
     // Add page to DOM
-         addPageToDOMAndRenderJQM: function () {
-             $("body").append($(this.el));
-             $("#profile").page();
-         },
-    // Cleanup DOM strategy
-         cleanupPossiblePageDuplicationInDOM: function () {
-         // Can also be moved to the event "pagehide": or "onPageHide"
-             var $previousEl = $("#" + this.id);
-             var alreadyInDom = $previousEl.length >= 0;
-             if (alreadyInDom) {
-                 $previousEl.detach();
-             }
-         },
-    // Strategy to always support back button with disabled navigation
-         goBackInHistory: function (clickEvent) {
-             history.go(-1);
-             return false;
+         removePreviousPageFromDOM: function () {
+             // $("main").append($(this.el));
+             // $("#profile").page();
+             $("[data-role=page]:first").remove();
          }
+
+
     });
+
+
 });

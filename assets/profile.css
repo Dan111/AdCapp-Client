@@ -1,4 +1,4 @@
-#info-box {
+#info-box .ui-block-b{
 	float: right;
 }
 
@@ -7,7 +7,7 @@
 }
 
 
-#vote-and-rank {
+#sub-buttons {
 	margin-bottom: 30px;
 }
 
@@ -17,9 +17,4 @@ h1{
 }
 
 
-/*BUTTONS*/
 
-
-.inline-buttons .ui-btn { 
-	width: 130px;  
-}

@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="assets/jquery.mobile.flatui.css">
   <link rel="stylesheet" href="assets/profile.css">
   <link rel="stylesheet" href="assets/paper.css">
-  
-
 
 
 
@@ -203,108 +201,6 @@
     </div>
   </script>
 
-  
-
-
-  <!-- Página de Perfil -->
-  <!-- Template base do perfil -->
-  <script type="text/x-handlebars-template"  id="profile-template">
-      
-
-      <div id="info-box" >
-          {{> userinfo user}}
-      </div> 
-
-      <div id="add-and-email" class="ui-grid-a">
-        <div class="ui-block-a">
-          <a href="#" data-role="button" id="add-user" data-theme="d" >Adicionar </a>
-        </div>
-        <div class="ui-block-b">
-          <a href="#" data-role="button" id="email-user"data-theme="e" > E-mail</a>
-        </div>
-      </div>
-
-      
-      <div id="sub-buttons" class="ui-grid-a">
-          {{#if author}}
-          <div class="ui-block-a">
-            <a href="" id="vote" data-role="button" data-theme="a" >Votar</a>
-          </div>
-          <div class="ui-block-b">
-            <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right"  data-theme="a" >Rankings</a>
-          </div>
-          {{/if}}
-      </div>
-      
-
-      <div data-role="navbar" data-theme="a">
-          <ul>
-              <li ><a href="" id="general"  class="ui-btn-active">Geral</a></li>
-              <li><a href="" id="contacts" >Contactos</a></li>
-          </ul>
-      </div>
-
-      <div id="option-menu">
-        
-      </div>
-  </script>
-
-  <!-- Opção geral da tab do perfil-->
-  <script type="text/x-handlebars-template" id="general-info-template">
-      <div id="general-info">
-        <p id="events-watch-title">Eventos que vou Assistir</p>
-
-        <div id="events-watch" class="ui-grid-a">
-          <div class="ui-block-a">
-            <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
-          </div>
-          <div class="ui-block-b">
-            <a href="#personalschedule/{{userId}}" data-role="button" data-icon="grid" data-iconpos="left" data-theme="d" >Agenda</a>
-          </div>
-        </div>
-
-
-        <p id="events-watch-make">Eventos que vou realizar</p>
-
-        <p id="events-make">
-          {{#each events}}
-            <a href="#paper/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
-          {{/each}}
-        </p>
-
-        <div data-role="collapsible" data-collapsed="false" data-theme="a" >
-          <h4>Bio</h4>
-          <p>
-            {{bio}}
-          </p>
-        </div>
-      </div>
-  </script>
-
-  <!-- Opção contactos da tab do perfil-->
-  <script type="text/x-handlebars-template" id="more-contacts-template">
-    <div id="contacts-info">
-    
-      <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <a href=" {{website}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >Website</a>
-        </div>
-        <div class="ui-block-b">
-          <a href="{{linkedin}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >LinkedIn</a>
-        </div>
-      </div>
-
-      <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <a href="{{facebook}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >Facebook</a>
-        </div>
-        <div class="ui-block-b">
-          <a href="{{twitter}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >Twitter</a>
-        </div>
-      </div>
-  </script>
-
-  
 
 </head>
 
@@ -323,47 +219,47 @@
 
       <div data-role="content">
 
-          <h1 id="paper-title">Test</h1>
+        <h1 id="paper-title">Data Management</h1>
 
-          
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <div class="ui-btn paper-info">
+              <span id="event-day">12/05 12:30</span>
+            </div>
+          </div>
+          <div class="ui-block-b">
+            <button type="button" data-theme="d">Ad. Agenda</button>
+          </div>
+        </div>
+
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <div class="ui-btn paper-info">
+              <span class="center-text" id="event-day">Sala 112</span>
+            </div>
+          </div>
+          <div class="ui-block-b">
+            <a href="#paper/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+              Pág. Sala
+            </a>
+          </div>
+        </div>
+
+
+        <br>
+
+        <div id="author-ranking">
           <div class="ui-grid-a">
             <div class="ui-block-a">
-              <a href="#user/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Profile Test
-              </a>
+                <button type="button" data-theme="f">Votar</button>
             </div>
             <div class="ui-block-b">
-              <a href="#paper/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Paper Test
-              </a>
-            </div>
-            <div class="ui-block-c">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Local Test
-              </a>
-            </div>
-            <div class="ui-block-d">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Menu Info Test
+              <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+                Ranking
               </a>
             </div>
           </div>
-
-          <div class="ui-grid-a">
-           <div class="ui-block-a">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Info Papers Test
-              </a>
-            </div>
-            <div class="ui-block-b">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Info Papers Test
-              </a>
-            </div>
-          </div>
-          <!-- ADICIONAR BUTÕES À MEDIDA DO NECESSÁRIO-->
-      </div>
-       
+        </div>
 
 
       </div>
