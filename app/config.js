@@ -7,6 +7,7 @@ require.config({
 
   paths: {
   	'jquerymobile' : "../vendor/libs/jquerymobile",
+    'backbone.localStorage' : "../vendor/libs/backbone.localStorage",
     'jquerymobile.config' : 'jquerymobile.config',
     'handlebars.config' : 'handlebars.config'
      
