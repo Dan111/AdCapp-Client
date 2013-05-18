@@ -120,6 +120,7 @@ define([
             {
                 this.contacts.create(attrs);
                 console.log("contact added");
+                this.user.set({isContact: true});
             }
             else
                 console.log("already has contact");
