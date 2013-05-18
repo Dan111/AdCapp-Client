@@ -45,6 +45,28 @@
 	font-size: 1.2em;
 }
 
+.like-button{
+	margin-left: 1em;
+}
+
+.question-voted {
+    color: forestgreen;
+}
+
+.question-votes {
+	font-size: 2.5em;
+	height:100%;
+	height:30px;
+	line-height:30px;
+
+	margin-left: 0.5em;
+}
+
+.question-ranking {
+	text-align: right;
+}
+
 [data-role=content] {
 	background-color: rgb(240, 239, 231);
 }
+

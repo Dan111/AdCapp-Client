@@ -8,6 +8,7 @@
   <title>AdCapp Client</title>
 
   <link rel="stylesheet" href="assets/jquery.mobile.flatui.css">
+  <link rel="stylesheet" href="assets/font-awesome.min.css">
   <link rel="stylesheet" href="assets/profile.css">
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
@@ -35,7 +36,7 @@
       <div class="ui-grid-a">
         <div class="ui-block-a">
           <div class="ui-btn paper-info">
-            <span id="event-day">{{datetime}}</span>
+            <span id="event-day">{{parseDate datetime}}</span>
           </div>
         </div>
         <div class="ui-block-b">
@@ -95,7 +96,7 @@
   <!-- Tab sobre da página de palestra -->
   <script type="text/x-handlebars-template" id="paper-about-tab-template">
 
-    <div id="abstract" data-role="collapsible" data-collapsed="false" data-mini="true" data-theme="b" >
+    <div id="abstract" data-role="collapsible" data-mini="true" data-theme="b" >
       <h4>Abstract</h4>
         <p>
           {{description}}
@@ -108,7 +109,12 @@
 
     {{#each speakers}}
       {{> userinfo this}}
+      <a href="#user/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="d">
+        Pág. Perfil
+      </a>
     {{/each}}
+
+
   </script>
 
 
@@ -116,7 +122,7 @@
   <!-- Lista de comentários -->
   <script type="text/x-handlebars-template" id="comments-tab-template">
 
-    <button type="button" data-theme="a">Novo Comentário</button>
+    <button id="new-comment" type="button" data-theme="a">{{title}}</button>
 
     <br>
 
@@ -149,17 +155,15 @@
       </div>
 
       <p class="comment-content">
-        {{comment}}
+        {{content}}
       </p>
 
-      <div class="ui-grid-a">
-        <div class="ui-block-a">
-
-        </div>
-        <div class="ui-block-b">
-          
-        </div>
-      </div>
+      {{#if votes}}
+          <div class="question-ranking">
+            <i question-id="{{question_id}}" class="like-button icon-thumbs-up icon-4x {{#if has_voted}}question-voted{{/if}}"></i>
+            <span class="question-votes">+{{votes}}</span> 
+          </div> 
+      {{/if}}
 
     </div>
   </script>
@@ -198,7 +202,7 @@
       <div data-role="header">
         <a href="#" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
         <h1>{{page_name}}</h1>
-        <a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
+        <a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
       </div>
 
       <div data-role="content">

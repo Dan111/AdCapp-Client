@@ -20,7 +20,8 @@ function ($, Backbone) {
 			speakers:null,
 			description: "Sem descrição",
 			themes: null,
-			comments: null
+			comments: null,
+			questions: null
 
 		},
 
@@ -52,11 +53,11 @@ Exemplo da API:
 
 	name: "Data Management",
 
-	hour: "formato da data",
+	hour: "2013-05-12T12:30:00Z",
 
 	duration: 30,
 
-	isScheduled: true, //se o utilizador adicionou o evento à sua agenda pessoal
+	is_scheduled: true, //se o utilizador adicionou o evento à sua agenda pessoal
 
 	local: {
 
@@ -69,7 +70,7 @@ Exemplo da API:
 
 		pos: 3,
 		votes: 37,
-		hasVoted: true //se o utilizador votou neste evento
+		has_voted: true //se o utilizador votou neste evento
 	},
 
 	speakers: [
@@ -96,6 +97,26 @@ Exemplo da API:
             "author_id": 2,
             "author_name": "Carlos Manuel do Rosário",
             "comment": "Sed felis orci, scelerisque vel gravida a, commodo lacinia elit. Maecenas vel turpis tincidunt ligula ultrices consequat. Aliquam ipsum sapien, pretium non venenatis et, dictum non purus. Aliquam aliquam facilisis est in dictum. Vestibulum at arcu vehicula erat mollis lacinia a sit amet erat. Sed sapien eros, consectetur id tincidunt. "
+        }
+    ],
+
+
+    "questions":[
+        {
+            "author_id": 1,
+            "author_name": "José da Maia",
+            "question_id": 1,
+            "question": "Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. "
+            "votes": 23,
+            "has_voted": false
+        },
+        {
+            "author_id": 1,
+            "author_name": "José da Maia",
+            "question_id": 1,
+            "question": "Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. "
+            "votes": 23,
+            "has_voted": false
         }
     ]
 

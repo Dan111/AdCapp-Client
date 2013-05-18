@@ -3,12 +3,13 @@ define([
     "backbone",
     "handlebars",
     "models/paper",
-    "views/basicview"
-], function ($, Backbone, Handlebars, PaperModel, BasicView) {
+    "views/basicview",
+    "views/comment"
+], function ($, Backbone, Handlebars, PaperModel, BasicView, CommentsView) {
 
 	return Backbone.View.extend({
 
-		el: $("[data-role=content]"),
+		el: "div[data-role=content]",
 
 		id: "paper-page",
 		pageName: "Palestra",
@@ -23,7 +24,8 @@ define([
 		events: {
 
 			"click #about-tab"		: "renderAboutTab",
-			"click #comments-tab"	: "renderCommentsTab"
+			"click #comments-tab"	: "renderCommentsTab",
+			"click #questions-tab"	: "renderQuestionsTab"
 
 		},
 
@@ -35,10 +37,12 @@ define([
 
 			var self = this;
 
+
 			this.paper = new PaperModel({id: modelId});
 			this.paper.fetch({
 				success: function () {
 					self.renderLayout();
+					self.setElement($("[data-role=content]"));
 					self.render();
 				}
 			});
@@ -82,7 +86,7 @@ define([
 
 			var context = {
 				title : paper.name,
-				datetime : "12/05 12:30",
+				datetime : paper.hour,
 				room_name : paper.local.name,
 				room_id : paper.local.id
 			};
@@ -93,7 +97,7 @@ define([
 			this.enhanceJQMComponentsAPI();
 
 			this.renderAboutTab();
-			this.setElement($("[data-role=content]"));
+			
 
 			return this;
 
@@ -113,30 +117,44 @@ define([
 			var html = this.compileTemplate(this.aboutTabTemplate, context);
 
 			$("#tab-content").html(html);
-			$("#" + this.id).trigger("create");
+			this.refreshJQM();
 
 			return this;
 		},
+
 
 
 		renderCommentsTab: function () {
 
 			console.log("comments tab");
 
-			var paper = this.paper.attributes;
+			var comments = this.paper.get('comments');
 
-			var context = {
-				comments: paper.comments
-			};
+			new CommentsView({
+								title: "Novo Comentário",
+								comments: comments
+							});
 
-			var html = this.compileTemplate(this.commentsTabTemplate, context);	
-
-
-			$("#tab-content").html(html);
-			$("#" + this.id).trigger("create");
+			this.refreshJQM();
 
 			return this;
+		},
 
+
+		renderQuestionsTab: function () {
+
+			console.log("questions tab");
+
+			var questions = this.paper.get('questions');
+
+			new CommentsView({
+								title: "Nova Pergunta",
+								comments: questions
+							});
+
+			this.refreshJQM();
+
+			return this;
 		},
 
 
@@ -153,6 +171,10 @@ define([
              // $("main").append($(this.el));
              // $("#profile").page();
              $("[data-role=page]:first").remove();
+         },
+
+         refreshJQM: function (){
+         	$("#" + this.id).trigger("create");
          }
 
 

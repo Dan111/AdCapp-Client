@@ -1,9 +1,10 @@
 define([
 	'handlebars',
-	'jquery'
+	'jquery',
+    'moment'
 ], 
 
-function (Handlebars, $) {
+function (Handlebars, $, Moment) {
 
     return function () {
 
@@ -46,6 +47,15 @@ function (Handlebars, $) {
 
             var last = name.substring( name.lastIndexOf(" ") + 1, name.length);
             return last;
+        });
+
+        //Devolve a data formatada para as páginas dos eventos
+        Handlebars.registerHelper('parseDate', function (date) {
+            var date = date.toString();
+
+            var formattedDate = Moment(date);
+            return formattedDate.local().format("DD/MM HH:mm");
+
         });
 
 	};

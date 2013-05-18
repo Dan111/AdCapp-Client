@@ -2017,6 +2017,11 @@ var jam = {
             "main": "dist/jquery.js"
         },
         {
+            "name": "moment",
+            "location": "../vendor/jam/moment",
+            "main": "moment.js"
+        },
+        {
             "name": "text",
             "location": "../vendor/jam/text",
             "main": "text.js"
@@ -2061,6 +2066,11 @@ if (typeof require !== "undefined" && require.config) {
             "main": "dist/jquery.js"
         },
         {
+            "name": "moment",
+            "location": "../vendor/jam/moment",
+            "main": "moment.js"
+        },
+        {
             "name": "text",
             "location": "../vendor/jam/text",
             "main": "text.js"
@@ -2102,6 +2112,11 @@ else {
             "name": "jquery",
             "location": "../vendor/jam/jquery",
             "main": "dist/jquery.js"
+        },
+        {
+            "name": "moment",
+            "location": "../vendor/jam/moment",
+            "main": "moment.js"
         },
         {
             "name": "text",
