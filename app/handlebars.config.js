@@ -21,6 +21,12 @@ function (Handlebars, $) {
         //Partial de um comentario
         Handlebars.registerPartial('comment', $("#comment-partial").html());
 
+        //Partial da lista de speakers
+        Handlebars.registerPartial('speaker', $("#speaker-partial").html());
+        
+        //Partial da lista de participants
+        Handlebars.registerPartial('participant', $("#participant-partial").html());
+
 
 
 

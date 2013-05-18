@@ -1,0 +1,7 @@
+#users-lists li{
+	margin-bottom: 5px;
+}
+
+#users-lists li a{
+	text-decoration: none;
+}

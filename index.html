@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="assets/jquery.mobile.flatui.css">
   <link rel="stylesheet" href="assets/profile.css">
   <link rel="stylesheet" href="assets/paper.css">
+  <link rel="stylesheet" href="assets/user-lists.css">
+
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome-ie7.css">
   
 
 
@@ -287,23 +291,73 @@
     
       <div class="ui-grid-a">
         <div class="ui-block-a">
-          <a href=" {{website}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >Website</a>
+          <a href=" {{website}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-globe icon-2x"></i>Website</a>
         </div>
         <div class="ui-block-b">
-          <a href="{{linkedin}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >LinkedIn</a>
+          <a href="{{linkedin}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-linkedin-sign icon-2x"></i>LinkedIn</a>
         </div>
       </div>
 
       <div class="ui-grid-a">
         <div class="ui-block-a">
-          <a href="{{facebook}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >Facebook</a>
+          <a href="{{facebook}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-facebook-sign icon-2x"></i>Facebook</a>
         </div>
         <div class="ui-block-b">
-          <a href="{{twitter}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  >Twitter</a>
+          <a href="{{twitter}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-twitter-sign icon-2x"></i>Twitter</a>
         </div>
       </div>
   </script>
 
+
+  <!-- Página de Lista de Utilizadores, tanto participantes como oradores -->
+
+  <!-- Template base para lista de users-->
+  <script type="text/x-handlebars-template"  id="users-template">
+
+    <ul id="users-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
+      {{#if speakers}}
+        {{> speaker this}}
+      {{else}}
+        {{> participant this}}
+      {{/if}}
+    </ul>
+
+  </script>
+
+  <!-- lista de oradores-->
+  <script type="text/x-handlebars-template"  id="speaker-partial">
+      {{#each users}}
+        {{#if author}}
+          <li>
+            <a href="#user/{{id}}">
+              <img class="profile-pic" src="assets/morgan.jpg">
+              <h2>{{name}}</h2>
+              <p>{{institution}}</p>
+              <p>{{area}}</p>
+              </a>
+         </li>
+
+        {{/if}}
+      {{/each}}
+  </script>
+
+  <!-- lista de participantes-->
+  <script type="text/x-handlebars-template"  id="participant-partial">
+      {{#each users}}
+        {{#unless author}}
+          <li>
+            <a href="#user/{{id}}">
+              <img class="profile-pic" src="assets/morgan.jpg">
+              <h2>{{name}}</h2>
+              <p>{{institution}}</p>
+              <p>{{area}}</p>
+              </a>
+         </li>
+        {{/unless}}
+      {{/each}}
+  </script>
+
+  
   
 
 </head>
@@ -338,30 +392,42 @@
               </a>
             </div>
             <div class="ui-block-c">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Local Test
+              <a href="#speakers" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Speakers Info Page Test
               </a>
             </div>
             <div class="ui-block-d">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Menu Info Test
+              <a href="participants" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Participants Info Page Test
               </a>
             </div>
           </div>
 
           <div class="ui-grid-a">
-           <div class="ui-block-a">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Info Papers Test
-              </a>
-            </div>
-            <div class="ui-block-b">
-              <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Info Papers Test
-              </a>
-            </div>
+             <div class="ui-block-a">
+                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Info Papers Test
+                </a>
+              </div>
+              <div class="ui-block-b">
+                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Info Papers Test
+                </a>
+              </div>
+              <div class="ui-block-c">
+                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Local Test
+                </a>
+              </div>
+              <div class="ui-block-d">
+                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Menu Info Test
+                </a>
+              </div>
           </div>
           <!-- ADICIONAR BUTÕES À MEDIDA DO NECESSÁRIO-->
+      </div>
+          
       </div>
        
 

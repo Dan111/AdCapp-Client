@@ -6,14 +6,16 @@ define([
 
   "views/paper",
 
-  //Profile
-
   "views/profile",
+
+  "views/userslist",
+
+  //Collections
   "collections/contacts"
 
 ],
 
-function (Backbone, PaperView, ProfileView, Contacts) {
+function (Backbone, PaperView, ProfileView, UsersListView, Contacts) {
 
   // Defining the application router, you can attach sub routers here.
   var Router = Backbone.Router.extend({
@@ -26,6 +28,8 @@ function (Backbone, PaperView, ProfileView, Contacts) {
     routes: {
       "": "main",
       "index": "index",
+      "speakers": "speakers",
+      "participants": "participants",
       "paper/:id" : "paper",
       "user/:id" : "user"
     },
@@ -44,6 +48,16 @@ function (Backbone, PaperView, ProfileView, Contacts) {
       console.log("ROUTE: user");
 
       new ProfileView({modelId: id, contacts: this.contacts});
+    },
+
+    speakers: function(){
+      console.log("ROUTE: speakers");
+      new UsersListView({isSpeakers: true, pageId: "speakers-page", pageName: "Oradores"});
+    },
+
+    participants: function(){
+      console.log("ROUTE: participants");
+      new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
     }
   });
 
