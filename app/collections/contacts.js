@@ -13,6 +13,8 @@ function ($, Backbone, LocalStorage, Contact) {
 
 		localStorage: new Backbone.LocalStorage('contacts-backbone'),
 
+		defaults: { a: 1 },
+
 		initialize: function (){
 			console.log('ContactS');
 		},

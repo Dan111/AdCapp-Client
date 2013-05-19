@@ -37,7 +37,7 @@ define([
             var modelId = args.modelId;
 
             var self = this;
-            this.contacts = args.contacts;
+            this.mycontacts = contacts;
             this.user = new UserModel({id: modelId});
             this.user.fetch({
                 success: function () {
@@ -87,6 +87,8 @@ define([
                 author : user.author
             };
 
+
+
             //compilação do template com a sua informação
             var html = this.compileTemplate(this.template, context);
 
@@ -96,6 +98,12 @@ define([
             // render da tab geral, sendo que é a default da página
             this.renderGeneral();
             this.setElement($("[data-role=content]"));
+
+            //Quando tivermos servidor, ou seja, info dinamica irá funcionar
+            //correctamente
+            console.log(user.isContact);
+            if(user.isContact)
+                $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
 
             return this;
 
@@ -113,18 +121,25 @@ define([
                 };
 
             //Verifica se já existe um contacto com o user_id do user deste perfil
-            var hasContact = this.contacts.find( function(user_m){ return user_m.get("user_id") === user.id; });
-
+            var hasContact = this.mycontacts.find( function(user_m){ return user_m.get("user_id") === user.id; });
+            var feedback = "";
             console.log(hasContact);
             if(!hasContact)
             {
-                this.contacts.create(attrs);
+                this.mycontacts.create(attrs);
                 console.log("contact added");
                 this.user.set({isContact: true});
+                alert("Contacto Adicionado");
+                //Quando tivermos servidor, ou seja, info dinamica irá funcionar
+                //correctamente
+                $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
             }
-            else
+            else 
+            {    
+                alert("Já tem este contacto...");
                 console.log("already has contact");
-           
+                
+            }
         },
 
 
@@ -132,29 +147,10 @@ define([
         {
             var url = "www.adcapp.com";//colocar url correcta quando definida
 
-            var form = $('<form></form>');
-
-            //definição do método http e da url do post
-            form.attr("method", "post");
-            form.attr("action", url);
-
-            //Falta apenas verficar como obter o votable-id e user_id, sendo este último o utilizador da app
-            var parameters = {vote: {user_id: -1, votable_id: -1, votable_type: "User"}};
-
-            // criação das tags inputs com os valores passados em parameters
-            $.each(parameters, function(key, value) {
-                var field = $('<input />');
-
-                field.attr("type", "hidden");
-                field.attr("name", key);
-                field.attr("value", value);
-
-                form.append(field);
-            });
-
-            // faz append do form criado e respectivo submit, para que tudo possa decorrer
-            $(document.body).append(form);
-            form.submit();
+            $.post(url, {vote: {user_id: -1, votable_id: -1, votable_type: "User"}}, 
+                function() {
+                    console.log("post feito");
+            }).done(function() { alert("Voto atribuído"); }).fail(function() { alert("Erro"); });
 
         },
 

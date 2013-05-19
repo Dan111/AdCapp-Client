@@ -2,12 +2,14 @@ require([
   'jquery',
   'router',
   'views/profile',
+  'collections/contacts',
   'handlebars.config',
   'jquerymobile',
   'jquerymobile.config'
 ],
 
-function ($, Router, Profile, configHandlebars) {
+function ($, Router, Profile, Contacts, configHandlebars) {
+
   
   //Inicialização do router global, responsável pela transição de páginas
   var router = new Router();
@@ -25,6 +27,10 @@ function ($, Router, Profile, configHandlebars) {
   //Faz rendering da página profile
   //Futuramente isto será retirado e substituído pelo menu inicial
   //new Profile();
+
+  //Cria uma collections de contacts com id 1 e faz fetch ao localStorage dessa collection 
+  this.contacts = new Contacts({ id: 1 });
+  this.contacts.fetch();
 
   //Redireciona os links <a> para o router do Backbone
   $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
