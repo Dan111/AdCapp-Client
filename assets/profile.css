@@ -21,4 +21,17 @@ h1 {
 }
 
 
+a{
+	text-decoration: none;
+}
+
+#contacts-info i{
+	margin-right: 1em;
+}
+
+#social-contacts-list {
+ 	line-height:30px;
+}
+
+
 

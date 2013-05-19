@@ -176,7 +176,7 @@
 
     <div class="ui-grid-a">
         <div class="ui-block-a profile-pic-wrapper">
-          <img class="profile-pic" src="assets/profile.png" alt="Profile" height="130px" width="130px"/>
+          <img class="profile-pic" src="assets/morgan.jpg" alt="Profile" height="130px" width="130px"/>
         </div>
         <div class="ui-block-b">
           <span class="profile-firstname">{{getFirstName name}}</span >
@@ -243,6 +243,9 @@
           </div>
           {{/if}}
       </div>
+
+      <hr>
+      <br>
       
 
       <div data-role="navbar" data-theme="a">
@@ -260,7 +263,7 @@
   <!-- Opção geral da tab do perfil-->
   <script type="text/x-handlebars-template" id="general-info-template">
       <div id="general-info">
-        <p id="events-watch-title">Eventos que vou Assistir</p>
+        <h2 id="events-watch-title">Eventos que vou Assistir</h2>
 
         <div id="events-watch" class="ui-grid-a">
           <div class="ui-block-a">
@@ -272,13 +275,16 @@
         </div>
 
 
-        <p id="events-watch-make">Eventos que vou realizar</p>
+        <h2 id="events-watch-make">Eventos que vou realizar</h2>
 
         <p id="events-make">
           {{#each events}}
             <a href="#paper/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
           {{/each}}
         </p>
+
+        <br>
+        <br>
 
         <div data-role="collapsible" data-collapsed="false" data-theme="a" >
           <h4>Bio</h4>
@@ -292,24 +298,20 @@
   <!-- Opção contactos da tab do perfil-->
   <script type="text/x-handlebars-template" id="more-contacts-template">
     <div id="contacts-info">
-    
-      <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <a href=" {{website}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-globe icon-2x"></i></a>
-        </div>
-        <div class="ui-block-b">
-          <a href="{{linkedin}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-linkedin-sign icon-2x"></i></a>
-        </div>
-      </div>
 
-      <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <a href="{{facebook}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-facebook-sign icon-2x"></i></a>
-        </div>
-        <div class="ui-block-b">
-          <a href="{{twitter}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f"  ><i class="icon-twitter-sign icon-2x"></i></a>
-        </div>
-      </div>
+      <br>
+    
+      <ul id="social-contacts-list" data-role="listview" data-theme="f" data-divider-theme="a" data-inset="true">
+        <li data-role="list-divider">Contactos</li>
+        <li><a href="{{website}}"><i class="icon-globe icon-2x"></i>Website</a></li>
+        <li><a href="{{linkedin}}"><i class="icon-linkedin icon-2x"></i>LinkedIn</a></li>
+        <li><a href="{{facebook}}"><i class="icon-facebook-sign icon-2x"></i></i>Facebook</a></li>
+        <li><a href="{{twitter}}"><i class="icon-twitter icon-2x"></i></i>Twitter</a></li>
+        <li><a href="{{googleplus}}"><i class="icon-google-plus icon-2x"></i></i>Google+</a></li>
+        <li><a href="{{github}}"><i class="icon-github icon-2x"></i></i>GitHub</a></li>
+      </ul> 
+    
+    </div>
   </script>
 
 
