@@ -263,35 +263,37 @@
   <!-- Opção geral da tab do perfil-->
   <script type="text/x-handlebars-template" id="general-info-template">
       <div id="general-info">
-        <h2 id="events-watch-title">Eventos que vou Assistir</h2>
+        {{#if publishSchedule}}
+            <h2 id="events-watch-title">Eventos que vou Assistir</h2>
 
-        <div id="events-watch" class="ui-grid-a">
-          <div class="ui-block-a">
-            <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
-          </div>
-          <div class="ui-block-b">
-            <a href="#personalschedule/{{userId}}" data-role="button" data-icon="grid" data-iconpos="left" data-theme="d" >Agenda</a>
-          </div>
-        </div>
+            <div id="events-watch" class="ui-grid-a">
+              <div class="ui-block-a">
+                <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
+              </div>
+              <div class="ui-block-b">
+                <a href="#personalschedule/{{userId}}" data-role="button" data-icon="grid" data-iconpos="left" data-theme="d" >Agenda</a>
+              </div>
+            </div>
 
 
-        <h2 id="events-watch-make">Eventos que vou realizar</h2>
+            <h2 id="events-watch-make">Eventos que vou realizar</h2>
 
-        <p id="events-make">
-          {{#each events}}
-            <a href="#paper/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
-          {{/each}}
-        </p>
+            <p id="events-make">
+              {{#each events}}
+                <a href="#paper/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
+              {{/each}}
+            </p>
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-        <div data-role="collapsible" data-collapsed="false" data-theme="a" >
-          <h4>Bio</h4>
-          <p>
-            {{bio}}
-          </p>
-        </div>
+            <div data-role="collapsible" data-collapsed="false" data-theme="a" >
+              <h4>Bio</h4>
+              <p>
+                {{bio}}
+              </p>
+            </div>
+        {{/if}}
       </div>
   </script>
 
@@ -350,7 +352,6 @@
   <!-- lista de oradores-->
   <script type="text/x-handlebars-template"  id="speaker-partial">
       {{#each users}}
-        {{#if author}}
           <li>
             <a href="#user/{{id}}">
               <img class="profile-pic" src="assets/morgan.jpg">
@@ -359,15 +360,12 @@
               <p>{{area}}</p>
               </a>
          </li>
-
-        {{/if}}
       {{/each}}
   </script>
 
   <!-- lista de participantes-->
   <script type="text/x-handlebars-template"  id="participant-partial">
       {{#each users}}
-        {{#unless author}}
           <li>
             <a href="#user/{{id}}">
               <img class="profile-pic" src="assets/morgan.jpg">
@@ -376,7 +374,6 @@
               <p>{{area}}</p>
               </a>
          </li>
-        {{/unless}}
       {{/each}}
   </script>
 

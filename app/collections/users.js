@@ -2,20 +2,26 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/user"
+    "models/listuser"
 ], 
 
-function ($, Backbone, LocalStorage, User) {
+function ($, Backbone, LocalStorage, listUser) {
 
 	return Backbone.Collection.extend({
 
-		model: User,
+		model: listUser,
 
-		url: "http://danielmagro.apiary.io/users",
+		url: "",
 
 		//localStorage: new Backbone.LocalStorage('users-backbone'),
 
-		initialize: function (){
+		initialize: function (args){
+
+			if(args.isSpeakers)
+				this.url = "http://danielmagro.apiary.io/speakers";
+			else
+				this.url = "http://danielmagro.apiary.io/participants";
+
 			console.log('UserS');
 		},
 		comparator: function( user ) {

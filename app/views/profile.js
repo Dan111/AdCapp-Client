@@ -99,14 +99,18 @@ define([
             this.renderGeneral();
             this.setElement($("[data-role=content]"));
 
-            //Quando tivermos servidor, ou seja, info dinamica irá funcionar
-            //correctamente
-            console.log(user.isContact);
-            if(user.isContact)
+            
+            if(this.hasContact())
                 $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
 
             return this;
 
+        },
+
+        //Verifica se o contacto esta na collection
+        hasContact: function(){
+            var user = this.user.attributes;
+            return  this.mycontacts.find( function(user_m){ return user_m.get("user_id") === user.id; });
         },
 
         addUser: function()
@@ -121,24 +125,23 @@ define([
                 };
 
             //Verifica se já existe um contacto com o user_id do user deste perfil
-            var hasContact = this.mycontacts.find( function(user_m){ return user_m.get("user_id") === user.id; });
+            var hasContact = this.hasContact();
             var feedback = "";
-            console.log(hasContact);
+            
             if(!hasContact)
             {
+                //Cria o contacto na collection 
                 this.mycontacts.create(attrs);
                 console.log("contact added");
                 this.user.set({isContact: true});
-                alert("Contacto Adicionado");
-                //Quando tivermos servidor, ou seja, info dinamica irá funcionar
-                //correctamente
                 $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
             }
             else 
             {    
-                alert("Já tem este contacto...");
-                console.log("already has contact");
-                
+                //retira o contacto da collection
+                hasContact.destroy();
+                $('#add-user .icon-check-sign').remove();
+                console.log("contact removed");  
             }
         },
 
@@ -162,6 +165,7 @@ define([
 
             //informação necessária para a tab geral
             var context = {
+                publishSchedule: user.publish_schedule,
                 idNextEvent : user.nextEvent.idNextEvent,
                 nameNextEvent : user.nextEvent.nameNextEvent,
                 userId : user.id,

@@ -13,7 +13,6 @@ function ($, Backbone) {
 
 			name: null, 
 			email: null,
-			password: null, 
 			institution: null,
 			area: null,
 			image: 'None',
@@ -21,7 +20,6 @@ function ($, Backbone) {
 			votes: 0,
 			author: false,
 			hasVoted: false, 
-			isContact: false,
 			bio: null,
 			socialContacts: null,
 			events: null,

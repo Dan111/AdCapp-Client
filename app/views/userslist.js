@@ -34,7 +34,8 @@ define([
 			this.id = args.pageId;
 			this.pageName = args.pageName; 
 
-			this.users = new UserCollection();
+			this.users = new UserCollection({isSpeakers: this.speakers});
+			console.log(this.users);
 			this.users.fetch({
 				success: function () {
 					self.renderLayout();
