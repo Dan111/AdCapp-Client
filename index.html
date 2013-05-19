@@ -303,12 +303,29 @@
     
       <ul id="social-contacts-list" data-role="listview" data-theme="f" data-divider-theme="a" data-inset="true">
         <li data-role="list-divider">Contactos</li>
+        {{#if website}}
         <li><a href="{{website}}"><i class="icon-globe icon-2x"></i>Website</a></li>
+        {{/if}}
+
+        {{#if linkedin}}
         <li><a href="{{linkedin}}"><i class="icon-linkedin icon-2x"></i>LinkedIn</a></li>
+        {{/if}}
+
+        {{#if facebook}}
         <li><a href="{{facebook}}"><i class="icon-facebook-sign icon-2x"></i></i>Facebook</a></li>
+        {{/if}}
+
+        {{#if twitter}}
         <li><a href="{{twitter}}"><i class="icon-twitter icon-2x"></i></i>Twitter</a></li>
+        {{/if}}
+
+        {{#if googleplus}}
         <li><a href="{{googleplus}}"><i class="icon-google-plus icon-2x"></i></i>Google+</a></li>
+        {{/if}}
+
+        {{#if github}}
         <li><a href="{{github}}"><i class="icon-github icon-2x"></i></i>GitHub</a></li>
+        {{/if}}
       </ul> 
     
     </div>
