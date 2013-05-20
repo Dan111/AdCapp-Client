@@ -24,7 +24,6 @@ define([
         events: {
 
             'click #add-user' : 'addUser',
-            'click #vote'     : 'vote',
             'click #general'  : 'renderGeneral',
             'click #contacts' : 'renderContacts'
 
@@ -103,6 +102,7 @@ define([
             if(this.hasContact())
                 $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
 
+
             return this;
 
         },
@@ -143,18 +143,6 @@ define([
                 $('#add-user .icon-check-sign').remove();
                 console.log("contact removed");  
             }
-        },
-
-
-        vote: function()
-        {
-            var url = "www.adcapp.com";//colocar url correcta quando definida
-
-            $.post(url, {vote: {user_id: -1, votable_id: -1, votable_type: "User"}}, 
-                function() {
-                    console.log("post feito");
-            }).done(function() { alert("Voto atribuído"); }).fail(function() { alert("Erro"); });
-
         },
 
         //Render da tab geral

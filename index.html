@@ -232,19 +232,6 @@
         </div>
       </div>
 
-      
-      <div id="sub-buttons" class="ui-grid-a">
-          {{#if author}}
-          <div class="ui-block-a">
-            <a href="" id="vote" data-role="button" data-theme="a" >Votar</a>
-          </div>
-          <div class="ui-block-b">
-            <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right"  data-theme="a" >Rankings</a>
-          </div>
-          {{/if}}
-      </div>
-
-      <hr>
       <br>
       
 
@@ -266,15 +253,9 @@
         {{#if publishSchedule}}
             <h2 id="events-watch-title">Eventos que vou Assistir</h2>
 
-            <div id="events-watch" class="ui-grid-a">
-              <div class="ui-block-a">
-                <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
-              </div>
-              <div class="ui-block-b">
-                <a href="#personalschedule/{{userId}}" data-role="button" data-icon="grid" data-iconpos="left" data-theme="d" >Agenda</a>
-              </div>
-            </div>
-
+            <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
+              
+            <a href="#personalschedule/{{userId}}" data-role="button" data-icon="grid" data-iconpos="left" data-theme="d" >Agenda</a>
 
             <h2 id="events-watch-make">Eventos que vou realizar</h2>
 
