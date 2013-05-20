@@ -99,19 +99,14 @@ define([
             this.setElement($("[data-role=content]"));
 
             
-            if(this.hasContact())
+            if(this.mycontacts.hasContact(user.id))
                 $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
 
 
             return this;
 
         },
-
-        //Verifica se o contacto esta na collection
-        hasContact: function(){
-            var user = this.user.attributes;
-            return  this.mycontacts.find( function(user_m){ return user_m.get("user_id") === user.id; });
-        },
+       
 
         addUser: function()
         {
@@ -125,7 +120,7 @@ define([
                 };
 
             //Verifica se já existe um contacto com o user_id do user deste perfil
-            var hasContact = this.hasContact();
+            var hasContact = this.mycontacts.hasContact(user.id);
             var feedback = "";
             
             if(!hasContact)

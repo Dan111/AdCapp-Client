@@ -20,7 +20,12 @@ function ($, Backbone, LocalStorage, Contact) {
 		},
 		comparator: function( contact ) {
 	      return contact.get('order');
-	    }
+	    },
+	    //Verifica se o contacto esta na collection
+	    hasContact: function(id){
+            
+            return  this.find( function(user_m){ return user_m.get("user_id") === id; });
+        }
 
 
 	});
