@@ -3,9 +3,10 @@ define([
     "backbone",
     "handlebars",
     "models/user",
-    "views/basicview"
+    "views/basicview",
+    "collections/contacts"
 
-], function ($, Backbone, Handlebars, UserModel, BasicView) {
+], function ($, Backbone, Handlebars, UserModel, BasicView, Contacts) {
 
     return Backbone.View.extend({
 
@@ -36,7 +37,10 @@ define([
             var modelId = args.modelId;
 
             var self = this;
-            this.mycontacts = contacts;
+
+            this.mycontacts = new Contacts();
+            this.mycontacts.fetch();
+
             this.user = new UserModel({id: modelId});
             this.user.fetch({
                 success: function () {

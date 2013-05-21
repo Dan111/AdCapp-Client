@@ -24,13 +24,18 @@ function ($, Router, Profile, Contacts, configHandlebars) {
   //Configura o handlebars (ver ficheiro handlebars.config)
   configHandlebars();
 
-  //Faz rendering da página profile
-  //Futuramente isto será retirado e substituído pelo menu inicial
-  //new Profile();
 
-  //Cria uma collections de contacts com id 1 e faz fetch ao localStorage dessa collection 
-  this.contacts = new Contacts({ id: 1 });
-  this.contacts.fetch();
+  //apresenta o loading entre paginas
+  $.ajaxSetup({
+        beforeSend: function() {
+          $.mobile.loading('show');
+        },
+
+        complete: function() {
+          $.mobile.loading('hide');
+        }
+  });
+
 
   //Redireciona os links <a> para o router do Backbone
   $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
