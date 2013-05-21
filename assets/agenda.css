@@ -1,0 +1,10 @@
+/*Tabs da agenda*/
+#agenda-chooser{
+	margin-bottom: 10px;
+}
+
+/*Butões da agenda*/
+.fc-button-prev, .fc-button-next, .fc-button-today, .fc-button-agendaDay{
+	font-size: 1.3em;
+	text-align: center;
+}

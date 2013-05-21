@@ -9,9 +9,12 @@
 
   <link rel="stylesheet" href="assets/jquery.mobile.flatui.css">
   <link rel="stylesheet" href="assets/font-awesome.min.css">
+  <link rel="stylesheet" href='assets/fullcalendar/fullcalendar.css'/>
+  <link rel="stylesheet" href='assets/fullcalendar/fullcalendar.print.css' media='print' />
   <link rel="stylesheet" href="assets/profile.css">
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
+  <link rel="stylesheet" href="assets/agenda.css">
 
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome-ie7.css">
@@ -374,7 +377,17 @@
       {{/each}}
   </script>
 
-  
+  <!-- Parte da agenda -->
+
+  <script type="text/x-handlebars-template"  id="agenda-template">
+      <div data-role="navbar" id="agenda-chooser" data-theme="f">
+          <ul>
+              <li ><a href="" id="general"  class="ui-btn-active">Geral</a></li>
+              <li><a href="" id="contacts" >Personalizada</a></li>
+          </ul>
+      </div>
+      <div id='calendar' style="width:100%;"></div>
+  </script>
   
 
 </head>
@@ -422,8 +435,8 @@
 
           <div class="ui-grid-a">
              <div class="ui-block-a">
-                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                  Info Papers Test
+                <a href="#agenda" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Agenda
                 </a>
               </div>
               <div class="ui-block-b">
@@ -445,11 +458,7 @@
           <!-- ADICIONAR BUTÕES À MEDIDA DO NECESSÁRIO-->
       </div>
           
-      </div>
-       
-
-
-      </div>
+      
     </div>
 
 

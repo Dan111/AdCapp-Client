@@ -8,6 +8,7 @@ require.config({
   paths: {
   	'jquerymobile' : "../vendor/libs/jquerymobile",
     'backbone.localStorage' : "../vendor/libs/backbone.localStorage",
+    'fullcalendar': "../vendor/libs/fullcalendar.min",
     'jquerymobile.config' : 'jquerymobile.config',
     'handlebars.config' : 'handlebars.config'
      
