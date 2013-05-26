@@ -74,7 +74,8 @@ define([
 			this.model.submitComment({text: text, url: this.url});
 			this.model.fetch();
 
-			var newComment = this.compileTemplate(this.commentPartial, {author_name: "ze manel", content: text, new: true});
+			var newComment = this.compileTemplate(this.commentPartial, {author_name: "ze manel", 
+																		content: text, new_comment: true});
 			this.$("#comments").prepend(newComment);
 			
 			this.cancelComment();
