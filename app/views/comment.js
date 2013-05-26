@@ -5,11 +5,14 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, BasicView) {
 
-	return Backbone.View.extend({
+	return BasicView.extend({
 
-		el: "#tab-content",
+		el: "#tab-content", //para inserir os elementso na página
+		id: "tab-content", //para fazer refresh do jqm
 
-		template: "comments-tab-template",
+
+		template: 		"comments-tab-template",
+		commentPartial: "comment-partial",
 
 		events: {
 			"click #new-comment"	: "newComment",
@@ -21,8 +24,18 @@ define([
 
 		initialize: function (args) {
 
-			this.args = args;
-			this.render();
+			this.title = args.title;
+			this.comments = args.comments;
+			this.model = args.model;
+			this.url = args.url;
+			
+		},
+
+		render: function (){
+			var html = this.compileTemplate(this.template, {title: this.title,
+															comments: this.model.get(this.url)});
+
+			this.$el.html(html);
 
 			this.$newComment = $("#new-comment");
 			this.$input = $("#comment-input");
@@ -30,29 +43,12 @@ define([
 			this.$cancel = $("#cancel-comment");
 			this.$commentForm = $("#comment-form").hide();
 
-		},
-
-		render: function (){
-			var html = this.compileTemplate(this.template, this.args);
-
-			this.$el.html(html);
-
 			return this;
-		},
-
-		compileTemplate: function (templateName, context) {
-
-			var source   = $("#" + templateName).html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
-
-			return html;
-
 		},
 
 		newComment: function (){
 
-			console.log("comment clicked");
+			console.log("new comment clicked");
 
 			//o botao esta envolvido num div gerado pelo jqm
 			this.$newComment.parent().hide();
@@ -62,7 +58,7 @@ define([
 
 		cancelComment: function (){
 
-			console.log("cancel clicked");
+			console.log("cancel clicked" + this.title);
 
 			//o botao esta envolvido num div gerado pelo jqm
 			this.$newComment.parent().show();
@@ -75,30 +71,21 @@ define([
 			console.log("submit clicked");
 
 			var text = this.$input.val();
+			this.model.submitComment({text: text, url: this.url});
+			this.model.fetch();
 
-			$.ajax({
-				method: "POST",
-
-				async: false,
-
-				url: "http://adcapp.apiary.io/papers/1/comments",
-
-				data: { "username":"ze", "password": "secret", "content": text },
-
-				beforeSend: function() {
-					$.mobile.loading( 'show', {
-				            text: "A enviar",
-				            textVisible: true
-				    });
-				},
-
-				complete: function() {
-					$.mobile.loading( 'hide' );
-				}
-			});
-
+			var newComment = this.compileTemplate(this.commentPartial, {author_name: "ze manel", content: text, new: true});
+			this.$("#comments").prepend(newComment);
+			
 			this.cancelComment();
+			this.refreshJQM();
+			// $(".comment:first").css('background-color', 'transparent');
 
+		},
+
+		close: function (){
+			this.remove();
+			this.unbind();
 		}
 
 	});

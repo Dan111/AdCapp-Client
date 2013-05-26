@@ -1,9 +1,10 @@
 define([
     "jquery",
-    "backbone"
+    "backbone",
+    "views/basicview"
 ], 
 
-function ($, Backbone) {
+function ($, Backbone, BasicView) {
 
 	return Backbone.Model.extend({
 
@@ -15,6 +16,7 @@ function ($, Backbone) {
 			hour:0,
 			duration:0,
 			is_scheduled: false,
+			session_id: 0,
 			local: null,
 			ranking:null,
 			speakers:null,
@@ -26,16 +28,45 @@ function ($, Backbone) {
 		},
 
 		initialize: function (){
-
-			// this.comments = new Comments;
-			// this.comments.url = '/papers/' + this.id + '/comments';
-
-			// this.questions = new Questions;
-			// this.questions.url = '/papers/' + this.id + '/questions';
-
-			//adiciona o id do modelo ao url, para o Backbone poder fazer fetch da informação
 			this.url += this.id;
+		},
 
+		//TODO: factorizar método
+		submitComment: function (options){
+
+			var self = this;
+
+			$.ajax({
+				method: "POST",
+
+				async: false,
+
+				timeout: 5000,
+
+				url: this.url + "/" + options.url,
+
+				data: { "email":"toni@mail.com", "password": "123456", "content": options.text, 
+						"id": this.id, type: 'Paper' },
+
+				beforeSend: function () {
+					$.mobile.loading( 'show', {
+				            text: "A enviar",
+				            textVisible: true
+				    });
+				},
+
+				complete: function () {
+					//override do ajaxsetup para nao fazer hide do load spinner
+				},
+
+				success: function () {
+					$.mobile.loading( 'hide' );
+				},
+
+				error: function (){
+					BasicView.prototype.showErrorOverlay({text: "Erro no envio"});
+				}
+			});
 
 
 		}
@@ -58,6 +89,8 @@ Exemplo da API:
 	duration: 30,
 
 	is_scheduled: true, //se o utilizador adicionou o evento à sua agenda pessoal
+
+	session_id: 1,
 
 	local: {
 

@@ -7,7 +7,7 @@ define([
     "views/comment"
 ], function ($, Backbone, Handlebars, PaperModel, BasicView, CommentsView) {
 
-	return Backbone.View.extend({
+	return BasicView.extend({
 
 		el: "div[data-role=content]",
 
@@ -17,7 +17,6 @@ define([
 		template: "paper-template",
 		aboutTabTemplate: "paper-about-tab-template",
 		commentsTabTemplate: "comments-tab-template",
-
 
 		paper: null,
 
@@ -34,9 +33,7 @@ define([
 			_.bindAll(this);
 
 			var modelId = args.modelId;
-
 			var self = this;
-
 
 			this.paper = new PaperModel({id: modelId});
 			this.paper.fetch({
@@ -50,36 +47,6 @@ define([
 
 
 		},
-
-
-		renderLayout: function () {
-
-			var pid = this.id;
-			var name = this.pageName;
-
-			var context = {page_id: pid, page_name: name};
-			var html = this.compileTemplate("layout-template", context);
-
-			//adiciona página ao body
-			$("body").append(html);
-			this.enhanceJQMComponentsAPI();
-
-			//limpa a pagina anterior do DOM
-			this.removePreviousPageFromDOM();
-
-			return this;
-		},
-
-		compileTemplate: function (templateName, context) {
-
-			var source   = $("#" + templateName).html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
-
-			return html;
-
-		},
-
 
 		render: function () {
 			var paper = this.paper.attributes;
@@ -128,12 +95,22 @@ define([
 
 			console.log("comments tab");
 
+			var paper = this.paper;
 			var comments = this.paper.get('comments');
 
-			new CommentsView({
-								title: "Novo Comentário",
-								comments: comments
-							});
+			if(this.questions)
+				this.questions.undelegateEvents();
+
+
+			this.comments = this.comments || new CommentsView({
+													title: "Novo Comentário",
+													comments: comments,
+													model: paper,
+													url: 'comments'
+												});
+			this.comments.delegateEvents();
+			this.comments.render();
+
 
 			this.refreshJQM();
 
@@ -145,37 +122,29 @@ define([
 
 			console.log("questions tab");
 
+			var paper = this.paper;
 			var questions = this.paper.get('questions');
 
-			new CommentsView({
-								title: "Nova Pergunta",
-								comments: questions
-							});
+			if(this.comments)
+				this.comments.undelegateEvents();
+
+			this.questions = this.questions || new CommentsView({
+												title: "Nova Pergunta",
+												comments: questions,
+												model: paper,
+												url: 'questions'
+											});
+			this.questions.delegateEvents();
+			this.questions.render();
+
 
 			this.refreshJQM();
 
 			return this;
-		},
+		}
 
 
-		enhanceJQMComponentsAPI: function () {
-    // changePage
-             $.mobile.changePage("#" + this.id, {
-                 changeHash: false
-             });
-
-             $("#" + this.id).trigger("create");
-         },
-    // Add page to DOM
-         removePreviousPageFromDOM: function () {
-             // $("main").append($(this.el));
-             // $("#profile").page();
-             $("[data-role=page]:first").remove();
-         },
-
-         refreshJQM: function (){
-         	$("#" + this.id).trigger("create");
-         }
+		
 
 
 	});

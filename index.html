@@ -14,13 +14,6 @@
   <link rel="stylesheet" href="assets/profile.css">
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
-  <link rel="stylesheet" href="assets/agenda.css">
-
-  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome-ie7.css">
-  
-
-
 
 
 
@@ -64,7 +57,7 @@
       <br>
 
 
-      <div class="ui-grid-a">
+      <!--<div class="ui-grid-a">
         <div class="ui-block-a">
             <button type="button" data-theme="f">Votar</button>
         </div>
@@ -73,7 +66,7 @@
             Ranking
           </a>
         </div>
-      </div>
+      </div>-->
 
 
       <hr>
@@ -145,11 +138,14 @@
 
     <br>
 
-    {{#each comments}}
-      {{> comment this}}
-      <br>
-      <br>
-    {{/each}}
+    <div id="comments">
+
+      {{#each comments}}
+        {{> comment this}}
+
+      {{/each}}
+
+    </div>
 
     <br>
   </script>
@@ -157,7 +153,7 @@
 
   <!-- Comentário -->
   <script type="text/x-handlebars-template" id="comment-partial">
-    <div class="comment" data-theme="e">
+    <div class="comment {{#if new}}new{{/if}}" data-theme="e">
       <div class="ui-grid-a">
         <div class="ui-block-a">
           <div class="ui-btn">
@@ -185,6 +181,10 @@
       {{/if}}
 
     </div>
+
+    <br>
+    <br>
+
   </script>
 
 
@@ -256,8 +256,8 @@
 
       <div data-role="navbar" data-theme="a">
           <ul>
-              <li ><a href="" id="general"  class="ui-btn-active">Geral</a></li>
-              <li><a href="" id="contacts" >Contactos</a></li>
+              <li ><a id="general"  class="ui-btn-active">Geral</a></li>
+              <li><a id="contacts" >Contactos</a></li>
           </ul>
       </div>
 
@@ -287,7 +287,7 @@
             <br>
             <br>
 
-            <div data-role="collapsible" data-collapsed="false" data-theme="a" >
+            <div id="user-bio" data-role="collapsible" data-collapsed="false" data-theme="a" >
               <h4>Bio</h4>
               <p>
                 {{bio}}
@@ -455,7 +455,7 @@
                 </a>
               </div>
           </div>
-          <!-- ADICIONAR BUTÕES À MEDIDA DO NECESSÁRIO-->
+          <!-- ADICIONAR BOTÕES À MEDIDA DO NECESSÁRIO-->
       </div>
           
       

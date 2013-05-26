@@ -36,12 +36,17 @@
 	margin-bottom: 0em;
 }
 
+.comment.new {
+	/*background-color: beige;*/
+	/*transition: background-color 5s linear;*/
+}
+
 .comment-author {
 	height:30px;
  	line-height:30px;
 }
 
-#abstract, .comment-content {
+#abstract, .comment-content, #user-bio {
 	font-size: 1.2em;
 }
 
