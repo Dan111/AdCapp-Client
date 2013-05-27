@@ -10,6 +10,11 @@
 }
 
 #options{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	color: white;
 	visibility: visible;
 	width: 120px;
 	position: absolute;
@@ -19,7 +24,21 @@
 	border-color: #c0392b;	
 }
 
+#options li{
+	list-style:none;
+}
 
+#options li a{
+	color: white;
+	text-decoration: none !important;
+}
+
+.icon-chevron-right{
+	float: right;
+	position: relative;
+	right: 5px;
+	top: 2px;
+}
 
 
 /*Butões da agenda

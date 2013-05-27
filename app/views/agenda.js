@@ -3,13 +3,14 @@ define([
     "backbone",
     "handlebars",
     "fullcalendar",
+    "moment",
     "collections/events",
     "views/basicview"
-], function ($, Backbone, Handlebars, FullCalendar, EventCollection, BasicView) {
+], function ($, Backbone, Handlebars, FullCalendar, Moment, EventCollection, BasicView) {
 
-	return Backbone.View.extend({
+	return BasicView.extend({
 
-		el: $("[data-role=content]"),
+		el: "div[data-role=content]",
 
 		id: "agenda-page",
 		pageName: "Agenda",
@@ -17,11 +18,13 @@ define([
 		template: "agenda-template",
 
 		events: {
-			'click' : 'removestuff',
+			'click' : 'removePopUp',
 			'click #my-prev' : 'prev',
 			'click #my-next' : 'next',
 			'click #my-today' : 'today'
 		},
+
+		$calendar: null,
 
 		initialize: function ()
 		{
@@ -75,6 +78,7 @@ define([
 
 
 		render: function () {
+			var that = this;
 
 			var context = null;
 			var html = this.compileTemplate(this.template, context);
@@ -85,6 +89,8 @@ define([
 			this.setElement($("[data-role=content]"));
 
 			var treatedEvents = this.conferenceEvents.map(this.treatEvents);
+
+
 
 			$(document).ready(function() {
 				
@@ -103,31 +109,16 @@ define([
 					events: treatedEvents,
 					eventClick: function(calEvent, jsEvent, view) {
 
-				        //alert('Event: ' + calEvent.title);
-				        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-				        //alert('View: ' + view.name);
 
-				        // change the border color just for fun
-				        //$(this).css('border-color', 'red');
 				        console.log(this);
 
-				        //$(".fc-event-bg").find(".menu").remove();
-				        $(".menu").remove();
-				        //if($(".fc-event-bg").find(".menu").length === 0)
-					    //{  
-				    	$("#calendar").parent().append('<div class="menu">'
-						       + '<ul id="options">'
-						          +  '<li><a href="#">View details</a></li>'
-						          +  '<li><a href="#">Edit</a></li>'
-						          +  '<li><a href="#">Disable</a></li>'
-						          +  '<li><a href="#">Delete</a></li>'
-						       + '</ul>'
-				        	+'</div>');
-	    				//}
-	    				//else
-	    					//console.log("dafuq"); 
-	    				var xx = jsEvent.pageX + 120 > $(window).width() ? $(window).width() - 190 : jsEvent.pageX;  
-	    					$("#options").offset({ top: jsEvent.pageY, left: xx });
+				        var currentEvent = that.conferenceEvents.getEventByName(calEvent.title);
+				       	var attributes = currentEvent.attributes;
+
+				    	that.$calendar.parent().append(that.getHtml(attributes));
+
+	    				var xx = jsEvent.pageX + 160 > $(window).width() ? $(window).width() - 190 : jsEvent.pageX;  
+	    				$("#options").offset({ top: jsEvent.pageY, left: xx });
 	    				
 				   }
 				});
@@ -135,30 +126,70 @@ define([
 				
 			});
 
+			this.$calendar = $('#calendar');
+
 			return this;
 
 		},
 
+		//Dependendo do tipo do evento retorna o html de uma lista de opções
+		getHtml: function(attributes){
+			var type = attributes.type;
+			
+			if(type === "paper")
+				return '<div class="menu">'
+						       + '<ul id="options">'
+						          +  '<li><a href="#paper/'+attributes.id+'"">Página Evento</a><i class="icon-chevron-right"></i></li>'
+						          +  '<li><a href="#user/'+attributes.users_id_array[0]+'">Autor</a><i class="icon-chevron-right"></i></li>'
+						          +  '<li><a href="#local'+attributes.local_id+'">Local</a><i class="icon-chevron-right"></i></li>'
+						       + '</ul>'
+				        	+'</div>';
+			else if(type === "workshop")
+				return '<div class="menu">'
+						       + '<ul id="options">'
+						          +  '<li><a href="#workshop/'+attributes.id+'"">Página Evento</a><i class="icon-chevron-right"></i></li>'
+						          +  '<li><a href="#user/'+attributes.users_id_array[0]+'">Responsável</a><i class="icon-chevron-right"></i></li>'
+						          +  '<li><a href="#local'+attributes.local_id+'">Local</a><i class="icon-chevron-right"></i></li>'
+						       + '</ul>'
+				        	+'</div>';
+			else
+				return '<div class="menu">'
+						       + '<ul id="options">'
+						          +  '<li><a href="#social/'+attributes.id+'"">Página Evento</a><i class="icon-chevron-right"></i></li>'
+						          +  '<li><a href="#local'+attributes.local_id+'">Local</a><i class="icon-chevron-right"></i></li>'
+						       + '</ul>'
+				        	+'</div>';
+		},
+
 		treatEvents: function(eventobj) {
+
 			var eventAttrs = eventobj.attributes;
+			var date = eventAttrs.hours.toString();
+
+            var formattedDate = Moment(date);
+            var year = formattedDate.local().format("YYYY");
+            var month = formattedDate.local().format("MM");
+            var day = formattedDate.local().format("DD");
+            var hour = formattedDate.local().format("HH")-1;//estava a adiantar uma hora
+            var minutes = formattedDate.local().format("mm");
+			
 			// data de começo, o mês tem de ser month-1, porque o date do javascript tem os meses de 0 a 11
-			var start = new Date(eventAttrs.year, eventAttrs.month-1, eventAttrs.day, 
-				eventAttrs.hour, eventAttrs.minutes);
-			//duração do evento do tipo hora.minutos (ex: 5.333333333333333)
+			var start = new Date(year, month-1, day, hour, minutes);
+			//duração do evento em minutos
 			var duration = eventAttrs.duration;
+			//duração do evento em horas
+			var durationInHours = duration/60;
 
 			// hora do final, é adicionado ao início as horas da duração 
-			//(ex: passo-> 5.333333333333333, retorna-> eventAttrs.hour + 5 )
-			var finalHour = eventAttrs.hour + Math.floor(duration);
+			//(ex: passo-> 2.05, hour + 2 )
+			var finalHour = hour + Math.floor(durationInHours);
 
 			// minutos do finais, é adicionado ao início em minutos os minutos da duração 
 			//(ex: passo-> 5.333333333333333, após (duration%1)-> 0.33333333333333304,
-			//após (duration%1) * 60-> 19.999999999999982 , retorna-> eventAttrs.minutes + 20 )
-			var finalMinutes = eventAttrs.minutes + Math.ceil((duration%1) * 60);
-
+			//após (duration%1) * 60-> 19.999999999999982 , retorna-> minutes + 20 )
+			var finalMinutes = parseInt(minutes) + Math.ceil((durationInHours%1) * 60);
 			// data de final, o mês tem de ser month-1, porque o date do javascript tem os meses de 0 a 11
-			var end = new Date(eventAttrs.year, eventAttrs.month-1, eventAttrs.day, 
-				finalHour, finalMinutes);
+			var end = new Date(year, month-1, day, finalHour, finalMinutes);
 
 			var color = this.getColor(eventAttrs.type);
 
@@ -176,40 +207,24 @@ define([
 		},
 
 		prev: function() {
-			$("#calendar").fullCalendar('prev');
+			this.$calendar.fullCalendar('prev');
 		},
 
 		next: function() {
-			$("#calendar").fullCalendar('next');
+			this.$calendar.fullCalendar('next');
 		},
 
 		today: function() {
-			$("#calendar").fullCalendar('today');
+			this.$calendar.fullCalendar('today');
 		},
 
-		removestuff: function(e) {
-
-			console.log(e);
+		//remove o popup se este existir
+		removePopUp: function(e) {
 			var target =$(e.target);
 			if(target.parents('.fc-event').length === 0)
 				$('.menu').remove();
 
-		},
-
-		enhanceJQMComponentsAPI: function () {
-    // changePage
-             $.mobile.changePage("#" + this.id, {
-                 changeHash: false
-             });
-
-             $("#" + this.id).trigger("create");
-         },
-    // Add page to DOM
-         removePreviousPageFromDOM: function () {
-             // $("main").append($(this.el));
-             // $("#profile").page();
-             $("[data-role=page]:first").remove();
-         }
+		}
 
 
 	});
