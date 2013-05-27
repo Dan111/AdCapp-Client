@@ -3,8 +3,33 @@
 	margin-bottom: 10px;
 }
 
-/*Butões da agenda*/
-.fc-button-prev, .fc-button-next, .fc-button-today, .fc-button-agendaDay{
+.menu{
+	visibility: hidden;
+
+
+}
+
+#options{
+	visibility: visible;
+	width: 120px;
+	position: absolute;
+	color: white;
+	z-index: 200 !important;
+	background-color: #c0392b;
+	border-color: #c0392b;	
+}
+
+
+
+
+/*Butões da agenda
+.fc-button-prev, .fc-button-next{
+	width: 3em;
+	
+}
+
+.fc-button-prev, .fc-button-next, .fc-button-today{
 	font-size: 1.3em;
 	text-align: center;
 }
+*/

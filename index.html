@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/profile.css">
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
-
+  <link rel="stylesheet" href="assets/agenda.css">
 
 
   <!-- Application container. -->
@@ -380,13 +380,27 @@
   <!-- Parte da agenda -->
 
   <script type="text/x-handlebars-template"  id="agenda-template">
-      <div data-role="navbar" id="agenda-chooser" data-theme="f">
+       <div data-role="navbar" id="agenda-chooser" data-theme="f">
           <ul>
               <li ><a href="" id="general"  class="ui-btn-active">Geral</a></li>
               <li><a href="" id="contacts" >Personalizada</a></li>
           </ul>
       </div>
+      </br>
+
+      <div id="prev-next" class="ui-grid-a">
+        <div class="ui-block-a">
+          <a href="#" data-role="button" id="my-prev" data-theme="f" >Prev</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" id="my-next"data-theme="f" >Next</a>
+        </div>
+      </div>
+
+      <a href="#" data-role="button" id="my-today"data-theme="a" >Today</a>
+
       <div id='calendar' style="width:100%;"></div>
+
   </script>
   
 
