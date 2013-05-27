@@ -19,17 +19,7 @@ function ($, Backbone, LocalStorage, Event) {
 			
 			//this.url = "http://danielmagro.apiary.io/events";
 			console.log('EventS');
-		},
-
-		 getEventByName: function(name){
-            
-            return  this.find( function(event_obj){ 
-            	if(event_obj.get("name") === name)
-            		return event_obj; 
-            	else
-            		return null;
-            });
-        }
+		}
 
 
 	});

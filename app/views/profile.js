@@ -8,9 +8,9 @@ define([
 
 ], function ($, Backbone, Handlebars, UserModel, BasicView, Contacts) {
 
-    return BasicView.extend({
+    return Backbone.View.extend({
 
-        el: "div[data-role=content]",
+        el: $("[data-role=content]"),
 
         id: "profile-page",
         pageName: "Perfil",
@@ -192,7 +192,23 @@ define([
             $("#" + this.id).trigger("create");
 
             return this;
-        }
+        },
+
+
+        enhanceJQMComponentsAPI: function () {
+    // changePage
+             $.mobile.changePage("#" + this.id, {
+                 changeHash: false
+             });
+
+             $("#" + this.id).trigger("create");
+         },
+    // Add page to DOM
+         removePreviousPageFromDOM: function () {
+             // $("main").append($(this.el));
+             // $("#profile").page();
+             $("[data-role=page]:first").remove();
+         }
 
 
     });
