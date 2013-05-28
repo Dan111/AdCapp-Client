@@ -70,7 +70,7 @@ define([
 		},
 
 
-		exportContacts: function (){
+		exportContacts: function (){ //TODO: Adicionar um popup de confirmação
 
 			this.contacts.exportContacts();
 

@@ -33,36 +33,34 @@ function ($, Backbone, LocalStorage, Contact) {
         exportContacts: function (){
 
         	console.log("exporting");
-        	var numExports = 0;
 
         	this.each(function (contact){
 
-        		this.createPhoneContact(contact);
-        		numExports++;
-
+        		this.addPhoneContact(contact)
+        	
         	}, this);
-
-        	console.log(numExports);
-
-        	return numExports;
 
         },
 
 
-        hasPhoneContact: function (contact){ //TODO: Sincronizar adição com find
+        addPhoneContact: function (contact){ //TODO: Sincronizar adição com find
+
+        	var exported = false;
 
         	var email = contact.get('email');
-        	var results = [];
 
         	var options = new ContactFindOptions();
 			options.filter = email;
 			options.multiple = false;
 
-			var success = function (contacts){ 
-				console.log( contacts ); 
+			var self = this;
 
-				results = contacts;
-				console.log(results);
+			var success = function (contacts){  
+
+				if(contacts.length === 0) {
+					self.createPhoneContact(contact);
+					success = true;
+				}
 			}
 
 			var error = function (){
@@ -70,8 +68,6 @@ function ($, Backbone, LocalStorage, Contact) {
 			}
 
 			navigator.contacts.find(["emails", "displayName"], success, error, options);
-
-			return results.length !== 0;
 
         },
 
@@ -82,7 +78,7 @@ function ($, Backbone, LocalStorage, Contact) {
 
 			phoneContact.displayName = contact.get('user_name');
 			phoneContact.emails = [new ContactField('work', contact.get('email'), false)];
-			// phoneContact.note = "AdCapp";
+			phoneContact.note = "AdCapp";
 
 			// var org = new ContactOrganization(false, '', 'FCT', 'IA', '');
 			// phoneContact.organizations = [org];
