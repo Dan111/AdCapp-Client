@@ -493,7 +493,10 @@
   <!-- Parte da agenda -->
 
   <script type="text/x-handlebars-template"  id="agenda-template">
-       <div data-role="navbar" id="agenda-chooser" data-theme="f">
+
+      <a href="#searchpanel" data-role="button" data-icon="search" data-theme="a">Pesquisa</a>
+
+      <div data-role="navbar" id="agenda-chooser" data-theme="f">
           <ul>
               <li ><a href="" id="general"  class="ui-btn-active">Geral</a></li>
               <li><a href="" id="contacts" >Personalizada</a></li>
@@ -523,6 +526,31 @@
             <li id="teacher-link" data-theme="a"><a href="" >Professor</a></li>
             <li id="local-link" data-theme="a"><a href="" >Local</a></li>
         </ul>
+    </div>
+
+   
+    <div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true" data-theme="a">
+ 
+        <div class="panel-content">
+          <h3>Pesquisa</h3>
+
+          <div id="agendaform">
+              <input type="search" name="search" id="search-basic" value="" data-theme="a"/>
+              <fieldset data-role="controlgroup">
+                  <legend>Tipos de Eventos</legend>
+                  <input type="checkbox" name="paperscheck" id="paperscheck" value="papers" data-theme="a">
+                  <label for="paperscheck">Palestra</label>
+                  <input type="checkbox" name="workshopscheck" id="workshopscheck" value="workshops" data-theme="a">
+                  <label for="workshopscheck">Workshop</label>
+                  <input type="checkbox" name="socialscheck" id="socialscheck" value="socials" data-theme="a">
+                  <label for="socialscheck">Social</label>
+              </fieldset>
+              <button id="searchsubmit"  data-theme="a"  class="ui-btn-hidden" aria-disabled="false">Submeter</button>
+          </div>
+
+          <a href="" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Fechar</a>
+        </div>
+ 
     </div>
 
   </script>
