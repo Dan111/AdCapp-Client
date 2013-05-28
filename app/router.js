@@ -8,10 +8,12 @@ define([
   "views/profile",
   "views/userslist",
   "views/agenda",
-  "views/contacts"
+  "views/contacts",
+  "views/maininfo",
+  "views/mainmenu"
 ],
 
-function (Backbone, PaperView, ProfileView, UsersListView, AgendaView, ContactsView) {
+function (Backbone, PaperView, ProfileView, UsersListView, AgendaView, ContactsView, MainInfoView, MainMenuView) {
 
   // Defining the application router, you can attach sub routers here.
   var Router = Backbone.Router.extend({
@@ -21,6 +23,8 @@ function (Backbone, PaperView, ProfileView, UsersListView, AgendaView, ContactsV
       ""              : "main",
       "index"         : "index",
       "agenda"        : "agenda",
+      "maininfo"      : "maininfo",
+      "mainmenu"      : "mainmenu",
       "speakers"      : "speakers",
       "participants"  : "participants",
       "paper/:id"     : "paper",
@@ -35,6 +39,18 @@ function (Backbone, PaperView, ProfileView, UsersListView, AgendaView, ContactsV
     agenda: function() {
       console.log("ROUTE: agenda");
       new AgendaView();
+    },
+
+    maininfo: function() {
+      console.log("ROUTE: mainInfo");
+
+      new MainInfoView();
+    },
+
+    mainmenu: function() {
+      console.log("ROUTE: mainmenu");
+
+      new MainMenuView();
     },
 
     paper: function(id) {

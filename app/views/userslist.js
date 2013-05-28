@@ -6,9 +6,9 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, UserCollection, BasicView) {
 
-	return Backbone.View.extend({
+	return BasicView.extend({
 
-		el: $("[data-role=content]"),
+		el: "div[data-role=content]",
 
 		id: "",
 		pageName: "",
@@ -63,16 +63,6 @@ define([
 			return this;
 		},
 
-		compileTemplate: function (templateName, context) {
-
-			var source   = $("#" + templateName).html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
-
-			return html;
-
-		},
-
 
 		render: function () {
 			
@@ -95,25 +85,7 @@ define([
 
 			return this;
 
-		},
-
-
-
-
-		enhanceJQMComponentsAPI: function () {
-    // changePage
-             $.mobile.changePage("#" + this.id, {
-                 changeHash: false
-             });
-
-             $("#" + this.id).trigger("create");
-         },
-    // Add page to DOM
-         removePreviousPageFromDOM: function () {
-             // $("main").append($(this.el));
-             // $("#profile").page();
-             $("[data-role=page]:first").remove();
-         }
+		}
 
 
 	});

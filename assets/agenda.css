@@ -3,23 +3,11 @@
 	margin-bottom: 10px;
 }
 
-.menu{
-	visibility: hidden;
 
+.icon-chevron-right{
+	float: right;
 
 }
-
-#options{
-	visibility: visible;
-	width: 120px;
-	position: absolute;
-	color: white;
-	z-index: 200 !important;
-	background-color: #c0392b;
-	border-color: #c0392b;	
-}
-
-
 
 
 /*Butões da agenda

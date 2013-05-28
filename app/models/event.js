@@ -13,12 +13,8 @@ function ($, Backbone) {
 
 			id: 0,
 			name: null,
-			hour: 0,
-			minutes: 0,
-			day: 0,
-			month: 0,
-			year: 0, 
-			duration: 0, 
+			hours: 0, 
+			duration: 0, //em minutos
 			type: null,
 			local_id: -1,
 			users_id_array: null

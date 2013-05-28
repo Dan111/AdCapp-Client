@@ -207,7 +207,7 @@
       <div data-role="header">
         <a href="#" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
         <h1>{{page_name}}</h1>
-        <a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
+        <a href="#mainmenu" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
       </div>
 
       <div data-role="content">
@@ -215,7 +215,6 @@
       </div>
     </div>
   </script>
-
 
 
   <!-- Página da lista de contactos -->
@@ -248,7 +247,98 @@
 
   </script>
 
-  
+
+  <!-- Página do menu de informações -->
+
+    <script type="text/x-handlebars-template"  id="maininfo-template">
+
+          <div>
+
+              <a href="#participants" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Participantes
+              </a>
+              <br>
+              <a href="#speakers" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Oradores
+              </a>
+              <br>
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Papers
+              </a>
+              <br>
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Sessões
+              </a>
+              <br>
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Keynotes
+              </a>
+              <br>
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Workshops
+              </a>
+              <br>
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Eventos Sociais
+              </a>
+              <br>
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
+                Locais
+              </a>
+
+          </div>
+
+  </script>
+
+
+  <!-- Página do Menu Principal -->
+
+    <script type="text/x-handlebars-template"  id="mainmenu-template">
+
+
+          <h1 id="paper-title">AdCapp</h1>
+
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <a href="#agenda" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Agenda
+              </a>
+            </div>
+            <div class="ui-block-b">
+              <a href="#" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Prémios
+              </a>
+            </div>
+          </div>
+          <br>
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <a href="#maininfo" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Menu de Informações
+              </a>
+            </div>
+            <div class="ui-block-b">
+              <a href="" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Feedback
+              </a>
+            </div>
+          </div>
+          <br>
+          <div class="ui-grid-a">
+             <div class="ui-block-a">
+                <a href="" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Contactos
+                </a>
+              </div>
+              <div class="ui-block-b">
+                <a href="" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Mapa
+                </a>
+              </div>
+ 
+         </div>
+
+    </script>
 
 
   <!-- Página de Perfil -->
@@ -424,7 +514,19 @@
 
       <div id='calendar' style="width:100%;"></div>
 
+
+
+    <div data-role="popup" id="popupMenu" data-theme="a">
+        <ul data-role="listview" data-inset="true" style="min-width:160px;" data-theme="a">
+            <li id="event-link" data-theme="a"><a href="" >Página Evento</a></li>
+            <li id="author-link" data-theme="a"><a href="" >Autor</a></li>
+            <li id="teacher-link" data-theme="a"><a href="" >Professor</a></li>
+            <li id="local-link" data-theme="a"><a href="" >Local</a></li>
+        </ul>
+    </div>
+
   </script>
+
   
 
 </head>
@@ -454,18 +556,18 @@
               </a>
             </div>
             <div class="ui-block-b">
-              <a href="#paper/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+              <a href="#paper/1" data-role="button" data-icon="arrow-r" data-transition="flip" data-iconpos="right" data-theme="e">
                 Paper Test
               </a>
             </div>
             <div class="ui-block-c">
-              <a href="#speakers" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Speakers Info Page Test
+              <a href="#maininfo" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Main Info Test
               </a>
             </div>
             <div class="ui-block-d">
-              <a href="participants" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Participants Info Page Test
+              <a href="#mainmenu" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                Main Menu Test
               </a>
             </div>
           </div>
