@@ -43,9 +43,6 @@ define([
 					self.render();
 				}
 			});
-
-
-
 		},
 
 		render: function () {
@@ -60,12 +57,12 @@ define([
 
 			var html = this.compileTemplate(this.template, context);
 
-			$("[data-role=content]").append(html);
+			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();
 
+			this.$tabContent = $("#tab-content");
 			this.renderAboutTab();
 			
-
 			return this;
 
 		},
@@ -83,7 +80,7 @@ define([
 
 			var html = this.compileTemplate(this.aboutTabTemplate, context);
 
-			$("#tab-content").html(html);
+			this.$tabContent.html(html);
 			this.refreshJQM();
 
 			return this;

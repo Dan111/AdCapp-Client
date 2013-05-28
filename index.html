@@ -55,20 +55,6 @@
 
 
       <br>
-
-
-      <!--<div class="ui-grid-a">
-        <div class="ui-block-a">
-            <button type="button" data-theme="f">Votar</button>
-        </div>
-        <div class="ui-block-b">
-          <a href="#ranking/paper" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
-            Ranking
-          </a>
-        </div>
-      </div>-->
-
-
       <hr>
       <br>
 
@@ -230,6 +216,38 @@
     </div>
   </script>
 
+
+
+  <!-- Página da lista de contactos -->
+  <script type="text/x-handlebars-template"  id="contacts-template">
+
+    <ul id="users-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+
+      {{#each contacts}}
+        <li>
+              <a href="#user/{{user_id}}">
+                <img class="profile-pic" src="assets/morgan.jpg">
+                <h2>{{user_name}}</h2>
+                <a data-bypass="true" data-inline="true" href="mailto:a@b.com" data-icon="check" type="button" data-mini="true" data-theme="f">Enviar E-mail</a>
+              </a>
+
+              <a class="remove-contact" user-id="{{user_id}}" data-icon="delete" data-theme="z">
+                Remover Contacto
+              </a>
+
+        </li>
+      {{/each}}
+
+    </ul>
+
+    <br>
+
+    {{#if contacts}}
+      <button id="export-contacts" type="button" data-theme="a">Exportar Contactos</button>
+    {{/if}}
+
+  </script>
+
   
 
 
@@ -306,27 +324,27 @@
       <ul id="social-contacts-list" data-role="listview" data-theme="f" data-divider-theme="a" data-inset="true">
         <li data-role="list-divider">Contactos</li>
         {{#if website}}
-        <li><a href="{{website}}"><i class="icon-globe icon-2x"></i>Website</a></li>
+        <li><a data-bypass="true" href="{{website}}"><i class="icon-globe icon-2x"></i>Website</a></li>
         {{/if}}
 
         {{#if linkedin}}
-        <li><a href="{{linkedin}}"><i class="icon-linkedin icon-2x"></i>LinkedIn</a></li>
+        <li><a data-bypass="true" href="{{linkedin}}"><i class="icon-linkedin icon-2x"></i>LinkedIn</a></li>
         {{/if}}
 
         {{#if facebook}}
-        <li><a href="{{facebook}}"><i class="icon-facebook-sign icon-2x"></i></i>Facebook</a></li>
+        <li><a data-bypass="true" href="{{facebook}}"><i class="icon-facebook-sign icon-2x"></i></i>Facebook</a></li>
         {{/if}}
 
         {{#if twitter}}
-        <li><a href="{{twitter}}"><i class="icon-twitter icon-2x"></i></i>Twitter</a></li>
+        <li><a data-bypass="true" href="{{twitter}}"><i class="icon-twitter icon-2x"></i></i>Twitter</a></li>
         {{/if}}
 
         {{#if googleplus}}
-        <li><a href="{{googleplus}}"><i class="icon-google-plus icon-2x"></i></i>Google+</a></li>
+        <li><a data-bypass="true" href="{{googleplus}}"><i class="icon-google-plus icon-2x"></i></i>Google+</a></li>
         {{/if}}
 
         {{#if github}}
-        <li><a href="{{github}}"><i class="icon-github icon-2x"></i></i>GitHub</a></li>
+        <li><a data-bypass="true" href="{{github}}"><i class="icon-github icon-2x"></i></i>GitHub</a></li>
         {{/if}}
       </ul> 
     
@@ -340,11 +358,16 @@
   <script type="text/x-handlebars-template"  id="users-template">
 
     <ul id="users-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
-      {{#if speakers}}
-        {{> speaker this}}
-      {{else}}
-        {{> participant this}}
-      {{/if}}
+      {{#each users}}
+          <li>
+            <a href="#user/{{id}}">
+              <img class="profile-pic" src="assets/morgan.jpg">
+              <h2>{{name}}</h2>
+              <p>{{institution}}</p>
+              <p>{{area}}</p>
+              </a>
+         </li>
+      {{/each}}
     </ul>
 
   </script>
@@ -459,8 +482,8 @@
                 </a>
               </div>
               <div class="ui-block-c">
-                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                  Local Test
+                <a href="#contacts" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                  Contactos
                 </a>
               </div>
               <div class="ui-block-d">
@@ -470,12 +493,11 @@
               </div>
           </div>
           <!-- ADICIONAR BOTÕES À MEDIDA DO NECESSÁRIO-->
-      </div>
-          
+      </div>       
       
     </div>
 
-
+  <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
   <script data-main="app/config" src="vendor/jam/require.js"></script>
 
 </body>

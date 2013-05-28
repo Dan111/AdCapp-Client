@@ -71,7 +71,7 @@
 	text-align: right;
 }
 
-[data-role=content] {
+[data-role=content], .ui-page {
 	background-color: rgb(240, 239, 231);
 }
 

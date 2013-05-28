@@ -132,7 +132,7 @@ define([
                 //Cria o contacto na collection 
                 this.mycontacts.create(attrs);
                 console.log("contact added");
-                this.user.set({isContact: true});
+                //this.user.set({isContact: true});
                 $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
             }
             else 

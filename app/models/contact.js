@@ -7,7 +7,7 @@ function ($, Backbone) {
 
 	return Backbone.Model.extend({
 
-		
+		idAttribute: 'user_id',
 
 		defaults: {
 
@@ -19,7 +19,7 @@ function ($, Backbone) {
 		},
 
 		initialize: function (){
-			console.log('Contact created');
+			//
 		}
 
 	});

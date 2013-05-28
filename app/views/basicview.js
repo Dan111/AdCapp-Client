@@ -47,7 +47,7 @@ define([
 				            textonly: true
 			});
 
-			setInterval(function (){
+			setTimeout(function (){
 				$.mobile.loading( 'hide' );
 			}, options.time);
 
