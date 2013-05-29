@@ -1,11 +1,12 @@
 define([
     "jquery",
     "backbone",
+    "underscore",
     "backbone.localStorage",
     "models/event"
 ], 
 
-function ($, Backbone, LocalStorage, Event) {
+function ($, Backbone, _, LocalStorage, Event) {
 
 	return Backbone.Collection.extend({
 
@@ -40,58 +41,17 @@ function ($, Backbone, LocalStorage, Event) {
                 });
         },
 
-        //Filtra a collection devolvendo um array com os
-        //objectos com os tipos desejados
-        //São passados um objecto javascript do tipo
-        //{papers: boolean, workshops: boolean, socials: boolean}
-        //e um número para se saber o número de tipos requeridos
-        getEventsOfType: function(types, numberOfTypes){
+        
+        getEventsOfType: function(types){
 
-        	var type1 = null;
-        	var type2 = null;
-        	var type3 = null;
+            var chainTypes = _.chain(types)
+                .pairs()
+                .filter(function (pair){ return pair[1];})
+                .map(function (pair){return pair[0];}).value();
 
-        	//verificamos quais os tipos que
-        	//são necessários
-        	if (types.papers)
-        		type1 = "paper";
-
-        	if (types.workshops)
-        	{	
-        		if(type1 === null)
-        			type1 = "workshop";
-        		else
-        			type2 = "workshop";
-        	}
-
-        	if (types.socials)
-        	{
-        		if(type1 === null)
-        			type1 = "social";
-        		else if(type2 === null)
-        			type2 = "social";
-        		else
-        			type3 = "social";
-        	}
-
-        	//Se um dos type fosse a null funcionava, mas
-        	// para não haver nenhum erro, já que o default do
-        	// type de um event é null, decidi usar o tal
-        	//numberOfTypes
-        	if(numberOfTypes === 1)
-	        	return this.filter(function(event_obj) {
-					return event_obj.get('type') === type1;
-				});
-	        else if(numberOfTypes === 2)
-	        	return this.filter(function(event_obj) {
-	        		var type = event_obj.get('type')
-					return  type === type1 || type === type2;
-				});
-	        else 
-	        	return this.filter(function(event_obj) {
-	        		var type = event_obj.get('type')
-					return  type === type1 || type === type2 || type === type3;
-				});
+            return this.filter(function(event_obj){
+                return _.contains(chainTypes,event_obj.get("type").toLowerCase());
+            });
         }
 
 

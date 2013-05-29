@@ -21,12 +21,15 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 		template: "agenda-template",
 
 		events: {
-			'click #popupbutton' :  'popup',
 			'click #searchsubmit' : 'search',
 			'click #my-prev' : 'prev',
 			'click #my-next' : 'next',
 			'click #my-today' : 'today'
 		},
+
+		currentDay: null,
+		backLimitDate: null,
+		forwardLimitDate: null,
 
 		$calendar: null,
 		$teacherlink: null,
@@ -39,17 +42,25 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 		$paperscheck: null,
 		$workshopscheck: null,
 		$socialscheck: null,
-
+		$searchpanel: null,
 
 		initialize: function ()
 		{
 			_.bindAll(this);
 
 			var self = this;
-			
+			//Data do dia em que estamos, para testes
+			var d = 29;
+			var m = 4;//meses no javascript date são de 0-11
+			var y = 2013;
+			this.date = new Date(y,m,d);
 
-			this.conferenceEvents = new EventCollection();
-			
+			//Limites em termos de datas, sempre + e - 3 dias do que esta definido, para testes
+			//A definir que datas e como passa-las
+			this.backLimitDate = new Date(y, m, d-3);
+			this.forwardLimitDate = new Date(y, m, d+3);
+
+			this.conferenceEvents = new EventCollection();			
 			
 			this.conferenceEvents.fetch({
 				success: function () {
@@ -104,6 +115,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 
 		fullCalendarSetter: function(renderEvents)
 		{
+			var that = this;
 			var selectedEvents = renderEvents || this.conferenceEvents;
 
 			var treatedEvents = selectedEvents.map(this.treatEvents);
@@ -119,6 +131,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 						right: ''
 					},
 					defaultView: 'agendaDay', 
+					allDaySlot: false,
 					titleFormat: '',
 					slotMinutes: 10,
 					editable: false,
@@ -141,8 +154,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 				
 			});
 
-
-
+			//Definição de algumas tags para eficiência
 			this.$calendar = $('#calendar');
 			this.$teacherlink = $('#teacher-link');
 			this.$authorlink = $('#author-link');
@@ -154,7 +166,13 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 			this.$paperscheck = $("#paperscheck");
 			this.$workshopscheck = $("#workshopscheck");
 			this.$socialscheck = $("#socialscheck");
+			this.$searchpanel = $("#searchpanel");
 
+			//Decide em que dia é que é apresentada a agenda
+			if(this.currentDay !== null)
+				this.$calendar.fullCalendar( 'gotoDate', this.currentDay );
+			else
+				this.$calendar.fullCalendar( 'gotoDate', this.date );
 		},
 
 		//Altera o popup consoante o tipo de evento
@@ -183,20 +201,20 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 			this.$locallinkA.attr("href", "#local/" +  attributes.local_id);
 		},
 
-		popup: function(e) {
-   			e.preventDefault();
-
-   			$('#popupMenu').popup('open', { positionTo: "#popupbutton", transition: "slideup" });
-
-  		},
 
   		search: function() {
+			//Fecha painel de pesquisa
+			this.$searchpanel.panel( "close" );
+
+			//Guarda o dia em que estava antes da pesquisa
+			this.currentDay = this.$calendar.fullCalendar('getDate');
+
   			var terms = this.$searchbasic.val().trim();
   			var counter = 0;
   			var papers = this.$paperscheck.is(':checked');
   			var workshops= this.$workshopscheck.is(':checked');
   			var socials = this.$socialscheck.is(':checked');
-  			var types = {papers: papers, workshops: workshops, socials: socials};
+  			var types = {paper: papers, workshop: workshops, social: socials};
 
   			if(papers)
   				counter+=1;
@@ -206,7 +224,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 
   			if(socials)
   				counter+=1;
-  			console.log(terms);
+
   			var stringResults = this.conferenceEvents.getEventsWithString(terms);
   			var typeResults = [];
   			var renderEvents = [];
@@ -270,11 +288,13 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 		},
 
 		prev: function() {
-			this.$calendar.fullCalendar('prev');
+			if(this.$calendar.fullCalendar('getDate') > this.backLimitDate)
+				this.$calendar.fullCalendar('prev');
 		},
 
 		next: function() {
-			this.$calendar.fullCalendar('next');
+			if(this.$calendar.fullCalendar('getDate') < this.forwardLimitDate)
+				this.$calendar.fullCalendar('next');
 		},
 
 		today: function() {
@@ -285,7 +305,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 		removePopUp: function(e) {
 			var target =$(e.target);
 			if(target.parents('.fc-event').length === 0)
-				$('.menu').remove();
+				$('#popupMenu').popup('close');
 
 		}
 
