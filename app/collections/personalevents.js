@@ -12,12 +12,10 @@ function ($, Backbone, _, LocalStorage, Event) {
 
 		model: Event,
 
-		url: "http://danielmagro.apiary.io/events",
-
-		//localStorage: new Backbone.LocalStorage('events-backbone'),
+		localStorage: new Backbone.LocalStorage('personal-agenda-backbone'),
 
 		initialize: function (){
-			console.log('EventS');
+			console.log('Personal EventS');
 		},
 
 		//Devolve o evento com um dado name

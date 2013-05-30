@@ -6,10 +6,12 @@ define([
     "fullcalendar",
     "moment",
     "collections/events",
+    "collections/personalevents",
+    "models/personalagenda",
     "views/basicview"
 ], 
 
-function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, BasicView) {
+function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalEvents, PersonalAgenda, BasicView) {
 
 	return BasicView.extend({
 
@@ -22,6 +24,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 
 		events: {
 			'click #searchsubmit' : 'search',
+			'click #generalAgenda' : 'renderGeneral',
+			'click #personalAgenda' : 'renderPersonal',
 			'click #my-prev' : 'prev',
 			'click #my-next' : 'next',
 			'click #my-today' : 'today'
@@ -30,6 +34,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 		currentDay: null,
 		backLimitDate: null,
 		forwardLimitDate: null,
+		personalEvents: null,//array com os ids dos eventos da agenda personalizada vindos do server
+		currentEvents: null,
 
 		$calendar: null,
 		$teacherlink: null,
@@ -60,7 +66,35 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 			this.backLimitDate = new Date(y, m, d-3);
 			this.forwardLimitDate = new Date(y, m, d+3);
 
-			this.conferenceEvents = new EventCollection();			
+
+			//Por enquanto para teste fica como utilizador 0 o utilizador do 
+			//dispositivo, mas quando o registo/login estiver feito teremos
+			//de passar o id correspondente
+			//Modelo para de array + id da agenda personalizada de um utilizador, vindo do server
+			this.personalAgenda = new PersonalAgenda({id: 0});
+
+			this.personalLocalAgenda = new PersonalEvents();
+
+			this.conferenceEvents = new EventCollection();	
+
+			this.personalAgenda.fetch({
+				success: function () {
+					console.log("Personal Events loaded from server");
+				},
+				error: function (){
+					console.log("Fail to get events from server or don't have any");
+				}
+			});
+
+			this.personalLocalAgenda.fetch({
+				success: function () {
+					console.log("Personal Events loaded");
+				},
+				error: function (){
+					console.log("Fail to get events or don't have any");
+				}
+			});
+
 			
 			this.conferenceEvents.fetch({
 				success: function () {
@@ -69,7 +103,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 					
 				}
 			});
-
 
 		},
 
@@ -104,10 +137,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 
 			this.setElement($("[data-role=content]"));
 
-
 			this.fullCalendarSetter(this.conferenceEvents);
-
-		
 
 			return this;
 
@@ -116,6 +146,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 		fullCalendarSetter: function(renderEvents)
 		{
 			var that = this;
+
 			var selectedEvents = renderEvents || this.conferenceEvents;
 
 			var treatedEvents = selectedEvents.map(this.treatEvents);
@@ -203,42 +234,44 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 
 
   		search: function() {
-			//Fecha painel de pesquisa
-			this.$searchpanel.panel( "close" );
+  			if(this.currentEvents !== null)
+			{	//Fecha painel de pesquisa
+				this.$searchpanel.panel( "close" );
 
-			//Guarda o dia em que estava antes da pesquisa
-			this.currentDay = this.$calendar.fullCalendar('getDate');
+				//Guarda o dia em que estava antes da pesquisa
+				this.currentDay = this.$calendar.fullCalendar('getDate');
 
-  			var terms = this.$searchbasic.val().trim();
-  			var counter = 0;
-  			var papers = this.$paperscheck.is(':checked');
-  			var workshops= this.$workshopscheck.is(':checked');
-  			var socials = this.$socialscheck.is(':checked');
-  			var types = {paper: papers, workshop: workshops, social: socials};
+	  			var terms = this.$searchbasic.val().trim();
+	  			var counter = 0;
+	  			var papers = this.$paperscheck.is(':checked');
+	  			var workshops= this.$workshopscheck.is(':checked');
+	  			var socials = this.$socialscheck.is(':checked');
+	  			var types = {paper: papers, workshop: workshops, social: socials};
+	  			
+	  			if(papers)
+	  				counter+=1;
 
-  			if(papers)
-  				counter+=1;
+	  			if(workshops)
+	  				counter+=1;
 
-  			if(workshops)
-  				counter+=1;
+	  			if(socials)
+	  				counter+=1;
 
-  			if(socials)
-  				counter+=1;
+	  			var stringResults = this.currentEvents.getEventsWithString(terms);
+	  			var typeResults = [];
+	  			var renderEvents = [];
 
-  			var stringResults = this.conferenceEvents.getEventsWithString(terms);
-  			var typeResults = [];
-  			var renderEvents = [];
-
-  			if(counter>0)
-  			{	
-  				typeResults = this.conferenceEvents.getEventsOfType(types, counter);		
-  			  	renderEvents = _.intersection(stringResults, typeResults);
-  			}
-  			else
-  				renderEvents = stringResults;
-  			
-  			this.$calendar.empty();
-  			this.fullCalendarSetter(renderEvents);
+	  			if(counter>0)
+	  			{	
+	  				typeResults = this.currentEvents.getEventsOfType(types, counter);		
+	  			  	renderEvents = _.intersection(stringResults, typeResults);
+	  			}
+	  			else
+	  				renderEvents = stringResults;
+	  			
+	  			this.$calendar.empty();
+				this.fullCalendarSetter(renderEvents);
+			}
 
   		},
 
@@ -301,12 +334,43 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Bas
 			this.$calendar.fullCalendar('today');
 		},
 
-		//remove o popup se este existir
-		removePopUp: function(e) {
-			var target =$(e.target);
-			if(target.parents('.fc-event').length === 0)
-				$('#popupMenu').popup('close');
+		setCurrentEvents: function(newCurrentEvents) {
+			this.currentEvents = newCurrentEvents;
+		},
 
+		renderGeneral: function() {
+			this.setCurrentEvents(this.conferenceEvents);
+			this.$calendar.empty();
+			this.fullCalendarSetter(this.conferenceEvents);
+		},
+
+		renderPersonal: function() {
+
+			//Se não tiver nada na local usa a do server para ver se tem alguma
+			//coisa
+			if(this.personalLocalAgenda.size() === 0)
+			{	
+				console.log("adding events to local agenda");
+				this.personalEvents = this.conferenceEvents.getPersonalAgenda(this.personalAgenda.get("chosen_events"));
+				for(i = 0; i < this.personalEvents.length; i++)
+				{
+					var eventAttr = this.personalEvents[i].attributes;
+					var attrs = {
+                    	id: eventAttr.id,
+						name: eventAttr.name,
+						hours: eventAttr.hours, 
+						duration: eventAttr.duration,
+						type: eventAttr.type,
+						local_id: eventAttr.local_id,
+						users_id_array: eventAttr.users_id_array
+                	};
+					this.personalLocalAgenda.create(attrs);
+				}
+			}
+
+			this.setCurrentEvents(this.personalLocalAgenda);
+			this.$calendar.empty();
+			this.fullCalendarSetter(this.personalLocalAgenda);
 		}
 
 
