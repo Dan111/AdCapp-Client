@@ -138,6 +138,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.setElement($("[data-role=content]"));
 
 			this.fullCalendarSetter(this.conferenceEvents);
+			this.setCurrentEvents(this.conferenceEvents);
 
 			return this;
 
