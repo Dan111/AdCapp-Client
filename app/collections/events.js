@@ -12,13 +12,23 @@ function ($, Backbone, _, LocalStorage, Event) {
 
 		model: Event,
 
-		url: "http://danielmagro.apiary.io/events",
+		url: null,
 
-		//localStorage: new Backbone.LocalStorage('events-backbone'),
+		localStorage: null,
 
-		initialize: function (){
+		initialize: function (args){
+            if(args.isPersonal)
+                this.localStorage = new Backbone.LocalStorage('personal-agenda-backbone');
+            else
+                this.url = "http://danielmagro.apiary.io/events";
+
 			console.log('EventS');
 		},
+
+        //Verifica se o evento esta na collection
+        hasEvent: function (id){
+            return  this.find( function(event_obj){ return event_obj.get("id") === id; });
+        },
 
 		//Devolve o evento com um dado name
 		//caso contrário devolve null

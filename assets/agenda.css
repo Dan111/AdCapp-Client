@@ -9,6 +9,10 @@
 
 }
 
+div.fc-event-time img{
+	float: right;
+}
+
 
 /*Butões da agenda
 .fc-button-prev, .fc-button-next{

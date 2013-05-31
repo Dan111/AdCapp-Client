@@ -6,12 +6,11 @@ define([
     "fullcalendar",
     "moment",
     "collections/events",
-    "collections/personalevents",
     "models/personalagenda",
     "views/basicview"
 ], 
 
-function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalEvents, PersonalAgenda, BasicView) {
+function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView) {
 
 	return BasicView.extend({
 
@@ -31,6 +30,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			'click #my-today' : 'today'
 		},
 
+		isInPersonal: false,
+
 		currentDay: null,
 		backLimitDate: null,
 		forwardLimitDate: null,
@@ -38,6 +39,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		currentEvents: null,
 
 		$calendar: null,
+		$removeevent: null,
+		$addevent: null,
+		$removeeventbutton: null,
+		$addeventbutton: null,
 		$teacherlink: null,
 		$authorlink: null,
 		$teacherlinkA: null,
@@ -49,6 +54,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		$workshopscheck: null,
 		$socialscheck: null,
 		$searchpanel: null,
+		$popup: null,
 
 		initialize: function ()
 		{
@@ -73,9 +79,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//Modelo para de array + id da agenda personalizada de um utilizador, vindo do server
 			this.personalAgenda = new PersonalAgenda({id: 0});
 
-			this.personalLocalAgenda = new PersonalEvents();
+			this.personalLocalAgenda = new EventCollection({isPersonal: true});
 
-			this.conferenceEvents = new EventCollection();	
+			this.conferenceEvents = new EventCollection({isPersonal: false});	
 
 			this.personalAgenda.fetch({
 				success: function () {
@@ -98,12 +104,37 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			
 			this.conferenceEvents.fetch({
 				success: function () {
+					self.syncEvents();
 					self.renderLayout();
 					self.render();
-					
 				}
 			});
 
+
+		},
+
+		syncEvents: function(){
+			//Se não tiver nada na local usa a do server para ver se tem alguma
+			//coisa
+			if(this.personalLocalAgenda.size() === 0)
+			{	
+				console.log("adding events to local agenda");
+				this.personalEvents = this.conferenceEvents.getPersonalAgenda(this.personalAgenda.get("chosen_events"));
+				for(i = 0; i < this.personalEvents.length; i++)
+				{
+					var eventAttr = this.personalEvents[i].attributes;
+					var attrs = {
+                    	id: eventAttr.id,
+						name: eventAttr.name,
+						hours: eventAttr.hours, 
+						duration: eventAttr.duration,
+						type: eventAttr.type,
+						local_id: eventAttr.local_id,
+						users_id_array: eventAttr.users_id_array
+                	};
+					this.personalLocalAgenda.create(attrs);
+				}
+			}
 		},
 
 
@@ -168,15 +199,33 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					slotMinutes: 10,
 					editable: false,
 					events: treatedEvents,
+					eventRender: function(event, element) {
+						if(event.imageurl !== "")
+					        element.find("div.fc-event-time").append("<img src='" + event.imageurl +"' width='12' height='12'>");
+					},
 					eventClick: function(calEvent, jsEvent, view) {
 
-
-				        console.log(this);
-
-				        var currentEvent = that.conferenceEvents.getEventByName(calEvent.title);
+				        var currentEvent = that.currentEvents.getEventByName(calEvent.title);
 				       	var attributes = currentEvent.attributes;
 
 				       	that.setPopUp(attributes);
+				       	
+				       	//A cada popup temos de fazer unbind e bind dos eventos de click
+				       	// nos butões de remover e adicionar evento à agenda pessoal
+				       	//O unbind antes do bind previne a chamada de multiplas vezes seguidas
+				       	// do evento em questão
+						$('#popupMenu').on( "popupafteropen", function( event, ui ) { 
+							$("#remove-event-button").unbind("click").bind("click", function(event){
+								
+  								that.removeEvent();
+							});
+
+							$("#add-event-button").unbind("click").bind("click", function(event){
+  								that.addEvent();
+							});
+						});
+
+
 
 	    				$('#popupMenu').popup('open', { positionTo: this });
 	    				
@@ -188,23 +237,29 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			//Definição de algumas tags para eficiência
 			this.$calendar = $('#calendar');
+			this.$removeevent = $('#remove-event');
+			this.$addevent = $('#add-event');
+			this.$removeeventbutton = $("#remove-event-button");
+			this.$addeventbutton = $("#add-event-button");
 			this.$teacherlink = $('#teacher-link');
 			this.$authorlink = $('#author-link');
 			this.$teacherlinkA = $('#teacher-link a');
 			this.$authorlinkA = $('#author-link a');
 			this.$eventlinkA = $('#event-link a');
 			this.$locallinkA = $('#local-link a');
-			this.$searchbasic = $("#search-basic");
-			this.$paperscheck = $("#paperscheck");
-			this.$workshopscheck = $("#workshopscheck");
-			this.$socialscheck = $("#socialscheck");
-			this.$searchpanel = $("#searchpanel");
+			this.$searchbasic = $('#search-basic');
+			this.$paperscheck = $('#paperscheck');
+			this.$workshopscheck = $('#workshopscheck');
+			this.$socialscheck = $('socialscheck');
+			this.$searchpanel = $('#searchpanel');
+			this.$popup = $('#popupMenu');
 
 			//Decide em que dia é que é apresentada a agenda
 			if(this.currentDay !== null)
 				this.$calendar.fullCalendar( 'gotoDate', this.currentDay );
 			else
 				this.$calendar.fullCalendar( 'gotoDate', this.date );
+
 		},
 
 		//Altera o popup consoante o tipo de evento
@@ -227,6 +282,20 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			{
 				this.$teacherlink.hide();
 				this.$authorlink.hide();
+			}
+
+			//Verfica se tem de colocar no popup o botão de remover ou adicionar evento
+			if(this.personalLocalAgenda.hasEvent(attributes.id))
+			{
+				this.$removeevent.show();
+				this.$removeeventbutton.attr("value", attributes.id);
+				this.$addevent.hide();
+			}
+			else
+			{
+				this.$removeevent.hide();
+				this.$addevent.show();
+				this.$addeventbutton.attr("value", attributes.id);
 			}
 
 			this.$eventlinkA.attr("href", "#paper/" + attributes.id);
@@ -264,7 +333,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 	  			if(counter>0)
 	  			{	
-	  				typeResults = this.currentEvents.getEventsOfType(types, counter);		
+	  				typeResults = this.currentEvents.getEventsOfType(types);		
 	  			  	renderEvents = _.intersection(stringResults, typeResults);
 	  			}
 	  			else
@@ -307,9 +376,13 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			var end = new Date(year, month-1, day, finalHour, finalMinutes);
 
 			var color = this.getColor(eventAttrs.type);
+			var imageurl = "";
+
+			if(this.personalLocalAgenda.hasEvent(eventAttrs.id))
+				imageurl = "assets/star.png";
 
 			return {title: eventAttrs.name, start: start, end: end, eventBorderColor: color,
-				backgroundColor: color, allDay:false};
+				backgroundColor: color, allDay:false, imageurl: imageurl};
 		},
 
 		getColor: function(type){
@@ -343,20 +416,36 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.setCurrentEvents(this.conferenceEvents);
 			this.$calendar.empty();
 			this.fullCalendarSetter(this.conferenceEvents);
+			this.isInPersonal = false;
 		},
 
 		renderPersonal: function() {
+			this.setCurrentEvents(this.personalLocalAgenda);
+			this.$calendar.empty();
+			this.fullCalendarSetter(this.personalLocalAgenda);
+			this.isInPersonal = true;
+		},
 
-			//Se não tiver nada na local usa a do server para ver se tem alguma
-			//coisa
-			if(this.personalLocalAgenda.size() === 0)
-			{	
-				console.log("adding events to local agenda");
-				this.personalEvents = this.conferenceEvents.getPersonalAgenda(this.personalAgenda.get("chosen_events"));
-				for(i = 0; i < this.personalEvents.length; i++)
-				{
-					var eventAttr = this.personalEvents[i].attributes;
-					var attrs = {
+		removeEvent: function() {
+			var eventId = this.$removeeventbutton.attr("value").trim();
+			console.log("remove "+eventId);
+
+			this.personalLocalAgenda.hasEvent(parseInt(eventId)).destroy();
+			this.$popup.popup('close');
+
+			if(this.isInPersonal)
+				this.renderPersonal();
+			else
+				this.renderGeneral();
+
+		},
+
+		addEvent: function() {
+			var eventId = this.$addeventbutton.attr("value").trim();
+			console.log("add "+eventId);
+
+			var eventAttr = this.conferenceEvents.hasEvent(parseInt(eventId)).attributes;
+			var attrs = {
                     	id: eventAttr.id,
 						name: eventAttr.name,
 						hours: eventAttr.hours, 
@@ -365,13 +454,14 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 						local_id: eventAttr.local_id,
 						users_id_array: eventAttr.users_id_array
                 	};
-					this.personalLocalAgenda.create(attrs);
-				}
-			}
+			this.personalLocalAgenda.create(attrs);
 
-			this.setCurrentEvents(this.personalLocalAgenda);
-			this.$calendar.empty();
-			this.fullCalendarSetter(this.personalLocalAgenda);
+			this.$popup.popup('close');
+
+			if(this.isInPersonal)
+				this.renderPersonal();
+			else
+				this.renderGeneral();
 		}
 
 
