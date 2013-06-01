@@ -28,8 +28,6 @@ define([
 			this.comments = args.comments; //vetor com todos os cmentarios
 			this.model = args.model; //modelo do evento ao qual os comentarios pertencem
 			this.url = args.url; //uri dos comentarios, a partir do url do modelo
-
-			console.log(args);
 			
 		},
 

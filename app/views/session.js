@@ -50,7 +50,7 @@ define([
 
 		renderPapersTab: function () {
 
-			console.log("questions tab");
+			console.log("papers tab");
 
 			this.renderTab(this.papers);
 

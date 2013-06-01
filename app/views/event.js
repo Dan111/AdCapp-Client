@@ -63,11 +63,7 @@ define([
 
 			};
 
-			console.log(this.tabNames);
-
 			var html = this.compileTemplate(this.template, context);
-
-			console.log(html);
 
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();
