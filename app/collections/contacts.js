@@ -43,7 +43,7 @@ function ($, Backbone, LocalStorage, Contact) {
         },
 
 
-        addPhoneContact: function (contact){ //TODO: Sincronizar adição com find
+        addPhoneContact: function (contact){
 
         	var exported = false;
 
@@ -72,7 +72,7 @@ function ($, Backbone, LocalStorage, Contact) {
         },
 
 
-        createPhoneContact: function (contact){
+        createPhoneContact: function (contact){ //TODO: Adicionar social contacts e outras infos
 
         	var phoneContact = navigator.contacts.create();
 

@@ -1,32 +1,34 @@
 define([
     "jquery",
     "backbone",
+    "underscore",
     "handlebars",
     "models/paper",
-    "views/basicview",
-    "views/comment"
-], function ($, Backbone, Handlebars, PaperModel, BasicView, CommentsView) {
+    "views/event",
+    "views/comment",
+    "views/aboutevent"
+], function ($, Backbone, _, Handlebars, PaperModel, EventView, CommentsView, AboutView) {
 
-	return BasicView.extend({
+	return EventView.extend({
 
-		el: "div[data-role=content]",
+		el 				: "div[data-role=content]",
 
-		id: "paper-page",
-		pageName: "Palestra",
+		id 				: "paper-page",
+		pageName		: "Palestra",
 
-		template: "paper-template",
-		aboutTabTemplate: "paper-about-tab-template",
-		commentsTabTemplate: "comments-tab-template",
+		descName		: "Abstract",
+		speakersTitle	: "Autores",
 
-		paper: null,
+		questionsTabId 	: "questions-tab",
+		questionsTabName: "Perguntas",
 
-		events: {
+		events: function(){
 
-			"click #about-tab"		: "renderAboutTab",
-			"click #comments-tab"	: "renderCommentsTab",
-			"click #questions-tab"	: "renderQuestionsTab"
-
+			return _.extend({
+				"click #questions-tab"	: "renderQuestionsTab"
+			}, EventView.prototype.events);
 		},
+
 
 		initialize: function (args)
 		{
@@ -35,109 +37,50 @@ define([
 			var modelId = args.modelId;
 			var self = this;
 
-			this.paper = new PaperModel({id: modelId});
-			this.paper.fetch({
+			this.model = new PaperModel({id: modelId});
+			this.model.fetch({
 				success: function () {
-					self.renderLayout();
-					self.setElement($("[data-role=content]"));
-					self.render();
+					EventView.prototype.initialize.apply(self);
 				}
 			});
 		},
 
-		render: function () {
-			var paper = this.paper.attributes;
-
-			var context = {
-				title : paper.name,
-				datetime : paper.hour,
-				room_name : paper.local.name,
-				room_id : paper.local.id
-			};
-
-			var html = this.compileTemplate(this.template, context);
-
-			this.$el.append(html);
-			this.enhanceJQMComponentsAPI();
-
-			this.$tabContent = $("#tab-content");
-			this.renderAboutTab();
-			
-			return this;
-
-		},
-
-
-		renderAboutTab: function () {
-			console.log("about tab");
-
-			var paper = this.paper.attributes;
-
-			var context = {
-				description : paper.description,
-				speakers : paper.speakers
-			};
-
-			var html = this.compileTemplate(this.aboutTabTemplate, context);
-
-			this.$tabContent.html(html);
-			this.refreshJQM();
-
-			return this;
-		},
-
-
-
-		renderCommentsTab: function () {
-
-			console.log("comments tab");
-
-			var paper = this.paper;
-			var comments = this.paper.get('comments');
-
-			if(this.questions)
-				this.questions.undelegateEvents();
-
-
-			this.comments = this.comments || new CommentsView({
-													title: "Novo Comentário",
-													comments: comments,
-													model: paper,
-													url: 'comments'
-												});
-			this.comments.delegateEvents();
-			this.comments.render();
-
-
-			this.refreshJQM();
-
-			return this;
-		},
-
-
 		renderQuestionsTab: function () {
 
-			console.log("questions tab");
+			console.log("papers tab");
 
-			var paper = this.paper;
-			var questions = this.paper.get('questions');
-
-			if(this.comments)
-				this.comments.undelegateEvents();
-
-			this.questions = this.questions || new CommentsView({
-												title: "Nova Pergunta",
-												comments: questions,
-												model: paper,
-												url: 'questions'
-											});
-			this.questions.delegateEvents();
-			this.questions.render();
-
-
-			this.refreshJQM();
+			this.renderTab(this.questions);
 
 			return this;
+		},
+
+
+
+		createTabs: function (){
+
+			this.about = new AboutView({
+				descName		: this.descName,
+				description 	: this.model.get('description'),
+
+				speakersTitle	: this.speakersTitle,
+				speakers 		: this.model.get('speakers')
+			});
+			this.addTab(this.about,{id: this.aboutTabId, name: this.aboutTabName});
+
+			//chamada do método createTabs da superclasse
+			EventView.prototype.createTabs.apply(this);
+
+			var paper = this.model;
+			var questions = paper.get('questions');
+
+			this.questions = new CommentsView({
+				title 		: "Nova Pergunta",
+				comments 	: questions,
+				model 		: paper,
+				url 		: 'questions'
+			});
+			this.addTab(this.questions, {id: this.questionsTabId, name: this.questionsTabName});
+
 		}
 
 

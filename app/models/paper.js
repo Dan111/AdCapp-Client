@@ -61,6 +61,7 @@ function ($, Backbone, BasicView) {
 
 				success: function () {
 					$.mobile.loading( 'hide' );
+					options.success();
 				},
 
 				error: function (){

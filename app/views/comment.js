@@ -24,14 +24,20 @@ define([
 
 		initialize: function (args) {
 
-			this.title = args.title;
-			this.comments = args.comments;
-			this.model = args.model;
-			this.url = args.url;
+			this.title = args.title; //Nome a ser usado do botao do formulario (por exemplo, Novo Comentario)
+			this.comments = args.comments; //vetor com todos os cmentarios
+			this.model = args.model; //modelo do evento ao qual os comentarios pertencem
+			this.url = args.url; //uri dos comentarios, a partir do url do modelo
+
+			console.log(args);
 			
 		},
 
 		render: function (){
+
+			if(!this.el)
+				this.setElement($("#tab-content"));
+
 			var html = this.compileTemplate(this.template, {title: this.title,
 															comments: this.model.get(this.url)});
 
@@ -70,16 +76,29 @@ define([
 
 			console.log("submit clicked");
 
-			var text = this.$input.val();
-			this.model.submitComment({text: text, url: this.url});
-			this.model.fetch();
+			var self = this;
 
-			var newComment = this.compileTemplate(this.commentPartial, {author_name: "ze manel", 
-																		content: text, new_comment: true});
-			this.$("#comments").prepend(newComment);
+			var text = this.$input.val();
+			this.model.submitComment({
+				text: text, 
+
+				url: this.url,
+
+				success: function () {
+
+					self.model.fetch();
+
+					var newComment = self.compileTemplate(self.commentPartial, {author_name: "ze manel", 
+																				content: text, new_comment: true});
+					self.$("#comments").prepend(newComment);
+					
+					self.cancelComment();
+					self.refreshJQM();
+
+				}
+
+			});
 			
-			this.cancelComment();
-			this.refreshJQM();
 			// $(".comment:first").css('background-color', 'transparent');
 
 		},

@@ -25,7 +25,7 @@
 
 
   <!-- Página de Palestra -->
-  <script type="text/x-handlebars-template"  id="paper-template">
+  <script type="text/x-handlebars-template"  id="event-template">
 
       <h1 id="paper-title">{{title}}</h1>
 
@@ -61,9 +61,9 @@
 
       <div data-role="navbar">
         <ul>
-          <li><a data-theme="f" class="ui-btn-active" id="about-tab">Sobre</a></li>
-          <li><a data-theme="f" id="comments-tab">Comentários</a></li>
-          <li><a data-theme="f" id="questions-tab">Perguntas</a></li>
+          {{#each tabs}}
+            <li><a data-theme="f" id="{{id}}">{{name}}</a></li>
+          {{/each}}
         </ul>
       </div>
 
@@ -76,10 +76,10 @@
 
 
   <!-- Tab sobre da página de palestra -->
-  <script type="text/x-handlebars-template" id="paper-about-tab-template">
+  <script type="text/x-handlebars-template" id="event-about-tab-template">
 
     <div id="abstract" data-role="collapsible" data-mini="true" data-theme="b" >
-      <h4>Abstract</h4>
+      <h4>{{descName}}</h4>
         <p>
           {{description}}
         </p>
@@ -87,7 +87,7 @@
 
     <br>
 
-    <h2>Autor</h2>
+    <h2>{{speakersTitle}}</h2>
 
     {{#each speakers}}
       {{> userinfo this}}
@@ -95,6 +95,26 @@
         Pág. Perfil
       </a>
     {{/each}}
+
+
+  </script>
+
+
+  <!-- Tab sobre da página de palestra -->
+  <script type="text/x-handlebars-template" id="session-papers-tab-template">
+
+    <h2>Papers</h2>
+
+    <ul id="social-contacts-list" data-role="listview" data-theme="f" data-inset="true">
+        {{#each papers}}
+        <li>
+          <a href="#paper/{{id}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+        {{/each}}
+
+    </ul>
 
 
   </script>

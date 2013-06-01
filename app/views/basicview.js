@@ -6,6 +6,8 @@ define([
 
 	return Backbone.View.extend({
 
+		mainContainer: "div[data-role=content]",
+
 		renderLayout: function () {
 
 			var pid = this.id;
