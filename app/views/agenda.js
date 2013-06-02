@@ -30,7 +30,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		
 
 		personalEvents: null,//array com os ids dos eventos da agenda personalizada vindos do server
-		calendarView: null,
+		generalCalendarView: null,
+		personalCalendarView: null,
 
 
 		initialize: function ()
@@ -108,9 +109,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.enhanceJQMComponentsAPI();
 
 			this.setElement($("[data-role=content]"));
-
 			this.personalLocalAgenda.syncEvents(this.conferenceEvents, this.personalAgenda);
-			this.calendarView = new CalendarView({generalEvents: this.conferenceEvents, personalEvents: this.personalLocalAgenda, isOtherUserAgenda: false});
+			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalLocalAgenda});
 
 
 			return this;
@@ -118,11 +118,13 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		},
 
 		renderGeneral: function() {
-			this.calendarView.renderGeneral();
+			this.calendarView.undelegateEvents();
+			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalLocalAgenda}) ;
 		},
 
 		renderPersonal: function() {
-			this.calendarView.renderPersonal();
+			this.calendarView.undelegateEvents();
+			this.calendarView = new CalendarView({toShowEvents: this.personalLocalAgenda, personalEvents: this.personalLocalAgenda}) ;
 		},
 
 

@@ -26,7 +26,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			'click #my-today' : 'today'
 		},
 
-		isOtherUserAgenda: null,
 		currentDay: null,
 		backLimitDate: null,
 		forwardLimitDate: null,
@@ -66,36 +65,25 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.backLimitDate = new Date(y, m, d-3);
 			this.forwardLimitDate = new Date(y, m, d+3);
 
-			this.generalEvents = args.generalEvents;
+			this.toShowEvents = args.toShowEvents;
 			this.personalEvents = args.personalEvents;
-			this.isOtherUserAgenda = args.isOtherUserAgenda;
-			this.isInPersonal = false;
 
 			this.render();
-
 		},
 
 
 		render: function () {
 
+			$("#calendar").empty();
+
 			var context = null;
 			var html = this.compileTemplate(this.template, context);
 
-			//$("#calendar-placeholder").append(html);
 			this.enhanceJQMComponentsAPI();
 
-			//this.setElement($("#calendar-placeholder"));
 
-			if(this.isOtherUserAgenda)
-			{
-				this.fullCalendarSetter(this.personalEvents);
-				this.setCurrentEvents(this.personalEvents);
-			}
-			else
-			{
-				this.fullCalendarSetter(this.generalEvents);
-				this.setCurrentEvents(this.generalEvents);
-			}
+			this.fullCalendarSetter(this.toShowEvents);
+
 
 			return this;
 
@@ -116,7 +104,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					height:4000,
 					minTime: '8:00am',
 					header: {
-						//left: 'prev,next',
 						right: ''
 					},
 					defaultView: 'agendaDay', 
@@ -131,7 +118,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					},
 					eventClick: function(calEvent, jsEvent, view) {
 
-				        var currentEvent = that.currentEvents.getEventByName(calEvent.title);
+				        var currentEvent = that.toShowEvents.getEventByName(calEvent.title);
 				       	var attributes = currentEvent.attributes;
 
 				       	that.setPopUp(attributes);
@@ -140,21 +127,30 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				       	// nos butões de remover e adicionar evento à agenda pessoal
 				       	//O unbind antes do bind previne a chamada de multiplas vezes seguidas
 				       	// do evento em questão
-				       	if(!this.isOtherUserAgenda)
-				       	{
-							$('#popupMenu').on( "popupafteropen", function( event, ui ) { 
-								$("#remove-event-button").unbind("click").bind("click", function(event){
-									
-	  								that.removeEvent();
-								});
+						$('#popupMenu').on( "popupafteropen", function( event, ui ) { 
+							$("#remove-event-button").unbind("click").bind("click", function(event){
+								
+  								that.removeEvent();
 
-								$("#add-event-button").unbind("click").bind("click", function(event){
-	  								that.addEvent();
-								});
+  								if(that.toShowEvents !== that.personalEvents)
+  								{
+  									calEvent.imageurl=null;
+  									$('#calendar').fullCalendar('updateEvent', calEvent);
+  								}
+  								else //se estiver na personalizada remove o evento do calendario
+  									$('#calendar').fullCalendar('removeEvents',calEvent._id);
 							});
-						}
 
+							$("#add-event-button").unbind("click").bind("click", function(event){
+  								that.addEvent();
 
+  								if(that.toShowEvents !== that.personalEvents)
+  								{
+  									calEvent.imageurl="assets/star_white.gif";
+  									$('#calendar').fullCalendar('updateEvent', calEvent);
+  								}	
+							});
+						});
 
 	    				$('#popupMenu').popup('open', { positionTo: this });
 	    				
@@ -179,7 +175,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.$searchbasic = $('#search-basic');
 			this.$paperscheck = $('#paperscheck');
 			this.$workshopscheck = $('#workshopscheck');
-			this.$socialscheck = $('socialscheck');
+			this.$socialscheck = $('#socialscheck');
 			this.$searchpanel = $('#searchpanel');
 			this.$popup = $('#popupMenu');
 
@@ -213,27 +209,20 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				this.$authorlink.hide();
 			}
 
-			if(!this.isOtherUserAgenda)
+			//Verfica se tem de colocar no popup o botão de remover ou adicionar evento
+			if(this.personalEvents.hasEvent(attributes.id))
 			{
-				//Verfica se tem de colocar no popup o botão de remover ou adicionar evento
-				if(this.personalEvents.hasEvent(attributes.id))
-				{
-					this.$removeevent.show();
-					this.$removeeventbutton.attr("value", attributes.id);
-					this.$addevent.hide();
-				}
-				else
-				{
-					this.$removeevent.hide();
-					this.$addevent.show();
-					this.$addeventbutton.attr("value", attributes.id);
-				}
+				this.$removeevent.show();
+				this.$removeeventbutton.attr("value", attributes.id);
+				this.$addevent.hide();
 			}
 			else
 			{
 				this.$removeevent.hide();
-				this.$addevent.hide();
+				this.$addevent.show();
+				this.$addeventbutton.attr("value", attributes.id);
 			}
+
 
 			this.$eventlinkA.attr("href", "#paper/" + attributes.id);
 			this.$locallinkA.attr("href", "#local/" +  attributes.local_id);
@@ -241,7 +230,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 
   		search: function() {
-  			if(this.currentEvents !== null)
+
+  			if(this.toShowEvents !== null)
 			{	//Fecha painel de pesquisa
 				this.$searchpanel.panel( "close" );
 
@@ -254,7 +244,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	  			var workshops= this.$workshopscheck.is(':checked');
 	  			var socials = this.$socialscheck.is(':checked');
 	  			var types = {paper: papers, workshop: workshops, social: socials};
-	  			
+
 	  			if(papers)
 	  				counter+=1;
 
@@ -264,18 +254,19 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	  			if(socials)
 	  				counter+=1;
 
-	  			var stringResults = this.currentEvents.getEventsWithString(terms);
+	  			var stringResults = this.toShowEvents.getEventsWithString(terms);
 	  			var typeResults = [];
 	  			var renderEvents = [];
 
 	  			if(counter>0)
 	  			{	
-	  				typeResults = this.currentEvents.getEventsOfType(types);		
+	  				typeResults = this.toShowEvents.getEventsOfType(types);		
 	  			  	renderEvents = _.intersection(stringResults, typeResults);
 	  			}
 	  			else
 	  				renderEvents = stringResults;
-	  			
+
+
 	  			this.$calendar.empty();
 				this.fullCalendarSetter(renderEvents);
 			}
@@ -315,7 +306,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			var color = this.getColor(eventAttrs.type);
 			var imageurl = "";
 
-			if(this.personalEvents.hasEvent(eventAttrs.id) && !this.isOtherUserAgenda)
+			if(this.personalEvents.hasEvent(eventAttrs.id))
 				imageurl = "assets/star_white.gif";
 
 			return {title: eventAttrs.name, start: start, end: end, eventBorderColor: color,
@@ -332,8 +323,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		},
 
 		prev: function() {
+
 			if(this.$calendar.fullCalendar('getDate') > this.backLimitDate)
 				this.$calendar.fullCalendar('prev');
+
 		},
 
 		next: function() {
@@ -345,23 +338,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.$calendar.fullCalendar('today');
 		},
 
-		setCurrentEvents: function(newCurrentEvents) {
-			this.currentEvents = newCurrentEvents;
-		},
-
-		renderGeneral: function() {
-			this.setCurrentEvents(this.generalEvents);
-			this.$calendar.empty();
-			this.fullCalendarSetter(this.generalEvents);
-			this.isInPersonal = false;
-		},
-
-		renderPersonal: function() {
-			this.setCurrentEvents(this.personalEvents);
-			this.$calendar.empty();
-			this.fullCalendarSetter(this.personalEvents);
-			this.isInPersonal = true;
-		},
 
 		removeEvent: function() {
 			var eventId = this.$removeeventbutton.attr("value").trim();
@@ -373,13 +349,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.personalEvents.removeEvent(parseInt(eventId));
 			this.$popup.popup('close');
 
-			if(!this.isOtherUserAgenda)
-			{
-				if(this.isInPersonal)
-					this.renderPersonal();
-				else
-					this.renderGeneral();
-			}
 		},
 
 		addEvent: function() {
@@ -389,18 +358,11 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//Guarda o dia em que estava antes da pesquisa
 			this.currentDay = this.$calendar.fullCalendar('getDate');
 
-			var eventAttr = this.generalEvents.hasEvent(parseInt(eventId)).attributes;
+			var eventAttr = this.toShowEvents.hasEvent(parseInt(eventId)).attributes;
 			this.personalEvents.addEvent(eventAttr);
 
 			this.$popup.popup('close');
 
-			if(!this.isOtherUserAgenda)
-			{
-				if(this.isInPersonal)
-					this.renderPersonal();
-				else
-					this.renderGeneral();
-			}
 		}
 
 	});
