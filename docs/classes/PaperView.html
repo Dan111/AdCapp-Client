@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PaperView - AdCapp</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..\..\assets\morgan.jpg" title="AdCapp"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/BasicView.html">BasicView</a></li>
+            
+                <li><a href="../classes/EventView.html">EventView</a></li>
+            
+                <li><a href="../classes/Main.html">Main</a></li>
+            
+                <li><a href="../classes/PaperView.html">PaperView</a></li>
+            
+                <li><a href="../classes/Router.html">Router</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>PaperView Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends <a href="..\classes\EventView.html" class="crosslink">EventView</a>
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/app_views_paper.js.html#l12"><code>app\views\paper.js:12</code></a>
+        </div>
+    
+
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>View da página de palestra</p>
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+            <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li>
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_addTab">addTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_createTabs">createTabs</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private inherited">
+                                <a href="#method_disableTabEvents">disableTabEvents</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private inherited">
+                                <a href="#method_enhanceJQMComponentsAPI">enhanceJQMComponentsAPI</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_refreshJQM">refreshJQM</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private inherited">
+                                <a href="#method_removePreviousPageFromDOM">removePreviousPageFromDOM</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_renderAboutTab">renderAboutTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_renderCommentsTab">renderCommentsTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_renderLayout">renderLayout</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
+                                <a href="#method_renderTab">renderTab</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_aboutTabId">aboutTabId</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_aboutTabName">aboutTabName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_commentsTabId">commentsTabId</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_commentsTabName">commentsTabName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_events">events</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_model">model</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_tabContainer">tabContainer</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private inherited">
+                                <a href="#property_tabNames">tabNames</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private inherited">
+                                <a href="#property_tabs">tabs</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected inherited">
+                                <a href="#property_template">template</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section attrs">
+                    <h3>Attributes</h3>
+
+                    <ul class="index-list attrs extends">
+                        
+                            <li class="index-item attr protected inherited">
+                                <a href="#attr_id">id</a>
+                            </li>
+                        
+                            <li class="index-item attr protected inherited">
+                                <a href="#attr_pageName">pageName</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_addTab" class="method item protected inherited">
+    <h3 class="name"><code>addTab</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>view</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>[pos=length</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_addTab">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l271"><code>app\views\event.js:271</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Adiciona uma tab ao vector de tabs</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">view</code>
+                        <span class="type"><a href="..\classes\BasicView.html" class="crosslink">BasicView</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>View da tab</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Id e nome da tab</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">id</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Id da tab</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">name</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Nome a ser apresentado pela tab</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">[pos=length</code>
+                        <span class="type">Pos</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>do vector tabs] Posição que a tab deve ocupar na navbar</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_createTabs" class="method item protected inherited">
+    <h3 class="name"><code>createTabs</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_createTabs">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l249"><code>app\views\event.js:249</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Inicializa as tabs comuns a todas as páginas</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_disableTabEvents" class="method item private inherited">
+    <h3 class="name"><code>disableTabEvents</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_disableTabEvents">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l317"><code>app\views\event.js:317</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Desactiva a delegação de eventos de todas as tabs, evitando assim
+tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_enhanceJQMComponentsAPI" class="method item private inherited">
+    <h3 class="name"><code>enhanceJQMComponentsAPI</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\BasicView.html#method_enhanceJQMComponentsAPI">BasicView</a>:
+            
+        
+        
+        <a href="../files/app_views_basicview.js.html#l124"><code>app\views\basicview.js:124</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Inicia a transição de página do jQuery Mobile para  apágina corrente</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_refreshJQM" class="method item protected inherited">
+    <h3 class="name"><code>refreshJQM</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\BasicView.html#method_refreshJQM">BasicView</a>:
+            
+        
+        
+        <a href="../files/app_views_basicview.js.html#l151"><code>app\views\basicview.js:151</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Faz o refrescamento dos componentes do jQuery Mobile</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_removePreviousPageFromDOM" class="method item private inherited">
+    <h3 class="name"><code>removePreviousPageFromDOM</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\BasicView.html#method_removePreviousPageFromDOM">BasicView</a>:
+            
+        
+        
+        <a href="../files/app_views_basicview.js.html#l139"><code>app\views\basicview.js:139</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Remove a página anterior do DOM</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item protected inherited">
+    <h3 class="name"><code>render</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_render">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l180"><code>app\views\event.js:180</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Faz o rendering do layout base das páginas de informações</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderAboutTab" class="method item protected inherited">
+    <h3 class="name"><code>renderAboutTab</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_renderAboutTab">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l215"><code>app\views\event.js:215</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Faz o rendering da tab 'Sobre'</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderCommentsTab" class="method item protected inherited">
+    <h3 class="name"><code>renderCommentsTab</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_renderCommentsTab">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l232"><code>app\views\event.js:232</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Faz o rendering da tab 'Comentários'</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderLayout" class="method item protected inherited">
+    <h3 class="name"><code>renderLayout</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\BasicView.html#method_renderLayout">BasicView</a>:
+            
+        
+        
+        <a href="../files/app_views_basicview.js.html#l46"><code>app\views\basicview.js:46</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Faz o rendering do layout comum a todas a páginas</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderTab" class="method item protected inherited">
+    <h3 class="name"><code>renderTab</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>view</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#method_renderTab">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l296"><code>app\views\event.js:296</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Faz o rendering da tab especificada</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">view</code>
+                        <span class="type"><a href="..\classes\BasicView.html" class="crosslink">BasicView</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>View da tab</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_aboutTabId" class="property item protected inherited">
+    <h3 class="name"><code>aboutTabId</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_aboutTabId">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l56"><code>app\views\event.js:56</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Id usado pelo elemento HTML da tab 'Sobre'</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;about-tab&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_aboutTabName" class="property item protected inherited">
+    <h3 class="name"><code>aboutTabName</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_aboutTabName">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l67"><code>app\views\event.js:67</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Nome a ser inserido na tab 'Sobre'</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;Sobre&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_commentsTabId" class="property item protected inherited">
+    <h3 class="name"><code>commentsTabId</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_commentsTabId">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l79"><code>app\views\event.js:79</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Id usado pelo elemento HTML da tab 'Comentários'</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;comments-tab&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_commentsTabName" class="property item protected inherited">
+    <h3 class="name"><code>commentsTabName</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_commentsTabName">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l90"><code>app\views\event.js:90</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Nome a ser inserido na tab 'Comentários'</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;Comentários&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_events" class="property item protected inherited">
+    <h3 class="name"><code>events</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_events">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l140"><code>app\views\event.js:140</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Eventos lançados pela transição entre tabs</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_model" class="property item protected inherited">
+    <h3 class="name"><code>model</code></h3>
+    <span class="type">Backbone.Model</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_model">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l101"><code>app\views\event.js:101</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Modelo do evento ao qual corresponde esta página</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_tabContainer" class="property item protected inherited">
+    <h3 class="name"><code>tabContainer</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_tabContainer">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l32"><code>app\views\event.js:32</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Elemento que contém os conteúdos das tabs</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;#tab-content&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_tabNames" class="property item private inherited">
+    <h3 class="name"><code>tabNames</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_tabNames">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l122"><code>app\views\event.js:122</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Vector de objectos com os campos id e name. Usado para gerar a navbar.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>[
+    {
+        id      : "questions-tab",
+        name    : "Perguntas"
+    }
+]
+</code></pre>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="property_tabs" class="property item private inherited">
+    <h3 class="name"><code>tabs</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_tabs">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l112"><code>app\views\event.js:112</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Vector com as views de todas as tabs incluídas na página</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_template" class="property item protected inherited">
+    <h3 class="name"><code>template</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\EventView.html#property_template">EventView</a>:
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l44"><code>app\views\event.js:44</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Template base de todas as páginas de informação</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;event-template&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="attrs" class="api-class-tabpanel">
+                <h2 class="off-left">Attributes</h2>
+
+                
+                    <div id="attr_id" class="attr item protected inherited">
+    <a name="config_id"></a> 
+    <h3 class="name"><code>id</code></h3>
+    <span class="type">String Id a ser usado no div da página</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag required">required</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\BasicView.html#attr_id">BasicView</a>:
+            
+        
+        
+        <a href="../files/app_views_basicview.js.html#l30"><code>app\views\basicview.js:30</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="attr_pageName" class="attr item protected inherited">
+    <a name="config_pageName"></a> 
+    <h3 class="name"><code>pageName</code></h3>
+    <span class="type">String Nome da página que é exibido no header do layout</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag required">required</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\BasicView.html#attr_pageName">BasicView</a>:
+            
+        
+        
+        <a href="../files/app_views_basicview.js.html#l38"><code>app\views\basicview.js:38</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

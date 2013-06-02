@@ -9,6 +9,12 @@ define([
     "views/aboutevent"
 ], function ($, Backbone, _, Handlebars, PaperModel, EventView, CommentsView, AboutView) {
 
+	/**
+	View da página de palestra
+
+	@class PaperView
+	@extends EventView
+	**/
 	return EventView.extend({
 
 		el 				: "div[data-role=content]",

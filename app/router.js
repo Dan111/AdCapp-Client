@@ -1,5 +1,4 @@
 define([
-
   "backbone",
 
   //Views
@@ -16,76 +15,160 @@ define([
 
 function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, MainInfoView, MainMenuView) {
 
-  // Defining the application router, you can attach sub routers here.
-  var Router = Backbone.Router.extend({
+  	/**
+	Router principal da app, responsável por traduzir os links em métodos a serem chamados
+
+	@class Router
+	@extends Backbone.Router
+	**/
+	var Router = Backbone.Router.extend({	 	
+
+		/**
+		Enumeração de todas as routes possíveis da app
+
+		@property routes
+		@type Object
+		@static
+		@final
+		**/
+		routes: {
+			""              : "main",
+			"index"         : "index",
+			"agenda"        : "agenda",
+			"maininfo"      : "maininfo",
+			"mainmenu"      : "mainmenu",
+			"speakers"      : "speakers",
+			"participants"  : "participants",
+			"paper/:id"     : "paper",
+			"session/:id"   : "session",
+			"user/:id"      : "user",
+			"contacts"      : "contacts"
+		},
+
+		/**
+		Route da página inicial da app
+
+		@method index
+		@private
+		**/
+		index: function() {
+	  		console.log("ROUTE: homepage");
+		},
 
 
-    routes: {
-      ""              : "main",
-      "index"         : "index",
-      "agenda"        : "agenda",
-      "maininfo"      : "maininfo",
-      "mainmenu"      : "mainmenu",
-      "speakers"      : "speakers",
-      "participants"  : "participants",
-      "paper/:id"     : "paper",
-      "session/:id"   : "session",
-      "user/:id"      : "user",
-      "contacts"      : "contacts"
-    },
+		/**
+		Route do menu agenda
 
-    index: function() {
-      console.log("ROUTE: homepage");
-    },
+		@method agenda
+		@private
+		**/
+		agenda: function() {
+			console.log("ROUTE: agenda");
+			new AgendaView();
+		},
 
-    agenda: function() {
-      console.log("ROUTE: agenda");
-      new AgendaView();
-    },
 
-    maininfo: function() {
-      console.log("ROUTE: mainInfo");
+		/**
+		Route do menu de informações
 
-      new MainInfoView();
-    },
+		@method maininfo
+		@private
+		**/
+		maininfo: function() {
+			console.log("ROUTE: mainInfo");
 
-    mainmenu: function() {
-      console.log("ROUTE: mainmenu");
+			new MainInfoView();
+		},
 
-      new MainMenuView();
-    },
 
-    paper: function(id) {
-      console.log("ROUTE: paper");
-      new PaperView({modelId: id});
-    },
+		/**
+		Route do menu principal
 
-    session: function(id) {
-      console.log("ROUTE: paper");
-      new SessionView({modelId: id});
-    },
+		@method mainmenu
+		@private
+		**/
+		mainmenu: function() {
+			console.log("ROUTE: mainmenu");
 
-    user: function(id){
-      console.log("ROUTE: user");
-      new ProfileView({modelId: id});
-    },
+			new MainMenuView();
+		},
 
-    speakers: function(){
-      console.log("ROUTE: speakers");
-      new UsersListView({isSpeakers: true, pageId: "speakers-page", pageName: "Oradores"});
-    },
 
-    participants: function(){
-      console.log("ROUTE: participants");
-      new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
-    },
+		/**
+		Route da página de palestra
 
-    contacts: function(id){
-      console.log("ROUTE: contacts");
-      new ContactsView();
-    }
-  });
+		@method paper
+		@param {Number} id Id da palestra
+		@private
+		**/
+		paper: function(id) {
+			console.log("ROUTE: paper");
+			new PaperView({modelId: id});
+		},
 
-  return Router;
+
+		/**
+		Route da página de sessão
+
+		@method index
+		@param {Number} id Id da sessão
+		@private
+		**/
+		session: function(id) {
+			console.log("ROUTE: paper");
+			new SessionView({modelId: id});
+		},
+
+
+		/**
+		Route da página do utilizador
+
+		@method user
+		@param {Number} id Id do utilizador
+		@private
+		**/
+		user: function(id){
+			console.log("ROUTE: user");
+			new ProfileView({modelId: id});
+		},
+
+
+		/**
+		Route da lista de oradores
+
+		@method speakers
+		@private
+		**/
+		speakers: function(){
+			console.log("ROUTE: speakers");
+			new UsersListView({isSpeakers: true, pageId: "speakers-page", pageName: "Oradores"});
+		},
+
+
+		/**
+		Route da lista de participantes
+
+		@method participants
+		@private
+		**/
+		participants: function(){
+			console.log("ROUTE: participants");
+			new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
+		},
+
+
+		/**
+		Route do menu de contactos do utilizador
+
+		@method contacts
+		@private
+		**/
+		contacts: function(){
+			console.log("ROUTE: contacts");
+			new ContactsView();
+		}
+	});
+
+  	return Router;
 
 });

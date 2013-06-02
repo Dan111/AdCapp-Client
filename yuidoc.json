@@ -1,0 +1,9 @@
+{
+    "name": "AdCapp",
+    "description": "Aplicação móvel AdCapp",
+    "version": "1.0",
+    "logo": "../assets/morgan.jpg",
+    "options": {
+        "outdir": "./docs"
+    }
+}
