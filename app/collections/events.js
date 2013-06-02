@@ -70,7 +70,50 @@ function ($, Backbone, _, LocalStorage, Event) {
             return this.filter(function(event_obj){
                 return _.contains(arrayOfEventsId, event_obj.get("id"));
             });
+        },
+
+        syncEvents: function(conferenceEvents, personalAgenda){
+            //Se não tiver nada na local usa a do server para ver se tem alguma
+            //coisa
+            if(this.size() === 0)
+            {   
+                console.log("adding events to local agenda");
+                var personalEvents = conferenceEvents.getPersonalAgenda(personalAgenda.get("chosen_events"));
+                for(i = 0; i < personalEvents.length; i++)
+                {
+                    var eventAttr = personalEvents[i].attributes;
+                    var attrs = {
+                        id: eventAttr.id,
+                        name: eventAttr.name,
+                        hours: eventAttr.hours, 
+                        duration: eventAttr.duration,
+                        type: eventAttr.type,
+                        local_id: eventAttr.local_id,
+                        users_id_array: eventAttr.users_id_array
+                    };
+                    this.create(attrs);
+                }
+            }
+        },
+
+        removeEvent: function(eventId) {
+            this.hasEvent(eventId).destroy();
+        },
+
+        addEvent: function(eventAttr) {
+
+            var attrs = {
+                        id: eventAttr.id,
+                        name: eventAttr.name,
+                        hours: eventAttr.hours, 
+                        duration: eventAttr.duration,
+                        type: eventAttr.type,
+                        local_id: eventAttr.local_id,
+                        users_id_array: eventAttr.users_id_array
+                    };
+            this.create(attrs);
         }
+
 
 
 	});

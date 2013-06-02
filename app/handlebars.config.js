@@ -28,6 +28,8 @@ function (Handlebars, $, Moment) {
         //Partial da lista de participants
         Handlebars.registerPartial('participant', $("#participant-partial").html());
 
+        //Partial do calendar
+        Handlebars.registerPartial('calendar', $("#calendar-partial").html());
 
 
 
