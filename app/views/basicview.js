@@ -28,16 +28,20 @@ define([
 
 
 		/**
+		Id a ser usado no div da página
+
 		@attribute id
-		@type {String} Id a ser usado no div da página
+		@type {String}
 		@protected
 		@required
 		**/
 
 
 		/**
+		Nome da página que é exibido no header do layout
+
 		@attribute pageName
-		@type {String} Nome da página que é exibido no header do layout
+		@type {String}
 		@protected
 		@required
 		**/
