@@ -67,6 +67,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			this.toShowEvents = args.toShowEvents;
 			this.personalEvents = args.personalEvents;
+			this.inPersonal = args.inPersonal;//Foi necessário passar este booleano, já que não consegui arranjar uma
+											  //solução viável de outra forma
+
+
+			this.hasDifferences = this.toShowEvents.getDifferences(this.personalEvents.get("chosen_events"));
+
 
 			this.render();
 		},
@@ -131,8 +137,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 							$("#remove-event-button").unbind("click").bind("click", function(event){
 								
   								that.removeEvent();
-
-  								if(that.toShowEvents !== that.personalEvents)
+  								
+  								if(!that.inPersonal)
   								{
   									calEvent.imageurl=null;
   									$('#calendar').fullCalendar('updateEvent', calEvent);
@@ -144,7 +150,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 							$("#add-event-button").unbind("click").bind("click", function(event){
   								that.addEvent();
 
-  								if(that.toShowEvents !== that.personalEvents)
+  								if(!that.inPersonal)
   								{
   									calEvent.imageurl="assets/star_white.gif";
   									$('#calendar').fullCalendar('updateEvent', calEvent);
@@ -346,7 +352,15 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//Guarda o dia em que estava antes da pesquisa
 			this.currentDay = this.$calendar.fullCalendar('getDate');
 
+			//remove na collection se estiver na pessoal
+			if(this.inPersonal)
+				this.toShowEvents.hasEvent(parseInt(eventId)).destroy;
+
+			//remove no modelo com o array
 			this.personalEvents.removeEvent(parseInt(eventId));
+			this.personalEvents.save();
+
+
 			this.$popup.popup('close');
 
 		},
@@ -358,8 +372,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//Guarda o dia em que estava antes da pesquisa
 			this.currentDay = this.$calendar.fullCalendar('getDate');
 
-			var eventAttr = this.toShowEvents.hasEvent(parseInt(eventId)).attributes;
-			this.personalEvents.addEvent(eventAttr);
+			this.personalEvents.addEvent(parseInt(eventId));
+			this.personalEvents.save();
 
 			this.$popup.popup('close');
 

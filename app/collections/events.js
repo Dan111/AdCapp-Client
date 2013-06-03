@@ -17,9 +17,7 @@ function ($, Backbone, _, LocalStorage, Event) {
 		localStorage: null,
 
 		initialize: function (args){
-            if(args.isPersonal)
-                this.localStorage = new Backbone.LocalStorage('personal-agenda-backbone');
-            else
+            if(!args.isPersonal)
                 this.url = "http://danielmagro.apiary.io/events";
 
 			console.log('EventS');
@@ -64,36 +62,45 @@ function ($, Backbone, _, LocalStorage, Event) {
             });
         },
 
+        getDifferences: function(arrayOfIds)
+        {
+            var idsArray = this.map(function(event_obj){
+                return event_obj.get("id");
+            });
+            console.log(idsArray);
+            console.log(arrayOfIds);
+            return _.difference(idsArray, arrayOfIds);
+        },
+
         //Filtra a coleção de eventos para obter apenas aqueles cujo o id
         // id está no tal array
-        getPersonalAgenda: function(arrayOfEventsId){
+        getEventsFromIdArray: function(arrayOfEventsId){
             return this.filter(function(event_obj){
                 return _.contains(arrayOfEventsId, event_obj.get("id"));
             });
         },
 
         syncEvents: function(conferenceEvents, personalAgenda){
-            //Se não tiver nada na local usa a do server para ver se tem alguma
-            //coisa
-            if(this.size() === 0)
-            {   
-                console.log("adding events to local agenda");
-                var personalEvents = conferenceEvents.getPersonalAgenda(personalAgenda.get("chosen_events"));
-                for(i = 0; i < personalEvents.length; i++)
-                {
-                    var eventAttr = personalEvents[i].attributes;
-                    var attrs = {
-                        id: eventAttr.id,
-                        name: eventAttr.name,
-                        hours: eventAttr.hours, 
-                        duration: eventAttr.duration,
-                        type: eventAttr.type,
-                        local_id: eventAttr.local_id,
-                        users_id_array: eventAttr.users_id_array
-                    };
-                    this.create(attrs);
-                }
+
+             
+                
+            var personalEvents = conferenceEvents.getPersonalAgenda(personalAgenda.get("chosen_events"));
+            
+            for(i = 0; i < personalEvents.length; i++)
+            {
+                var eventAttr = personalEvents[i].attributes;
+                var attrs = {
+                    id: eventAttr.id,
+                    name: eventAttr.name,
+                    hours: eventAttr.hours, 
+                    duration: eventAttr.duration,
+                    type: eventAttr.type,
+                    local_id: eventAttr.local_id,
+                    users_id_array: eventAttr.users_id_array
+                };
+                this.create(attrs);
             }
+            
         },
 
         removeEvent: function(eventId) {

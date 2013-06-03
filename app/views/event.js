@@ -4,10 +4,11 @@ define([
     "underscore",
     "handlebars",
     "models/paper",
+    "models/personalagenda",
     "views/basicview",
     "views/comment",
     "views/aboutevent"
-], function ($, Backbone, _, Handlebars, PaperModel, BasicView, CommentsView, AboutView) {
+], function ($, Backbone, _, Handlebars, PaperModel, PersonalAgendaModel, BasicView, CommentsView, AboutView) {
 
 	/**
 	View abstracta das páginas de informações de cada evento
@@ -139,6 +140,8 @@ define([
 
 		/**
 		Eventos lançados pela transição entre tabs
+		e ainda eventos de adição e remoção do evento 
+		da agenda pessoal
 
 		@property events
 		@type Object
@@ -147,7 +150,8 @@ define([
 		events: {
 
 			"click #about-tab"		: "renderAboutTab",
-			"click #comments-tab"	: "renderCommentsTab"
+			"click #comments-tab"	: "renderCommentsTab",
+			"click #add-remove-event" : "addRemoveEvent"
 
 		},
 
@@ -166,6 +170,17 @@ define([
 
 			this.tabs = [];
 			this.tabNames = [];
+
+			this.personalAgenda = new PersonalAgendaModel({id: 0, Personal: true});
+
+			this.personalAgenda.fetch({
+				success: function () {
+					console.log("Personal Events loaded");
+				},
+				error: function (){
+					console.log("Fail to get events or don't have any");
+				}
+			});
 
 			this.renderLayout();
 			this.setElement($("[data-role=content]"));
@@ -206,6 +221,9 @@ define([
 			//Coloca a tab 'Sobre' como a seleccionada por predefinição
 			//TODO: arranjar uma solução mais elegante
 			this.$("[data-role=navbar] a:first").addClass("ui-btn-active");
+
+			if(this.personalAgenda.hasEvent(this.model.id))
+                $('#add-remove-event').parent().append('<i id="check-icon" class="icon-check-sign "></i>');
 			
 			return this;
 
@@ -326,6 +344,29 @@ define([
 			_.each(this.tabs, function (view){
 				view.undelegateEvents();
 			})
+		},
+
+
+		addRemoveEvent: function () {
+			var model = this.model.attributes;
+			var hasEvent = this.personalAgenda.hasEvent(this.model.id);
+
+			if(hasEvent)
+			{
+				//retira o evento da agenda pessoal
+                this.personalAgenda.removeEvent(this.model.id);
+                this.personalAgenda.save();
+                $('#add-remove-event').next().remove();
+                console.log("event removed"); 
+			}
+			else
+			{
+				 
+            	this.personalAgenda.addEvent(this.model.id);
+            	this.personalAgenda.save();
+                console.log("event added");
+                $('#add-remove-event').parent().append('<i id="check-icon" class="icon-check-sign "></i>');
+			}
 		}
 
 	});

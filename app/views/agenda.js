@@ -44,10 +44,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//Por enquanto para teste fica como utilizador 0 o utilizador do 
 			//dispositivo, mas quando o registo/login estiver feito teremos
 			//de passar o id correspondente
-			//Modelo para de array + id da agenda personalizada de um utilizador, vindo do server
-			this.personalAgenda = new PersonalAgenda({id: 0});
-
-			this.personalLocalAgenda = new EventCollection({isPersonal: true});
+			this.personalAgenda = new PersonalAgenda({id: 0, Personal: true});
 
 			this.conferenceEvents = new EventCollection({isPersonal: false});	
 
@@ -59,17 +56,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					console.log("Fail to get events from server or don't have any");
 				}
 			});
-
-			this.personalLocalAgenda.fetch({
-				success: function () {
-					console.log("Personal Events loaded");
-				},
-				error: function (){
-					console.log("Fail to get events or don't have any");
-				}
-			});
-
-			
+		
 			this.conferenceEvents.fetch({
 				success: function () {
 					self.renderLayout();
@@ -78,25 +65,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			});
 
 
-		},
-
-
-		renderLayout: function () {
-
-			var pid = this.id;
-			var name = this.pageName;
-
-			var context = {page_id: pid, page_name: name};
-			var html = this.compileTemplate("layout-template", context);
-
-			//adiciona página ao body
-			$("body").append(html);
-			this.enhanceJQMComponentsAPI();
-
-			//limpa a pagina anterior do DOM
-			this.removePreviousPageFromDOM();
-
-			return this;
 		},
 
 
@@ -109,8 +77,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.enhanceJQMComponentsAPI();
 
 			this.setElement($("[data-role=content]"));
-			this.personalLocalAgenda.syncEvents(this.conferenceEvents, this.personalAgenda);
-			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalLocalAgenda});
+			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalAgenda, inPersonal: false});
 
 
 			return this;
@@ -119,12 +86,20 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		renderGeneral: function() {
 			this.calendarView.undelegateEvents();
-			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalLocalAgenda}) ;
+			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalAgenda, inPersonal: false}) ;
 		},
 
 		renderPersonal: function() {
 			this.calendarView.undelegateEvents();
-			this.calendarView = new CalendarView({toShowEvents: this.personalLocalAgenda, personalEvents: this.personalLocalAgenda}) ;
+			var personalLocalAgenda = new EventCollection({isPersonal: true});
+
+			//quando se cria uma collection por alguma razão já vem com um elemento com defaults
+			//daí o reset
+			personalLocalAgenda.reset();
+			var modelsArray = this.conferenceEvents.getEventsFromIdArray(this.personalAgenda.get("chosen_events")); 
+			personalLocalAgenda.add(modelsArray);
+
+			this.calendarView = new CalendarView({toShowEvents: personalLocalAgenda, personalEvents: this.personalAgenda, inPersonal: true}) ;
 		},
 
 
