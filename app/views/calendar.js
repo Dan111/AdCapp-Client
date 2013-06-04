@@ -43,12 +43,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		$eventlinkA: null,
 		$locallinkA: null,
 		$searchbasic: null,
-		$paperscheck: null,
-		$workshopscheck: null,
-		$socialscheck: null,
-		$keynotescheck: null,
 		$searchpanel: null,
 		$popup: null,
+
+		typesInfo: {"paper": {color: '#2c3e50'}, "workshop": {color: '#16a085'}, "social": {color: '#8e44ad'}, "keynote": {color: '#2ecc71'}},
 
 		initialize: function (args)
 		{
@@ -180,10 +178,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.$eventlinkA = $('#event-link a');
 			this.$locallinkA = $('#local-link a');
 			this.$searchbasic = $('#search-basic');
-			this.$paperscheck = $('#paperscheck');
-			this.$workshopscheck = $('#workshopscheck');
-			this.$socialscheck = $('#socialscheck');
-			this.$keynotescheck = $('#keynotescheck');
 			this.$searchpanel = $('#searchpanel');
 			this.$popup = $('#popupMenu');
 
@@ -242,29 +236,26 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
   			if(this.toShowEvents !== null)
 			{	//Fecha painel de pesquisa
 				this.$searchpanel.panel( "close" );
-
 				//Guarda o dia em que estava antes da pesquisa
 				this.currentDay = this.$calendar.fullCalendar('getDate');
 
 	  			var terms = this.$searchbasic.val().trim();
 	  			var counter = 0;
-	  			var papers = this.$paperscheck.is(':checked');
-	  			var workshops= this.$workshopscheck.is(':checked');
-	  			var socials = this.$socialscheck.is(':checked');
-	  			var keynotes = this.$keynotescheck.is(':checked');
-	  			var types = {paper: papers, workshop: workshops, social: socials, keynote: keynotes};
+				var types = {};
 
-	  			if(papers)
-	  				counter+=1;
+				_.chain(this.typesInfo)
+				 .pairs(this.typesInfo)
+	  			 .each(function (pair){
+	  				var idString = "#"+pair[0];
+	  				var checkValue = $('fieldset').find(idString).is(':checked');
+	  				types[pair[0]] = checkValue;
 
-	  			if(workshops)
-	  				counter+=1;
+	  				if(checkValue)
+	  					counter+=1;
+	  			});
 
-	  			if(socials)
-	  				counter+=1;
-
-	  			if(keynotes)
-	  				counter+=1;
+	  			console.log(types);
+	  			
 
 	  			var stringResults = this.toShowEvents.getEventsWithString(terms);
 	  			var typeResults = [];
@@ -326,14 +317,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		},
 
 		getColor: function(type){
-			if(type === "paper")
-				return '#2c3e50';
-			else if(type === "workshop")
-				return '#16a085';
-			else if(type === "social")
-				return '#8e44ad';
-			else
-				return '#2ecc71';
+			return this.typesInfo[type].color;
 		},
 
 		prev: function() {
