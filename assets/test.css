@@ -1,0 +1,12 @@
+.square {
+	margin: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px;
+	margin: 0px;
+	height: 130px;
+
+}
+.square .ui-btn-inner{
+	height: 130px;
+}
+
