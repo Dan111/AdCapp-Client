@@ -67,8 +67,7 @@ function ($, Backbone, _, LocalStorage, Event) {
             var idsArray = this.map(function(event_obj){
                 return event_obj.get("id");
             });
-            console.log(idsArray);
-            console.log(arrayOfIds);
+
             return _.difference(idsArray, arrayOfIds);
         },
 

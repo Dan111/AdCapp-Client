@@ -30,9 +30,7 @@ function ($, Backbone, _) {
 
 		hasEvent: function (eventId)
 		{
-			var b = _.indexOf(this.get("chosen_events"), eventId) > -1;
-			console.log(b);
-			return b;
+			return _.indexOf(this.get("chosen_events"), eventId) > -1;
 		},
 
 		removeEvent: function (eventId)

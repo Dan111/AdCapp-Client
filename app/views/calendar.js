@@ -46,6 +46,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		$paperscheck: null,
 		$workshopscheck: null,
 		$socialscheck: null,
+		$keynotescheck: null,
 		$searchpanel: null,
 		$popup: null,
 
@@ -182,6 +183,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.$paperscheck = $('#paperscheck');
 			this.$workshopscheck = $('#workshopscheck');
 			this.$socialscheck = $('#socialscheck');
+			this.$keynotescheck = $('#keynotescheck');
 			this.$searchpanel = $('#searchpanel');
 			this.$popup = $('#popupMenu');
 
@@ -249,7 +251,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	  			var papers = this.$paperscheck.is(':checked');
 	  			var workshops= this.$workshopscheck.is(':checked');
 	  			var socials = this.$socialscheck.is(':checked');
-	  			var types = {paper: papers, workshop: workshops, social: socials};
+	  			var keynotes = this.$keynotescheck.is(':checked');
+	  			var types = {paper: papers, workshop: workshops, social: socials, keynote: keynotes};
 
 	  			if(papers)
 	  				counter+=1;
@@ -258,6 +261,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	  				counter+=1;
 
 	  			if(socials)
+	  				counter+=1;
+
+	  			if(keynotes)
 	  				counter+=1;
 
 	  			var stringResults = this.toShowEvents.getEventsWithString(terms);
@@ -324,8 +330,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				return '#2c3e50';
 			else if(type === "workshop")
 				return '#16a085';
-			else
+			else if(type === "social")
 				return '#8e44ad';
+			else
+				return '#2ecc71';
 		},
 
 		prev: function() {
