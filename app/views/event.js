@@ -223,7 +223,7 @@ define([
 			this.$("[data-role=navbar] a:first").addClass("ui-btn-active");
 
 			if(this.personalAgenda.hasEvent(this.model.id))
-                $('#add-remove-event').parent().append('<i id="check-icon" class="icon-check-sign "></i>');
+                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
 			
 			return this;
 
@@ -365,7 +365,7 @@ define([
             	this.personalAgenda.addEvent(this.model.id);
             	this.personalAgenda.save();
                 console.log("event added");
-                $('#add-remove-event').parent().append('<i id="check-icon" class="icon-check-sign "></i>');
+                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
 			}
 		}
 

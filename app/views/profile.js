@@ -94,7 +94,7 @@ define([
 
             
             if(this.mycontacts.hasContact(user.id))
-                $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
+                $("#add-user span span").append('<i class="icon-check-sign pull-right"></i>');
 
 
             return this;
@@ -123,13 +123,13 @@ define([
                 this.mycontacts.create(attrs);
                 console.log("contact added");
                 //this.user.set({isContact: true});
-                $("#add-user").append('<i class="icon-check-sign icon-2x"></i>');
+                $("#add-user span span").append('<i class="icon-check-sign pull-right"></i>');
             }
             else 
             {    
                 //retira o contacto da collection
                 hasContact.destroy();
-                $('#add-user .icon-check-sign').remove();
+                $('#add-user span span .icon-check-sign').remove();
                 console.log("contact removed");  
             }
         },

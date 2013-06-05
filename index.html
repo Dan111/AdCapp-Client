@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
   <link rel="stylesheet" href="assets/agenda.css">
+   <link rel="stylesheet" href="assets/event.css">
   <link rel="stylesheet" href="assets/test.css">
 
 
@@ -279,40 +280,103 @@
     <script type="text/x-handlebars-template"  id="maininfo-template">
 
           <div>
-
-              <a href="#participants" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Participantes
-              </a>
-              <br>
-              <a href="#speakers" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Oradores
-              </a>
-              <br>
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Papers
-              </a>
-              <br>
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Sessões
-              </a>
-              <br>
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Keynotes
-              </a>
-              <br>
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Workshops
-              </a>
-              <br>
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Eventos Sociais
-              </a>
-              <br>
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-iconpos="right" data-theme="b">
-                Locais
-              </a>
-
-          </div>
+               <div class="ui-grid-a">
+                <div class="ui-block-a">
+                  <a href="#participants" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="f">
+                    <div class="square-info">
+                      <br>
+                      <i class="icon-book icon-4x"></i>
+                      <br>
+                      <br>
+                      Participantes
+                    </div>
+                  </a>
+                </div>
+                <div class="ui-block-b">
+                  <a href="#speakers" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="b">
+                    <div class="square-info">
+                      <br>
+                      <i class="icon-trophy icon-4x"></i>
+                      <br>
+                      <br>
+                      Oradores
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="ui-grid-a">
+                <div class="ui-block-a">
+                  <a href="#maininfo" data-role="button" class="square" data-mini="true" data-corners="true" data-iconpos="right" data-theme="d">
+                    <div class="square-info">
+                      <br>
+                      <i class="icon-info icon-4x"></i>
+                      <br>
+                      <br>
+                      Papers
+                    </div>
+                  </a>
+                </div>
+                <div class="ui-block-b">
+                  <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                    <div class="square-info">
+                      <br>
+                      <i class="icon-bullhorn icon-4x"></i>
+                      <br>
+                      <br>
+                      Sessões
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="ui-grid-a">
+                 <div class="ui-block-a">
+                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                      <div class="square-info">
+                        <br>
+                        <i class="icon-group icon-4x"></i>
+                        <br>
+                        <br>
+                        Keynotes
+                      </div>
+                    </a>
+                  </div>
+                  <div class="ui-block-b">
+                    <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="d">
+                      <div class="square-info">
+                        <br>
+                        <i class="icon-map-marker icon-4x"></i>
+                        <br>
+                        <br>
+                        Workshops
+                      </div>
+                    </a>
+                  </div>
+             </div>
+             <div class="ui-grid-a">
+                 <div class="ui-block-a">
+                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                      <div class="square-info">
+                        <br>
+                        <i class="icon-group icon-4x"></i>
+                        <br>
+                        <br>
+                        Eventos Sociais
+                      </div>
+                    </a>
+                  </div>
+                  <div class="ui-block-b">
+                    <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="d">
+                      <div class="square-info">
+                        <br>
+                        <i class="icon-map-marker icon-4x"></i>
+                        <br>
+                        <br>
+                        Locais
+                      </div>
+                    </a>
+                  </div>
+             </div>
+        </div>
 
   </script>
 
@@ -326,42 +390,75 @@
 
           <div class="ui-grid-a">
             <div class="ui-block-a">
-              <a href="#agenda" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Agenda
+              <a href="#agenda" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="f">
+                <div class="square-info">
+                  <br>
+                  <i class="icon-book icon-4x"></i>
+                  <br>
+                  <br>
+                  Agenda
+                </div>
               </a>
             </div>
             <div class="ui-block-b">
-              <a href="#" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Prémios
+              <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="b">
+                <div class="square-info">
+                  <br>
+                  <i class="icon-trophy icon-4x"></i>
+                  <br>
+                  <br>
+                  Prémios
+                </div>
               </a>
             </div>
           </div>
-          <br>
           <div class="ui-grid-a">
             <div class="ui-block-a">
-              <a href="#maininfo" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Menu de Informações
+              <a href="#maininfo" data-role="button" class="square" data-mini="true" data-corners="true" data-iconpos="right" data-theme="d">
+                <div class="square-info">
+                  <br>
+                  <i class="icon-info icon-4x"></i>
+                  <br>
+                  <br>
+                  Informações
+                </div>
               </a>
             </div>
             <div class="ui-block-b">
-              <a href="" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                Feedback
+              <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                <div class="square-info">
+                  <br>
+                  <i class="icon-bullhorn icon-4x"></i>
+                  <br>
+                  <br>
+                  Feedback
+                </div>
               </a>
             </div>
           </div>
-          <br>
           <div class="ui-grid-a">
              <div class="ui-block-a">
-                <a href="#contacts" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                  Contactos
+                <a href="#contacts" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                  <div class="square-info">
+                    <br>
+                    <i class="icon-group icon-4x"></i>
+                    <br>
+                    <br>
+                    Contactos
+                  </div>
                 </a>
               </div>
               <div class="ui-block-b">
-                <a href="" data-role="button" data-mini="true" data-corners="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">
-                  Mapa
+                <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="d">
+                  <div class="square-info">
+                    <br>
+                    <i class="icon-map-marker icon-4x"></i>
+                    <br>
+                    <br>
+                    Mapa
+                  </div>
                 </a>
               </div>
- 
          </div>
 
     </script>
@@ -621,7 +718,7 @@
           <h1 id="paper-title">Test</h1>
 
           
-          <div class="ui-grid-a">
+         <!-- <div class="ui-grid-a">
             <div class="ui-block-a " >
               <a href="#user/1" data-role="button" class="square" data-iconpos="right" data-theme="f">
                 Profile Test
@@ -665,8 +762,58 @@
                   Menu Info Test
                 </a>
               </div>
-          </div>
+          </div>-->
           <!-- ADICIONAR BOTÕES À MEDIDA DO NECESSÁRIO-->
+
+          <div class="ui-grid-a">
+            <div class="ui-block-a " >
+              <a href="#user/1" data-role="button" class="square" data-iconpos="right" data-theme="f">
+                <i class="icon-user icon-4x"></i>
+              </br>
+                Profile
+              </a>
+            </div>
+            <div class="ui-block-b ">
+              <a href="#paper/1" data-role="button" class="square"  data-transition="flip" data-iconpos="right" data-theme="b">
+                <i class="icon-file-alt icon-4x"></i>
+                </br>
+                Paper
+              </a>
+            </div>
+            <div class="ui-block-c ">
+              <a href="#maininfo" data-role="button" class="square" data-iconpos="right" data-theme="d">
+                Main Info Test
+              </a>
+            </div>
+            <div class="ui-block-d ">
+              <a href="#mainmenu" data-role="button" class="square"  data-iconpos="right" data-theme="g">
+                Main Menu Test
+              </a>
+            </div>
+          </div>
+
+          <div class="ui-grid-a">
+             <div class="ui-block-a ">
+                <a href="#agenda" data-role="button" class="square"  data-iconpos="right" data-theme="f">
+                  Agenda
+                </a>
+              </div>
+              <div class="ui-block-b">
+                <a href="#session/1" data-role="button" class="square"  data-iconpos="right" data-theme="b">
+                  Session Test
+                </a>
+              </div>
+              <div class="ui-block-c ">
+                <a href="#contacts" data-role="button" class="square"  data-iconpos="right" data-theme="d">
+                  Contactos
+                </a>
+              </div>
+              <div class="ui-block-d ">
+                <a href="#maininfo" data-role="button" class="square"  data-iconpos="right" data-theme="g">
+                  Menu Info Test
+                </a>
+              </div>
+          </div>
       </div>       
       
     </div>
