@@ -23,7 +23,7 @@ function ($, Backbone, _) {
 				this.localStorage =  new Backbone.LocalStorage('personal-agenda-backbone')
 			else
         		//adiciona o id do modelo ao url, para o Backbone poder fazer fetch da informação
-				this.url += this.id;
+				this.url = "user/"+this.id+"/schedule";
 
 
 		},

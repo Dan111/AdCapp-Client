@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
   <link rel="stylesheet" href="assets/agenda.css">
+  <link rel="stylesheet" href="assets/test.css">
+
 
 
   <!-- Application container. -->
@@ -579,14 +581,14 @@
                 <input type="search" name="search" id="search-basic" value="" data-theme="a"/>
                 <fieldset data-role="controlgroup">
                     <legend>Tipos de Eventos</legend>
-                    <input type="checkbox" name="paperscheck" id="paperscheck" value="papers" data-theme="a">
-                    <label for="paperscheck">Palestra</label>
-                    <input type="checkbox" name="workshopscheck" id="workshopscheck" value="workshops" data-theme="a">
-                    <label for="workshopscheck">Workshop</label>
-                    <input type="checkbox" name="socialscheck" id="socialscheck" value="socials" data-theme="a">
-                    <label for="socialscheck">Social</label>
-                    <input type="checkbox" name="keynotescheck" id="keynotescheck" value="socials" data-theme="a">
-                    <label for="keynotescheck">Keynote</label>
+                    <input type="checkbox" name="paperscheck" id="paper" value="papers" data-theme="a">
+                    <label for="paper">Palestra</label>
+                    <input type="checkbox" name="workshopscheck" id="workshop" value="workshops" data-theme="a">
+                    <label for="workshop">Workshop</label>
+                    <input type="checkbox" name="socialscheck" id="social" value="socials" data-theme="a">
+                    <label for="social">Social</label>
+                    <input type="checkbox" name="keynotescheck" id="keynote" value="keynotes" data-theme="a">
+                    <label for="keynote">Keynote</label>
                 </fieldset>
                 <button id="searchsubmit"  data-theme="a"  class="ui-btn-hidden" aria-disabled="false">Submeter</button>
             </div>
@@ -608,7 +610,7 @@
 
 
     <div data-role="page" id="profile">
-      <div data-role="header">
+      <div data-role="header" data-theme="a">
         <a href="#" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
         <h1>Main Menu</h1>
         <a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
@@ -620,46 +622,46 @@
 
           
           <div class="ui-grid-a">
-            <div class="ui-block-a">
-              <a href="#user/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+            <div class="ui-block-a " >
+              <a href="#user/1" data-role="button" class="square" data-iconpos="right" data-theme="f">
                 Profile Test
               </a>
             </div>
-            <div class="ui-block-b">
-              <a href="#paper/1" data-role="button" data-icon="arrow-r" data-transition="flip" data-iconpos="right" data-theme="e">
+            <div class="ui-block-b ">
+              <a href="#paper/1" data-role="button" class="square"  data-transition="flip" data-iconpos="right" data-theme="b">
                 Paper Test
               </a>
             </div>
-            <div class="ui-block-c">
-              <a href="#maininfo" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+            <div class="ui-block-c ">
+              <a href="#maininfo" data-role="button" class="square" data-iconpos="right" data-theme="d">
                 Main Info Test
               </a>
             </div>
-            <div class="ui-block-d">
-              <a href="#mainmenu" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+            <div class="ui-block-d ">
+              <a href="#mainmenu" data-role="button" class="square"  data-iconpos="right" data-theme="g">
                 Main Menu Test
               </a>
             </div>
           </div>
 
           <div class="ui-grid-a">
-             <div class="ui-block-a">
-                <a href="#agenda" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+             <div class="ui-block-a ">
+                <a href="#agenda" data-role="button" class="square"  data-iconpos="right" data-theme="f">
                   Agenda
                 </a>
               </div>
               <div class="ui-block-b">
-                <a href="#session/1" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+                <a href="#session/1" data-role="button" class="square"  data-iconpos="right" data-theme="b">
                   Session Test
                 </a>
               </div>
-              <div class="ui-block-c">
-                <a href="#contacts" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+              <div class="ui-block-c ">
+                <a href="#contacts" data-role="button" class="square"  data-iconpos="right" data-theme="d">
                   Contactos
                 </a>
               </div>
-              <div class="ui-block-d">
-                <a href="" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+              <div class="ui-block-d ">
+                <a href="" data-role="button" class="square"  data-iconpos="right" data-theme="g">
                   Menu Info Test
                 </a>
               </div>
