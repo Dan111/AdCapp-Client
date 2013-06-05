@@ -13,6 +13,10 @@ div.fc-event-time img{
 	float: right;
 }
 
+#popupMenu {
+	background: #2c3e50 !important;
+}
+
 
 /*Butões da agenda
 .fc-button-prev, .fc-button-next{

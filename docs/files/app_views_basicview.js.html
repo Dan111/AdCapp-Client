@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app\views\basicview.js - AdCapp</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..\..\assets\morgan.jpg" title="AdCapp"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/BasicView.html">BasicView</a></li>
+            
+                <li><a href="../classes/EventView.html">EventView</a></li>
+            
+                <li><a href="../classes/Main.html">Main</a></li>
+            
+                <li><a href="../classes/PaperView.html">PaperView</a></li>
+            
+                <li><a href="../classes/Router.html">Router</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: app\views\basicview.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define([
+    &quot;jquery&quot;,
+    &quot;backbone&quot;,
+    &quot;handlebars&quot;
+], function ($, Backbone, Handlebars) {
+
+	/**
+	View abstracta extendida por todas as outras views.
+	Contém código comum entre todas as views, como o rendering do layout, compilação de templates,
+	refrescamento do jQuery Mobile, ...
+
+	@class BasicView
+	@extends Backbone.View
+	**/
+	return Backbone.View.extend({
+
+
+		/**
+		Elemento da DOM onde são colocados todas as páginas
+
+		@property mainContainer 
+		@type String
+		@static
+		@final
+		@default &quot;div[data-role=content]&quot;
+		**/
+		mainContainer: &quot;div[data-role=content]&quot;,
+
+
+		/**
+		Id a ser usado no div da página
+
+		@attribute id
+		@type {String}
+		@protected
+		@required
+		**/
+
+
+		/**
+		Nome da página que é exibido no header do layout
+
+		@attribute pageName
+		@type {String}
+		@protected
+		@required
+		**/
+
+
+		/**
+		Faz o rendering do layout comum a todas a páginas
+
+		@method renderLayout
+		@protected
+		@chainable
+		**/
+		renderLayout: function () {
+
+			var pid = this.id;
+			var name = this.pageName;
+
+			var context = {page_id: pid, page_name: name};
+			var html = this.compileTemplate(&quot;layout-template&quot;, context);
+
+			//adiciona página ao body
+			$(&quot;body&quot;).append(html);
+			this.enhanceJQMComponentsAPI();
+
+			//limpa a pagina anterior do DOM
+			this.removePreviousPageFromDOM();
+
+			return this;
+		},
+
+
+		/**
+		Compila um template Handlebars com o contexto dado e retorna o HTML gerado
+
+		@method compileTemplate
+		@static
+		@param {String} templateName Id do template
+		@param {Object} context Contexto da compilação do template
+		@return {String} HTML gerado através da compilação do template
+		**/
+		compileTemplate: function (templateName, context) {
+
+			var source   = $(&quot;#&quot; + templateName).html();
+			var template = Handlebars.compile(source);
+			var html = template(context);
+
+			return html;
+
+		},
+
+
+		/**
+		Apresenta um popup com uma mensagem
+
+		@method showErrorOverlay
+		@static
+		@param {Object} options Configuração do popup
+			@param {String} options.text Mensagem a ser mostrada pelo popup
+			@param {Integer} [options.time=2000] Durante quanto tempo, em milisegundos, 
+													deve o popup ser apresentado
+		@example
+			showErrorOverlay(&quot;Erro&quot;, 5000)
+		**/
+		showErrorOverlay: function (options) {
+
+			if(options.time == null)
+				options.time = 2000;
+
+			$.mobile.loading( &#x27;hide&#x27; );
+
+			$.mobile.loading( &#x27;show&#x27;, {
+				            text: options.text,
+				            textVisible: true,
+				            textonly: true
+			});
+
+			setTimeout(function (){
+				$.mobile.loading( &#x27;hide&#x27; );
+			}, options.time);
+
+		},
+
+
+		/**
+		Inicia a transição de página do jQuery Mobile para  apágina corrente
+
+		@method enhanceJQMComponentsAPI
+		@private
+		**/
+		enhanceJQMComponentsAPI: function () {
+			$.mobile.changePage(&quot;#&quot; + this.id, {
+				changeHash: false
+			});
+
+			$(&quot;#&quot; + this.id).trigger(&quot;create&quot;);
+		},
+
+
+		/**
+		Remove a página anterior do DOM
+
+		@method removePreviousPageFromDOM
+		@private
+		**/
+		removePreviousPageFromDOM: function () {
+			$(&quot;[data-role=page]:first&quot;).remove();
+		},
+
+
+
+		/**
+		Faz o refrescamento dos componentes do jQuery Mobile
+
+		@method refreshJQM
+		@protected
+		**/
+		refreshJQM: function (){
+			$(&quot;#&quot; + this.id).trigger(&quot;create&quot;);
+		}
+
+
+	});
+
+
+});
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

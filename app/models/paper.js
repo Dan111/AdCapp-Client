@@ -45,6 +45,7 @@ function ($, Backbone, BasicView) {
 
 				url: this.url + "/" + options.url,
 
+				//TODO: alterar email e password quando o registo do dispositivo funcionar
 				data: { "email":"toni@mail.com", "password": "123456", "content": options.text, 
 						"id": this.id, type: 'Paper' },
 

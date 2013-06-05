@@ -36,7 +36,9 @@
           </div>
         </div>
         <div class="ui-block-b">
-          <button id="add-remove-event" type="button" data-theme="d">Ad. Agenda</button>
+          <button id="add-remove-event" type="button" data-theme="d">
+            <i class="button-icon icon-calendar-empty"></i> Ad. Agenda
+          </button>
         </div>
       </div>
 
@@ -78,21 +80,21 @@
   <!-- Tab sobre da página de palestra -->
   <script type="text/x-handlebars-template" id="event-about-tab-template">
 
-    <div id="abstract" data-role="collapsible" data-mini="true" data-theme="b" >
-      <h4>{{descName}}</h4>
-        <p>
+    <div>
+      <h1>{{descName}}</h1>
+        <p id="abstract">
           {{description}}
         </p>
     </div>
 
     <br>
 
-    <h2>{{speakersTitle}}</h2>
+    <h1>{{speakersTitle}}</h1>
 
     {{#each speakers}}
       {{> userinfo this}}
-      <a href="#user/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="d">
-        Pág. Perfil
+      <a href="#user/{{id}}" data-role="button" data-theme="d">
+        <i class="button-icon icon-user "></i>Pág. Perfil
       </a>
     {{/each}}
 
@@ -124,7 +126,9 @@
   <!-- Lista de comentários -->
   <script type="text/x-handlebars-template" id="comments-tab-template">
 
-    <button id="new-comment" type="button" data-theme="a">{{title}}</button>
+    <button id="new-comment" type="button" data-theme="a" data-iconshadow="false">
+      <i class="button-icon icon-comment "></i>{{title}}
+    </button>
 
     <div id="comment-form">
 
@@ -169,8 +173,8 @@
           </div>
         </div>
         <div class="ui-block-b">
-          <a class="comment-author-link" href="#user/{{author_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
-            Perfil
+          <a class="comment-author-link" href="#user/{{author_id}}" data-role="button" data-theme="f">
+            <i class="button-icon icon-user "></i>Perfil
           </a>
         </div>
       </div>
@@ -205,11 +209,9 @@
         </div>
         <div class="ui-block-b">
           <span class="profile-firstname">{{getFirstName name}}</span >
-          <br>
           <span class="profile-lastname">{{getLastName name}}</span>
           <br>
           <span class="profile-institution">{{institution}}</span >
-          <br>
           <br>
           <span class="profile-area">{{area}}</span >
         </div>
@@ -247,7 +249,9 @@
               <a href="#user/{{user_id}}">
                 <img class="profile-pic" src="assets/morgan.jpg">
                 <h2>{{user_name}}</h2>
-                <a data-bypass="true" data-inline="true" href="mailto:a@b.com" data-icon="check" type="button" data-mini="true" data-theme="f">Enviar E-mail</a>
+                <a data-bypass="true" href="mailto:{{email}}" type="button" data-inline="true" data-mini="true" data-theme="f">
+                  <i class="icon-envelope-alt icon-large"></i>       Enviar E-mail
+                </a>
               </a>
 
               <a class="remove-contact" user-id="{{user_id}}" data-icon="delete" data-theme="z">
@@ -372,10 +376,14 @@
 
       <div id="add-and-email" class="ui-grid-a">
         <div class="ui-block-a">
-          <a href="#" data-role="button" id="add-user" data-theme="d" >Adicionar </a>
+          <a href="#" data-role="button" id="add-user" data-theme="d" >
+            <i class="button-icon icon-plus"></i>Adicionar
+          </a>
         </div>
         <div class="ui-block-b">
-          <a href="#" data-role="button" id="email-user"data-theme="e" > E-mail</a>
+          <a href="#" data-role="button" id="email-user"data-theme="e" >
+            <i class="button-icon icon-envelope-alt "></i>E-mail
+          </a>
         </div>
       </div>
 
@@ -402,7 +410,9 @@
 
             <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
               
-            <a href="#personalschedule/{{userId}}" data-role="button" data-icon="grid" data-iconpos="left" data-theme="d" >Agenda</a>
+            <a href="#personalschedule/{{userId}}" data-role="button" data-theme="d" >
+              <i class="button-icon icon-calendar "></i>Agenda
+            </a>
 
             <h2 id="events-watch-make">Eventos que vou realizar</h2>
 

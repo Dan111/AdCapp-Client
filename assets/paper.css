@@ -75,3 +75,14 @@
 	background-color: rgb(240, 239, 231);
 }
 
+
+/*.ui-icon:not(.ui-icon-loading), 
+	.ui-icon-searchfield::after {
+	background: rgba(0,0,0,0) !important;
+	height: 100px;
+}*/
+
+.button-icon{
+	margin-right:5px;
+	margin-left:-15px;
+}
