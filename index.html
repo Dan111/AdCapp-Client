@@ -231,7 +231,7 @@
     <div data-role="page" id="{{page_id}}">
 
       <div data-role="header">
-        <a href="#" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
+        <a id="back-button" data-role="button" data-icon="back" data-iconpos="notext" data-inline="true">Back</a>
         <h1>{{page_name}}</h1>
         <a href="#mainmenu" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">Home</a>
       </div>
@@ -283,18 +283,33 @@
   <!-- Página das notificções -->
   <script type="text/x-handlebars-template"  id="notifications-template">
 
+
+    <div data-role="collapsible-set" data-theme="f" data-inset="true" data-content-theme="f" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+
     {{#each notifications}}
+        <div class="notif" notif-id="{{notif.id}}" data-role="collapsible">
+            <h3  style="white-space: normal !important; ">
 
-      <div data-role="collapsible-set" data-theme="f" data-inset="true" data-content-theme="f" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-        <div notif-id="{{id}}" data-role="collapsible">
-            <h3 style="white-space: normal !important; "><i class="new-notif icon-exclamation icon-large"></i> {{title}}</h3>
+              {{#if unread}}
+                <i class="new-notif icon-exclamation icon-large"></i>
+              {{/if}}
 
-            <p class="notif-date">{{formatDate created_at}}</p>
-            <p>{{content}}</p>
+              {{notif.title}}
+            </h3>
+
+            <p class="notif-date">{{formatDate notif.created_at}}</p>
+            <p>{{notif.content}}</p>
         </div>
-      </div>
 
     {{/each}}
+
+    </div>
+
+    <br>
+
+    {{#if notifications}}
+      <button id="mark-all-as-read" type="button" data-theme="a">Marcar Todas Como Lidas</button>
+    {{/if}}
 
     <br>
 
@@ -842,11 +857,34 @@
                 </a>
               </div>
           </div>
+
+          <div class="ui-grid-a">
+             <div class="ui-block-a ">
+                <a href="#notifications" data-role="button" class="square"  data-iconpos="right" data-theme="f">
+                  Notificações
+                </a>
+              </div>
+              <div class="ui-block-b">
+                <a href="#" data-role="button" class="square"  data-iconpos="right" data-theme="b">
+                  Test
+                </a>
+              </div>
+              <div class="ui-block-c ">
+                <a href="#" data-role="button" class="square"  data-iconpos="right" data-theme="d">
+                  Test
+                </a>
+              </div>
+              <div class="ui-block-d ">
+                <a href="#" data-role="button" class="square"  data-iconpos="right" data-theme="g">
+                  Test
+                </a>
+              </div>
+          </div>
       </div>       
       
     </div>
 
-  <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<!--   // <script type="text/javascript" charset="utf-8" src="phonegap.js"></script> -->
   <script data-main="app/config" src="vendor/jam/require.js"></script>
 
 </body>

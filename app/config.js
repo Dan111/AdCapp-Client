@@ -10,7 +10,8 @@ require.config({
 		'backbone.localStorage' : "../vendor/libs/backbone.localStorage",
 		'fullcalendar'			: "../vendor/libs/fullcalendar",
 		'jquerymobile.config' 	: 'jquerymobile.config',
-		'handlebars.config' 	: 'handlebars.config'
+		'handlebars.config' 	: 'handlebars.config',
+		'app.config'			: 'app.config'
 	 
 	},
 

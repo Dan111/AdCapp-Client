@@ -4,6 +4,7 @@ require([
 	"views/profile",
 	"collections/contacts",
 	"handlebars.config",
+	"app.config",
 	"jquerymobile",
 	"jquerymobile.config"
 ],
@@ -13,7 +14,7 @@ Classe principal que trata de inicializar a app
 
 @class Main
 **/
-function ($, Router, Profile, Contacts, configHandlebars) {
+function ($, Router, Profile, Contacts, configHandlebars, configApp) {
 
 
 	//Inicialização do router global, responsável pela transição de páginas
@@ -29,6 +30,8 @@ function ($, Router, Profile, Contacts, configHandlebars) {
 	//Configura o handlebars (ver ficheiro handlebars.config)
 	configHandlebars();
 
+	//Configura definições da aplicação
+	configApp();
 
 	//apresenta o loading entre paginas
 	$.ajaxSetup({

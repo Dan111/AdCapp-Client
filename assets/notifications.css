@@ -8,7 +8,7 @@
 }
 
 
-.notif-header {
+.notif .ui-btn-inner {
 	overflow: auto !important;
 	white-space: normal !important;
 	text-overflow: none !important;

@@ -1,10 +1,11 @@
 define([
 	'handlebars',
 	'jquery',
+    "underscore",
     'moment'
 ], 
 
-function (Handlebars, $, Moment) {
+function (Handlebars, $, _, Moment) {
 
     return function () {
 
@@ -69,6 +70,7 @@ function (Handlebars, $, Moment) {
             return formattedDate.utc().calendar();
 
         });
+
 
 	};
 
