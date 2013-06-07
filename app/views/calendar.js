@@ -20,9 +20,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		template: "calendar-partial",
 
 		events: {
-			'click #searchsubmit' : 'search',
-			'keyup' : 'search',
-			'change input' : 'search',
 			'click #my-prev' : 'prev',
 			'click #my-next' : 'next',
 			'click #my-today' : 'today'
@@ -48,8 +45,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		$searchpanel: null,
 		$popup: null,
 
-		typesInfo: {"paper": {color: '#2c3e50', url: '#papers/'}, "workshop": {color: '#16a085', url: '#workshops/'}, 
-					"social": {color: '#8e44ad', url: '#socials/'}, "keynote": {color: '#2ecc71', url: '#keynotes/'}},
+		typesInfo: {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'}},
 
 		initialize: function (args)
 		{
@@ -72,8 +69,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.inPersonal = args.inPersonal;//Foi necessário passar este booleano, já que não consegui arranjar uma
 											  //solução viável de outra forma
 
-
-			this.hasDifferences = this.toShowEvents.getDifferences(this.personalEvents.get("chosen_events"));
+			//Adicona ao evento close do painel de pesquisa
+			//a invocação da pesquisa
+			var that = this;
+			$( "#searchpanel" ).panel({
+  				close: function( event, ui ) {that.search();}
+			});
 
 
 			this.render();
@@ -236,7 +237,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 
   		search: function() {
-  			
+  			console.log("search");
   			if(this.toShowEvents !== null)
 			{	//Fecha painel de pesquisa
 				//this.$searchpanel.panel( "close" );
@@ -321,7 +322,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		},
 
 		today: function() {
-			this.$calendar.fullCalendar('today');
+			var today = new Date();
+			if(today < this.forwardLimitDate && today > this.backLimitDate)
+				this.$calendar.fullCalendar('today');
 		},
 
 

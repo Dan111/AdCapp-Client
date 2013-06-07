@@ -3,12 +3,6 @@
 	margin-bottom: 10px;
 }
 
-
-.icon-chevron-right{
-	float: right;
-
-}
-
 div.fc-event-time img{
 	float: right;
 }
@@ -17,15 +11,9 @@ div.fc-event-time img{
 	background: #2c3e50 !important;
 }
 
-
-/*Butões da agenda
-.fc-button-prev, .fc-button-next{
-	width: 3em;
-	
+.today-pic {
+	height: 30px;
+	width: 33px;
 }
 
-.fc-button-prev, .fc-button-next, .fc-button-today{
-	font-size: 1.3em;
-	text-align: center;
-}
-*/
+
