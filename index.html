@@ -15,8 +15,9 @@
   <link rel="stylesheet" href="assets/paper.css">
   <link rel="stylesheet" href="assets/user-lists.css">
   <link rel="stylesheet" href="assets/agenda.css">
-   <link rel="stylesheet" href="assets/event.css">
+  <link rel="stylesheet" href="assets/event.css">
   <link rel="stylesheet" href="assets/test.css">
+  <link rel="stylesheet" href="assets/notifications.css">
 
 
 
@@ -273,6 +274,35 @@
     {{/if}}
 
   </script>
+
+
+
+
+
+
+  <!-- Página das notificções -->
+  <script type="text/x-handlebars-template"  id="notifications-template">
+
+    {{#each notifications}}
+
+      <div data-role="collapsible-set" data-theme="f" data-inset="true" data-content-theme="f" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+        <div notif-id="{{id}}" data-role="collapsible">
+            <h3 style="white-space: normal !important; "><i class="new-notif icon-exclamation icon-large"></i> {{title}}</h3>
+
+            <p class="notif-date">{{formatDate created_at}}</p>
+            <p>{{content}}</p>
+        </div>
+      </div>
+
+    {{/each}}
+
+    <br>
+
+  </script>
+
+
+
+
 
 
   <!-- Página do menu de informações -->
@@ -669,13 +699,13 @@
       </div>
 
      
-      <div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true" data-theme="a">
+      <div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true">
    
           <div class="panel-content">
             <h3>Pesquisa</h3>
 
             <div id="agendaform">
-                <input type="search" name="search" id="search-basic" value="" data-theme="a"/>
+                <input type="search" name="search" id="search-basic" value=""/>
                 <fieldset data-role="controlgroup">
                     <legend>Tipos de Eventos</legend>
                     <input type="checkbox" name="paperscheck" id="paper" value="papers" data-theme="a">
@@ -687,7 +717,7 @@
                     <input type="checkbox" name="keynotescheck" id="keynote" value="keynotes" data-theme="a">
                     <label for="keynote">Keynote</label>
                 </fieldset>
-                <button id="searchsubmit"  data-theme="a"  class="ui-btn-hidden" aria-disabled="false">Submeter</button>
+                <button id="searchsubmit"  data-theme="b"  class="ui-btn-hidden" aria-disabled="false">Submeter</button>
             </div>
 
             <a href="" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Fechar</a>

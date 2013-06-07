@@ -281,30 +281,32 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			var eventAttrs = eventobj.attributes;
 			var date = eventAttrs.hours.toString();
 
-            var formattedDate = Moment(date);
-            var year = formattedDate.local().format("YYYY");
-            var month = formattedDate.local().format("MM");
-            var day = formattedDate.local().format("DD");
-            var hour = formattedDate.local().format("HH")-1;//estava a adiantar uma hora
-            var minutes = formattedDate.local().format("mm");
+            var x = Moment(date);
+
+
+   //          var year = formattedDate.utc().format("YYYY");
+   //          var month = formattedDate.utc().format("MM");
+   //          var day = formattedDate.utc().format("DD");
+   //          var hour = formattedDate.utc().format("HH")-1;//estava a adiantar uma hora
+   //          var minutes = formattedDate.utc().format("mm");
 			
-			// data de começo, o mês tem de ser month-1, porque o date do javascript tem os meses de 0 a 11
-			var start = new Date(year, month-1, day, hour, minutes);
-			//duração do evento em minutos
+			// // data de começo, o mês tem de ser month-1, porque o date do javascript tem os meses de 0 a 11
+			// var start = new Date(Date.UTC(year, month-1, day, hour, minutes,0,0));
+			// //duração do evento em minutos
 			var duration = eventAttrs.duration;
-			//duração do evento em horas
-			var durationInHours = duration/60;
+			// //duração do evento em horas
+			// var durationInHours = duration/60;
 
-			// hora do final, é adicionado ao início as horas da duração 
-			//(ex: passo-> 2.05, hour + 2 )
-			var finalHour = hour + Math.floor(durationInHours);
+			// // hora do final, é adicionado ao início as horas da duração 
+			// //(ex: passo-> 2.05, hour + 2 )
+			// var finalHour = hour + Math.floor(durationInHours);
 
-			// minutos do finais, é adicionado ao início em minutos os minutos da duração 
-			//(ex: passo-> 5.333333333333333, após (duration%1)-> 0.33333333333333304,
-			//após (duration%1) * 60-> 19.999999999999982 , retorna-> minutes + 20 )
-			var finalMinutes = parseInt(minutes) + Math.ceil((durationInHours%1) * 60);
+			// // minutos do finais, é adicionado ao início em minutos os minutos da duração 
+			// //(ex: passo-> 5.333333333333333, após (duration%1)-> 0.33333333333333304,
+			// //após (duration%1) * 60-> 19.999999999999982 , retorna-> minutes + 20 )
+			// var finalMinutes = parseInt(minutes) + Math.ceil((durationInHours%1) * 60);
 			// data de final, o mês tem de ser month-1, porque o date do javascript tem os meses de 0 a 11
-			var end = new Date(year, month-1, day, finalHour, finalMinutes);
+			//var end = new Date(Date.UTC(year, month-1, day, finalHour, finalMinutes,0,0));
 
 			var color = this.getColor(eventAttrs.type);
 			var imageurl = "";
@@ -312,7 +314,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			if(this.personalEvents.hasEvent(eventAttrs.id))
 				imageurl = "assets/star_white.gif";
 
-			return {title: eventAttrs.name, start: start, end: end, eventBorderColor: color,
+			return {title: eventAttrs.name, start: x.utc().format("YYYY-MM-DDTHH:mm:SS"), 
+						end: x.add('minutes',duration).utc().format("YYYY-MM-DDTHH:mm:SS"), eventBorderColor: color,
 				backgroundColor: color, allDay:false, imageurl: imageurl};
 		},
 

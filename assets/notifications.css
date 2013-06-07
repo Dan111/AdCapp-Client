@@ -1,0 +1,15 @@
+.notif-date {
+	text-align:right;
+}
+
+.new-notif {
+	margin-right:1em;
+/*	color:orange;*/
+}
+
+
+.notif-header {
+	overflow: auto !important;
+	white-space: normal !important;
+	text-overflow: none !important;
+}

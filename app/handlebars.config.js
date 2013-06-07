@@ -56,7 +56,17 @@ function (Handlebars, $, Moment) {
             var date = date.toString();
 
             var formattedDate = Moment(date);
-            return formattedDate.local().format("DD/MM HH:mm");
+            return formattedDate.utc().format("DD/MM HH:mm");
+
+        });
+
+
+        //Devolve a data formatada para as notificações
+        Handlebars.registerHelper('formatDate', function (date) {
+            var date = date.toString();
+
+            var formattedDate = Moment(date); //TODO: pôr em português
+            return formattedDate.utc().calendar();
 
         });
 

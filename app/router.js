@@ -9,11 +9,12 @@ define([
   "views/userslist",
   "views/agenda",
   "views/contacts",
+  "views/notifications",
   "views/maininfo",
   "views/mainmenu"
 ],
 
-function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, MainInfoView, MainMenuView) {
+function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -42,7 +43,8 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 			"paper/:id"     : "paper",
 			"session/:id"   : "session",
 			"user/:id"      : "user",
-			"contacts"      : "contacts"
+			"contacts"      : "contacts",
+			"notifications"	: "notifications"
 		},
 
 		/**
@@ -166,7 +168,19 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 		contacts: function(){
 			console.log("ROUTE: contacts");
 			new ContactsView();
-		}
+		},
+
+
+		/**
+		Route do menu de notificações
+
+		@method contacts
+		@private
+		**/
+		notifications: function(){
+			console.log("ROUTE: notifications");
+			new NotificationsView();
+		},
 	});
 
   	return Router;
