@@ -4,11 +4,12 @@ define([
     "underscore",
     "handlebars",
     "models/session",
+    "models/personalagenda",
     "views/event",
     "views/comment",
     "views/aboutevent",
     "views/sessionpapers"
-], function ($, Backbone, _, Handlebars, SessionModel, EventView, CommentsView, AboutView, SessionPapersView) {
+], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, CommentsView, AboutView, SessionPapersView) {
 
 	return EventView.extend({
 
@@ -23,10 +24,13 @@ define([
 		papersTabId		: "papers-tab",
 		papersTabName 	: "Papers",
 
+		paperIds: null,
+
 
 		events: function(){
 
 			return _.extend({
+				"click #add-remove-event" : "addRemoveEvents",
 				"click #papers-tab"	: "renderPapersTab"
 			}, EventView.prototype.events);
 		},
@@ -39,12 +43,25 @@ define([
 			var modelId = args.modelId;
 			var self = this;
 
+			this.personalAgenda = new PersonalAgendaModel({id: 0, Personal: true});
+
+			this.personalAgenda.fetch({
+				success: function () {
+					console.log("Personal Events loaded");
+				},
+				error: function (){
+					console.log("Fail to get events or don't have any");
+				}
+			});
+
 			this.model = new SessionModel({id: modelId});
 			this.model.fetch({
 				success: function () {
 					EventView.prototype.initialize.apply(self);
 				}
 			});
+
+
 		},
 
 
@@ -55,6 +72,24 @@ define([
 			this.renderTab(this.papers);
 
 			return this;
+		},
+
+		render: function (){
+			//Apenas para desfazer o check adicionado na view event, caso já tenha um dos papers na agenda
+
+			//chamada do método render da superclasse
+			EventView.prototype.render.apply(this);
+
+			this.paperIds = this.arrayOfPaperIds();
+
+			var hasEvents = this.personalAgenda.hasEvents(this.paperIds);
+
+			if(!hasEvents)
+			{	
+				$('#add-remove-event').next().remove();
+
+			}
+
 		},
 
 
@@ -78,9 +113,37 @@ define([
 			//chamada do método createTabs da superclasse
 			EventView.prototype.createTabs.apply(this);
 
+		},
+
+		//Coloca todos os id's dos eventos de uma sessão num array
+		arrayOfPaperIds: function(){
+			return  _.map(this.model.get('papers'), function(paper){
+				return paper.id;
+			});
+		},
+
+		addRemoveEvent: function (){
+			var personalAgenda = this.personalAgenda;
+
+			var hasEvents = personalAgenda.hasEvents(this.paperIds);
+
+			if(hasEvents)
+			{	
+				_.each(this.paperIds, function(paperId){
+					personalAgenda.removeEvent(paperId)
+				});
+				personalAgenda.save();
+				$('#add-remove-event').next().remove();
+			}
+			else
+			{
+				_.each(this.paperIds, function(paperId){
+					personalAgenda.addEvent(paperId)
+				});
+				personalAgenda.save();
+                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
+			}
 		}
-
-
 		
 
 

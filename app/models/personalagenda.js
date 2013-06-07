@@ -33,6 +33,19 @@ function ($, Backbone, _) {
 			return _.indexOf(this.get("chosen_events"), eventId) > -1;
 		},
 
+		//Verifica se existem na agenda, todos os eventos
+		//representados pelos ids contidos no array
+		hasEvents: function (idsArray)
+		{ 
+			var result = true;
+			that = this;
+			_.each(idsArray, function(id){
+				result = result && that.hasEvent(id);
+			});
+
+			return result;
+		},
+
 		removeEvent: function (eventId)
 		{
 			var newArray = _.difference(this.get("chosen_events"), [eventId]);
