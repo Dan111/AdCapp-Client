@@ -21,6 +21,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		events: {
 			'click #searchsubmit' : 'search',
+			'keyup' : 'search',
+			'change input' : 'search',
 			'click #my-prev' : 'prev',
 			'click #my-next' : 'next',
 			'click #my-today' : 'today'
@@ -46,7 +48,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		$searchpanel: null,
 		$popup: null,
 
-		typesInfo: {"paper": {color: '#2c3e50'}, "workshop": {color: '#16a085'}, "social": {color: '#8e44ad'}, "keynote": {color: '#2ecc71'}},
+		typesInfo: {"paper": {color: '#2c3e50', url: '#papers/'}, "workshop": {color: '#16a085', url: '#workshops/'}, 
+					"social": {color: '#8e44ad', url: '#socials/'}, "keynote": {color: '#2ecc71', url: '#keynotes/'}},
 
 		initialize: function (args)
 		{
@@ -224,22 +227,24 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				this.$addevent.show();
 				this.$addeventbutton.attr("value", attributes.id);
 			}
+			//Vê o tipo do evento e vai ao typesInfo buscar a url correcta
+			var url = this.typesInfo[attributes.type].url;
 
-
-			this.$eventlinkA.attr("href", "#paper/" + attributes.id);
+			this.$eventlinkA.attr("href", url + attributes.typeId);
 			this.$locallinkA.attr("href", "#local/" +  attributes.local_id);
 		},
 
 
   		search: function() {
-
+  			
   			if(this.toShowEvents !== null)
 			{	//Fecha painel de pesquisa
-				this.$searchpanel.panel( "close" );
+				//this.$searchpanel.panel( "close" );
 				//Guarda o dia em que estava antes da pesquisa
 				this.currentDay = this.$calendar.fullCalendar('getDate');
 
 	  			var terms = this.$searchbasic.val().trim();
+	  			console.log(terms);
 	  			var counter = 0;
 				var types = {};
 
@@ -254,7 +259,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	  					counter+=1;
 	  			});
 
-	  			console.log(types);
+	  			
 	  			
 
 	  			var stringResults = this.toShowEvents.getEventsWithString(terms);
