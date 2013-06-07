@@ -310,12 +310,12 @@
     <script type="text/x-handlebars-template"  id="maininfo-template">
 
           <div>
-               <div class="ui-grid-a">
+               <div class="ui-grid-a square-wrapper">
                 <div class="ui-block-a">
                   <a href="#participants" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="f">
                     <div class="square-info">
                       <br>
-                      <i class="icon-book icon-4x"></i>
+                      <i class="icon-group icon-4x"></i>
                       <br>
                       <br>
                       Participantes
@@ -326,7 +326,7 @@
                   <a href="#speakers" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="b">
                     <div class="square-info">
                       <br>
-                      <i class="icon-trophy icon-4x"></i>
+                      <i ><img class="speaker-pic" src="assets/speaker.png"></i>
                       <br>
                       <br>
                       Oradores
@@ -334,12 +334,12 @@
                   </a>
                 </div>
               </div>
-              <div class="ui-grid-a">
+              <div class="ui-grid-a square-wrapper">
                 <div class="ui-block-a">
-                  <a href="#maininfo" data-role="button" class="square" data-mini="true" data-corners="true" data-iconpos="right" data-theme="d">
+                  <a href="#" data-role="button" class="square" data-mini="true" data-corners="true" data-iconpos="right" data-theme="d">
                     <div class="square-info">
                       <br>
-                      <i class="icon-info icon-4x"></i>
+                      <i class="icon-file-alt icon-4x"></i>
                       <br>
                       <br>
                       Papers
@@ -350,7 +350,7 @@
                   <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
                     <div class="square-info">
                       <br>
-                      <i class="icon-bullhorn icon-4x"></i>
+                      <i class="icon-list-alt icon-4x"></i>
                       <br>
                       <br>
                       Sessões
@@ -358,12 +358,12 @@
                   </a>
                 </div>
               </div>
-              <div class="ui-grid-a">
+              <div class="ui-grid-a square-wrapper">
                  <div class="ui-block-a">
-                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="i">
                       <div class="square-info">
                         <br>
-                        <i class="icon-group icon-4x"></i>
+                        <i ><img class="keynote-pic" src="assets/keynote.png"></i>
                         <br>
                         <br>
                         Keynotes
@@ -371,10 +371,10 @@
                     </a>
                   </div>
                   <div class="ui-block-b">
-                    <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="d">
+                    <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="h">
                       <div class="square-info">
                         <br>
-                        <i class="icon-map-marker icon-4x"></i>
+                        <i class="icon-cogs icon-4x"></i>
                         <br>
                         <br>
                         Workshops
@@ -382,12 +382,12 @@
                     </a>
                   </div>
              </div>
-             <div class="ui-grid-a">
+             <div class="ui-grid-a square-wrapper" >
                  <div class="ui-block-a">
-                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="e">
                       <div class="square-info">
                         <br>
-                        <i class="icon-group icon-4x"></i>
+                        <i class="icon-coffee icon-4x"></i>
                         <br>
                         <br>
                         Eventos Sociais
@@ -505,12 +505,12 @@
 
       <div id="add-and-email" class="ui-grid-a">
         <div class="ui-block-a">
-          <a href="#" data-role="button" id="add-user" data-theme="d" >
+          <a href="#" data-role="button" id="add-user" data-theme="f" >
             <i class="button-icon icon-plus"></i>Adicionar
           </a>
         </div>
         <div class="ui-block-b">
-          <a href="#" data-role="button" id="email-user"data-theme="e" >
+          <a href="#" data-role="button" id="email-user"data-theme="f" >
             <i class="button-icon icon-envelope-alt "></i>E-mail
           </a>
         </div>
@@ -521,8 +521,8 @@
 
       <div data-role="navbar" data-theme="a">
           <ul>
-              <li ><a id="general"  class="ui-btn-active">Geral</a></li>
-              <li><a id="contacts" >Contactos</a></li>
+              <li ><a id="general"  class="ui-btn-active" data-theme="a">Geral</a></li>
+              <li><a id="contacts" data-theme="a">Contactos</a></li>
           </ul>
       </div>
 
@@ -657,7 +657,7 @@
 
       <div data-role="navbar" id="agenda-chooser" data-theme="f">
           <ul>
-              <li ><a href="" id="generalAgenda"  class="ui-btn-active">Geral</a></li>
+              <li ><a href="" id="generalAgenda"  class="ui-btn-active" >Geral</a></li>
               <li><a href="" id="personalAgenda" >Personalizada</a></li>
           </ul>
       </div>
@@ -699,8 +699,7 @@
       </div>
 
      
-      <div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true">
-   
+      <div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true"> 
           <div class="panel-content">
             <h3>Pesquisa</h3>
 
