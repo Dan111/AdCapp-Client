@@ -12,6 +12,7 @@ function ($, Backbone) {
 		defaults: {
 
 			id: 0,
+			typeId: 0,
 			name: null,
 			hours: 0, 
 			duration: 0, //em minutos
