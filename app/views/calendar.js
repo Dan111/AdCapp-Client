@@ -290,7 +290,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
   			var date = eventAttrs.hours.toString();
             var startDate = Moment(date);
 		   	var duration = eventAttrs.duration;
-		   	var endDate = startDate.add('minutes',duration);
 
 			var color = this.getColor(eventAttrs.type);
 			var imageurl = "";
@@ -300,7 +299,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 
 		    return {title: eventAttrs.name, start: startDate.utc().format(dateFormat), 
-		       		end: endDate.utc().format(dateFormat), eventBorderColor: color,
+		       		end: startDate.add('minutes',duration).utc().format(dateFormat), eventBorderColor: color,
 		    		backgroundColor: color, allDay:false, imageurl: imageurl};
 
 		},
