@@ -19,10 +19,6 @@ function ($, Backbone) {
 
 		},
 
-		initialize: function () {
-			_.bindAll(this);
-		},
-
 		alertNotif: function () {
 			return this.get('alert_notifs');
 		},

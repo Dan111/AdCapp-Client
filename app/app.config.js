@@ -35,17 +35,27 @@ function (Backbone, $, _, Account, Notifications) {
 		app.startDate = null;
 		app.endDate = null;
 
-
-
-
-		app.notifInterval =  app.notifInterval || setInterval(function () {
+		//Actualiza as notificações
+		app.updateNotifs = function () {
 			var notifs = new Notifications();
 			notifs.fetch({
 				beforeSend: function (){
 					//override do ajax loader
 				}
 			});
-		}, app.account.getNotifTimeout() * 60 * 1000); //converter de minutos para milisegundos
+		};
+
+
+		//Caso o utilizador queira ser avisado de novas notificações
+		if(app.account.alertNotif()) {
+			//app.updateNotifs();
+
+			//Verifica se há novas notificações periodicamente
+			app.notifInterval =  app.notifInterval || setInterval(function () {
+				app.updateNotifs();
+			}, app.account.getNotifTimeout() * 60 * 1000); //converter de minutos para milisegundos
+		}
+
 	};
 
 

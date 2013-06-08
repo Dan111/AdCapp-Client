@@ -2,10 +2,11 @@ define([
     "jquery",
     "backbone",
     "underscore",
-    "models/notification"
+    "models/notification",
+    "storagewrapper"
 ], 
 
-function ($, Backbone, _, Notification) {
+function ($, Backbone, _, Notification, StorageWrapper) {
 
 	return Backbone.Collection.extend({
 
@@ -13,12 +14,13 @@ function ($, Backbone, _, Notification) {
 
 		url: "http://adcapp.apiary.io/notifications",
 
-		LocalStorageId: 'notif-read',
-		read: null,
-		prevLength: 0,
+		readStorageID: 'notif-read',
+		read: [],
+
+		prevLengthStorageID: 'notif-prev-length',
 
 		initialize: function () {
-			_.bindAll(this);
+			//_.bindAll(this); //FUCK YOU!!!
 
 			this.loadRead();
 
@@ -27,10 +29,8 @@ function ($, Backbone, _, Notification) {
 
 		loadRead: function () {
 
-			console.log("read loaded");
-
-			var readJson = localStorage.getItem(this.LocalStorageId);
-			var readArray = JSON.parse(readJson);
+			var readJson = window.localStorage.getItem(this.readStorageID);
+			var readArray = window.JSON.parse(readJson);
 
 			readArray = readArray || [];
 			this.read = readArray;
@@ -38,14 +38,12 @@ function ($, Backbone, _, Notification) {
 
 		saveRead: function () {
 
-			console.log("read saved");
-
-			var readJson = JSON.stringify(this.read);
-			localStorage.setItem(this.LocalStorageId, readJson);
+			var readJson = window.JSON.stringify(this.read);
+			window.localStorage.setItem(this.readStorageID, readJson);
 		},
 
-
 		markAsRead: function (notifId) {
+
 			this.read = _.union(this.read, parseInt(notifId, 10));
 			this.saveRead();
 		},
@@ -59,7 +57,11 @@ function ($, Backbone, _, Notification) {
 		newNotif: function (collection, resp, options) {
 
 			var show = window.app.account.alertNotif();
-			var newNotifs = this.length - this.read.length;
+
+
+			var prevLength = StorageWrapper.load(this.prevLengthStorageID, 0);
+			var newNotifs = this.length - prevLength;
+			StorageWrapper.save(this.prevLengthStorageID, this.length);
 
 			if(show && newNotifs > 0)
 			{
@@ -77,19 +79,23 @@ function ($, Backbone, _, Notification) {
 
         showDeviceNotification: function (title, message) { //TODO: colocar num sítio mais apropriado
 
+        	var notifHash = "#notifications";
+
+        	if(window.location.hash === notifHash)
+        		return;
+
         	navigator.notification.confirm(
 		        message,
 		        function (buttonIndex) {
 		        	if(buttonIndex == 2) { //botão 'Ver'
-		        		window.location.hash = "#notifications";
+		        		window.location.hash = notifHash;
 		        	}
 		        },
 		        title,            
-		        ['Fechar','Ver']              
+		        'Fechar,Ver'
     		);
-
-
         }
+
 
 	});
 
