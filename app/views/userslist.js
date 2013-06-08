@@ -6,23 +6,91 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, UserCollection, BasicView) {
 
-	return BasicView.extend({
+	/**
+	View das páginas com listagens de oradores e participantes
 
+	@class UsersListView
+	@extends BasicView
+	**/
+	return BasicView.extend({
+		/**
+		Elemento da DOM onde são colocados todas as páginas
+
+		@property el 
+		@type String
+		@static
+		@final
+		@default "div[data-role=content]"
+		**/
 		el: "div[data-role=content]",
 
+		/**
+		Id da página em questão, muda consoante
+		a lista de utilizadores a apresentar
+
+		@property id 
+		@type String
+		@static
+		@final
+		@default ""
+		**/
 		id: "",
+
+		/**
+		Nome da página em questão, muda consoante
+		a lista de utilizadores a apresentar
+
+		@property pageName 
+		@type String
+		@static
+		@final
+		@default ""
+		**/
 		pageName: "",
 
+		/**
+		Template base de todas as páginas
+		de listas de utilizadores
+
+		@property template 
+		@type String
+		@final
+		@protected
+		@default "users-template"
+		**/
 		template: "users-template",
 		
+		/**
+		Collection com modelos do tipo ListUser,
+		que compõe a lista de utilizadores a serem
+		apresentados
+
+		@property cusers 
+		@type Backbone.Collection
+		@final
+		@protected
+		@default null
+		**/
 		users: null,
 
-		events: {
+		/**
+		Construtor da classe UsersListView, em que são passados três atributos:
+			isSpeakers - Booleano que indentifica a collection que temos de
+			utilizar;
 
-			
+			id - Id da página,
 
-		},
+			pageName - Nome da página;
 
+		Neste construtor é feito o fetch de uma UserCollection, que representa
+		os elementos a serem apresentados na view. Ainda neste contrutor é
+		feito o rendering necessário.
+
+		@constructor
+		@protected
+		@class UsersListView
+		@param {Javascript prototype} args atributos
+		**/
 		initialize: function (args)
 		{
 			_.bindAll(this);
@@ -35,7 +103,7 @@ define([
 			this.pageName = args.pageName; 
 
 			this.users = new UserCollection({isSpeakers: this.speakers});
-			console.log(this.users);
+
 			this.users.fetch({
 				success: function () {
 					self.renderLayout();
@@ -44,31 +112,20 @@ define([
 			});
 		},
 
+		/**
+		Faz o rendering do layout das páginas de listagem de utilizadores,
+		passando o template e o contexto adequeados, sendo que o contexto
+		é composto pela collection de utilizadores a apresentar(users) e
+		por um booleano que revela se os utilizadores são oradores ou
+		participantes.
 
-		renderLayout: function () {
-
-			var pid = this.id;
-			var name = this.pageName;
-
-			var context = {page_id: pid, page_name: name};
-			var html = this.compileTemplate("layout-template", context);
-
-			//adiciona página ao body
-			$("body").append(html);
-			this.enhanceJQMComponentsAPI();
-
-			//limpa a pagina anterior do DOM
-			this.removePreviousPageFromDOM();
-
-			return this;
-		},
-
-
+		@method render
+		@protected
+		@chainable
+		**/
 		render: function () {
 			
 			var models = this.users.toJSON();
-
-			console.log(models);
 			
 			var context = {
 				speakers: this.speakers,

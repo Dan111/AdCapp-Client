@@ -41,15 +41,41 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/AgendaView.html">AgendaView</a></li>
+            
+                <li><a href="../classes/AppConfig.html">AppConfig</a></li>
+            
                 <li><a href="../classes/BasicView.html">BasicView</a></li>
             
+                <li><a href="../classes/CalendarView.html">CalendarView</a></li>
+            
+                <li><a href="../classes/Contact.html">Contact</a></li>
+            
+                <li><a href="../classes/Contacts.html">Contacts</a></li>
+            
+                <li><a href="../classes/Event.html">Event</a></li>
+            
+                <li><a href="../classes/EventCollection.html">EventCollection</a></li>
+            
                 <li><a href="../classes/EventView.html">EventView</a></li>
+            
+                <li><a href="../classes/listUser.html">listUser</a></li>
             
                 <li><a href="../classes/Main.html">Main</a></li>
             
                 <li><a href="../classes/PaperView.html">PaperView</a></li>
             
+                <li><a href="../classes/PersonalAgenda.html">PersonalAgenda</a></li>
+            
+                <li><a href="../classes/ProfileView.html">ProfileView</a></li>
+            
                 <li><a href="../classes/Router.html">Router</a></li>
+            
+                <li><a href="../classes/UserCollection.html">UserCollection</a></li>
+            
+                <li><a href="../classes/UserModel.html">UserModel</a></li>
+            
+                <li><a href="../classes/UsersListView.html">UsersListView</a></li>
             
             </ul>
 
@@ -105,11 +131,12 @@ define([
   &quot;views/userslist&quot;,
   &quot;views/agenda&quot;,
   &quot;views/contacts&quot;,
+  &quot;views/notifications&quot;,
   &quot;views/maininfo&quot;,
   &quot;views/mainmenu&quot;
 ],
 
-function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, MainInfoView, MainMenuView) {
+function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -138,7 +165,8 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 			&quot;paper/:id&quot;     : &quot;paper&quot;,
 			&quot;session/:id&quot;   : &quot;session&quot;,
 			&quot;user/:id&quot;      : &quot;user&quot;,
-			&quot;contacts&quot;      : &quot;contacts&quot;
+			&quot;contacts&quot;      : &quot;contacts&quot;,
+			&quot;notifications&quot;	: &quot;notifications&quot;
 		},
 
 		/**
@@ -262,7 +290,19 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 		contacts: function(){
 			console.log(&quot;ROUTE: contacts&quot;);
 			new ContactsView();
-		}
+		},
+
+
+		/**
+		Route do menu de notificações
+
+		@method contacts
+		@private
+		**/
+		notifications: function(){
+			console.log(&quot;ROUTE: notifications&quot;);
+			new NotificationsView();
+		},
 	});
 
   	return Router;

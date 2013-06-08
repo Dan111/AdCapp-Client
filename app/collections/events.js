@@ -8,14 +8,47 @@ define([
 
 function ($, Backbone, _, LocalStorage, Event) {
 
+    /**
+    Coleção de eventos
+
+    @class EventCollection
+    @extends Backbone.Collection
+    **/
 	return Backbone.Collection.extend({
 
+        /**
+        Tipo do modelo utilizado na collection
+
+        @property model 
+        @type Backbone.Model
+        @final
+        @protected
+        @default Event
+        **/
 		model: Event,
 
+        /**
+        Url do servidor para fazer fecth da collection
+
+        @property url 
+        @type String
+        @static
+        @final
+        @default null
+        **/
 		url: null,
 
 		localStorage: null,
 
+        /**
+        Construtor da coleção. Verifca o booleano passado como parametro
+        e escolhe a url ou o localStorage para fazer fetch 
+
+        @constructor
+        @protected
+        @class EventCollection
+        @param {Javascript prototype} args contém booleano
+        **/
 		initialize: function (args){
             if(!args.isPersonal)
                 this.url = "http://danielmagro.apiary.io/events";
@@ -23,13 +56,27 @@ function ($, Backbone, _, LocalStorage, Event) {
 			console.log('EventS');
 		},
 
-        //Verifica se o evento esta na collection
+        
+        /**
+        Verifica se um evento está na collection
+
+        @method hasEvent
+        @protected
+        @param {integer} id id de um evento
+        **/
         hasEvent: function (id){
             return  this.find( function(event_obj){ return event_obj.get("id") === id; });
         },
 
-		//Devolve o evento com um dado name
-		//caso contrário devolve null
+		
+        /**
+        Devolve o evento com um dado name,
+        caso contrário devolve null
+
+        @method getEventByName
+        @protected
+        @param {String} name nome de uma evento
+        **/
 		getEventByName: function(name){
             
             return  this.find( function(event_obj){ 
@@ -40,8 +87,15 @@ function ($, Backbone, _, LocalStorage, Event) {
             });
         },
 
-        //Filtra a collection devolvendo um array com os 
-        //objectos que teem nome a stinr passada
+        
+        /**
+        Filtra a collection devolvendo um array com os 
+        objectos que teem no nome a string passada
+
+        @method getEventsWithString
+        @protected
+        @param {String} string termo de filtragem
+        **/
         getEventsWithString: function(string){
             var lowerString = string.toLowerCase();
             return this.filter(function(event_obj) {
@@ -49,7 +103,14 @@ function ($, Backbone, _, LocalStorage, Event) {
                 });
         },
 
-        
+        /**
+        Filtra a collection, consoantes os booleanos passados, que
+        respresentão os tipos de evento
+
+        @method getEventsOfType
+        @protected
+        @param {Javascript prototype} types contém tipos de eventos, cada um representado por um booleano
+        **/
         getEventsOfType: function(types){
 
             var chainTypes = _.chain(types)
@@ -62,50 +123,39 @@ function ($, Backbone, _, LocalStorage, Event) {
             });
         },
 
-        getDifferences: function(arrayOfIds)
-        {
-            var idsArray = this.map(function(event_obj){
-                return event_obj.get("id");
-            });
 
-            return _.difference(idsArray, arrayOfIds);
-        },
+        /**
+        Filtra a coleção de eventos para obter apenas aqueles cujo o id
+        está no array passado
 
-        //Filtra a coleção de eventos para obter apenas aqueles cujo o id
-        // id está no tal array
+        @method getEventsFromIdArray
+        @protected
+        @param {Array} arrayOfEventsId array de id's de eventos
+        **/
         getEventsFromIdArray: function(arrayOfEventsId){
             return this.filter(function(event_obj){
                 return _.contains(arrayOfEventsId, event_obj.get("id"));
             });
         },
 
-        syncEvents: function(conferenceEvents, personalAgenda){
+        /**
+        Remove um evento da collection
 
-             
-                
-            var personalEvents = conferenceEvents.getPersonalAgenda(personalAgenda.get("chosen_events"));
-            
-            for(i = 0; i < personalEvents.length; i++)
-            {
-                var eventAttr = personalEvents[i].attributes;
-                var attrs = {
-                    id: eventAttr.id,
-                    name: eventAttr.name,
-                    hours: eventAttr.hours, 
-                    duration: eventAttr.duration,
-                    type: eventAttr.type,
-                    local_id: eventAttr.local_id,
-                    users_id_array: eventAttr.users_id_array
-                };
-                this.create(attrs);
-            }
-            
-        },
-
+        @method removeEvent
+        @protected
+        @param {integer} eventId id do evento a remover
+        **/
         removeEvent: function(eventId) {
             this.hasEvent(eventId).destroy();
         },
 
+        /**
+        Adiciona um evento à collection
+
+        @method addEvent
+        @protected
+        @param {Object} eventAttr atributos do evento a criar na collection
+        **/
         addEvent: function(eventAttr) {
 
             var attrs = {

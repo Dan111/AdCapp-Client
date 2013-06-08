@@ -158,7 +158,7 @@ define([
 
 		/**
 		Construtor da classe abstracta. Inicializa os vectores e as views das 
-		tabs, e faz o rendering da página
+		tabs, faz fetch da agenda pessoal e faz o rendering da página
 
 		@constructor
 		@protected
@@ -346,7 +346,13 @@ define([
 			})
 		},
 
+		/**
+		Adiciona ou remove o evento à agenda pessoal, consoante este esteja
+		presente na agenda pessoal
 
+		@method addRemoveEvent
+		@protected
+		**/
 		addRemoveEvent: function () {
 			var model = this.model.attributes;
 			var hasEvent = this.personalAgenda.hasEvent(this.model.id);
@@ -357,14 +363,12 @@ define([
                 this.personalAgenda.removeEvent(this.model.id);
                 this.personalAgenda.save();
                 $('#add-remove-event').next().remove();
-                console.log("event removed"); 
 			}
 			else
 			{
 				 
             	this.personalAgenda.addEvent(this.model.id);
             	this.personalAgenda.save();
-                console.log("event added");
                 $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
 			}
 		}

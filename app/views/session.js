@@ -74,6 +74,17 @@ define([
 			return this;
 		},
 
+
+		/**
+		Faz o rendering do layout base das páginas de sessão e verficia
+		se a agenda pessoal contém todos os eventos referentes a esta sessão,
+		se não tiver remove o check que a view EventView adiciona, porque a 
+		agenda contém um evento da sessão,se for o caso
+
+		@method render
+		@protected
+		@chainable
+		**/
 		render: function (){
 			//Apenas para desfazer o check adicionado na view event, caso já tenha um dos papers na agenda
 
@@ -115,13 +126,27 @@ define([
 
 		},
 
-		//Coloca todos os id's dos eventos de uma sessão num array
+		
+		/**
+		Coloca todos os id's dos eventos de uma sessão num array
+
+		@method arrayOfPaperIds
+		@private
+		**/
 		arrayOfPaperIds: function(){
 			return  _.map(this.model.get('papers'), function(paper){
 				return paper.id;
 			});
 		},
 
+		/**
+		Adiciona ou remove os eventos da sessão à agenda pessoal, consoante estes estejam
+		presentes na agenda pessoal. No caso de ter não ter todos os eventos da sessão
+		na agenda pessoal adicona os que faltam
+
+		@method addRemoveEvent
+		@protected
+		**/
 		addRemoveEvent: function (){
 			var personalAgenda = this.personalAgenda;
 

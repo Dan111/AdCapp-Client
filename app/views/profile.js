@@ -8,28 +8,118 @@ define([
 
 ], function ($, Backbone, Handlebars, UserModel, BasicView, Contacts) {
 
+    /**
+    View da página de perfil 
+
+    @class ProfileView
+    @extends BasicView
+    **/
     return BasicView.extend({
 
+        /**
+        Elemento da DOM onde são colocados todas as páginas
+
+        @property el 
+        @type String
+        @static
+        @final
+        @default "div[data-role=content]"
+        **/
         el: "div[data-role=content]",
 
+        /**
+        Id da página de perfil
+
+        @property id 
+        @type String
+        @static
+        @final
+        @default "profile-page"
+        **/
         id: "profile-page",
+
+        /**
+        Nome da página de perfil
+
+        @property pageName 
+        @type String
+        @static
+        @final
+        @default "Perfil"
+        **/
         pageName: "Perfil",
 
+        /**
+        Template base do perfil
+
+        @property template 
+        @type String
+        @final
+        @protected
+        @default "profile-template"
+        **/
         template: "profile-template",
+
+        /**
+        Template da tab de informaões gerais
+
+        @property generalInfoTemplate
+        @type String
+        @final
+        @protected
+        @default "general-info-template"
+        **/        
         generalInfoTemplate: "general-info-template",
+
+        /**
+        Template da tab de contactos sociais
+
+        @property moreContactsTemplate 
+        @type String
+        @final
+        @protected
+        @default "more-contacts-template"
+        **/          
         moreContactsTemplate: "more-contacts-template",
 
+        /**
+        Modelo do perfil ao qual corresponde esta página
 
+        @property user
+        @type Backbone.Model
+        @final
+        @protected
+        @default null
+        **/
         user: null,
 
+        /**
+        Eventos lançados pela transição entre tabs
+        e ainda eventos de adição e remoção de utilizador
+        como contacto da colecção de contactos
+
+        @property events
+        @type Object
+        @protected
+        **/
         events: {
 
-            'click #add-user' : 'addUser',
+            'click #add-user' : 'addRemoveUser',
             'click #general'  : 'renderGeneral',
             'click #contacts' : 'renderContacts'
 
         },
 
+        /**
+        Construtor da classe ProfileView, em que é passado o id do utilizador
+        a apresentar. Faz o fetch da Collection de contactos, do Model
+        do utilizador a apresentar e ainda o rendering da página
+
+        @constructor
+        @protected
+        @class ProfileView
+        @param {Javascript prototype} args id do utilizador da página
+        **/
         initialize: function (args)
         {
             _.bindAll(this);
@@ -50,26 +140,13 @@ define([
             });
         },
 
+        /**
+        Faz o rendering do layout base das páginas de perfil
 
-        renderLayout: function () {
-
-            var pid = this.id;
-            var name = this.pageName;
-
-            var context = {page_id: pid, page_name: name};
-            var html = this.compileTemplate("layout-template", context);
-
-            //adiciona página ao body
-            $("body").append(html);
-            this.enhanceJQMComponentsAPI();
-
-            //limpa a pagina anterior do DOM
-            this.removePreviousPageFromDOM();
-
-            return this;
-        },
-
-
+        @method render
+        @protected
+        @chainable
+        **/
         render: function () {
             //atributos do user do perfil
             var user = this.user.attributes;
@@ -79,8 +156,6 @@ define([
                 user : user,
                 author : user.author
             };
-
-
 
             //compilação do template com a sua informação
             var html = this.compileTemplate(this.template, context);
@@ -101,8 +176,14 @@ define([
 
         },
        
+        /**
+        Adiciona ou remove o participante que a página representa, consoante
+        este esteja ou não na coleção de contactos.
 
-        addUser: function()
+        @method addRemoveUser
+        @protected
+        **/
+        addRemoveUser: function()
         {
             var user = this.user.attributes;
             //atributos do user a adicionar aos contactos
@@ -121,26 +202,29 @@ define([
             {
                 //Cria o contacto na collection 
                 this.mycontacts.create(attrs);
-                console.log("contact added");
-                //this.user.set({isContact: true});
                 $("#add-user span span").append('<i class="icon-check-sign pull-right"></i>');
             }
             else 
             {    
                 //retira o contacto da collection
                 hasContact.destroy();
-                $('#add-user span span .icon-check-sign').remove();
-                console.log("contact removed");  
+                $('#add-user span span .icon-check-sign').remove();  
             }
         },
 
-        //Render da tab geral
+        /**
+        Faz o renderering da tab de informações gerais
+
+        @method renderGeneral
+        @protected
+        @chainable
+        **/
         renderGeneral: function() {
             console.log("general tab");
             //atributos do user do perfil
             var user = this.user.attributes;
 
-            //informação necessária para a tab geral
+            //informação necessária para a tab geral do perfil
             var context = {
                 publishSchedule: user.publish_schedule,
                 idNextEvent : user.nextEvent.idNextEvent,
@@ -160,7 +244,13 @@ define([
             return this;
         },
 
-        //Render da tab contactos
+        /**
+        Faz o renderering da tab de contactos sociais do perfil
+
+        @method renderContacts
+        @protected
+        @chainable
+        **/
         renderContacts: function() {
             console.log("social contacts tab");
 

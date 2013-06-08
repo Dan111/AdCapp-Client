@@ -7,24 +7,59 @@ define([
 
 function ($, Backbone, LocalStorage, Contact) {
 
+	/**
+    Coleção de contactos
+
+    @class Contacts
+    @extends Backbone.Collection
+    **/
 	return Backbone.Collection.extend({
 
+		/**
+        Tipo do modelo utilizado na collection
+
+        @property model 
+        @type Backbone.Model
+        @final
+        @protected
+        @default Contact
+        **/
 		model: Contact,
 
-		localStorage: new Backbone.LocalStorage('contacts-backbone'),
+		/**
+        LocalStorage para fazer fecth da collection
+
+        @property localStorage
+        @type new Backbone.LocalStorage('contacts-backbone')
+        @static
+        @final
+        @default new Backbone.LocalStorage('contacts-backbone')
+        **/
+		localStorage: new new Backbone.LocalStorage('contacts-backbone'),
 
 
 		initialize: function (){
-			//
 		},
 
+		/**
+        Comparador de modelos
 
+        @method comparator
+        @protected
+        @param {Contact} contact modelo de um contacto
+        **/
 		comparator: function ( contact ) {
 	      return contact.get('order');
 	    },
 
 
-	    //Verifica se o contacto esta na collection
+	    /**
+        Verifica se um contacto está na collection
+
+        @method hasContact
+        @protected
+        @param {integer} id id de um contacto
+        **/
 	    hasContact: function (id){
             return  this.find( function(user){ return user.get("user_id") === id; });
         },

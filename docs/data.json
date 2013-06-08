@@ -6,10 +6,91 @@
         "logo": "../assets/morgan.jpg"
     },
     "files": {
+        "app\\collections\\contacts.js": {
+            "name": "app\\collections\\contacts.js",
+            "modules": {},
+            "classes": {
+                "Contacts": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\collections\\events.js": {
+            "name": "app\\collections\\events.js",
+            "modules": {},
+            "classes": {
+                "EventCollection": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\collections\\users.js": {
+            "name": "app\\collections\\users.js",
+            "modules": {},
+            "classes": {
+                "UserCollection": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\models\\contact.js": {
+            "name": "app\\models\\contact.js",
+            "modules": {},
+            "classes": {
+                "Contact": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\models\\event.js": {
+            "name": "app\\models\\event.js",
+            "modules": {},
+            "classes": {
+                "Event": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\models\\listuser.js": {
+            "name": "app\\models\\listuser.js",
+            "modules": {},
+            "classes": {
+                "listUser": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app\\models\\paper.js": {
             "name": "app\\models\\paper.js",
             "modules": {},
             "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\models\\personalagenda.js": {
+            "name": "app\\models\\personalagenda.js",
+            "modules": {},
+            "classes": {
+                "PersonalAgenda": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\models\\user.js": {
+            "name": "app\\models\\user.js",
+            "modules": {},
+            "classes": {
+                "UserModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\views\\agenda.js": {
+            "name": "app\\views\\agenda.js",
+            "modules": {},
+            "classes": {
+                "AgendaView": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -18,6 +99,15 @@
             "modules": {},
             "classes": {
                 "BasicView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\views\\calendar.js": {
+            "name": "app\\views\\calendar.js",
+            "modules": {},
+            "classes": {
+                "CalendarView": 1
             },
             "fors": {},
             "namespaces": {}
@@ -40,6 +130,40 @@
             "fors": {},
             "namespaces": {}
         },
+        "app\\views\\profile.js": {
+            "name": "app\\views\\profile.js",
+            "modules": {},
+            "classes": {
+                "ProfileView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\views\\session.js": {
+            "name": "app\\views\\session.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\views\\userslist.js": {
+            "name": "app\\views\\userslist.js",
+            "modules": {},
+            "classes": {
+                "UsersListView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app\\app.config.js": {
+            "name": "app\\app.config.js",
+            "modules": {},
+            "classes": {
+                "AppConfig": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app\\main.js": {
             "name": "app\\main.js",
             "modules": {},
@@ -57,10 +181,453 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "vendor\\jam\\jquery\\dist\\jquery.js": {
+            "name": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\jquery\\dist\\jquery.pre-min.js": {
+            "name": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\bg.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\bg.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\ca.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\ca.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\cv.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\cv.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\da.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\da.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\de.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\de.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\en-ca.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\en-ca.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\en-gb.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\en-gb.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\en.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\en.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\es.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\es.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\et.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\et.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\eu.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\eu.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\fi.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\fi.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\fr-ca.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\fr-ca.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\fr.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\fr.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\gl.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\gl.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\he.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\he.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\hu.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\hu.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\is.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\is.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\it.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\it.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\ja.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\ja.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\jp.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\jp.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\ko.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\ko.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\kr.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\kr.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\nb.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\nb.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\nl.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\nl.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\pl.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\pl.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\pt-br.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\pt-br.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\pt.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\pt.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\ro.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\ro.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\ru.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\ru.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\sv.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\sv.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\tr.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\tr.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\zh-cn.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\zh-cn.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\lang\\zh-tw.js": {
+            "name": "vendor\\jam\\moment\\test\\lang\\zh-tw.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\test\\zone.js": {
+            "name": "vendor\\jam\\moment\\test\\zone.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\moment\\moment.js": {
+            "name": "vendor\\jam\\moment\\moment.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\text\\text.js": {
+            "name": "vendor\\jam\\text\\text.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\jam\\require.js": {
+            "name": "vendor\\jam\\require.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor\\libs\\backbone.localStorage.js": {
+            "name": "vendor\\libs\\backbone.localStorage.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {},
     "classes": {
+        "Contacts": {
+            "name": "Contacts",
+            "shortname": "Contacts",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\collections\\contacts.js",
+            "line": 10,
+            "description": "Coleção de contactos",
+            "extends": "Backbone.Collection"
+        },
+        "EventCollection": {
+            "name": "EventCollection",
+            "shortname": "EventCollection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\collections\\events.js",
+            "line": 43,
+            "description": "Construtor da coleção. Verifca o booleano passado como parametro\ne escolhe a url ou o localStorage para fazer fetch",
+            "extends": "Backbone.Collection",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "contém booleano",
+                    "type": "Javascript prototype"
+                }
+            ]
+        },
+        "UserCollection": {
+            "name": "UserCollection",
+            "shortname": "UserCollection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\collections\\users.js",
+            "line": 42,
+            "description": "Construtor da coleção. Verifca o booleano passado como parametro\ne escolhe a url a utilizar no fecth da collection",
+            "extends": "Backbone.Collection",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "contém booleano para distinguir oradores de participantes",
+                    "type": "Javascript prototype"
+                }
+            ]
+        },
+        "Contact": {
+            "name": "Contact",
+            "shortname": "Contact",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\models\\contact.js",
+            "line": 8,
+            "description": "Modelo do contacto referente a um utilizador/participante",
+            "extends": "Backbone.Model"
+        },
+        "Event": {
+            "name": "Event",
+            "shortname": "Event",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\models\\event.js",
+            "line": 49,
+            "description": "Construtor do modelo Event. Adiciona à url o id\ndo modelo a fazer fetch do servidor",
+            "extends": "Backbone.Model",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": ""
+        },
+        "listUser": {
+            "name": "listUser",
+            "shortname": "listUser",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\models\\listuser.js",
+            "line": 8,
+            "description": "Modelo que representa a informação de um utilizador/participantes \napresentada numa lista de utilizadores/participantes",
+            "extends": "Backbone.Model"
+        },
+        "PersonalAgenda": {
+            "name": "PersonalAgenda",
+            "shortname": "PersonalAgenda",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\models\\personalagenda.js",
+            "line": 53,
+            "description": "Construtor do modelo. Verifca o booleano passado como parametro\ne escolhe o suporte para o fetch do modelo, pudendo ser um url,\nou localStorage",
+            "extends": "Backbone.Model",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "contém booleano para distinguir a agenda do utilizador do dispositivo ou de outro",
+                    "type": "Javascript prototype"
+                }
+            ]
+        },
+        "UserModel": {
+            "name": "UserModel",
+            "shortname": "UserModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\models\\user.js",
+            "line": 54,
+            "description": "Construtor do modelo UserModel. Adiciona à url o id\ndo modelo a fazer fetch do servidor",
+            "extends": "Backbone.Model",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": ""
+        },
+        "AgendaView": {
+            "name": "AgendaView",
+            "shortname": "AgendaView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\views\\agenda.js",
+            "line": 105,
+            "description": "Construtor da classe AgendaView. Faz o fecth da agenda personalizada,\nda coleção de eventos da conferência e faz o rendering da página",
+            "extends": "BasicView",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": ""
+        },
         "BasicView": {
             "name": "BasicView",
             "shortname": "BasicView",
@@ -74,6 +641,29 @@
             "description": "View abstracta extendida por todas as outras views.\nContém código comum entre todas as views, como o rendering do layout, compilação de templates,\nrefrescamento do jQuery Mobile, ...",
             "extends": "Backbone.View"
         },
+        "CalendarView": {
+            "name": "CalendarView",
+            "shortname": "CalendarView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\views\\calendar.js",
+            "line": 249,
+            "description": "Construtor da classe CalendarView. Inicializa a collection,\no modelo, um booleano e as datas usadas, são ainda passados\ncomo argumentos:\n\n\t\t\ttoShowEvents - Eventos a serem apresentados no calendário,\n\t\t\tCollection de events\n\t\t\tpersonalEvents - Agenda pessoal, um Model personalagenda\n\t\t\tinPersonal - Booleano que indica se estamos a atuar na agenda\n\t\t\tpersonalizada do utilizador do dispositivo\n\n\t\tNeste contrutor é feito o rendering e o binding do método search\n\t\tao evento close do painel de pesquisa",
+            "extends": "BasicView",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "argumentos",
+                    "type": "Javascript prototype"
+                }
+            ]
+        },
         "EventView": {
             "name": "EventView",
             "shortname": "EventView",
@@ -83,8 +673,8 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "app\\views\\event.js",
-            "line": 155,
-            "description": "Construtor da classe abstracta. Inicializa os vectores e as views das \ntabs, e faz o rendering da página",
+            "line": 159,
+            "description": "Construtor da classe abstracta. Inicializa os vectores e as views das \ntabs, faz fetch da agenda pessoal e faz o rendering da página",
             "extends": "BasicView",
             "is_constructor": 1,
             "access": "protected",
@@ -103,6 +693,64 @@
             "description": "View da página de palestra",
             "extends": "EventView"
         },
+        "ProfileView": {
+            "name": "ProfileView",
+            "shortname": "ProfileView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\views\\profile.js",
+            "line": 113,
+            "description": "Construtor da classe ProfileView, em que é passado o id do utilizador\na apresentar. Faz o fetch da Collection de contactos, do Model\ndo utilizador a apresentar e ainda o rendering da página",
+            "extends": "BasicView",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "id do utilizador da página",
+                    "type": "Javascript prototype"
+                }
+            ]
+        },
+        "UsersListView": {
+            "name": "UsersListView",
+            "shortname": "UsersListView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\views\\userslist.js",
+            "line": 76,
+            "description": "Construtor da classe UsersListView, em que são passados três atributos:\n\tisSpeakers - Booleano que indentifica a collection que temos de\n\tutilizar;\n\n\tid - Id da página,\n\n\tpageName - Nome da página;\n\nNeste construtor é feito o fetch de uma UserCollection, que representa\nos elementos a serem apresentados na view. Ainda neste contrutor é\nfeito o rendering necessário.",
+            "extends": "BasicView",
+            "is_constructor": 1,
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "atributos",
+                    "type": "Javascript prototype"
+                }
+            ]
+        },
+        "AppConfig": {
+            "name": "AppConfig",
+            "shortname": "AppConfig",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app\\app.config.js",
+            "line": 10,
+            "description": "Responsável por inicializar o objecto global com as configurações da aplicação e do utilizador"
+        },
         "Main": {
             "name": "Main",
             "shortname": "Main",
@@ -112,7 +760,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "app\\main.js",
-            "line": 11,
+            "line": 12,
             "description": "Classe principal que trata de inicializar a app"
         },
         "Router": {
@@ -124,17 +772,573 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "app\\router.js",
-            "line": 18,
+            "line": 19,
             "description": "Router principal da app, responsável por traduzir os links em métodos a serem chamados",
             "extends": "Backbone.Router"
         }
     },
     "classitems": [
         {
+            "file": "app\\collections\\contacts.js",
+            "line": 18,
+            "description": "Tipo do modelo utilizado na collection",
+            "itemtype": "property",
+            "name": "model",
+            "type": "Backbone.Model",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "Contact",
+            "class": "Contacts"
+        },
+        {
+            "file": "app\\collections\\contacts.js",
+            "line": 29,
+            "description": "LocalStorage para fazer fecth da collection",
+            "itemtype": "property",
+            "name": "localStorage",
+            "type": "new Backbone.LocalStorage('contacts-backbone')",
+            "static": 1,
+            "final": 1,
+            "default": "new Backbone.LocalStorage('contacts-backbone')",
+            "class": "Contacts"
+        },
+        {
+            "file": "app\\collections\\contacts.js",
+            "line": 44,
+            "description": "Comparador de modelos",
+            "itemtype": "method",
+            "name": "comparator",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "contact",
+                    "description": "modelo de um contacto",
+                    "type": "Contact"
+                }
+            ],
+            "class": "Contacts"
+        },
+        {
+            "file": "app\\collections\\contacts.js",
+            "line": 56,
+            "description": "Verifica se um contacto está na collection",
+            "itemtype": "method",
+            "name": "hasContact",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "id de um contacto",
+                    "type": "Integer"
+                }
+            ],
+            "class": "Contacts"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 19,
+            "description": "Tipo do modelo utilizado na collection",
+            "itemtype": "property",
+            "name": "model",
+            "type": "Backbone.Model",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "Event",
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 30,
+            "description": "Url do servidor para fazer fecth da collection",
+            "itemtype": "property",
+            "name": "url",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "null",
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 60,
+            "description": "Verifica se um evento está na collection",
+            "itemtype": "method",
+            "name": "hasEvent",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "id de um evento",
+                    "type": "Integer"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 72,
+            "description": "Devolve o evento com um dado name,\ncaso contrário devolve null",
+            "itemtype": "method",
+            "name": "getEventByName",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "nome de uma evento",
+                    "type": "String"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 91,
+            "description": "Filtra a collection devolvendo um array com os \nobjectos que teem no nome a string passada",
+            "itemtype": "method",
+            "name": "getEventsWithString",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "termo de filtragem",
+                    "type": "String"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 106,
+            "description": "Filtra a collection, consoantes os booleanos passados, que\nrespresentão os tipos de evento",
+            "itemtype": "method",
+            "name": "getEventsOfType",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "types",
+                    "description": "contém tipos de eventos, cada um representado por um booleano",
+                    "type": "Javascript prototype"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 127,
+            "description": "Filtra a coleção de eventos para obter apenas aqueles cujo o id\nestá no array passado",
+            "itemtype": "method",
+            "name": "getEventsFromIdArray",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "arrayOfEventsId",
+                    "description": "array de id's de eventos",
+                    "type": "Array"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 141,
+            "description": "Remove um evento da collection",
+            "itemtype": "method",
+            "name": "removeEvent",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventId",
+                    "description": "id do evento a remover",
+                    "type": "Integer"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\events.js",
+            "line": 152,
+            "description": "Adiciona um evento à collection",
+            "itemtype": "method",
+            "name": "addEvent",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventAttr",
+                    "description": "atributos do evento a criar na collection",
+                    "type": "Object"
+                }
+            ],
+            "class": "EventCollection"
+        },
+        {
+            "file": "app\\collections\\users.js",
+            "line": 18,
+            "description": "Tipo do modelo utilizado na collection",
+            "itemtype": "property",
+            "name": "model",
+            "type": "Backbone.Model",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "listUser",
+            "class": "UserCollection"
+        },
+        {
+            "file": "app\\collections\\users.js",
+            "line": 29,
+            "description": "Url do servidor para fazer fecth da collection",
+            "itemtype": "property",
+            "name": "url",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"\"",
+            "class": "UserCollection"
+        },
+        {
+            "file": "app\\collections\\users.js",
+            "line": 61,
+            "description": "Comparador de modelos",
+            "itemtype": "method",
+            "name": "comparator",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "user",
+                    "description": "modelo de informação de utilizador para lista",
+                    "type": "ListUser"
+                }
+            ],
+            "class": "UserCollection"
+        },
+        {
+            "file": "app\\models\\contact.js",
+            "line": 16,
+            "description": "Nome do atributo que guarda o id do utilizador\nreferente a este contacto",
+            "itemtype": "property",
+            "name": "idAttribute",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"user_id\"",
+            "class": "Contact"
+        },
+        {
+            "file": "app\\models\\contact.js",
+            "line": 28,
+            "description": "Defaults dos atributos do modelo",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "Object",
+            "static": 1,
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "class": "Contact"
+        },
+        {
+            "file": "app\\models\\event.js",
+            "line": 16,
+            "description": "Url do servidor para fazer fecth do modelo",
+            "itemtype": "property",
+            "name": "url",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"http://danielmagro.apiary.io/events/\"",
+            "class": "Event"
+        },
+        {
+            "file": "app\\models\\event.js",
+            "line": 27,
+            "description": "Defaults dos atributos do modelo",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "Object",
+            "static": 1,
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "class": "Event"
+        },
+        {
+            "file": "app\\models\\listuser.js",
+            "line": 17,
+            "description": "Defaults dos atributos do modelo",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "Object",
+            "static": 1,
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "class": "listUser"
+        },
+        {
             "file": "app\\models\\paper.js",
-            "line": 79,
+            "line": 80,
             "description": "Exemplo da API:\n{\n\tid: 1,\n\tname: \"Data Management\",\n\thour: \"2013-05-12T12:30:00Z\",\n\tduration: 30,\n\tis_scheduled: true, //se o utilizador adicionou o evento à sua agenda pessoal\n\tsession_id: 1,\n\tlocal: {\n\t\tid: 1,\n\t\tname: \"Sala 112\"\n\t},\n\tranking: {\n\t\tpos: 3,\n\t\tvotes: 37,\n\t\thas_voted: true //se o utilizador votou neste evento\n\t},\n\tspeakers: [\n\t\t{\n\t\t\tid: 1,\n\t\t\tname: \"António Mendes\",\n\t\t\tinstitution: \"Fundação Gulbenkian\",\n\t\t\tarea: \"Software Arquitecture\",\n\t\t\timage: \"link\"\n\t\t}\n\t],\n\tdescription: \"lorem ipsum\",\n\tthemes: [\"tema1\", \"tema2\"],\n\t\"comments\": [\n        {\n            \"author_id\": 1,\n            \"author_name\": \"José da Maia\",\n            \"comment\": \"Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. \"\n        },\n        {\n            \"author_id\": 2,\n            \"author_name\": \"Carlos Manuel do Rosário\",\n            \"comment\": \"Sed felis orci, scelerisque vel gravida a, commodo lacinia elit. Maecenas vel turpis tincidunt ligula ultrices consequat. Aliquam ipsum sapien, pretium non venenatis et, dictum non purus. Aliquam aliquam facilisis est in dictum. Vestibulum at arcu vehicula erat mollis lacinia a sit amet erat. Sed sapien eros, consectetur id tincidunt. \"\n        }\n    ],\n    \"questions\":[\n        {\n            \"author_id\": 1,\n            \"author_name\": \"José da Maia\",\n            \"question_id\": 1,\n            \"question\": \"Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. \"\n            \"votes\": 23,\n            \"has_voted\": false\n        },\n        {\n            \"author_id\": 1,\n            \"author_name\": \"José da Maia\",\n            \"question_id\": 1,\n            \"question\": \"Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. \"\n            \"votes\": 23,\n            \"has_voted\": false\n        }\n    ]\n}",
-            "class": "BasicView"
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 17,
+            "description": "Url do servidor para fazer fecth do modelo",
+            "itemtype": "property",
+            "name": "url",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "null",
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 28,
+            "description": "LocalStorage para fazer fecth do modelo",
+            "itemtype": "property",
+            "name": "localStorage",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "null",
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 39,
+            "description": "Defaults dos atributos do modelo",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "Object",
+            "static": 1,
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 74,
+            "description": "Verifica se um evento está no array da agenda pessoal, retornando\num booleano",
+            "itemtype": "method",
+            "name": "hasEvent",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventId",
+                    "description": "id de um evento",
+                    "type": "Integer"
+                }
+            ],
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 88,
+            "description": "Verifica se existem na agenda pessoal, todos os eventos\n\t\trepresentados pelos ids contidos no array",
+            "itemtype": "method",
+            "name": "hasEvents",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "idsArray",
+                    "description": "array de inteiros que representão id's de eventos",
+                    "type": "Array"
+                }
+            ],
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 107,
+            "description": "Remove o evento com o id passado da agenda pessoal",
+            "itemtype": "method",
+            "name": "removeEvent",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventId",
+                    "description": "id de um evento",
+                    "type": "Integer"
+                }
+            ],
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\personalagenda.js",
+            "line": 120,
+            "description": "Adiciona o evento com o id passado à agenda pessoal",
+            "itemtype": "method",
+            "name": "addEvent",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventId",
+                    "description": "id de um evento",
+                    "type": "Integer"
+                }
+            ],
+            "class": "PersonalAgenda"
+        },
+        {
+            "file": "app\\models\\user.js",
+            "line": 16,
+            "description": "Url do servidor para fazer fecth do modelo",
+            "itemtype": "property",
+            "name": "url",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"http://danielmagro.apiary.io/users/\"",
+            "class": "UserModel"
+        },
+        {
+            "file": "app\\models\\user.js",
+            "line": 27,
+            "description": "Defaults dos atributos do modelo",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "Object",
+            "static": 1,
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "class": "UserModel"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 24,
+            "description": "Id da página da agenda",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"agenda-page\"",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 35,
+            "description": "Nome da página da agenda",
+            "itemtype": "property",
+            "name": "pageName",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"Agenda\"",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 46,
+            "description": "Template da agenda",
+            "itemtype": "property",
+            "name": "template",
+            "type": "String",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "\"agenda-template\"",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 57,
+            "description": "Eventos lançados pela transição entre tabs,\nque representão a agenda geral e a agenda\npersonalizada",
+            "itemtype": "property",
+            "name": "events",
+            "type": "Object",
+            "access": "protected",
+            "tagname": "",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 71,
+            "description": "Modelo da agenda pessoal",
+            "itemtype": "property",
+            "name": "personalAgenda",
+            "type": "Backbone.Model",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 82,
+            "description": "Coleção dos eventos da conferência",
+            "itemtype": "property",
+            "name": "conferenceEvents",
+            "type": "Backbone.Collection",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 93,
+            "description": "View que apresenta o tipo de agenda escolhido,\nneste caso ou é a agenda geral ou a personalizada",
+            "itemtype": "property",
+            "name": "calendarView",
+            "type": "Backbone.View",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 145,
+            "description": "Faz o rendering do layout base da página da agenda",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 169,
+            "description": "Faz o rendering do calendário com todos os eventos da conferência",
+            "itemtype": "method",
+            "name": "renderGeneral",
+            "access": "protected",
+            "tagname": "",
+            "class": "AgendaView"
+        },
+        {
+            "file": "app\\views\\agenda.js",
+            "line": 180,
+            "description": "Faz o rendering do calendário com todos os eventos da agenda personalizada",
+            "itemtype": "method",
+            "name": "renderPersonal",
+            "access": "protected",
+            "tagname": "",
+            "class": "AgendaView"
         },
         {
             "file": "app\\views\\basicview.js",
@@ -272,8 +1476,402 @@
             "class": "BasicView"
         },
         {
+            "file": "app\\views\\calendar.js",
+            "line": 23,
+            "description": "Elemento da DOM onde são colocados os calendários",
+            "itemtype": "property",
+            "name": "el",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"#calendar-placeholder\"",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 34,
+            "description": "Id do elemento onde está o calendário, para fazer refresh \ndo jquery mobile",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"calendar-placeholder\"",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 46,
+            "description": "Template do calendário",
+            "itemtype": "property",
+            "name": "template",
+            "type": "String",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "\"calendar-partial\"",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 63,
+            "description": "Dia corrente",
+            "itemtype": "property",
+            "name": "currentDay",
+            "type": "Javascript Date Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 73,
+            "description": "Dia limite para fazer prev no calendário",
+            "itemtype": "property",
+            "name": "backLimitDate",
+            "type": "Javascript Date Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 83,
+            "description": "Dia limite para fazer next no calendário",
+            "itemtype": "property",
+            "name": "forwardLimitDate",
+            "type": "Javascript Date Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 93,
+            "description": "Elemento do calendário",
+            "itemtype": "property",
+            "name": "$calendar",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 103,
+            "description": "Elemento de remoção de evento do calendário",
+            "itemtype": "property",
+            "name": "$removeevent",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 113,
+            "description": "Elemento de adição de evento do calendário",
+            "itemtype": "property",
+            "name": "$addevent",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 123,
+            "description": "Elemento do botão de remoção de evento do calendário",
+            "itemtype": "property",
+            "name": "$removeeventbutton",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 133,
+            "description": "Elemento do botão de adição de evento do calendário",
+            "itemtype": "property",
+            "name": "$addeventbutton",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 143,
+            "description": "Elemento do link para o perfil do orientador do workshop",
+            "itemtype": "property",
+            "name": "$teacherlink",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 153,
+            "description": "Elemento do link para o perfil do autor de um paper",
+            "itemtype": "property",
+            "name": "$authorlink",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 163,
+            "description": "Elemento anchor do link para o perfil do orientador do workshop",
+            "itemtype": "property",
+            "name": "$teacherlinkA",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 173,
+            "description": "Elemento anchor do link para o perfil do autor de um paper",
+            "itemtype": "property",
+            "name": "$authorlinkA",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 183,
+            "description": "Elemento anchor do link para a página de um evento",
+            "itemtype": "property",
+            "name": "$eventlinkA",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 193,
+            "description": "Elemento anchor do link para a página de um local",
+            "itemtype": "property",
+            "name": "$locallinkA",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 203,
+            "description": "Elemento input onde são digitadas pesquisas",
+            "itemtype": "property",
+            "name": "$searchbasic",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 213,
+            "description": "Elemento onde está o painel de pesquisa",
+            "itemtype": "property",
+            "name": "$searchpanel",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 223,
+            "description": "Elemento relativo aos pop-up's",
+            "itemtype": "property",
+            "name": "$popup",
+            "type": "Jquery Object",
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 233,
+            "description": "Dicionário que guarda informações relativas aos tipos de\neventos possíveis",
+            "itemtype": "property",
+            "name": "typesInfo",
+            "type": "Javascript prototype",
+            "static": 1,
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "{\"paper\": {color: '#2c3e50', url: '#paper/'}, \"workshop\": {color: '#16a085', url: '#workshop/'}, \n\t\t\t\t\t\"social\": {color: '#8e44ad', url: '#social/'}, \"keynote\": {color: '#2ecc71', url: '#keynote/'}}",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 300,
+            "description": "Faz o rendering do calendar, com a ajuda o método fullCalendarSetter\n\t\tpassando a coleção de eventos a mostrar",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 323,
+            "description": "Cria o calendário com os eventos passados, trata do binding\nde métodos a eventos relacionados com pop-up's e adição\ne remoção de eventos, inicializa as variáveis jquery para maior\neficiência e decide em que dia o calendário é apresentado.",
+            "itemtype": "method",
+            "name": "fullCalendarSetter",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "renderEvents",
+                    "description": "colecção de eventos",
+                    "type": "EventCollection"
+                }
+            ],
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 428,
+            "description": "Altera o conteúdo de um pop-up consoante os atributos de um evento",
+            "itemtype": "method",
+            "name": "setPopUp",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "atributos de um evento",
+                    "type": "Object"
+                }
+            ],
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 476,
+            "description": "Faz a filtragem de eventos a mostrar no calendário, consoante\na informação vinda do template, ou seja, dos elementos input",
+            "itemtype": "method",
+            "name": "search",
+            "access": "protected",
+            "tagname": "",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 525,
+            "description": "Trata da informação de um evento, para este ser passado para o\ncalendário",
+            "itemtype": "method",
+            "name": "treatEvents",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventobj",
+                    "description": "modelo de um evento",
+                    "type": "EventModel"
+                }
+            ],
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 556,
+            "description": "Retorna a cor de um evento consoante o seu tipo",
+            "itemtype": "method",
+            "name": "getColor",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "tipo de um evento",
+                    "type": "String"
+                }
+            ],
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 567,
+            "description": "Anda um dia para trás no calendário, consoante os limites",
+            "itemtype": "method",
+            "name": "prev",
+            "access": "protected",
+            "tagname": "",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 580,
+            "description": "Anda um dia para a frente no calendário, consoante os limites",
+            "itemtype": "method",
+            "name": "next",
+            "access": "protected",
+            "tagname": "",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 591,
+            "description": "Muda o dia visível do calendário, para o dia corrente, se este estiver\nnos limites dos dias da conferência",
+            "itemtype": "method",
+            "name": "today",
+            "access": "protected",
+            "tagname": "",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 604,
+            "description": "Remove um evento da agenda pessoal do utilizador do dispositivo",
+            "itemtype": "method",
+            "name": "removeEvent",
+            "access": "protected",
+            "tagname": "",
+            "class": "CalendarView"
+        },
+        {
+            "file": "app\\views\\calendar.js",
+            "line": 630,
+            "description": "Adciona um evento à agenda pessoal do utilizador do dispositivo",
+            "itemtype": "method",
+            "name": "addEvent",
+            "access": "protected",
+            "tagname": "",
+            "class": "CalendarView"
+        },
+        {
             "file": "app\\views\\event.js",
-            "line": 20,
+            "line": 21,
             "description": "Elemento da DOM onde são colocados todas as páginas",
             "itemtype": "property",
             "name": "el",
@@ -285,7 +1883,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 32,
+            "line": 33,
             "description": "Elemento que contém os conteúdos das tabs",
             "itemtype": "property",
             "name": "tabContainer",
@@ -298,7 +1896,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 44,
+            "line": 45,
             "description": "Template base de todas as páginas de informação",
             "itemtype": "property",
             "name": "template",
@@ -311,7 +1909,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 56,
+            "line": 57,
             "description": "Id usado pelo elemento HTML da tab 'Sobre'",
             "itemtype": "property",
             "name": "aboutTabId",
@@ -324,7 +1922,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 67,
+            "line": 68,
             "description": "Nome a ser inserido na tab 'Sobre'",
             "itemtype": "property",
             "name": "aboutTabName",
@@ -337,7 +1935,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 79,
+            "line": 80,
             "description": "Id usado pelo elemento HTML da tab 'Comentários'",
             "itemtype": "property",
             "name": "commentsTabId",
@@ -350,7 +1948,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 90,
+            "line": 91,
             "description": "Nome a ser inserido na tab 'Comentários'",
             "itemtype": "property",
             "name": "commentsTabName",
@@ -363,7 +1961,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 101,
+            "line": 102,
             "description": "Modelo do evento ao qual corresponde esta página",
             "itemtype": "property",
             "name": "model",
@@ -376,7 +1974,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 112,
+            "line": 113,
             "description": "Vector com as views de todas as tabs incluídas na página",
             "itemtype": "property",
             "name": "tabs",
@@ -388,7 +1986,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 122,
+            "line": 123,
             "description": "Vector de objectos com os campos id e name. Usado para gerar a navbar.",
             "itemtype": "property",
             "name": "tabNames",
@@ -403,8 +2001,8 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 140,
-            "description": "Eventos lançados pela transição entre tabs",
+            "line": 141,
+            "description": "Eventos lançados pela transição entre tabs\ne ainda eventos de adição e remoção do evento \nda agenda pessoal",
             "itemtype": "property",
             "name": "events",
             "type": "Object",
@@ -414,7 +2012,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 180,
+            "line": 195,
             "description": "Faz o rendering do layout base das páginas de informações",
             "itemtype": "method",
             "name": "render",
@@ -425,7 +2023,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 215,
+            "line": 233,
             "description": "Faz o rendering da tab 'Sobre'",
             "itemtype": "method",
             "name": "renderAboutTab",
@@ -436,7 +2034,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 232,
+            "line": 250,
             "description": "Faz o rendering da tab 'Comentários'",
             "itemtype": "method",
             "name": "renderCommentsTab",
@@ -447,7 +2045,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 249,
+            "line": 267,
             "description": "Inicializa as tabs comuns a todas as páginas",
             "itemtype": "method",
             "name": "createTabs",
@@ -457,7 +2055,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 271,
+            "line": 289,
             "description": "Adiciona uma tab ao vector de tabs",
             "itemtype": "method",
             "name": "addTab",
@@ -496,7 +2094,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 296,
+            "line": 314,
             "description": "Faz o rendering da tab especificada",
             "itemtype": "method",
             "name": "renderTab",
@@ -514,7 +2112,7 @@
         },
         {
             "file": "app\\views\\event.js",
-            "line": 317,
+            "line": 335,
             "description": "Desactiva a delegação de eventos de todas as tabs, evitando assim\ntratar várias vezes o mesmo evento, por várias tabs distintas.",
             "itemtype": "method",
             "name": "disableTabEvents",
@@ -523,8 +2121,264 @@
             "class": "EventView"
         },
         {
+            "file": "app\\views\\event.js",
+            "line": 349,
+            "description": "Adiciona ou remove o evento à agenda pessoal, consoante este esteja\npresente na agenda pessoal",
+            "itemtype": "method",
+            "name": "addRemoveEvent",
+            "access": "protected",
+            "tagname": "",
+            "class": "EventView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 19,
+            "description": "Elemento da DOM onde são colocados todas as páginas",
+            "itemtype": "property",
+            "name": "el",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"div[data-role=content]\"",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 30,
+            "description": "Id da página de perfil",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"profile-page\"",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 41,
+            "description": "Nome da página de perfil",
+            "itemtype": "property",
+            "name": "pageName",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"Perfil\"",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 52,
+            "description": "Template base do perfil",
+            "itemtype": "property",
+            "name": "template",
+            "type": "String",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "\"profile-template\"",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 63,
+            "description": "Template da tab de informaões gerais",
+            "itemtype": "property",
+            "name": "generalInfoTemplate",
+            "type": "String",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "\"general-info-template\"",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 74,
+            "description": "Template da tab de contactos sociais",
+            "itemtype": "property",
+            "name": "moreContactsTemplate",
+            "type": "String",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "\"more-contacts-template\"",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 85,
+            "description": "Modelo do perfil ao qual corresponde esta página",
+            "itemtype": "property",
+            "name": "user",
+            "type": "Backbone.Model",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 96,
+            "description": "Eventos lançados pela transição entre tabs\ne ainda eventos de adição e remoção de utilizador\ncomo contacto da colecção de contactos",
+            "itemtype": "property",
+            "name": "events",
+            "type": "Object",
+            "access": "protected",
+            "tagname": "",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 143,
+            "description": "Faz o rendering do layout base das páginas de perfil",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 179,
+            "description": "Adiciona ou remove o participante que a página representa, consoante\neste esteja ou não na coleção de contactos.",
+            "itemtype": "method",
+            "name": "addRemoveUser",
+            "access": "protected",
+            "tagname": "",
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 215,
+            "description": "Faz o renderering da tab de informações gerais",
+            "itemtype": "method",
+            "name": "renderGeneral",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\profile.js",
+            "line": 247,
+            "description": "Faz o renderering da tab de contactos sociais do perfil",
+            "itemtype": "method",
+            "name": "renderContacts",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "ProfileView"
+        },
+        {
+            "file": "app\\views\\session.js",
+            "line": 78,
+            "description": "Faz o rendering do layout base das páginas de sessão e verficia\nse a agenda pessoal contém todos os eventos referentes a esta sessão,\nse não tiver remove o check que a view EventView adiciona, porque a \nagenda contém um evento da sessão,se for o caso",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\session.js",
+            "line": 130,
+            "description": "Coloca todos os id's dos eventos de uma sessão num array",
+            "itemtype": "method",
+            "name": "arrayOfPaperIds",
+            "access": "private",
+            "tagname": "",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\session.js",
+            "line": 142,
+            "description": "Adiciona ou remove os eventos da sessão à agenda pessoal, consoante estes estejam\npresentes na agenda pessoal. No caso de ter não ter todos os eventos da sessão\nna agenda pessoal adicona os que faltam",
+            "itemtype": "method",
+            "name": "addRemoveEvent",
+            "access": "protected",
+            "tagname": "",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\userslist.js",
+            "line": 16,
+            "description": "Elemento da DOM onde são colocados todas as páginas",
+            "itemtype": "property",
+            "name": "el",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"div[data-role=content]\"",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\userslist.js",
+            "line": 27,
+            "description": "Id da página em questão, muda consoante\na lista de utilizadores a apresentar",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"\"",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\userslist.js",
+            "line": 39,
+            "description": "Nome da página em questão, muda consoante\na lista de utilizadores a apresentar",
+            "itemtype": "property",
+            "name": "pageName",
+            "type": "String",
+            "static": 1,
+            "final": 1,
+            "default": "\"\"",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\userslist.js",
+            "line": 51,
+            "description": "Template base de todas as páginas\nde listas de utilizadores",
+            "itemtype": "property",
+            "name": "template",
+            "type": "String",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "\"users-template\"",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\userslist.js",
+            "line": 63,
+            "description": "Collection com modelos do tipo ListUser,\nque compõe a lista de utilizadores a serem\napresentados",
+            "itemtype": "property",
+            "name": "cusers",
+            "type": "Backbone.Collection",
+            "final": 1,
+            "access": "protected",
+            "tagname": "",
+            "default": "null",
+            "class": "UsersListView"
+        },
+        {
+            "file": "app\\views\\userslist.js",
+            "line": 115,
+            "description": "Faz o rendering do layout das páginas de listagem de utilizadores,\npassando o template e o contexto adequeados, sendo que o contexto\né composto pela collection de utilizadores a apresentar(users) e\npor um booleano que revela se os utilizadores são oradores ou\nparticipantes.",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "UsersListView"
+        },
+        {
             "file": "app\\router.js",
-            "line": 26,
+            "line": 27,
             "description": "Enumeração de todas as routes possíveis da app",
             "itemtype": "property",
             "name": "routes",
@@ -535,7 +2389,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 48,
+            "line": 50,
             "description": "Route da página inicial da app",
             "itemtype": "method",
             "name": "index",
@@ -545,7 +2399,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 59,
+            "line": 61,
             "description": "Route do menu agenda",
             "itemtype": "method",
             "name": "agenda",
@@ -555,7 +2409,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 71,
+            "line": 73,
             "description": "Route do menu de informações",
             "itemtype": "method",
             "name": "maininfo",
@@ -565,7 +2419,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 84,
+            "line": 86,
             "description": "Route do menu principal",
             "itemtype": "method",
             "name": "mainmenu",
@@ -575,7 +2429,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 97,
+            "line": 99,
             "description": "Route da página de palestra",
             "itemtype": "method",
             "name": "paper",
@@ -592,7 +2446,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 110,
+            "line": 112,
             "description": "Route da página de sessão",
             "itemtype": "method",
             "name": "index",
@@ -609,7 +2463,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 123,
+            "line": 125,
             "description": "Route da página do utilizador",
             "itemtype": "method",
             "name": "user",
@@ -626,7 +2480,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 136,
+            "line": 138,
             "description": "Route da lista de oradores",
             "itemtype": "method",
             "name": "speakers",
@@ -636,7 +2490,7 @@
         },
         {
             "file": "app\\router.js",
-            "line": 148,
+            "line": 150,
             "description": "Route da lista de participantes",
             "itemtype": "method",
             "name": "participants",
@@ -646,19 +2500,1318 @@
         },
         {
             "file": "app\\router.js",
-            "line": 160,
+            "line": 162,
             "description": "Route do menu de contactos do utilizador",
             "itemtype": "method",
             "name": "contacts",
             "access": "private",
             "tagname": "",
             "class": "Router"
+        },
+        {
+            "file": "app\\router.js",
+            "line": 174,
+            "description": "Route do menu de notificações",
+            "itemtype": "method",
+            "name": "contacts",
+            "access": "private",
+            "tagname": "",
+            "class": "Router"
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 3837,
+            "description": "For feature detection",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to test for native support",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 3845,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, Object)"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 3865,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 3874,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created div and expects a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 4001,
+            "description": "Detect xml",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 4012,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.js",
+            "line": 4505,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1018,
+            "description": "For feature detection",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to test for native support",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1026,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, Object)"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1046,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1055,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created div and expects a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1184,
+            "description": "Detect xml",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1195,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1620,
+            "description": "Checks document order of two siblings",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Element"
+                }
+            ],
+            "return": {
+                "description": "Returns -1 if a precedes b, 1 if a follows b"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\jquery\\dist\\jquery.pre-min.js",
+            "line": 1701,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\bg.js",
+            "line": 4,
+            "description": "Bulgarian",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\ca.js",
+            "line": 4,
+            "description": "Català",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\cv.js",
+            "line": 4,
+            "description": "Chuvash",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\da.js",
+            "line": 4,
+            "description": "Danish",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\de.js",
+            "line": 4,
+            "description": "German",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\en-ca.js",
+            "line": 4,
+            "description": "English",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\en-gb.js",
+            "line": 4,
+            "description": "English",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\en.js",
+            "line": 4,
+            "description": "English",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\es.js",
+            "line": 4,
+            "description": "Spanish",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\et.js",
+            "line": 4,
+            "description": "English",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\eu.js",
+            "line": 4,
+            "description": "Euskara",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\fi.js",
+            "line": 4,
+            "description": "Finnish",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\fr-ca.js",
+            "line": 4,
+            "description": "French",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\fr.js",
+            "line": 4,
+            "description": "French",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\gl.js",
+            "line": 4,
+            "description": "Galego",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\he.js",
+            "line": 4,
+            "description": "Hebrew",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\hu.js",
+            "line": 3,
+            "description": "English",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\is.js",
+            "line": 4,
+            "description": "Icelandic",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\it.js",
+            "line": 4,
+            "description": "Italian",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\ja.js",
+            "line": 4,
+            "description": "Japanese",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\jp.js",
+            "line": 4,
+            "description": "Japanese",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\ko.js",
+            "line": 4,
+            "description": "Korean",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\kr.js",
+            "line": 4,
+            "description": "Korean",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\nb.js",
+            "line": 4,
+            "description": "Norwegian bokmål",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\nl.js",
+            "line": 4,
+            "description": "Dutch",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\pl.js",
+            "line": 4,
+            "description": "Polish",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\pt-br.js",
+            "line": 4,
+            "description": "Portuguese - Brazilian",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\pt.js",
+            "line": 4,
+            "description": "Portuguese",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\ro.js",
+            "line": 4,
+            "description": "Romanian",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\ru.js",
+            "line": 4,
+            "description": "Russian",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\sv.js",
+            "line": 4,
+            "description": "English",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\tr.js",
+            "line": 4,
+            "description": "Turkish",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\zh-cn.js",
+            "line": 4,
+            "description": "Simplified Chinese",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\lang\\zh-tw.js",
+            "line": 4,
+            "description": "Traditional Chinese",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\zone.js",
+            "line": 9,
+            "description": "Get Timezone",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\zone.js",
+            "line": 49,
+            "description": "Set Timezone",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\zone.js",
+            "line": 61,
+            "description": "Tests",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\test\\zone.js",
+            "line": 176,
+            "description": "Start it off",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 9,
+            "description": "Constants",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 213,
+            "description": "Constructors",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 281,
+            "description": "Helpers",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 423,
+            "description": "Formatting",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 475,
+            "description": "Parsing",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 694,
+            "description": "Relative Time",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 730,
+            "description": "Top Level Functions",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 912,
+            "description": "Moment Prototype",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 1133,
+            "description": "Duration Prototype",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\moment\\moment.js",
+            "line": 1191,
+            "description": "Exposing Moment",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\text\\text.js",
+            "line": 1,
+            "license": "RequireJS text 2.0.2+ Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/requirejs/text for details",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\text\\text.js",
+            "line": 77,
+            "description": "Parses a resource name into its component parts. Resource names\nlook like: module/name.ext!strip, where the !strip part is\noptional.",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the resource name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "with properties \"moduleName\", \"ext\" and \"strip\"\nwhere strip is a boolean.",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\text\\text.js",
+            "line": 107,
+            "description": "Is an URL on another domain. Only works for browser use, returns\nfalse in non-browser environments. Only used to know if an\noptimized .js version of a text resource should be loaded\ninstead.",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1,
+            "license": "RequireJS 2.1.4 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/jrburke/requirejs for details",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 49,
+            "description": "Helper function for iterating over an array. If the func returns\na true value, it will break out of the loop.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 64,
+            "description": "Helper function for iterating over an array backwards. If the func\nreturns a true value, it will break out of the loop.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 87,
+            "description": "Cycles over properties in an object and calls a function for each\nproperty value. If the function returns a truthy value, then the\niteration is stopped.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 103,
+            "description": "Simple function to mix in properties from source into target,\nbut only if target does not already have a property of the same name.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 150,
+            "description": "Constructs an error with a pointer to an URL with more information.",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "the error ID that maps to an ID on a web page.",
+                    "type": "String"
+                },
+                {
+                    "name": "message",
+                    "description": "human readable error.",
+                    "type": "String"
+                },
+                {
+                    "name": "err",
+                    "description": "the original error, if there is one.",
+                    "type": "Error",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Error"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 210,
+            "description": "Trims the . and .. from an array of path segments.\nIt will keep a leading path segment if a .. will become\nthe first path segment, to help with module name lookups,\nwhich act like paths, but can be remapped. But the end result,\nall paths that use this function should look normalized.\nNOTE: this method MODIFIES the input array.",
+            "params": [
+                {
+                    "name": "ary",
+                    "description": "the array of path segments.",
+                    "type": "Array"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 243,
+            "description": "Given a relative module name, like ./something, normalize it to\na real name that can be mapped to a path.",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the relative name",
+                    "type": "String"
+                },
+                {
+                    "name": "baseName",
+                    "description": "a real name that the name arg is relative\nto.",
+                    "type": "String"
+                },
+                {
+                    "name": "applyMap",
+                    "description": "apply the map config to the value. Should\nonly be done if this normalization is for a dependency ID.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "normalized name",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 389,
+            "description": "Creates a module mapping that includes plugin prefix, module\nname, and path. If parentModuleMap is provided it will\nalso normalize the name via require.normalize()",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the module name",
+                    "type": "String"
+                },
+                {
+                    "name": "parentModuleMap",
+                    "description": "parent module map\nfor the module name, used to resolve relative names.",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "isNormalized:",
+                    "description": "is the ID already normalized.\nThis is true if this call is done for a define() module ID.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "applyMap:",
+                    "description": "apply the map config to the ID.\nShould only be true if this map is for a dependency.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 526,
+            "description": "Internal method to transfer globalQueue items to this context's\ndefQueue.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 807,
+            "description": "Checks is the module is ready to define itself, and if so,\ndefine it.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1160,
+            "description": "Given an event from a script node, get the requirejs info from it,\nand then removes the event listeners on the node.",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1212,
+            "description": "Set a configuration for the context.",
+            "params": [
+                {
+                    "name": "cfg",
+                    "description": "config object to integrate.",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1393,
+            "description": "Converts a module name + .extension into an URL path.\n*Requires* the use of a module name. It does not support using\nplain URLs like nameToUrl.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1456,
+            "description": "Called to enable a module if it is still in the registry\nawaiting enablement. A second arg, parent, the parent module,\nis passed in for context, when this method is overriden by\nthe optimizer. Not shown here to keep code compact.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1469,
+            "description": "Internal method used by environment adapters to complete a load event.\nA load event could be a script load or just a load pass from a synchronous\nload call.",
+            "params": [
+                {
+                    "name": "moduleName",
+                    "description": "the name of the module to potentially complete.",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1525,
+            "description": "Converts a module name to a file path. Supports cases where\nmoduleName may actually be just an URL.\nNote that it **does not** call normalize on the moduleName,\nit is assumed to have already been normalized. This is an\ninternal API, not a public one. Use toUrl for the public API.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1596,
+            "description": "Executes a module callack function. Broken out as a separate function\nsolely to allow the build system to sequence the files in the built\nlayer in the right sequence.",
+            "access": "private",
+            "tagname": "",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1607,
+            "description": "callback for script loads, used to check status of loading.",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "the event from the browser for the script\nthat was loaded.",
+                    "type": "Event"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1629,
+            "description": "Callback for script errors.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1644,
+            "description": "Main entry point.\n\nIf the only argument to require is a string, then the module that\nis represented by that string is fetched for the appropriate context.\n\nIf the first argument is an array, then it will be treated as an array\nof dependency string names to fetch. An optional function callback can\nbe specified to execute when all of those dependencies are available.\n\nMake a local req variable to help Caja compliance (it assumes things\non a require that are not standardized), and to give a short\nname for minification/local scope use.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1694,
+            "description": "Support require.config() to make it easier to cooperate with other\nAMD loaders on globally agreed names.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1702,
+            "description": "Execute something after the current tick\nof the event loop. Override for other envs\nthat have a better solution than setTimeout.",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "function to execute later.",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1712,
+            "description": "Export require as a global, but only if it does not already exist.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1759,
+            "description": "Any errors that require explicitly generates will be passed to this\nfunction. Intercept/override it if you want custom error handling.",
+            "params": [
+                {
+                    "name": "err",
+                    "description": "the error object.",
+                    "type": "Error"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1768,
+            "description": "Does the request to load a module for the browser case.\nMake this a separate function to allow other environments\nto override it.",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the require context to find state.",
+                    "type": "Object"
+                },
+                {
+                    "name": "moduleName",
+                    "description": "the name of the module.",
+                    "type": "String"
+                },
+                {
+                    "name": "url",
+                    "description": "the URL to the module.",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1914,
+            "description": "The function that handles definitions of modules. Differs from\nrequire() in that a string for the module should be the first argument,\nand the function to execute after dependencies are loaded should\nreturn a value to define the module corresponding to the first argument's\nname.",
+            "class": ""
+        },
+        {
+            "file": "vendor\\jam\\require.js",
+            "line": 1987,
+            "description": "Executes the text. Normally just uses eval, but can be modified\nto use a better, environment-specific call. Only used for transpiling\nloader plugins, not for plain JS modules.",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "the text to execute/evaluate.",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor\\libs\\backbone.localStorage.js",
+            "line": 1,
+            "description": "Backbone localStorage Adapter\nVersion 1.1.0\n\nhttps://github.com/jeromegn/Backbone.localStorage",
+            "class": ""
         }
     ],
     "warnings": [
         {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:3845"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:4012"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1026"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1195"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1620"
+        },
+        {
+            "message": "unknown tag: license",
+            "line": " vendor\\jam\\text\\text.js:1"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\text\\text.js:77"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\text\\text.js:107"
+        },
+        {
+            "message": "unknown tag: license",
+            "line": " vendor\\jam\\require.js:1"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\require.js:150"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\require.js:243"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\require.js:389"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor\\jam\\require.js:1160"
+        },
+        {
             "message": "Missing item type\nExemplo da API:\n{\n\tid: 1,\n\tname: \"Data Management\",\n\thour: \"2013-05-12T12:30:00Z\",\n\tduration: 30,\n\tis_scheduled: true, //se o utilizador adicionou o evento à sua agenda pessoal\n\tsession_id: 1,\n\tlocal: {\n\t\tid: 1,\n\t\tname: \"Sala 112\"\n\t},\n\tranking: {\n\t\tpos: 3,\n\t\tvotes: 37,\n\t\thas_voted: true //se o utilizador votou neste evento\n\t},\n\tspeakers: [\n\t\t{\n\t\t\tid: 1,\n\t\t\tname: \"António Mendes\",\n\t\t\tinstitution: \"Fundação Gulbenkian\",\n\t\t\tarea: \"Software Arquitecture\",\n\t\t\timage: \"link\"\n\t\t}\n\t],\n\tdescription: \"lorem ipsum\",\n\tthemes: [\"tema1\", \"tema2\"],\n\t\"comments\": [\n        {\n            \"author_id\": 1,\n            \"author_name\": \"José da Maia\",\n            \"comment\": \"Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. \"\n        },\n        {\n            \"author_id\": 2,\n            \"author_name\": \"Carlos Manuel do Rosário\",\n            \"comment\": \"Sed felis orci, scelerisque vel gravida a, commodo lacinia elit. Maecenas vel turpis tincidunt ligula ultrices consequat. Aliquam ipsum sapien, pretium non venenatis et, dictum non purus. Aliquam aliquam facilisis est in dictum. Vestibulum at arcu vehicula erat mollis lacinia a sit amet erat. Sed sapien eros, consectetur id tincidunt. \"\n        }\n    ],\n    \"questions\":[\n        {\n            \"author_id\": 1,\n            \"author_name\": \"José da Maia\",\n            \"question_id\": 1,\n            \"question\": \"Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. \"\n            \"votes\": 23,\n            \"has_voted\": false\n        },\n        {\n            \"author_id\": 1,\n            \"author_name\": \"José da Maia\",\n            \"question_id\": 1,\n            \"question\": \"Sed gravida sodales erat eget consectetur. Nulla magna eros, suscipit faucibus venenatis vel, feugiat sed metus. Integer enim ante, ultrices et sagittis a, pretium vitae libero. Maecenas ullamcorper lobortis dui ac elementum. Mauris magna risus, consectetur sit amet rhoncus eu, commodo sed libero. Sed gravida tincidunt mollis. Ut ut elit. \"\n            \"votes\": 23,\n            \"has_voted\": false\n        }\n    ]\n}",
-            "line": " app\\models\\paper.js:79"
+            "line": " app\\models\\paper.js:80"
+        },
+        {
+            "message": "Missing item type\nFor feature detection",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:3837"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:3845"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:3865"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:3874"
+        },
+        {
+            "message": "Missing item type\nDetect xml",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:4001"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:4012"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.js:4505"
+        },
+        {
+            "message": "Missing item type\nFor feature detection",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1018"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1026"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1046"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1055"
+        },
+        {
+            "message": "Missing item type\nDetect xml",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1184"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1195"
+        },
+        {
+            "message": "Missing item type\nChecks document order of two siblings",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1620"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " vendor\\jam\\jquery\\dist\\jquery.pre-min.js:1701"
+        },
+        {
+            "message": "Missing item type\nBulgarian",
+            "line": " vendor\\jam\\moment\\test\\lang\\bg.js:4"
+        },
+        {
+            "message": "Missing item type\nCatalà",
+            "line": " vendor\\jam\\moment\\test\\lang\\ca.js:4"
+        },
+        {
+            "message": "Missing item type\nChuvash",
+            "line": " vendor\\jam\\moment\\test\\lang\\cv.js:4"
+        },
+        {
+            "message": "Missing item type\nDanish",
+            "line": " vendor\\jam\\moment\\test\\lang\\da.js:4"
+        },
+        {
+            "message": "Missing item type\nGerman",
+            "line": " vendor\\jam\\moment\\test\\lang\\de.js:4"
+        },
+        {
+            "message": "Missing item type\nEnglish",
+            "line": " vendor\\jam\\moment\\test\\lang\\en-ca.js:4"
+        },
+        {
+            "message": "Missing item type\nEnglish",
+            "line": " vendor\\jam\\moment\\test\\lang\\en-gb.js:4"
+        },
+        {
+            "message": "Missing item type\nEnglish",
+            "line": " vendor\\jam\\moment\\test\\lang\\en.js:4"
+        },
+        {
+            "message": "Missing item type\nSpanish",
+            "line": " vendor\\jam\\moment\\test\\lang\\es.js:4"
+        },
+        {
+            "message": "Missing item type\nEnglish",
+            "line": " vendor\\jam\\moment\\test\\lang\\et.js:4"
+        },
+        {
+            "message": "Missing item type\nEuskara",
+            "line": " vendor\\jam\\moment\\test\\lang\\eu.js:4"
+        },
+        {
+            "message": "Missing item type\nFinnish",
+            "line": " vendor\\jam\\moment\\test\\lang\\fi.js:4"
+        },
+        {
+            "message": "Missing item type\nFrench",
+            "line": " vendor\\jam\\moment\\test\\lang\\fr-ca.js:4"
+        },
+        {
+            "message": "Missing item type\nFrench",
+            "line": " vendor\\jam\\moment\\test\\lang\\fr.js:4"
+        },
+        {
+            "message": "Missing item type\nGalego",
+            "line": " vendor\\jam\\moment\\test\\lang\\gl.js:4"
+        },
+        {
+            "message": "Missing item type\nHebrew",
+            "line": " vendor\\jam\\moment\\test\\lang\\he.js:4"
+        },
+        {
+            "message": "Missing item type\nEnglish",
+            "line": " vendor\\jam\\moment\\test\\lang\\hu.js:3"
+        },
+        {
+            "message": "Missing item type\nIcelandic",
+            "line": " vendor\\jam\\moment\\test\\lang\\is.js:4"
+        },
+        {
+            "message": "Missing item type\nItalian",
+            "line": " vendor\\jam\\moment\\test\\lang\\it.js:4"
+        },
+        {
+            "message": "Missing item type\nJapanese",
+            "line": " vendor\\jam\\moment\\test\\lang\\ja.js:4"
+        },
+        {
+            "message": "Missing item type\nJapanese",
+            "line": " vendor\\jam\\moment\\test\\lang\\jp.js:4"
+        },
+        {
+            "message": "Missing item type\nKorean",
+            "line": " vendor\\jam\\moment\\test\\lang\\ko.js:4"
+        },
+        {
+            "message": "Missing item type\nKorean",
+            "line": " vendor\\jam\\moment\\test\\lang\\kr.js:4"
+        },
+        {
+            "message": "Missing item type\nNorwegian bokmål",
+            "line": " vendor\\jam\\moment\\test\\lang\\nb.js:4"
+        },
+        {
+            "message": "Missing item type\nDutch",
+            "line": " vendor\\jam\\moment\\test\\lang\\nl.js:4"
+        },
+        {
+            "message": "Missing item type\nPolish",
+            "line": " vendor\\jam\\moment\\test\\lang\\pl.js:4"
+        },
+        {
+            "message": "Missing item type\nPortuguese - Brazilian",
+            "line": " vendor\\jam\\moment\\test\\lang\\pt-br.js:4"
+        },
+        {
+            "message": "Missing item type\nPortuguese",
+            "line": " vendor\\jam\\moment\\test\\lang\\pt.js:4"
+        },
+        {
+            "message": "Missing item type\nRomanian",
+            "line": " vendor\\jam\\moment\\test\\lang\\ro.js:4"
+        },
+        {
+            "message": "Missing item type\nRussian",
+            "line": " vendor\\jam\\moment\\test\\lang\\ru.js:4"
+        },
+        {
+            "message": "Missing item type\nEnglish",
+            "line": " vendor\\jam\\moment\\test\\lang\\sv.js:4"
+        },
+        {
+            "message": "Missing item type\nTurkish",
+            "line": " vendor\\jam\\moment\\test\\lang\\tr.js:4"
+        },
+        {
+            "message": "Missing item type\nSimplified Chinese",
+            "line": " vendor\\jam\\moment\\test\\lang\\zh-cn.js:4"
+        },
+        {
+            "message": "Missing item type\nTraditional Chinese",
+            "line": " vendor\\jam\\moment\\test\\lang\\zh-tw.js:4"
+        },
+        {
+            "message": "Missing item type\nGet Timezone",
+            "line": " vendor\\jam\\moment\\test\\zone.js:9"
+        },
+        {
+            "message": "Missing item type\nSet Timezone",
+            "line": " vendor\\jam\\moment\\test\\zone.js:49"
+        },
+        {
+            "message": "Missing item type\nTests",
+            "line": " vendor\\jam\\moment\\test\\zone.js:61"
+        },
+        {
+            "message": "Missing item type\nStart it off",
+            "line": " vendor\\jam\\moment\\test\\zone.js:176"
+        },
+        {
+            "message": "Missing item type\nConstants",
+            "line": " vendor\\jam\\moment\\moment.js:9"
+        },
+        {
+            "message": "Missing item type\nConstructors",
+            "line": " vendor\\jam\\moment\\moment.js:213"
+        },
+        {
+            "message": "Missing item type\nHelpers",
+            "line": " vendor\\jam\\moment\\moment.js:281"
+        },
+        {
+            "message": "Missing item type\nFormatting",
+            "line": " vendor\\jam\\moment\\moment.js:423"
+        },
+        {
+            "message": "Missing item type\nParsing",
+            "line": " vendor\\jam\\moment\\moment.js:475"
+        },
+        {
+            "message": "Missing item type\nRelative Time",
+            "line": " vendor\\jam\\moment\\moment.js:694"
+        },
+        {
+            "message": "Missing item type\nTop Level Functions",
+            "line": " vendor\\jam\\moment\\moment.js:730"
+        },
+        {
+            "message": "Missing item type\nMoment Prototype",
+            "line": " vendor\\jam\\moment\\moment.js:912"
+        },
+        {
+            "message": "Missing item type\nDuration Prototype",
+            "line": " vendor\\jam\\moment\\moment.js:1133"
+        },
+        {
+            "message": "Missing item type\nExposing Moment",
+            "line": " vendor\\jam\\moment\\moment.js:1191"
+        },
+        {
+            "message": "Missing item type",
+            "line": " vendor\\jam\\text\\text.js:1"
+        },
+        {
+            "message": "Missing item type\nParses a resource name into its component parts. Resource names\nlook like: module/name.ext!strip, where the !strip part is\noptional.",
+            "line": " vendor\\jam\\text\\text.js:77"
+        },
+        {
+            "message": "Missing item type\nIs an URL on another domain. Only works for browser use, returns\nfalse in non-browser environments. Only used to know if an\noptimized .js version of a text resource should be loaded\ninstead.",
+            "line": " vendor\\jam\\text\\text.js:107"
+        },
+        {
+            "message": "Missing item type",
+            "line": " vendor\\jam\\require.js:1"
+        },
+        {
+            "message": "Missing item type\nHelper function for iterating over an array. If the func returns\na true value, it will break out of the loop.",
+            "line": " vendor\\jam\\require.js:49"
+        },
+        {
+            "message": "Missing item type\nHelper function for iterating over an array backwards. If the func\nreturns a true value, it will break out of the loop.",
+            "line": " vendor\\jam\\require.js:64"
+        },
+        {
+            "message": "Missing item type\nCycles over properties in an object and calls a function for each\nproperty value. If the function returns a truthy value, then the\niteration is stopped.",
+            "line": " vendor\\jam\\require.js:87"
+        },
+        {
+            "message": "Missing item type\nSimple function to mix in properties from source into target,\nbut only if target does not already have a property of the same name.",
+            "line": " vendor\\jam\\require.js:103"
+        },
+        {
+            "message": "Missing item type\nConstructs an error with a pointer to an URL with more information.",
+            "line": " vendor\\jam\\require.js:150"
+        },
+        {
+            "message": "Missing item type\nTrims the . and .. from an array of path segments.\nIt will keep a leading path segment if a .. will become\nthe first path segment, to help with module name lookups,\nwhich act like paths, but can be remapped. But the end result,\nall paths that use this function should look normalized.\nNOTE: this method MODIFIES the input array.",
+            "line": " vendor\\jam\\require.js:210"
+        },
+        {
+            "message": "Missing item type\nGiven a relative module name, like ./something, normalize it to\na real name that can be mapped to a path.",
+            "line": " vendor\\jam\\require.js:243"
+        },
+        {
+            "message": "Missing item type\nCreates a module mapping that includes plugin prefix, module\nname, and path. If parentModuleMap is provided it will\nalso normalize the name via require.normalize()",
+            "line": " vendor\\jam\\require.js:389"
+        },
+        {
+            "message": "Missing item type\nInternal method to transfer globalQueue items to this context's\ndefQueue.",
+            "line": " vendor\\jam\\require.js:526"
+        },
+        {
+            "message": "Missing item type\nChecks is the module is ready to define itself, and if so,\ndefine it.",
+            "line": " vendor\\jam\\require.js:807"
+        },
+        {
+            "message": "Missing item type\nGiven an event from a script node, get the requirejs info from it,\nand then removes the event listeners on the node.",
+            "line": " vendor\\jam\\require.js:1160"
+        },
+        {
+            "message": "Missing item type\nSet a configuration for the context.",
+            "line": " vendor\\jam\\require.js:1212"
+        },
+        {
+            "message": "Missing item type\nConverts a module name + .extension into an URL path.\n*Requires* the use of a module name. It does not support using\nplain URLs like nameToUrl.",
+            "line": " vendor\\jam\\require.js:1393"
+        },
+        {
+            "message": "Missing item type\nCalled to enable a module if it is still in the registry\nawaiting enablement. A second arg, parent, the parent module,\nis passed in for context, when this method is overriden by\nthe optimizer. Not shown here to keep code compact.",
+            "line": " vendor\\jam\\require.js:1456"
+        },
+        {
+            "message": "Missing item type\nInternal method used by environment adapters to complete a load event.\nA load event could be a script load or just a load pass from a synchronous\nload call.",
+            "line": " vendor\\jam\\require.js:1469"
+        },
+        {
+            "message": "Missing item type\nConverts a module name to a file path. Supports cases where\nmoduleName may actually be just an URL.\nNote that it **does not** call normalize on the moduleName,\nit is assumed to have already been normalized. This is an\ninternal API, not a public one. Use toUrl for the public API.",
+            "line": " vendor\\jam\\require.js:1525"
+        },
+        {
+            "message": "Missing item type\nExecutes a module callack function. Broken out as a separate function\nsolely to allow the build system to sequence the files in the built\nlayer in the right sequence.",
+            "line": " vendor\\jam\\require.js:1596"
+        },
+        {
+            "message": "Missing item type\ncallback for script loads, used to check status of loading.",
+            "line": " vendor\\jam\\require.js:1607"
+        },
+        {
+            "message": "Missing item type\nCallback for script errors.",
+            "line": " vendor\\jam\\require.js:1629"
+        },
+        {
+            "message": "Missing item type\nMain entry point.\n\nIf the only argument to require is a string, then the module that\nis represented by that string is fetched for the appropriate context.\n\nIf the first argument is an array, then it will be treated as an array\nof dependency string names to fetch. An optional function callback can\nbe specified to execute when all of those dependencies are available.\n\nMake a local req variable to help Caja compliance (it assumes things\non a require that are not standardized), and to give a short\nname for minification/local scope use.",
+            "line": " vendor\\jam\\require.js:1644"
+        },
+        {
+            "message": "Missing item type\nSupport require.config() to make it easier to cooperate with other\nAMD loaders on globally agreed names.",
+            "line": " vendor\\jam\\require.js:1694"
+        },
+        {
+            "message": "Missing item type\nExecute something after the current tick\nof the event loop. Override for other envs\nthat have a better solution than setTimeout.",
+            "line": " vendor\\jam\\require.js:1702"
+        },
+        {
+            "message": "Missing item type\nExport require as a global, but only if it does not already exist.",
+            "line": " vendor\\jam\\require.js:1712"
+        },
+        {
+            "message": "Missing item type\nAny errors that require explicitly generates will be passed to this\nfunction. Intercept/override it if you want custom error handling.",
+            "line": " vendor\\jam\\require.js:1759"
+        },
+        {
+            "message": "Missing item type\nDoes the request to load a module for the browser case.\nMake this a separate function to allow other environments\nto override it.",
+            "line": " vendor\\jam\\require.js:1768"
+        },
+        {
+            "message": "Missing item type\nThe function that handles definitions of modules. Differs from\nrequire() in that a string for the module should be the first argument,\nand the function to execute after dependencies are loaded should\nreturn a value to define the module corresponding to the first argument's\nname.",
+            "line": " vendor\\jam\\require.js:1914"
+        },
+        {
+            "message": "Missing item type\nExecutes the text. Normally just uses eval, but can be modified\nto use a better, environment-specific call. Only used for transpiling\nloader plugins, not for plain JS modules.",
+            "line": " vendor\\jam\\require.js:1987"
+        },
+        {
+            "message": "Missing item type\nBackbone localStorage Adapter\nVersion 1.1.0\n\nhttps://github.com/jeromegn/Backbone.localStorage",
+            "line": " vendor\\libs\\backbone.localStorage.js:1"
         }
     ]
 }

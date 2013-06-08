@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app\views\calendar.js - AdCapp</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..\..\assets\morgan.jpg" title="AdCapp"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AgendaView.html">AgendaView</a></li>
+            
+                <li><a href="../classes/AppConfig.html">AppConfig</a></li>
+            
+                <li><a href="../classes/BasicView.html">BasicView</a></li>
+            
+                <li><a href="../classes/CalendarView.html">CalendarView</a></li>
+            
+                <li><a href="../classes/Contact.html">Contact</a></li>
+            
+                <li><a href="../classes/Contacts.html">Contacts</a></li>
+            
+                <li><a href="../classes/Event.html">Event</a></li>
+            
+                <li><a href="../classes/EventCollection.html">EventCollection</a></li>
+            
+                <li><a href="../classes/EventView.html">EventView</a></li>
+            
+                <li><a href="../classes/listUser.html">listUser</a></li>
+            
+                <li><a href="../classes/Main.html">Main</a></li>
+            
+                <li><a href="../classes/PaperView.html">PaperView</a></li>
+            
+                <li><a href="../classes/PersonalAgenda.html">PersonalAgenda</a></li>
+            
+                <li><a href="../classes/ProfileView.html">ProfileView</a></li>
+            
+                <li><a href="../classes/Router.html">Router</a></li>
+            
+                <li><a href="../classes/UserCollection.html">UserCollection</a></li>
+            
+                <li><a href="../classes/UserModel.html">UserModel</a></li>
+            
+                <li><a href="../classes/UsersListView.html">UsersListView</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: app\views\calendar.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define([
+    &quot;jquery&quot;,
+    &quot;backbone&quot;,
+    &quot;underscore&quot;,
+    &quot;handlebars&quot;,
+    &quot;fullcalendar&quot;,
+    &quot;moment&quot;,
+    &quot;collections/events&quot;,
+    &quot;models/personalagenda&quot;,
+    &quot;views/basicview&quot;
+], 
+
+function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView) {
+
+	/**
+    View dos calendários
+
+    @class CalendarView
+    @extends BasicView
+    **/
+	return BasicView.extend({
+
+		/**
+		Elemento da DOM onde são colocados os calendários
+
+		@property el 
+		@type String
+		@static
+		@final
+		@default &quot;#calendar-placeholder&quot;
+		**/
+		el: &quot;#calendar-placeholder&quot;,
+
+		/**
+        Id do elemento onde está o calendário, para fazer refresh 
+        do jquery mobile
+
+        @property id 
+        @type String
+        @static
+        @final
+        @default &quot;calendar-placeholder&quot;
+        **/
+		id: &quot;calendar-placeholder&quot;,
+
+        /**
+        Template do calendário
+
+        @property template 
+        @type String
+        @final
+        @protected
+        @default &quot;calendar-partial&quot;
+        **/
+		template: &quot;calendar-partial&quot;,
+
+		events: {
+			&#x27;click #my-prev&#x27; : &#x27;prev&#x27;,
+			&#x27;click #my-next&#x27; : &#x27;next&#x27;,
+			&#x27;click #my-today&#x27; : &#x27;today&#x27;
+		},
+
+ 		/**
+        Dia corrente
+
+        @property currentDay
+        @type Javascript Date Object
+        @protected
+        @default null
+        **/
+		currentDay: null,
+
+ 		/**
+        Dia limite para fazer prev no calendário
+
+        @property backLimitDate
+        @type Javascript Date Object
+        @protected
+        @default null
+        **/
+		backLimitDate: null,
+
+ 		/**
+        Dia limite para fazer next no calendário
+
+        @property forwardLimitDate
+        @type Javascript Date Object
+        @protected
+        @default null
+        **/
+		forwardLimitDate: null,
+
+ 		/**
+        Elemento do calendário
+
+        @property $calendar
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$calendar: null,
+
+ 		/**
+        Elemento de remoção de evento do calendário
+
+        @property $removeevent
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$removeevent: null,
+
+ 		/**
+        Elemento de adição de evento do calendário
+
+        @property $addevent
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$addevent: null,
+
+		/**
+        Elemento do botão de remoção de evento do calendário
+
+        @property $removeeventbutton
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$removeeventbutton: null,
+
+		/**
+        Elemento do botão de adição de evento do calendário
+
+        @property $addeventbutton
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$addeventbutton: null,
+
+		/**
+        Elemento do link para o perfil do orientador do workshop
+
+        @property $teacherlink
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$teacherlink: null,
+
+		/**
+        Elemento do link para o perfil do autor de um paper
+
+        @property $authorlink
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$authorlink: null,
+
+		/**
+        Elemento anchor do link para o perfil do orientador do workshop
+
+        @property $teacherlinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$teacherlinkA: null,
+
+		/**
+        Elemento anchor do link para o perfil do autor de um paper
+
+        @property $authorlinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$authorlinkA: null,
+
+		/**
+        Elemento anchor do link para a página de um evento
+
+        @property $eventlinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$eventlinkA: null,
+
+		/**
+        Elemento anchor do link para a página de um local
+
+        @property $locallinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$locallinkA: null,
+
+		/**
+        Elemento input onde são digitadas pesquisas
+
+        @property $searchbasic
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$searchbasic: null,
+
+		/**
+        Elemento onde está o painel de pesquisa
+
+        @property $searchpanel
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$searchpanel: null,
+
+		/**
+        Elemento relativo aos pop-up&#x27;s
+
+        @property $popup
+        @type Jquery Object
+        @protected
+        @default null
+        **/
+		$popup: null,
+
+		/**
+        Dicionário que guarda informações relativas aos tipos de
+        eventos possíveis
+
+        @property typesInfo
+        @type Javascript prototype
+        @static
+        @final
+        @protected
+        @default {&quot;paper&quot;: {color: &#x27;#2c3e50&#x27;, url: &#x27;#paper/&#x27;}, &quot;workshop&quot;: {color: &#x27;#16a085&#x27;, url: &#x27;#workshop/&#x27;}, 
+					&quot;social&quot;: {color: &#x27;#8e44ad&#x27;, url: &#x27;#social/&#x27;}, &quot;keynote&quot;: {color: &#x27;#2ecc71&#x27;, url: &#x27;#keynote/&#x27;}}
+        **/
+		typesInfo: {&quot;paper&quot;: {color: &#x27;#2c3e50&#x27;, url: &#x27;#paper/&#x27;}, &quot;workshop&quot;: {color: &#x27;#16a085&#x27;, url: &#x27;#workshop/&#x27;}, 
+					&quot;social&quot;: {color: &#x27;#8e44ad&#x27;, url: &#x27;#social/&#x27;}, &quot;keynote&quot;: {color: &#x27;#2ecc71&#x27;, url: &#x27;#keynote/&#x27;}},
+
+
+		/**
+        Construtor da classe CalendarView. Inicializa a collection,
+        o modelo, um booleano e as datas usadas, são ainda passados
+        como argumentos:
+
+			toShowEvents - Eventos a serem apresentados no calendário,
+			Collection de events
+			personalEvents - Agenda pessoal, um Model personalagenda
+			inPersonal - Booleano que indica se estamos a atuar na agenda
+			personalizada do utilizador do dispositivo
+
+		Neste contrutor é feito o rendering e o binding do método search
+		ao evento close do painel de pesquisa
+
+        @constructor
+        @protected
+        @class CalendarView
+        @param {Javascript prototype} args argumentos
+        **/
+		initialize: function (args)
+		{
+			_.bindAll(this);
+
+			var self = this;
+			//Data do dia em que estamos, para testes
+			var d = 29;
+			var m = 4;//meses no javascript date são de 0-11
+			var y = 2013;
+			this.date = new Date(y,m,d);
+
+			//Limites em termos de datas, sempre + e - 3 dias do que esta definido, para testes
+			//A definir que datas e como passa-las
+			this.backLimitDate = new Date(y, m, d-3);
+			this.forwardLimitDate = new Date(y, m, d+3);
+
+			this.toShowEvents = args.toShowEvents;
+			this.personalEvents = args.personalEvents;
+			this.inPersonal = args.inPersonal;//Foi necessário passar este booleano, já que não consegui arranjar uma
+											  //solução viável de outra forma
+
+			//Adicona ao evento close do painel de pesquisa
+			//a invocação da pesquisa
+			var that = this;
+			$( &quot;#searchpanel&quot; ).panel({
+  				close: function( event, ui ) {that.search();}
+			});
+
+
+			this.render();
+		},
+
+        /**
+        Faz o rendering do calendar, com a ajuda o método fullCalendarSetter
+		passando a coleção de eventos a mostrar
+
+        @method render
+        @protected
+        @chainable
+        **/
+		render: function () {
+
+			$(&quot;#calendar&quot;).empty();
+
+			var context = null;
+			var html = this.compileTemplate(this.template, context);
+
+			this.enhanceJQMComponentsAPI();
+
+			this.fullCalendarSetter(this.toShowEvents);
+
+			return this;
+
+		},
+
+		/**
+        Cria o calendário com os eventos passados, trata do binding
+        de métodos a eventos relacionados com pop-up&#x27;s e adição
+        e remoção de eventos, inicializa as variáveis jquery para maior
+        eficiência e decide em que dia o calendário é apresentado.
+
+        @method fullCalendarSetter
+        @protected
+        @param {EventCollection} renderEvents colecção de eventos
+        **/
+		fullCalendarSetter: function(renderEvents)
+		{
+			var that = this;
+
+			var selectedEvents = renderEvents;
+
+			var treatedEvents = selectedEvents.map(this.treatEvents);
+
+			$(document).ready(function() {
+				
+				
+				$(&#x27;#calendar&#x27;).fullCalendar({
+					height:4000,
+					minTime: &#x27;8:00am&#x27;,
+					header: {
+						right: &#x27;&#x27;
+					},
+					defaultView: &#x27;agendaDay&#x27;, 
+					allDaySlot: false,
+					titleFormat: &#x27;&#x27;,
+					slotMinutes: 10,
+					editable: false,
+					events: treatedEvents,
+					eventRender: function(event, element) {
+						if(event.imageurl !== &quot;&quot;)
+					        element.find(&quot;div.fc-event-time&quot;).append(&quot;&lt;img src=&#x27;&quot; + event.imageurl +&quot;&#x27; width=&#x27;12&#x27; height=&#x27;12&#x27;&gt;&quot;);
+					},
+					eventClick: function(calEvent, jsEvent, view) {
+
+				        var currentEvent = that.toShowEvents.getEventByName(calEvent.title);
+				       	var attributes = currentEvent.attributes;
+
+				       	that.setPopUp(attributes);
+				       	
+				       	//A cada popup temos de fazer unbind e bind dos eventos de click
+				       	// nos butões de remover e adicionar evento à agenda pessoal
+				       	//O unbind antes do bind previne a chamada de multiplas vezes seguidas
+				       	// do evento em questão
+						$(&#x27;#popupMenu&#x27;).on( &quot;popupafteropen&quot;, function( event, ui ) { 
+							$(&quot;#remove-event-button&quot;).unbind(&quot;click&quot;).bind(&quot;click&quot;, function(event){
+								
+  								that.removeEvent();
+  								
+  								if(!that.inPersonal)
+  								{
+  									calEvent.imageurl=null;
+  									$(&#x27;#calendar&#x27;).fullCalendar(&#x27;updateEvent&#x27;, calEvent);
+  								}
+  								else //se estiver na personalizada remove o evento do calendario
+  									$(&#x27;#calendar&#x27;).fullCalendar(&#x27;removeEvents&#x27;,calEvent._id);
+							});
+
+							$(&quot;#add-event-button&quot;).unbind(&quot;click&quot;).bind(&quot;click&quot;, function(event){
+  								that.addEvent();
+
+  								if(!that.inPersonal)
+  								{
+  									calEvent.imageurl=&quot;assets/star_white.gif&quot;;
+  									$(&#x27;#calendar&#x27;).fullCalendar(&#x27;updateEvent&#x27;, calEvent);
+  								}	
+							});
+						});
+
+	    				$(&#x27;#popupMenu&#x27;).popup(&#x27;open&#x27;, { positionTo: this });
+	    				
+				   }
+				});
+				
+				
+			});
+
+			//Definição de algumas tags para eficiência
+			this.$calendar = $(&#x27;#calendar&#x27;);
+			this.$removeevent = $(&#x27;#remove-event&#x27;);
+			this.$addevent = $(&#x27;#add-event&#x27;);
+			this.$removeeventbutton = $(&quot;#remove-event-button&quot;);
+			this.$addeventbutton = $(&quot;#add-event-button&quot;);
+			this.$teacherlink = $(&#x27;#teacher-link&#x27;);
+			this.$authorlink = $(&#x27;#author-link&#x27;);
+			this.$teacherlinkA = $(&#x27;#teacher-link a&#x27;);
+			this.$authorlinkA = $(&#x27;#author-link a&#x27;);
+			this.$eventlinkA = $(&#x27;#event-link a&#x27;);
+			this.$locallinkA = $(&#x27;#local-link a&#x27;);
+			this.$searchbasic = $(&#x27;#search-basic&#x27;);
+			this.$searchpanel = $(&#x27;#searchpanel&#x27;);
+			this.$popup = $(&#x27;#popupMenu&#x27;);
+
+			//Decide em que dia é que é apresentada a agenda
+			if(this.currentDay !== null)
+				this.$calendar.fullCalendar( &#x27;gotoDate&#x27;, this.currentDay );
+			else
+				this.$calendar.fullCalendar( &#x27;gotoDate&#x27;, this.date );
+
+		},
+
+		/**
+        Altera o conteúdo de um pop-up consoante os atributos de um evento
+
+        @method setPopUp
+        @protected
+        @param {Object} attributes atributos de um evento
+        **/
+		setPopUp: function(attributes){
+			var type = attributes.type;
+
+			if(type === &quot;paper&quot;)
+			{
+				this.$teacherlink.hide();
+				this.$authorlinkA.attr(&quot;href&quot;, &quot;#user/&quot; + attributes.users_id_array[0]);
+				this.$authorlink.show();
+			}
+			else if(type === &quot;workshop&quot;)
+			{
+				this.$teacherlinkA.attr(&quot;href&quot;, &quot;#user/&quot; + attributes.users_id_array[0]);
+				this.$teacherlink.show();
+				this.$authorlink.hide();
+			}
+			else
+			{
+				this.$teacherlink.hide();
+				this.$authorlink.hide();
+			}
+
+			//Verfica se tem de colocar no popup o botão de remover ou adicionar evento
+			if(this.personalEvents.hasEvent(attributes.id))
+			{
+				this.$removeevent.show();
+				this.$removeeventbutton.attr(&quot;value&quot;, attributes.id);
+				this.$addevent.hide();
+			}
+			else
+			{
+				this.$removeevent.hide();
+				this.$addevent.show();
+				this.$addeventbutton.attr(&quot;value&quot;, attributes.id);
+			}
+			//Vê o tipo do evento e vai ao typesInfo buscar a url correcta
+			var url = this.typesInfo[attributes.type].url;
+
+			this.$eventlinkA.attr(&quot;href&quot;, url + attributes.typeId);
+			this.$locallinkA.attr(&quot;href&quot;, &quot;#local/&quot; +  attributes.local_id);
+		},
+
+		/**
+        Faz a filtragem de eventos a mostrar no calendário, consoante
+        a informação vinda do template, ou seja, dos elementos input
+
+        @method search
+        @protected
+        **/
+  		search: function() {
+  			if(this.toShowEvents !== null)
+			{	
+				//Guarda o dia em que estava antes da pesquisa
+				this.currentDay = this.$calendar.fullCalendar(&#x27;getDate&#x27;);
+
+	  			var terms = this.$searchbasic.val().trim();
+
+	  			var counter = 0;
+				var types = {};
+
+				_.chain(this.typesInfo)
+				 .pairs(this.typesInfo)
+	  			 .each(function (pair){
+	  				var idString = &quot;#&quot;+pair[0];
+	  				var checkValue = $(&#x27;fieldset&#x27;).find(idString).is(&#x27;:checked&#x27;);
+	  				types[pair[0]] = checkValue;
+
+	  				if(checkValue)
+	  					counter+=1;
+	  			});
+
+
+	  			var stringResults = this.toShowEvents.getEventsWithString(terms);
+	  			var typeResults = [];
+	  			var renderEvents = [];
+
+	  			if(counter&gt;0)
+	  			{	
+	  				typeResults = this.toShowEvents.getEventsOfType(types);		
+	  			  	renderEvents = _.intersection(stringResults, typeResults);
+	  			}
+	  			else
+	  				renderEvents = stringResults;
+
+
+	  			this.$calendar.empty();
+				this.fullCalendarSetter(renderEvents);
+			}
+
+  		},
+
+		/**
+        Trata da informação de um evento, para este ser passado para o
+        calendário
+
+        @method treatEvents
+        @protected
+        @param {EventModel} eventobj modelo de um evento
+        **/
+		treatEvents: function(eventobj) {
+
+			var dateFormat = &quot;YYYY-MM-DDTHH:mm:SS&quot;;
+
+			var eventAttrs = eventobj.attributes;
+
+  			var date = eventAttrs.hours.toString();
+            var startDate = Moment(date);
+		   	var duration = eventAttrs.duration;
+
+			var color = this.getColor(eventAttrs.type);
+			var imageurl = &quot;&quot;;
+
+		   	if(this.personalEvents.hasEvent(eventAttrs.id))
+		    	imageurl = &quot;assets/star_white.gif&quot;;
+
+
+		    return {title: eventAttrs.name, start: startDate.utc().format(dateFormat), 
+		       		end: startDate.add(&#x27;minutes&#x27;,duration).utc().format(dateFormat), eventBorderColor: color,
+		    		backgroundColor: color, allDay:false, imageurl: imageurl};
+
+		},
+
+		/**
+        Retorna a cor de um evento consoante o seu tipo
+
+        @method getColor
+        @protected
+        @param {String} type tipo de um evento
+        **/
+		getColor: function(type){
+			return this.typesInfo[type].color;
+		},
+
+		/**
+        Anda um dia para trás no calendário, consoante os limites
+
+        @method prev
+        @protected
+        **/
+		prev: function() {
+
+			if(this.$calendar.fullCalendar(&#x27;getDate&#x27;) &gt; this.backLimitDate)
+				this.$calendar.fullCalendar(&#x27;prev&#x27;);
+
+		},
+
+		/**
+        Anda um dia para a frente no calendário, consoante os limites
+
+        @method next
+        @protected
+        **/
+		next: function() {
+			if(this.$calendar.fullCalendar(&#x27;getDate&#x27;) &lt; this.forwardLimitDate)
+				this.$calendar.fullCalendar(&#x27;next&#x27;);
+		},
+
+		/**
+        Muda o dia visível do calendário, para o dia corrente, se este estiver
+        nos limites dos dias da conferência
+
+        @method today
+        @protected
+        **/
+		today: function() {
+			var today = new Date();
+			if(today &lt; this.forwardLimitDate &amp;&amp; today &gt; this.backLimitDate)
+				this.$calendar.fullCalendar(&#x27;today&#x27;);
+		},
+
+		/**
+        Remove um evento da agenda pessoal do utilizador do dispositivo
+
+        @method removeEvent
+        @protected
+        **/
+		removeEvent: function() {
+			var eventId = this.$removeeventbutton.attr(&quot;value&quot;).trim();
+			console.log(&quot;remove &quot;+eventId);
+
+			//Guarda o dia em que estava antes da pesquisa
+			this.currentDay = this.$calendar.fullCalendar(&#x27;getDate&#x27;);
+
+			//remove na collection se estiver na pessoal
+			if(this.inPersonal)
+				this.toShowEvents.hasEvent(parseInt(eventId)).destroy;
+
+			//remove no modelo com o array
+			this.personalEvents.removeEvent(parseInt(eventId));
+			this.personalEvents.save();
+
+
+			this.$popup.popup(&#x27;close&#x27;);
+
+		},
+
+		/**
+        Adciona um evento à agenda pessoal do utilizador do dispositivo
+
+        @method addEvent
+        @protected
+        **/
+		addEvent: function() {
+			var eventId = this.$addeventbutton.attr(&quot;value&quot;).trim();
+			console.log(&quot;add &quot;+eventId);
+
+			//Guarda o dia em que estava antes da pesquisa
+			this.currentDay = this.$calendar.fullCalendar(&#x27;getDate&#x27;);
+
+			this.personalEvents.addEvent(parseInt(eventId));
+			this.personalEvents.save();
+
+			this.$popup.popup(&#x27;close&#x27;);
+
+		}
+
+	});
+
+});
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

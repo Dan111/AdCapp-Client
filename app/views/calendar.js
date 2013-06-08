@@ -12,11 +12,46 @@ define([
 
 function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView) {
 
+	/**
+    View dos calendários
+
+    @class CalendarView
+    @extends BasicView
+    **/
 	return BasicView.extend({
 
-		el: "#calendar-placeholder", //para inserir os elementos na página
-		id: "calendar-placeholder", //para fazer refresh do jqm
+		/**
+		Elemento da DOM onde são colocados os calendários
 
+		@property el 
+		@type String
+		@static
+		@final
+		@default "#calendar-placeholder"
+		**/
+		el: "#calendar-placeholder",
+
+		/**
+        Id do elemento onde está o calendário, para fazer refresh 
+        do jquery mobile
+
+        @property id 
+        @type String
+        @static
+        @final
+        @default "calendar-placeholder"
+        **/
+		id: "calendar-placeholder",
+
+        /**
+        Template do calendário
+
+        @property template 
+        @type String
+        @final
+        @protected
+        @default "calendar-partial"
+        **/
 		template: "calendar-partial",
 
 		events: {
@@ -25,29 +60,211 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			'click #my-today' : 'today'
 		},
 
-		currentDay: null,
-		backLimitDate: null,
-		forwardLimitDate: null,
-		currentEvents: null,
+ 		/**
+        Dia corrente
 
+        @property currentDay
+        @type Javascript Date Object
+        @protected
+        @default null
+        **/
+		currentDay: null,
+
+ 		/**
+        Dia limite para fazer prev no calendário
+
+        @property backLimitDate
+        @type Javascript Date Object
+        @protected
+        @default null
+        **/
+		backLimitDate: null,
+
+ 		/**
+        Dia limite para fazer next no calendário
+
+        @property forwardLimitDate
+        @type Javascript Date Object
+        @protected
+        @default null
+        **/
+		forwardLimitDate: null,
+
+ 		/**
+        Elemento do calendário
+
+        @property $calendar
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$calendar: null,
+
+ 		/**
+        Elemento de remoção de evento do calendário
+
+        @property $removeevent
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$removeevent: null,
+
+ 		/**
+        Elemento de adição de evento do calendário
+
+        @property $addevent
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$addevent: null,
+
+		/**
+        Elemento do botão de remoção de evento do calendário
+
+        @property $removeeventbutton
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$removeeventbutton: null,
+
+		/**
+        Elemento do botão de adição de evento do calendário
+
+        @property $addeventbutton
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$addeventbutton: null,
+
+		/**
+        Elemento do link para o perfil do orientador do workshop
+
+        @property $teacherlink
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$teacherlink: null,
+
+		/**
+        Elemento do link para o perfil do autor de um paper
+
+        @property $authorlink
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$authorlink: null,
+
+		/**
+        Elemento anchor do link para o perfil do orientador do workshop
+
+        @property $teacherlinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$teacherlinkA: null,
+
+		/**
+        Elemento anchor do link para o perfil do autor de um paper
+
+        @property $authorlinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$authorlinkA: null,
+
+		/**
+        Elemento anchor do link para a página de um evento
+
+        @property $eventlinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$eventlinkA: null,
+
+		/**
+        Elemento anchor do link para a página de um local
+
+        @property $locallinkA
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$locallinkA: null,
+
+		/**
+        Elemento input onde são digitadas pesquisas
+
+        @property $searchbasic
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$searchbasic: null,
+
+		/**
+        Elemento onde está o painel de pesquisa
+
+        @property $searchpanel
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$searchpanel: null,
+
+		/**
+        Elemento relativo aos pop-up's
+
+        @property $popup
+        @type Jquery Object
+        @protected
+        @default null
+        **/
 		$popup: null,
 
+		/**
+        Dicionário que guarda informações relativas aos tipos de
+        eventos possíveis
+
+        @property typesInfo
+        @type Javascript prototype
+        @static
+        @final
+        @protected
+        @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'}}
+        **/
 		typesInfo: {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
 					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'}},
 
+
+		/**
+        Construtor da classe CalendarView. Inicializa a collection,
+        o modelo, um booleano e as datas usadas, são ainda passados
+        como argumentos:
+
+			toShowEvents - Eventos a serem apresentados no calendário,
+			Collection de events
+			personalEvents - Agenda pessoal, um Model personalagenda
+			inPersonal - Booleano que indica se estamos a atuar na agenda
+			personalizada do utilizador do dispositivo
+
+		Neste contrutor é feito o rendering e o binding do método search
+		ao evento close do painel de pesquisa
+
+        @constructor
+        @protected
+        @class CalendarView
+        @param {Javascript prototype} args argumentos
+        **/
 		initialize: function (args)
 		{
 			_.bindAll(this);
@@ -80,7 +297,14 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.render();
 		},
 
+        /**
+        Faz o rendering do calendar, com a ajuda o método fullCalendarSetter
+		passando a coleção de eventos a mostrar
 
+        @method render
+        @protected
+        @chainable
+        **/
 		render: function () {
 
 			$("#calendar").empty();
@@ -90,14 +314,22 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			this.enhanceJQMComponentsAPI();
 
-
 			this.fullCalendarSetter(this.toShowEvents);
-
 
 			return this;
 
 		},
 
+		/**
+        Cria o calendário com os eventos passados, trata do binding
+        de métodos a eventos relacionados com pop-up's e adição
+        e remoção de eventos, inicializa as variáveis jquery para maior
+        eficiência e decide em que dia o calendário é apresentado.
+
+        @method fullCalendarSetter
+        @protected
+        @param {EventCollection} renderEvents colecção de eventos
+        **/
 		fullCalendarSetter: function(renderEvents)
 		{
 			var that = this;
@@ -193,7 +425,13 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		},
 
-		//Altera o popup consoante o tipo de evento
+		/**
+        Altera o conteúdo de um pop-up consoante os atributos de um evento
+
+        @method setPopUp
+        @protected
+        @param {Object} attributes atributos de um evento
+        **/
 		setPopUp: function(attributes){
 			var type = attributes.type;
 
@@ -235,17 +473,21 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.$locallinkA.attr("href", "#local/" +  attributes.local_id);
 		},
 
+		/**
+        Faz a filtragem de eventos a mostrar no calendário, consoante
+        a informação vinda do template, ou seja, dos elementos input
 
+        @method search
+        @protected
+        **/
   		search: function() {
-  			console.log("search");
   			if(this.toShowEvents !== null)
-			{	//Fecha painel de pesquisa
-				//this.$searchpanel.panel( "close" );
+			{	
 				//Guarda o dia em que estava antes da pesquisa
 				this.currentDay = this.$calendar.fullCalendar('getDate');
 
 	  			var terms = this.$searchbasic.val().trim();
-	  			console.log(terms);
+
 	  			var counter = 0;
 				var types = {};
 
@@ -260,8 +502,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	  					counter+=1;
 	  			});
 
-	  			
-	  			
 
 	  			var stringResults = this.toShowEvents.getEventsWithString(terms);
 	  			var typeResults = [];
@@ -282,6 +522,14 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
   		},
 
+		/**
+        Trata da informação de um evento, para este ser passado para o
+        calendário
+
+        @method treatEvents
+        @protected
+        @param {EventModel} eventobj modelo de um evento
+        **/
 		treatEvents: function(eventobj) {
 
 			var dateFormat = "YYYY-MM-DDTHH:mm:SS";
@@ -305,10 +553,23 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		},
 
+		/**
+        Retorna a cor de um evento consoante o seu tipo
+
+        @method getColor
+        @protected
+        @param {String} type tipo de um evento
+        **/
 		getColor: function(type){
 			return this.typesInfo[type].color;
 		},
 
+		/**
+        Anda um dia para trás no calendário, consoante os limites
+
+        @method prev
+        @protected
+        **/
 		prev: function() {
 
 			if(this.$calendar.fullCalendar('getDate') > this.backLimitDate)
@@ -316,18 +577,36 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		},
 
+		/**
+        Anda um dia para a frente no calendário, consoante os limites
+
+        @method next
+        @protected
+        **/
 		next: function() {
 			if(this.$calendar.fullCalendar('getDate') < this.forwardLimitDate)
 				this.$calendar.fullCalendar('next');
 		},
 
+		/**
+        Muda o dia visível do calendário, para o dia corrente, se este estiver
+        nos limites dos dias da conferência
+
+        @method today
+        @protected
+        **/
 		today: function() {
 			var today = new Date();
 			if(today < this.forwardLimitDate && today > this.backLimitDate)
 				this.$calendar.fullCalendar('today');
 		},
 
+		/**
+        Remove um evento da agenda pessoal do utilizador do dispositivo
 
+        @method removeEvent
+        @protected
+        **/
 		removeEvent: function() {
 			var eventId = this.$removeeventbutton.attr("value").trim();
 			console.log("remove "+eventId);
@@ -348,6 +627,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		},
 
+		/**
+        Adciona um evento à agenda pessoal do utilizador do dispositivo
+
+        @method addEvent
+        @protected
+        **/
 		addEvent: function() {
 			var eventId = this.$addeventbutton.attr("value").trim();
 			console.log("add "+eventId);

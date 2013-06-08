@@ -41,15 +41,41 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/AgendaView.html">AgendaView</a></li>
+            
+                <li><a href="../classes/AppConfig.html">AppConfig</a></li>
+            
                 <li><a href="../classes/BasicView.html">BasicView</a></li>
             
+                <li><a href="../classes/CalendarView.html">CalendarView</a></li>
+            
+                <li><a href="../classes/Contact.html">Contact</a></li>
+            
+                <li><a href="../classes/Contacts.html">Contacts</a></li>
+            
+                <li><a href="../classes/Event.html">Event</a></li>
+            
+                <li><a href="../classes/EventCollection.html">EventCollection</a></li>
+            
                 <li><a href="../classes/EventView.html">EventView</a></li>
+            
+                <li><a href="../classes/listUser.html">listUser</a></li>
             
                 <li><a href="../classes/Main.html">Main</a></li>
             
                 <li><a href="../classes/PaperView.html">PaperView</a></li>
             
+                <li><a href="../classes/PersonalAgenda.html">PersonalAgenda</a></li>
+            
+                <li><a href="../classes/ProfileView.html">ProfileView</a></li>
+            
                 <li><a href="../classes/Router.html">Router</a></li>
+            
+                <li><a href="../classes/UserCollection.html">UserCollection</a></li>
+            
+                <li><a href="../classes/UserModel.html">UserModel</a></li>
+            
+                <li><a href="../classes/UsersListView.html">UsersListView</a></li>
             
             </ul>
 
@@ -102,7 +128,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/app_views_event.js.html#l155"><code>app\views\event.js:155</code></a>
+            Defined in: <a href="../files/app_views_event.js.html#l159"><code>app\views\event.js:159</code></a>
         </div>
     
 
@@ -115,7 +141,7 @@
 
 <div class="box intro">
     <p>Construtor da classe abstracta. Inicializa os vectores e as views das 
-tabs, e faz o rendering da página</p>
+tabs, faz fetch da agenda pessoal e faz o rendering da página</p>
 </div>
 
 
@@ -155,7 +181,7 @@ tabs, e faz o rendering da página</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l155"><code>app\views\event.js:155</code></a>
+        <a href="../files/app_views_event.js.html#l159"><code>app\views\event.js:159</code></a>
         
         </p>
 
@@ -204,6 +230,13 @@ tabs, e faz o rendering da página</p>
                     <h3>Methods</h3>
 
                     <ul class="index-list methods extends">
+                        
+                            <li class="index-item method protected">
+                                <a href="#method_addRemoveEvent">addRemoveEvent</a>
+
+                                
+                                
+                            </li>
                         
                             <li class="index-item method protected">
                                 <a href="#method_addTab">addTab</a>
@@ -401,6 +434,63 @@ tabs, e faz o rendering da página</p>
                 <h2 class="off-left">Methods</h2>
 
                 
+                    <div id="method_addRemoveEvent" class="method item protected">
+    <h3 class="name"><code>addRemoveEvent</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/app_views_event.js.html#l349"><code>app\views\event.js:349</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Adiciona ou remove o evento à agenda pessoal, consoante este esteja
+presente na agenda pessoal</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_addTab" class="method item protected">
     <h3 class="name"><code>addTab</code></h3>
 
@@ -457,7 +547,7 @@ tabs, e faz o rendering da página</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l271"><code>app\views\event.js:271</code></a>
+        <a href="../files/app_views_event.js.html#l289"><code>app\views\event.js:289</code></a>
         
         </p>
 
@@ -596,7 +686,7 @@ tabs, e faz o rendering da página</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l249"><code>app\views\event.js:249</code></a>
+        <a href="../files/app_views_event.js.html#l267"><code>app\views\event.js:267</code></a>
         
         </p>
 
@@ -652,7 +742,7 @@ tabs, e faz o rendering da página</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l317"><code>app\views\event.js:317</code></a>
+        <a href="../files/app_views_event.js.html#l335"><code>app\views\event.js:335</code></a>
         
         </p>
 
@@ -870,7 +960,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l180"><code>app\views\event.js:180</code></a>
+        <a href="../files/app_views_event.js.html#l195"><code>app\views\event.js:195</code></a>
         
         </p>
 
@@ -928,7 +1018,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l215"><code>app\views\event.js:215</code></a>
+        <a href="../files/app_views_event.js.html#l233"><code>app\views\event.js:233</code></a>
         
         </p>
 
@@ -986,7 +1076,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l232"><code>app\views\event.js:232</code></a>
+        <a href="../files/app_views_event.js.html#l250"><code>app\views\event.js:250</code></a>
         
         </p>
 
@@ -1109,7 +1199,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l296"><code>app\views\event.js:296</code></a>
+        <a href="../files/app_views_event.js.html#l314"><code>app\views\event.js:314</code></a>
         
         </p>
 
@@ -1189,7 +1279,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l56"><code>app\views\event.js:56</code></a>
+        <a href="../files/app_views_event.js.html#l57"><code>app\views\event.js:57</code></a>
         
         </p>
 
@@ -1239,7 +1329,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l67"><code>app\views\event.js:67</code></a>
+        <a href="../files/app_views_event.js.html#l68"><code>app\views\event.js:68</code></a>
         
         </p>
 
@@ -1289,7 +1379,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l79"><code>app\views\event.js:79</code></a>
+        <a href="../files/app_views_event.js.html#l80"><code>app\views\event.js:80</code></a>
         
         </p>
 
@@ -1339,7 +1429,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l90"><code>app\views\event.js:90</code></a>
+        <a href="../files/app_views_event.js.html#l91"><code>app\views\event.js:91</code></a>
         
         </p>
 
@@ -1389,7 +1479,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l20"><code>app\views\event.js:20</code></a>
+        <a href="../files/app_views_event.js.html#l21"><code>app\views\event.js:21</code></a>
         
         </p>
 
@@ -1437,7 +1527,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l140"><code>app\views\event.js:140</code></a>
+        <a href="../files/app_views_event.js.html#l141"><code>app\views\event.js:141</code></a>
         
         </p>
 
@@ -1447,7 +1537,9 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
     </div>
 
     <div class="description">
-        <p>Eventos lançados pela transição entre tabs</p>
+        <p>Eventos lançados pela transição entre tabs
+e ainda eventos de adição e remoção do evento 
+da agenda pessoal</p>
     </div>
 
     
@@ -1485,7 +1577,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l101"><code>app\views\event.js:101</code></a>
+        <a href="../files/app_views_event.js.html#l102"><code>app\views\event.js:102</code></a>
         
         </p>
 
@@ -1535,7 +1627,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l32"><code>app\views\event.js:32</code></a>
+        <a href="../files/app_views_event.js.html#l33"><code>app\views\event.js:33</code></a>
         
         </p>
 
@@ -1583,7 +1675,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l122"><code>app\views\event.js:122</code></a>
+        <a href="../files/app_views_event.js.html#l123"><code>app\views\event.js:123</code></a>
         
         </p>
 
@@ -1645,7 +1737,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l112"><code>app\views\event.js:112</code></a>
+        <a href="../files/app_views_event.js.html#l113"><code>app\views\event.js:113</code></a>
         
         </p>
 
@@ -1695,7 +1787,7 @@ tratar várias vezes o mesmo evento, por várias tabs distintas.</p>
             
         
         
-        <a href="../files/app_views_event.js.html#l44"><code>app\views\event.js:44</code></a>
+        <a href="../files/app_views_event.js.html#l45"><code>app\views\event.js:45</code></a>
         
         </p>
 
