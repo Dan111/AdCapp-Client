@@ -58,7 +58,8 @@ function ($, Backbone, _) {
         @constructor
         @protected
         @class PersonalAgenda
-        @param {Javascript prototype} args contém booleano para distinguir a agenda do utilizador do dispositivo ou de outro
+        @param {Object} args contém booleano para distinguir a agenda do utilizador do dispositivo ou de outro
+            @param {boolean} args.Personal booleano para distinguir a agenda do utilizador do dispositivo ou de outro
         **/
 		initialize: function (args){
 
@@ -78,6 +79,7 @@ function ($, Backbone, _) {
         @method hasEvent
         @protected
         @param {integer} eventId id de um evento
+        @return {boolean} booleano que indica se o evento está na agenda
         **/
 		hasEvent: function (eventId)
 		{
@@ -92,6 +94,7 @@ function ($, Backbone, _) {
         @method hasEvents
         @protected
         @param {Array} idsArray array de inteiros que representão id's de eventos
+        @return {boolean} booleano que indica se os eventos estão na agenda
         **/
 		hasEvents: function (idsArray)
 		{ 

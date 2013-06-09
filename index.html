@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="assets/event.css">
   <link rel="stylesheet" href="assets/test.css">
   <link rel="stylesheet" href="assets/notifications.css">
+  <link rel="stylesheet" href="assets/eventslist.css">
 
 
 
@@ -351,7 +352,7 @@
               </div>
               <div class="ui-grid-a square-wrapper">
                 <div class="ui-block-a">
-                  <a href="#" data-role="button" class="square" data-mini="true" data-corners="true" data-iconpos="right" data-theme="d">
+                  <a href="#papers" data-role="button" class="square" data-mini="true" data-corners="true" data-iconpos="right" data-theme="d">
                     <div class="square-info">
                       <br>
                       <i class="icon-file-alt icon-4x"></i>
@@ -362,7 +363,7 @@
                   </a>
                 </div>
                 <div class="ui-block-b">
-                  <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
+                  <a href="#sessions" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="g">
                     <div class="square-info">
                       <br>
                       <i class="icon-list-alt icon-4x"></i>
@@ -375,7 +376,7 @@
               </div>
               <div class="ui-grid-a square-wrapper">
                  <div class="ui-block-a">
-                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="i">
+                    <a href="#keynotes" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="i">
                       <div class="square-info">
                         <br>
                         <i ><img class="keynote-pic" src="assets/keynote.png"></i>
@@ -386,7 +387,7 @@
                     </a>
                   </div>
                   <div class="ui-block-b">
-                    <a href="" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="h">
+                    <a href="#workshops" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="h">
                       <div class="square-info">
                         <br>
                         <i class="icon-cogs icon-4x"></i>
@@ -399,7 +400,7 @@
              </div>
              <div class="ui-grid-a square-wrapper" >
                  <div class="ui-block-a">
-                    <a href="#" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="e">
+                    <a href="#socials" data-role="button" class="square" data-mini="true" data-corners="true"  data-iconpos="right" data-theme="e">
                       <div class="square-info">
                         <br>
                         <i class="icon-coffee icon-4x"></i>
@@ -636,32 +637,28 @@
 
   </script>
 
-  <!-- lista de oradores-->
-  <script type="text/x-handlebars-template"  id="speaker-partial">
-      {{#each users}}
-          <li>
-            <a href="#user/{{id}}">
-              <img class="profile-pic" src="assets/morgan.jpg">
-              <h2>{{name}}</h2>
-              <p>{{institution}}</p>
-              <p>{{area}}</p>
-              </a>
-         </li>
-      {{/each}}
-  </script>
 
-  <!-- lista de participantes-->
-  <script type="text/x-handlebars-template"  id="participant-partial">
-      {{#each users}}
-          <li>
-            <a href="#user/{{id}}">
-              <img class="profile-pic" src="assets/morgan.jpg">
-              <h2>{{name}}</h2>
-              <p>{{institution}}</p>
-              <p>{{area}}</p>
+
+  <!--Listas de vários tipos de eventos-->
+
+    <script type="text/x-handlebars-template"  id="events-template">
+
+    <ul id="events-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
+      {{#each eventsList}}
+          <li data-icon="">
+            {{#if inagenda}}
+              <img id="pic"class="profile-pic" src="assets/star_white.gif">
+            {{/if}}
+            <a href="{{url}}" >
+              <h1>{{name}} </h1>
+              <h2>Início: {{start}}</h2>
+              <h2>Fim: {{end}}</h2>
+              <h2>{{local_name}}</h2>
               </a>
          </li>
       {{/each}}
+    </ul>
+
   </script>
 
   <!-- Parte da agenda -->

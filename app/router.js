@@ -7,6 +7,7 @@ define([
   "views/session",
   "views/profile",
   "views/userslist",
+  "views/eventslist",
   "views/agenda",
   "views/contacts",
   "views/notifications",
@@ -14,7 +15,7 @@ define([
   "views/mainmenu"
 ],
 
-function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView) {
+function (Backbone, PaperView, SessionView, ProfileView, UsersListView, EventsListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -40,6 +41,11 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 			"mainmenu"      : "mainmenu",
 			"speakers"      : "speakers",
 			"participants"  : "participants",
+			"papers"		: "papers",
+			"sessions"		: "sessions",
+			"keynotes"		: "keynotes",
+			"workshops"		: "workshops",
+			"socials"		: "socials",
 			"paper/:id"     : "paper",
 			"session/:id"   : "session",
 			"user/:id"      : "user",
@@ -156,6 +162,67 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 		participants: function(){
 			console.log("ROUTE: participants");
 			new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
+		},
+
+
+		/**
+		Route da lista de papers
+
+		@method papers
+		@private
+		**/
+		papers: function(){
+			console.log("ROUTE: participants");
+			new EventsListView({type: "paper", pageId: "papers-page", pageName: "Papers"});
+		},
+
+
+		/**
+		Route da lista de sessões
+
+		@method sessions
+		@private
+		**/
+		sessions: function(){
+			console.log("ROUTE: sessions");
+			new EventsListView({type: "session", pageId: "sessions-page", pageName: "Sessões"});
+		},
+
+
+		/**
+		Route da lista de keynotes
+
+		@method keynotes
+		@private
+		**/
+
+		keynotes: function(){
+			console.log("ROUTE: keynotes");
+			new EventsListView({type: "keynote", pageId: "keynotes-page", pageName: "Keynotes"});
+		},
+
+
+		/**
+		Route da lista de workshops
+
+		@method workshops
+		@private
+		**/
+		workshops: function(){
+			console.log("ROUTE: workshops");
+			new EventsListView({type: "workshop", pageId: "workshops-page", pageName: "Workshops"});
+		},
+
+
+		/**
+		Route da lista de eventos sociais
+
+		@method socials
+		@private
+		**/
+		socials: function(){
+			console.log("ROUTE: socials");
+			new EventsListView({type: "social", pageId: "socials-page", pageName: "Eventos Sociais"});
 		},
 
 

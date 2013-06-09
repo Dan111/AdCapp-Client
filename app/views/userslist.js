@@ -74,22 +74,20 @@ define([
 		users: null,
 
 		/**
-		Construtor da classe UsersListView, em que são passados três atributos:
-			isSpeakers - Booleano que indentifica a collection que temos de
-			utilizar;
-
-			id - Id da página,
-
-			pageName - Nome da página;
-
+		Construtor da classe UsersListView.
 		Neste construtor é feito o fetch de uma UserCollection, que representa
 		os elementos a serem apresentados na view. Ainda neste contrutor é
 		feito o rendering necessário.
 
 		@constructor
+		@protected
 		@class UsersListView
-		@param {Javascript prototype} args atributos
-		**/
+		@param {Object} args contém um booleano, id da página e nome da página
+			@param {boolean} args.isSpeakers Booleano que indentifica a collection que temos de
+			utilizar
+            @param {String} args.id id da página
+            @param {String} args.pageName nome da página
+        **/
 		initialize: function (args)
 		{
 			_.bindAll(this);

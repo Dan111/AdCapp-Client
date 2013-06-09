@@ -46,7 +46,8 @@ function ($, Backbone, LocalStorage, listUser) {
         @constructor
         @protected
         @class UserCollection
-        @param {Javascript prototype} args contém booleano para distinguir oradores de participantes
+        @param {Object} args contém booleano para distinguir oradores de participantes
+        	@param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
         **/
 		initialize: function (args){
 
@@ -64,6 +65,7 @@ function ($, Backbone, LocalStorage, listUser) {
         @method comparator
         @protected
         @param {listUser} user modelo de informação de utilizador para lista
+        @return {String} nome do user
         **/
 		comparator: function( user ) {
 	      return user.get('name');
