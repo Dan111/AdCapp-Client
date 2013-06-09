@@ -5,6 +5,11 @@ define([
     'moment'
 ], 
 
+/**
+Classe que trata de inicializar os partials e os helpers do Handlebars
+
+@class HandlebarsConfig
+**/
 function (Handlebars, $, _, Moment) {
 
     return function () {

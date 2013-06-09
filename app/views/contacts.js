@@ -7,15 +7,70 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, ContactModel, Contacts, BasicView) {
 
+	/**
+	View do menu de contactos da aplicação
+
+	@class ContactsView
+	@extends BasicView
+	**/
 	return BasicView.extend({
 
+		/**
+		Elemento da DOM onde são colocados todas as páginas
+
+		@property el 
+		@type String
+		@static
+		@final
+		@default "div[data-role=content]"
+		**/
 		el: "div[data-role=content]",
 
+
+		/**
+		ID usado pelo div que contém a página
+
+		@property id 
+		@type String
+		@static
+		@final
+		@default "contacts-page"
+		**/
 		id: "contacts-page",
+
+
+		/**
+		Nome da página, apresentado no header
+
+		@property pageName 
+		@type String
+		@static
+		@final
+		@default "Contactos"
+		**/
 		pageName: "Contactos",
 
+
+		/**
+		Template usado pela página
+
+		@property template 
+		@type String
+		@final
+		@protected
+		@default "contacts-template"
+		**/
 		template: "contacts-template",
 
+
+		/**
+		Definição dos listeners para os cliques nos botões presentes na
+		página de contactos
+
+		@property events
+		@type Object
+		@protected
+		**/
 		events: {
 
 			"click .remove-contact"		: "removeContact",
@@ -23,6 +78,15 @@ define([
 
 		},
 
+
+		/**
+		Carrega os contactos do utilizador e chama o método responsável pelo
+		rendering da página. Também cria um event listener para a remoção de
+		contactos da colecção, para fazer o rerendering.
+
+		@constructor
+		@class ContactsView
+		**/
 		initialize: function (){
 
 			_.bindAll(this);
@@ -42,6 +106,13 @@ define([
 		},
 
 
+		/**
+		Faz o rendering dos contactos.
+
+		@method render
+		@protected
+		@chainable
+		**/
 		render: function (){
 
 			var context = {
@@ -60,6 +131,13 @@ define([
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica no botão de remover
+		um contacto.
+
+		@method removeContact
+		@protected
+		**/
 		removeContact: function (e){
 
 			var $this = $(e.target).parent();
@@ -70,20 +148,17 @@ define([
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica no botão de 'Exportar Contactos'
+
+		@method exportContacts
+		@protected
+		**/
 		exportContacts: function (){ //TODO: Adicionar um popup de confirmação
 
 			this.contacts.exportContacts();
 
 			this.showErrorOverlay({text: "Contactos Exportados"});
-
-			// var c = navigator.contacts.create();
-			// c.displayName = "Antonio Mendes";
-			// c.emails = [new ContactField('work', 'mendes@mail.com', false)];
-			// c.note = "AdCapp";
-			// var org = new ContactOrganization(false, '', 'FCT', 'IA', '');
-			// c.organizations = [org];
-			// c.save(function(){}, function(){});
-
 		}
 
 

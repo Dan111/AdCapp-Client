@@ -3,36 +3,36 @@
   font-style: normal;
   font-weight: 400;
   src: local('Lato Regular'),
-    local('Lato-Regular'),
+    local('OpenSans-Regular'),
     url(fonts/lato-regular.woff) format('woff'),
-    url(fonts/lato-regular.ttf) format('truetype');
+    url(fonts/OpenSans-Regular.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
   src: local('Lato Bold'),
-    local('Lato-Bold'),
+    local('OpenSans-Bold'),
     url(fonts/lato-bold.woff) format('woff'),
-    url(fonts/lato-bold.ttf) format('truetype');
+    url(fonts/OpenSans-Bold.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 900;
   src: local('Lato Black'),
-    local('Lato-Black'),
+    local('OpenSans-Bold'),
     url(fonts/lato-black.woff) format('woff'),
-    url(fonts/lato-black.ttf) format('truetype');
+    url(fonts/OpenSans-Bold.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
   src: local('Lato Italic'),
-    local('Lato-Italic'),
+    local('OpenSans-Italic'),
     url(fonts/lato-italic.woff) format('woff'),
-    url(fonts/lato-italic.ttf) format('truetype');
+    url(fonts/OpenSans-Italic.ttf) format('truetype');
 }
 @font-face {
   font-family: "Flat-UI-Icons-24";

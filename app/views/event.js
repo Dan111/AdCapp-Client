@@ -149,11 +149,22 @@ define([
 		**/
 		events: {
 
-			"click #about-tab"		: "renderAboutTab",
-			"click #comments-tab"	: "renderCommentsTab",
-			"click #add-remove-event" : "addRemoveEvent"
+			"click #about-tab"			: "renderAboutTab",
+			"click #comments-tab"		: "renderCommentsTab",
+			"click #add-remove-event" 	: "addRemoveEvent"
 
 		},
+
+
+		/**
+		Ícone apresentado quando o utilizador tem o evento na agenda pessoal
+
+		@property checkIcon 
+		@type String
+		@private
+		@default '<i id="check-event" class="icon-check-sign pull-right"></i>'
+		**/
+		checkIcon: '<i id="check-event" class="icon-check-sign pull-right"></i>',
 
 
 		/**
@@ -223,7 +234,7 @@ define([
 			this.$("[data-role=navbar] a:first").addClass("ui-btn-active");
 
 			if(this.personalAgenda.hasEvent(this.model.id))
-                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
+                $('#add-remove-event').parent().append(this.checkIcon);
 			
 			return this;
 
@@ -369,7 +380,7 @@ define([
 				 
             	this.personalAgenda.addEvent(this.model.id);
             	this.personalAgenda.save();
-                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
+                $('#add-remove-event').parent().append(this.checkIcon);
 			}
 		}
 

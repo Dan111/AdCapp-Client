@@ -6,10 +6,34 @@ define([
 
 function ($, Backbone, BasicView) {
 
+	/**
+    Modelo de uma palestra
+
+    @class Paper
+    @extends Backbone.Model
+    **/
 	return Backbone.Model.extend({
 
+		/**
+		URL utilizado para obter os dados.
+
+		@property url
+		@type String
+		@private
+		@default "/papers/"
+		**/
 		url: "http://adcapp.apiary.io/papers/",
 
+
+		/**
+        Atributos predefinidos do modelo.
+
+        @property defaults
+        @type Object
+        @static
+        @final
+        @private
+        **/
 		defaults: {
 
 			name: null,
@@ -27,12 +51,38 @@ function ($, Backbone, BasicView) {
 
 		},
 
+
+		/**
+        Construtor do modelo. Adiciona ao URL o id da instância.
+
+        @constructor
+        @protected
+        @class Paper
+        **/
 		initialize: function (){
 			this.url += this.id;
 		},
 
-		//TODO: factorizar método
-		submitComment: function (options){
+		
+		/**
+		Submete um novo comentário na página do evento
+
+		@method submitComment
+		@protected
+		@async
+		@param {Object} options Configuração do comentário
+			@param {String} options.url Onde o comentário deve ser colocado.
+			@param {Integer} options.text Conteúdo do comentário.
+			@param {Function()} options.success Função de callbak em caso de 
+												sucesso.
+		@example
+			submitComment(	'comments',
+							'Isto é um comentário',
+							function () { 
+								console.log("Comentário submetido");
+							})
+		**/
+		submitComment: function (options){ //TODO: factorizar método
 
 			var self = this;
 
@@ -46,8 +96,13 @@ function ($, Backbone, BasicView) {
 				url: this.url + "/" + options.url,
 
 				//TODO: alterar email e password quando o registo do dispositivo funcionar
-				data: { "email":"toni@mail.com", "password": "123456", "content": options.text, 
-						"id": this.id, type: 'Paper' },
+				data: { 
+					"email"		:"toni@mail.com", 
+					"password"	: "123456", 
+					"content"	: options.text, 
+					"id"		: this.id, 
+					type		: 'Paper' 
+				},
 
 				beforeSend: function () {
 					$.mobile.loading( 'show', {

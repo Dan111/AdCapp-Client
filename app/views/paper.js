@@ -17,25 +17,115 @@ define([
 	**/
 	return EventView.extend({
 
-		el 				: "div[data-role=content]",
+		/**
+		Elemento da DOM onde são colocados todas as páginas
 
-		id 				: "paper-page",
-		pageName		: "Palestra",
+		@property el 
+		@type String
+		@static
+		@final
+		@default "div[data-role=content]"
+		**/
+		el: "div[data-role=content]",
 
-		descName		: "Abstract",
-		speakersTitle	: "Autores",
 
-		questionsTabId 	: "questions-tab",
+		/**
+		ID usado pelo div que contém a página
+
+		@property id 
+		@type String
+		@static
+		@final
+		@default "paper-page"
+		**/
+		id: "paper-page",
+
+
+		/**
+		Nome da página, apresentado no header
+
+		@property pageName 
+		@type String
+		@static
+		@final
+		@default "Palestra"
+		**/
+		pageName: "Palestra",
+
+
+		/**
+		Título da descrição
+
+		@property descName 
+		@type String
+		@static
+		@final
+		@default "Abstract"
+		**/
+		descName: "Abstract",
+
+
+		/**
+		Título dos envolvidos
+
+		@property speakersTitle 
+		@type String
+		@static
+		@final
+		@default "Autores"
+		**/
+		speakersTitle: "Autores",
+
+
+		/**
+		Id da tab de perguntas
+
+		@property questionsTabId 
+		@type String
+		@static
+		@final
+		@default "questions-tab"
+		**/
+		questionsTabId: "questions-tab",
+
+
+		/**
+		Nome da tab de perguntas
+
+		@property questionsTabName 
+		@type String
+		@static
+		@final
+		@default "Perguntas"
+		**/
 		questionsTabName: "Perguntas",
 
-		events: function(){
 
+		/**
+		Eventos aos quais a página responde. Para além dos herdados pela EventView,
+		há ainda o rendering da tab de perguntas
+
+		@property events
+		@type Object
+		@extends EventView.events
+		@protected
+		**/
+		events: function(){
 			return _.extend({
 				"click #questions-tab"	: "renderQuestionsTab"
 			}, EventView.prototype.events);
 		},
 
 
+		/**
+		Carrega a informação da palestra com o id passado como parâmetro,
+		e chama o construtor da superclasse.
+
+		@constructor
+		@class PaperView
+		@param {Object} args Parâmetros da view
+			@param {String} args.modelId ID da palestra a ser associada à view
+		**/
 		initialize: function (args)
 		{
 			_.bindAll(this);
@@ -51,6 +141,14 @@ define([
 			});
 		},
 
+
+		/**
+		Faz o rendering da tab 'Perguntas'
+
+		@method renderQuestionsTab
+		@protected
+		@chainable
+		**/
 		renderQuestionsTab: function () {
 
 			console.log("papers tab");
@@ -61,7 +159,12 @@ define([
 		},
 
 
+		/**
+		Inicializa as tabs 'Sobre' e 'Perguntas' e adiciona-as ao vetor de tabs
 
+		@method createTabs
+		@protected
+		**/
 		createTabs: function (){
 
 			this.about = new AboutView({
@@ -89,11 +192,6 @@ define([
 
 		}
 
-
-		
-
-
 	});
-
 
 });

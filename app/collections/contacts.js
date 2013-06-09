@@ -10,7 +10,7 @@ function ($, Backbone, LocalStorage, Contact) {
 	/**
     Coleção de contactos
 
-    @class Contacts
+    @class ContactCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
@@ -30,12 +30,12 @@ function ($, Backbone, LocalStorage, Contact) {
         LocalStorage para fazer fecth da collection
 
         @property localStorage
-        @type new Backbone.LocalStorage('contacts-backbone')
+        @type Backbone.LocalStorage
         @static
         @final
         @default new Backbone.LocalStorage('contacts-backbone')
         **/
-		localStorage: new new Backbone.LocalStorage('contacts-backbone'),
+		localStorage: new Backbone.LocalStorage('contacts-backbone'),
 
 
 		initialize: function (){
@@ -65,6 +65,12 @@ function ($, Backbone, LocalStorage, Contact) {
         },
 
 
+        /**
+        Exporta os contactos da aplicação para o dispositivo
+
+        @method exportContacts
+        @protected
+        **/
         exportContacts: function (){
 
         	console.log("exporting");
@@ -78,19 +84,27 @@ function ($, Backbone, LocalStorage, Contact) {
         },
 
 
+        /**
+        Adiciona o contacto passado como parâmetro ao dispositivo, caso ainda 
+        não exista um outro contacto com o mesmo email
+
+        @method addPhoneContact
+        @param {Contact} contacto a ser adicionado
+        **/
         addPhoneContact: function (contact){
 
         	var exported = false;
 
         	var email = contact.get('email');
 
-        	var options = new ContactFindOptions();
-			options.filter = email;
-			options.multiple = false;
+        	var options = new ContactFindOptions(); //objecto de pesquisa
+			options.filter = email; //filtro a ser usado na pesquisa
+			options.multiple = false; //retorna apenas um contacto
 
 			var self = this;
 
-			var success = function (contacts){  
+			var success = function (contacts){  //função chamada caso a pesquisa
+                                                //seja bem sucedida
 
 				if(contacts.length === 0) {
 					self.createPhoneContact(contact);
@@ -98,7 +112,7 @@ function ($, Backbone, LocalStorage, Contact) {
 				}
 			}
 
-			var error = function (){
+			var error = function (){ //callback em caso de erro
 				console.log("contact search error");
 			}
 
@@ -107,6 +121,13 @@ function ($, Backbone, LocalStorage, Contact) {
         },
 
 
+        /**
+        Cria um novo contacto do Phonegap e adiciona-o à lista de contactos do 
+        dispositivo
+
+        @method createPhoneContact
+        @param {Contact} contacto a ser criado
+        **/
         createPhoneContact: function (contact){ //TODO: Adicionar social contacts e outras infos
 
         	var phoneContact = navigator.contacts.create();

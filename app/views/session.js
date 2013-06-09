@@ -11,24 +11,121 @@ define([
     "views/sessionpapers"
 ], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, CommentsView, AboutView, SessionPapersView) {
 
+	/**
+	View da página de sessão
+
+	@class SessionView
+	@extends EventView
+	**/
 	return EventView.extend({
 
-		el 				: "div[data-role=content]",
+		/**
+		Elemento da DOM onde são colocados todas as páginas
 
-		id 				: "session-page",
-		pageName		: "Sessão",
+		@property el 
+		@type String
+		@static
+		@final
+		@default "div[data-role=content]"
+		**/
+		el: "div[data-role=content]",
 
-		descName		: "Descrição",
-		speakersTitle	: "Moderador",
 
-		papersTabId		: "papers-tab",
-		papersTabName 	: "Papers",
+		/**
+		ID usado pelo div que contém a página
 
+		@property id 
+		@type String
+		@static
+		@final
+		@default "session-page"
+		**/
+		id: "session-page",
+
+
+		/**
+		Nome da página, apresentado no header
+
+		@property pageName 
+		@type String
+		@static
+		@final
+		@default "Sessão"
+		**/
+		pageName: "Sessão",
+
+
+		/**
+		Título da descrição
+
+		@property descName 
+		@type String
+		@static
+		@final
+		@default "Descrição"
+		**/
+		descName: "Descrição",
+
+
+		/**
+		Título dos envolvidos
+
+		@property speakersTitle 
+		@type String
+		@static
+		@final
+		@default "Moderador"
+		**/
+		speakersTitle: "Moderador",
+
+
+		/**
+		Id da tab de palestras que compõem a sessão
+
+		@property papersTabId 
+		@type String
+		@static
+		@final
+		@default "papers-tab"
+		**/
+		papersTabId: "papers-tab",
+
+
+		/**
+		Nome da tab de palestras
+
+		@property id 
+		@type String
+		@static
+		@final
+		@default "Papers"
+		**/
+		papersTabName: "Papers",
+
+
+		/**
+		Nome da tab de palestras
+
+		@property id 
+		@type String
+		@static
+		@final
+		@default "Papers"
+		**/
 		paperIds: null,
 
 
-		events: function(){
+		/**
+		Eventos aos quais a página responde. Para além dos herdados pela EventView,
+		há ainda o rendering da tab de palestras e o override da adição à agenda
+		pessoal
 
+		@property events
+		@type Object
+		@extends EventView.events
+		@protected
+		**/
+		events: function(){
 			return _.extend({
 				"click #add-remove-event" : "addRemoveEvents",
 				"click #papers-tab"	: "renderPapersTab"
@@ -36,23 +133,21 @@ define([
 		},
 
 
+		/**
+		Carrega a informação da sessão com o id passado como parâmetro,
+		e chama o construtor da superclasse.
+
+		@constructor
+		@class SessionView
+		@param {Object} args Parâmetros da view
+			@param {String} args.modelId ID da sessão a ser associada à view
+		**/
 		initialize: function (args)
 		{
 			_.bindAll(this);
 
 			var modelId = args.modelId;
 			var self = this;
-
-			this.personalAgenda = new PersonalAgendaModel({id: 0, Personal: true});
-
-			this.personalAgenda.fetch({
-				success: function () {
-					console.log("Personal Events loaded");
-				},
-				error: function (){
-					console.log("Fail to get events or don't have any");
-				}
-			});
 
 			this.model = new SessionModel({id: modelId});
 			this.model.fetch({
@@ -65,6 +160,13 @@ define([
 		},
 
 
+		/**
+		Faz o rendering da tab 'Papers'
+
+		@method renderQuestionsTab
+		@protected
+		@chainable
+		**/
 		renderPapersTab: function () {
 
 			console.log("papers tab");
@@ -76,14 +178,13 @@ define([
 
 
 		/**
-		Faz o rendering do layout base das páginas de sessão e verficia
+		Faz o rendering do layout base das páginas de sessão e verifica
 		se a agenda pessoal contém todos os eventos referentes a esta sessão,
 		se não tiver remove o check que a view EventView adiciona, porque a 
 		agenda contém um evento da sessão,se for o caso
 
 		@method render
 		@protected
-		@chainable
 		**/
 		render: function (){
 			//Apenas para desfazer o check adicionado na view event, caso já tenha um dos papers na agenda
@@ -91,7 +192,7 @@ define([
 			//chamada do método render da superclasse
 			EventView.prototype.render.apply(this);
 
-			this.paperIds = this.arrayOfPaperIds();
+			this.paperIds = this.model.arrayOfPaperIds();
 
 			var hasEvents = this.personalAgenda.hasEvents(this.paperIds);
 
@@ -104,6 +205,12 @@ define([
 		},
 
 
+		/**
+		Inicializa as tabs 'Sobre' e 'Papers' e adiciona-as ao vetor de tabs
+
+		@method createTabs
+		@protected
+		**/
 		createTabs: function (){
 
 			this.about = new AboutView({
@@ -126,23 +233,11 @@ define([
 
 		},
 
-		
-		/**
-		Coloca todos os id's dos eventos de uma sessão num array
-
-		@method arrayOfPaperIds
-		@private
-		**/
-		arrayOfPaperIds: function(){
-			return  _.map(this.model.get('papers'), function(paper){
-				return paper.id;
-			});
-		},
 
 		/**
 		Adiciona ou remove os eventos da sessão à agenda pessoal, consoante estes estejam
-		presentes na agenda pessoal. No caso de ter não ter todos os eventos da sessão
-		na agenda pessoal adicona os que faltam
+		presentes na agenda pessoal. No caso de não ter todos os eventos da sessão
+		na agenda pessoal, adicona os que faltam.
 
 		@method addRemoveEvent
 		@protected

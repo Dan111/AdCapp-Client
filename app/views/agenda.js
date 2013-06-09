@@ -107,7 +107,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         da coleção de eventos da conferência e faz o rendering da página
 
         @constructor
-        @protected
         @class AgendaView
         **/
 		initialize: function ()

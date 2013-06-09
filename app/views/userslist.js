@@ -87,7 +87,6 @@ define([
 		feito o rendering necessário.
 
 		@constructor
-		@protected
 		@class UsersListView
 		@param {Javascript prototype} args atributos
 		**/

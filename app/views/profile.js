@@ -93,6 +93,7 @@ define([
         **/
         user: null,
 
+
         /**
         Eventos lançados pela transição entre tabs
         e ainda eventos de adição e remoção de utilizador
@@ -110,13 +111,13 @@ define([
 
         },
 
+
         /**
         Construtor da classe ProfileView, em que é passado o id do utilizador
         a apresentar. Faz o fetch da Collection de contactos, do Model
         do utilizador a apresentar e ainda o rendering da página
 
         @constructor
-        @protected
         @class ProfileView
         @param {Javascript prototype} args id do utilizador da página
         **/

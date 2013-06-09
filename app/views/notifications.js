@@ -9,19 +9,71 @@ define([
     "collections/notifications"
 ], function ($, Backbone, _, Handlebars, BasicView, Notification, Account, NotificationsCollection) {
 
+    /**
+    View do menu de notificações
 
+    @class NotificationsView
+    @extends BasicView
+    **/
 	return BasicView.extend({
 
+        /**
+        ID usado pelo div que contém a página
+
+        @property id 
+        @type String
+        @static
+        @final
+        @default "notification-page"
+        **/
         id: "notification-page",
+
+
+        /**
+        Nome da página, apresentado no header
+
+        @property pageName 
+        @type String
+        @static
+        @final
+        @default "Notificações"
+        **/
         pageName: "Notificações",
 
+
+        /**
+        Template usado pela página
+
+        @property template 
+        @type String
+        @final
+        @protected
+        @default "notifications-template"
+        **/
         template: "notifications-template",
 
+
+        /**
+        Definição dos listeners dos eventos que informam quando uma
+        notificação deve ser marcada como lida
+
+        @property events
+        @type Object
+        @protected
+        **/
         events: {
             "expand .notif"             : "readNotif",
             "click #mark-all-as-read"   : "markAllAsRead"
         },
 
+
+        /**
+        Carrega as notificações e chama o método responsável pelo 
+        rendering da página. 
+
+        @constructor
+        @class NotificationsView
+        **/
         initialize: function () {
 
             _.bindAll(this);
@@ -39,6 +91,14 @@ define([
 
         },
 
+
+        /**
+        Faz o rendering de todas as notificações.
+
+        @method render
+        @protected
+        @chainable
+        **/
         render: function () {
 
             var self = this;
@@ -65,6 +125,14 @@ define([
         },
 
 
+        /**
+        Função chamada quando se expande uma notificação, delegando a tarefa de
+        a marcar como lida para a coleção de notificações.
+
+        @method readNotif
+        @protected
+        @param {Event} Evento lançado quando se expandiu a notificação
+        **/
         readNotif: function (e) {
 
             var $this = $(e.target);
@@ -76,6 +144,12 @@ define([
         },
 
 
+        /**
+        Função chamada quando se clica no botão 'Marcar Todas Como Lidas'
+
+        @method markAllAsRead
+        @protected
+        **/
         markAllAsRead: function () { //TODO: tornar mais eficiente
             $(".notif").trigger("expand").trigger("collapse");
         }
