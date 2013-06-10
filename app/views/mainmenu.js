@@ -5,7 +5,7 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, BasicView) {
 
-	return Backbone.View.extend({
+	return BasicView.extend({
 
 		el: $("[data-role=content]"),
 
@@ -13,21 +13,14 @@ define([
 		pageName: "Main Menu",
 
 		template: "mainmenu-template",
-		
-		users: null,
-
-		events: {
-
-			
-
-		},
 
 		initialize: function ()
 		{
-			console.log("alert0");
 			_.bindAll(this);
 
 			var self = this;
+
+			this.menu = false;
 
 			self.renderLayout();
 			self.render();
@@ -35,38 +28,9 @@ define([
 		},
 
 
-		renderLayout: function () {
-console.log("alert1");
-			var pid = this.id;
-			var name = this.pageName;
-
-			var context = {page_id: pid, page_name: name};
-			var html = this.compileTemplate("layout-template", context);
-
-			//adiciona página ao body
-			$("body").append(html);
-			this.enhanceJQMComponentsAPI();
-
-			//limpa a pagina anterior do DOM
-			this.removePreviousPageFromDOM();
-console.log("alert2");
-			return this;
-		},
-
-		compileTemplate: function (templateName, context) {
-
-			var source   = $("#" + templateName).html();
-			var template = Handlebars.compile(source);
-			var html = template(context);
-
-			return html;
-
-		},
-
-
 		render: function () {
-			console.log("alert3");
-			
+			var that = this;
+
 			var context = null;
 
 			var html = this.compileTemplate(this.template, context);
@@ -76,31 +40,71 @@ console.log("alert2");
 
 			
 			this.setElement($("[data-role=content]"));
-console.log("alert4");
+
+			$(document).bind("scrollstart", function() {
+                that.closePopup;
+            });
+
+            $(document).bind("taphold", function() {
+                that.closePopup;
+            });
+
+			$(document).ready(function() {
+				  document.addEventListener("deviceready", that.onDeviceReady, false);
+			});
+
+			$(window).resize(function(){
+    			that.resizePopUp();
+                that.positioningPopUp();
+                
+    		});
+
 			return this;
 
 		},
 
+        closePopup: function(){
+            $('#menu-button').popup( "close" );
+            this.menu = false;
+        },
+
+        positioningPopUp: function(){
+            var toppos=($(window).height()/2) - ($('#menu-button').height()/2);
+            var leftpos=($(window).width()/2) - ($('#menu-button').width()/2);
+            $('#menu-button').css("top", toppos).css("left",leftpos-16);
+        },
+
+        resizePopUp: function(){
+            $('#menu-button').width($(window).width());
+        },
+
+		onDeviceReady: function() {
+			var that = this;
+        	document.addEventListener("menubutton", that.onMenuKeyDown, false);
+    	},
 
 
+    	onMenuKeyDown: function() {
+    		that = this;
+    		
+    		this.resizePopUp();
+            
+    		if(this.menu === false)
+    		{
+    			$('#menu-button').popup({
+  					afterclose: function( event, ui ) {that.menu = false;}
+				});
 
-		enhanceJQMComponentsAPI: function () {
-    // changePage
-             $.mobile.changePage("#" + this.id, {
-                 changeHash: false
-             });
+    			$('#menu-button').popup('open');
 
-             $("#" + this.id).trigger("create");
-         },
-    // Add page to DOM
-         removePreviousPageFromDOM: function () {
-             // $("main").append($(this.el));
-             // $("#profile").page();
-             $("[data-role=page]:first").remove();
-         }
+                that.positioningPopUp();
 
-
-	});
-
-
+    			this.menu = true;
+    		}
+    		else
+    		{
+    			this.closePopup();
+    		}	
+    	}
+    });
 });
