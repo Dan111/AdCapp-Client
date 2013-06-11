@@ -48,15 +48,13 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 
 			"speakers"      : "speakers",
 			"participants"  : "participants",
-<<<<<<< HEAD
 
-=======
 			"papers"		: "papers",
 			"sessions"		: "sessions",
 			"keynotes"		: "keynotes",
 			"workshops"		: "workshops",
 			"socials"		: "socials",
->>>>>>> b9739a0a558a97f606c97005c47278c12804a4ad
+
 			"paper/:id"     : "paper",
 			"session/:id"   : "session",
 			"keynote/:id"   : "keynote",
