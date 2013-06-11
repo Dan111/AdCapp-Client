@@ -133,9 +133,9 @@ define([
 		**/
 		enhanceJQMComponentsAPI: function () {
 
-			var $page = $("#" + this.id + ":last");
+			var $page = $("#" + this.id);
 
-			$.mobile.changePage($page, {
+			$.mobile.changePage("#" + this.id, {
 				changeHash: false
 			});
 
