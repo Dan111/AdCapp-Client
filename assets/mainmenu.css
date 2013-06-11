@@ -12,6 +12,8 @@
 
 .square-info {
 	margin-left: 20px;
+	position: relative;
+	bottom: 10px;
 }
 
 .square-wrapper {
@@ -20,16 +22,12 @@
 }
 
 .keynote-pic{
-	height: 51px;
-	width: 36px;
+	height: 61px;
+	width: 45px;
 }
 
 .speaker-pic{
-	height: 51px;
+	height: 61px;
 	width: 50px;
 }
 
-#searchpanel{
-
-	opacity: 0.95 !important;
-}

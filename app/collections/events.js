@@ -47,7 +47,8 @@ function ($, Backbone, _, LocalStorage, Event) {
         @constructor
         @protected
         @class EventCollection
-        @param {Javascript prototype} args contém booleano
+        @param {Object} args contém booleano
+            @param {boolean} args.isPersonal booleano que verifica se temos de ir ao server ou à localStorage
         **/
 		initialize: function (args){
             if(!args.isPersonal)
@@ -63,6 +64,7 @@ function ($, Backbone, _, LocalStorage, Event) {
         @method hasEvent
         @protected
         @param {integer} id id de um evento
+        @return {Event} modelo Event
         **/
         hasEvent: function (id){
             return  this.find( function(event_obj){ return event_obj.get("id") === id; });
@@ -76,6 +78,7 @@ function ($, Backbone, _, LocalStorage, Event) {
         @method getEventByName
         @protected
         @param {String} name nome de uma evento
+        @return {Event} modelo Event
         **/
 		getEventByName: function(name){
             
@@ -95,6 +98,7 @@ function ($, Backbone, _, LocalStorage, Event) {
         @method getEventsWithString
         @protected
         @param {String} string termo de filtragem
+        @return {Array} array de modelos Event
         **/
         getEventsWithString: function(string){
             var lowerString = string.toLowerCase();
@@ -109,7 +113,9 @@ function ($, Backbone, _, LocalStorage, Event) {
 
         @method getEventsOfType
         @protected
-        @param {Javascript prototype} types contém tipos de eventos, cada um representado por um booleano
+        @param {Object} types contém tipos de eventos, cada um representado por um booleano
+        @example {"paper": true, "workshop": false, "social": false, "keynote": false}
+        @return {Array} array de modelos Event
         **/
         getEventsOfType: function(types){
 
@@ -131,6 +137,7 @@ function ($, Backbone, _, LocalStorage, Event) {
         @method getEventsFromIdArray
         @protected
         @param {Array} arrayOfEventsId array de id's de eventos
+        @return {Array} array de modelos Event
         **/
         getEventsFromIdArray: function(arrayOfEventsId){
             return this.filter(function(event_obj){

@@ -59,6 +59,7 @@ function ($, Backbone, LocalStorage, Contact) {
         @method hasContact
         @protected
         @param {integer} id id de um contacto
+        @return {Contact} modelo com o id passado
         **/
 	    hasContact: function (id){
             return  this.find( function(user){ return user.get("user_id") === id; });

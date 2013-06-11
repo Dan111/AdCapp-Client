@@ -248,22 +248,18 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		/**
         Construtor da classe CalendarView. Inicializa a collection,
-        o modelo, um booleano e as datas usadas, são ainda passados
-        como argumentos:
-
-			toShowEvents - Eventos a serem apresentados no calendário,
-			Collection de events
-			personalEvents - Agenda pessoal, um Model personalagenda
-			inPersonal - Booleano que indica se estamos a atuar na agenda
-			personalizada do utilizador do dispositivo
-
+        o modelo, um booleano e as datas usadas.
 		Neste contrutor é feito o rendering e o binding do método search
 		ao evento close do painel de pesquisa
 
         @constructor
         @protected
         @class CalendarView
-        @param {Javascript prototype} args argumentos
+        @param {Object} args collection de eventos, model de agenda e booleano
+			@param {EventCollection} args.toShowEvents Eventos a serem apresentados no calendário, Collection de Events
+			@param {PersonalAgenda} args.personalEvents Agenda pessoal, um Model personalagenda
+			@param {boolean} args.inPersonal Booleano que indica se estamos a atuar na agenda
+			personalizada do utilizador do dispositivo
         **/
 		initialize: function (args)
 		{
@@ -431,6 +427,17 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @method setPopUp
         @protected
         @param {Object} attributes atributos de um evento
+        @example
+        	{	
+        		id: 1,
+			    typeId: 1,
+			    name: "Data Management",
+				hours: "2013-05-29T08:00:00Z", 
+				duration": 20, 
+				type: "paper",
+				local_id: 1,
+				users_id_array: [1]
+			}
         **/
 		setPopUp: function(attributes){
 			var type = attributes.type;
@@ -559,6 +566,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @method getColor
         @protected
         @param {String} type tipo de um evento
+        @return {String} cor do tipo de evento
         **/
 		getColor: function(type){
 			return this.typesInfo[type].color;
