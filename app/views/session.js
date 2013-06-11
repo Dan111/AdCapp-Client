@@ -40,7 +40,7 @@ define([
 		@final
 		@default "session-page"
 		**/
-		id: "session-page",
+		id: "session-page-",
 
 
 		/**
@@ -147,6 +147,8 @@ define([
 			_.bindAll(this);
 
 			var modelId = args.modelId;
+			this.id += args.modelId;
+			
 			var self = this;
 
 			this.model = new SessionModel({id: modelId});
@@ -206,30 +208,21 @@ define([
 
 
 		/**
-		Inicializa as tabs 'Sobre' e 'Papers' e adiciona-as ao vetor de tabs
+		Inicializa as tabs 'Sobre', 'Papers' e 'Comentários' e adiciona-as ao vetor de tabs
 
 		@method createTabs
 		@protected
 		**/
 		createTabs: function (){
 
-			this.about = new AboutView({
-				descName		: this.descName,
-				description 	: this.model.get('description'),
-
-				speakersTitle	: this.speakersTitle,
-				speakers 		: this.model.get('speakers')
-			});
-			this.addTab(this.about,{id: this.aboutTabId, name: this.aboutTabName});
-
+			this.createAboutTab();
 
 			this.papers = new SessionPapersView({
 				papers 			: this.model.get('papers')
 			});
 			this.addTab(this.papers,{id: this.papersTabId, name: this.papersTabName});
 
-			//chamada do método createTabs da superclasse
-			EventView.prototype.createTabs.apply(this);
+			this.createCommentsTab();
 
 		},
 

@@ -47,8 +47,8 @@
       </div>
 
       <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <div class="ui-btn paper-info">
+        <div class="event-day-wrapper ui-block-a">
+          <div class="ui-btn-inner paper-info">
             <span class="center-text" id="event-day">{{room_name}}</span>
           </div>
         </div>
@@ -59,19 +59,22 @@
         </div>
       </div>
 
-
       <br>
       <hr>
-      <br>
 
+      {{#ifLengthGreater tabs 1}}
 
-      <div data-role="navbar">
-        <ul>
-          {{#each tabs}}
-            <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
-          {{/each}}
-        </ul>
-      </div>
+        <br>
+
+        <div data-role="navbar">
+          <ul>
+            {{#each tabs}}
+              <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+        
+      {{/ifLengthGreater}}
 
       <br>
 
@@ -136,7 +139,7 @@
 
     <div id="comment-form">
 
-      <label for="comment-input">Novo Comentário:</label>
+      <label for="comment-input">{{title}}:</label>
       <textarea cols="40" rows="8" name="comment-input" id="comment-input"></textarea>
 
       <div class="ui-grid-a">
@@ -187,12 +190,12 @@
         {{content}}
       </p>
 
-      {{#if votes}}
+      {{#isDefined votes}}
           <div class="question-ranking">
             <i question-id="{{question_id}}" class="like-button icon-thumbs-up icon-4x {{#if has_voted}}question-voted{{/if}}"></i>
             <span class="question-votes">+{{votes}}</span> 
           </div> 
-      {{/if}}
+      {{/isDefined}}
 
     </div>
 
@@ -525,7 +528,7 @@
           </a>
         </div>
         <div class="ui-block-b">
-          <a href="#" data-role="button" id="email-user"data-theme="f" >
+          <a data-bypass="true" href="mailto:{{user.email}}" data-role="button" id="email-user"data-theme="f" >
             <i class="button-icon icon-envelope-alt "></i>E-mail
           </a>
         </div>

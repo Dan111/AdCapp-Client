@@ -5,6 +5,10 @@ define([
 
   "views/paper",
   "views/session",
+  "views/keynote",
+  "views/workshop",
+  "views/socialevent",
+
   "views/profile",
   "views/userslist",
   "views/agenda",
@@ -14,7 +18,8 @@ define([
   "views/mainmenu"
 ],
 
-function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView) {
+function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEventView, 
+	ProfileView, UsersListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -38,10 +43,16 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 			"agenda"        : "agenda",
 			"maininfo"      : "maininfo",
 			"mainmenu"      : "mainmenu",
+
 			"speakers"      : "speakers",
 			"participants"  : "participants",
+
 			"paper/:id"     : "paper",
 			"session/:id"   : "session",
+			"keynote/:id"   : "keynote",
+			"workshop/:id"  : "workshop",
+			"social/:id"    : "social",
+
 			"user/:id"      : "user",
 			"contacts"      : "contacts",
 			"notifications"	: "notifications"
@@ -117,8 +128,47 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, AgendaVi
 		@private
 		**/
 		session: function(id) {
-			console.log("ROUTE: paper");
+			console.log("ROUTE: sessão");
 			new SessionView({modelId: id});
+		},
+
+
+		/**
+		Route da página de keynote
+
+		@method keynote
+		@param {Number} id Id do keynote
+		@private
+		**/
+		keynote: function(id) {
+			console.log("ROUTE: keynote");
+			new KeynoteView({modelId: id});
+		},
+
+
+		/**
+		Route da página de workshop
+
+		@method keynote
+		@param {Number} id Id do workshop
+		@private
+		**/
+		workshop: function(id) {
+			console.log("ROUTE: workshop");
+			new WorkshopView({modelId: id});
+		},
+
+
+		/**
+		Route da página de workshop
+
+		@method keynote
+		@param {Number} id Id do workshop
+		@private
+		**/
+		social: function(id) {
+			console.log("ROUTE: social event");
+			new SocialEventView({modelId: id});
 		},
 
 

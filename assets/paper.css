@@ -19,6 +19,13 @@
 	text-align: center;
 }
 
+.event-day-wrapper .ui-btn-inner {
+	overflow: visible !important;
+	white-space: normal !important;
+	text-overflow: auto !important;
+}
+}
+
 .profile-pic-wrapper {
 	display: table-cell;
     vertical-align: middle;
@@ -47,7 +54,9 @@
 }
 
 #abstract, .comment-content, #user-bio {
+	text-align: justify;
 	font-size: 1.2em;
+	line-height:1.5em;
 }
 
 .like-button{

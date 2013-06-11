@@ -8,10 +8,10 @@ define([
 function ($, Backbone, Event, App) {
 
 	/**
-    Modelo de uma sessão
+    Modelo de um keynote
 
-    @class Session
-    @extends Backbone.Model
+    @class Keynote
+    @extends Event
     **/
 	return Event.extend({
 
@@ -21,10 +21,10 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/sessions/"
+		@default "/keynotes/"
 		**/
-		url: App.URL + "sessions/",
-
+		url: App.URL + "keynotes/",
+		
 
 		/**
         Atributos predefinidos do modelo.
@@ -41,14 +41,11 @@ function ($, Backbone, Event, App) {
 			hour:0,
 			duration:0,
 			is_scheduled: false,
-			session_id: 0,
 			local: null,
 			speakers:null,
-			papers: null,
 			description: "Sem descrição",
 			themes: null,
 			comments: null
-
 		},
 
 
@@ -57,25 +54,11 @@ function ($, Backbone, Event, App) {
 
         @constructor
         @protected
-        @class Session
+        @class Keynote
         **/
 		initialize: function (){
 			this.url += this.id;
-			this.type = window.app.TYPES.SESSION;
-		},
-
-
-		/**
-		Coloca todos os ids dos eventos da sessão num vetor
-
-		@method arrayOfPaperIds
-		@protected
-		@return {Array} Vetor de inteiros com os ids das palestras da sessão
-		**/
-		arrayOfPaperIds: function(){
-			return  _.map(this.get('papers'), function(paper){
-				return paper.id;
-			});
+			this.type = window.app.TYPES.KEYNOTE;
 		}
 
 	});

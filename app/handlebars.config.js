@@ -77,6 +77,22 @@ function (Handlebars, $, _, Moment) {
         });
 
 
+        //Verifica se a propriedade se encontra definida
+        Handlebars.registerHelper('isDefined', function (param, body) {
+            if(param != null)
+                return body(this);
+        });
+
+
+
+        //Faz o rendering do bloco caso o vetor tenha um length 
+        //superior ao especificado
+        Handlebars.registerHelper('ifLengthGreater', function (array, len, body) {
+            if(array.length > len)
+                return body(this);
+        });
+
+
 	};
 
 });

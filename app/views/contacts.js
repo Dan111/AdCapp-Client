@@ -12,6 +12,7 @@ define([
 
 	@class ContactsView
 	@extends BasicView
+	@main contacts
 	**/
 	return BasicView.extend({
 

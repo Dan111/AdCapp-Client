@@ -204,13 +204,13 @@ define([
 
 
 		/**
-		Faz o rendering do layout base das páginas de informações
+		Devolve o contexto a ser usado no rendering
 
-		@method render
+		@method getContext
 		@protected
-		@chainable
+		@return {Object} Contexto do rendering
 		**/
-		render: function () {
+		getContext: function () {
 			var model = this.model.attributes;
 
 			var context = {
@@ -222,6 +222,20 @@ define([
 
 			};
 
+			return context;
+		},
+
+
+		/**
+		Faz o rendering do layout base das páginas de informações
+
+		@method render
+		@protected
+		@chainable
+		**/
+		render: function () {
+
+			var context = this.getContext();
 			var html = this.compileTemplate(this.template, context);
 
 			this.$el.append(html);
@@ -276,12 +290,45 @@ define([
 
 
 		/**
-		Inicializa as tabs comuns a todas as páginas
+		Inicializa as tabs comuns a todas as páginas.
+		As subclasses devem fazer override dete método e definir que
+		tabs a página deve ter.
 
 		@method createTabs
 		@protected
 		**/
 		createTabs: function (){
+			//Fazer override nas subclasses
+		},
+
+
+		/**
+		Cria a tab 'Sobre' e adiciona-a ao vetor de tabs
+
+		@method createAboutTab
+		@protected
+		**/
+		createAboutTab: function () {
+
+			this.about = new AboutView({
+				descName		: this.descName,
+				description 	: this.model.get('description'),
+
+				speakersTitle	: this.speakersTitle,
+				speakers 		: this.model.get('speakers')
+			});
+			this.addTab(this.about,{id: this.aboutTabId, name: this.aboutTabName});
+
+		},
+
+
+		/**
+		Cria a tab 'Comentários' e adiciona-a ao vetor de tabs
+
+		@method createCommentsTab
+		@protected
+		**/
+		createCommentsTab: function () {
 
 			var model = this.model;
 			var comments = this.model.get('comments');

@@ -1,18 +1,19 @@
 define([
     "jquery",
     "backbone",
-    "views/basicview"
+    "models/event",
+    "app.config"
 ], 
 
-function ($, Backbone, BasicView) {
+function ($, Backbone, Event, App) {
 
 	/**
     Modelo de uma palestra
 
     @class Paper
-    @extends Backbone.Model
+    @extends Event
     **/
-	return Backbone.Model.extend({
+	return Event.extend({
 
 		/**
 		URL utilizado para obter os dados.
@@ -22,8 +23,8 @@ function ($, Backbone, BasicView) {
 		@private
 		@default "/papers/"
 		**/
-		url: "http://adcapp.apiary.io/papers/",
-
+		url: App.URL + "papers/",
+		
 
 		/**
         Atributos predefinidos do modelo.
@@ -61,71 +62,7 @@ function ($, Backbone, BasicView) {
         **/
 		initialize: function (){
 			this.url += this.id;
-		},
-
-		
-		/**
-		Submete um novo comentário na página do evento
-
-		@method submitComment
-		@protected
-		@async
-		@param {Object} options Configuração do comentário
-			@param {String} options.url Onde o comentário deve ser colocado.
-			@param {Integer} options.text Conteúdo do comentário.
-			@param {Function()} options.success Função de callbak em caso de 
-												sucesso.
-		@example
-			submitComment(	'comments',
-							'Isto é um comentário',
-							function () { 
-								console.log("Comentário submetido");
-							})
-		**/
-		submitComment: function (options){ //TODO: factorizar método
-
-			var self = this;
-
-			$.ajax({
-				method: "POST",
-
-				async: false,
-
-				timeout: 5000,
-
-				url: this.url + "/" + options.url,
-
-				//TODO: alterar email e password quando o registo do dispositivo funcionar
-				data: { 
-					"email"		:"toni@mail.com", 
-					"password"	: "123456", 
-					"content"	: options.text, 
-					"id"		: this.id, 
-					type		: 'Paper' 
-				},
-
-				beforeSend: function () {
-					$.mobile.loading( 'show', {
-				            text: "A enviar",
-				            textVisible: true
-				    });
-				},
-
-				complete: function () {
-					//override do ajaxsetup para nao fazer hide do load spinner
-				},
-
-				success: function () {
-					$.mobile.loading( 'hide' );
-					options.success();
-				},
-
-				error: function (){
-					BasicView.prototype.showErrorOverlay({text: "Erro no envio"});
-				}
-			});
-
-
+			this.type = window.app.TYPES.PAPER;
 		}
 
 	});

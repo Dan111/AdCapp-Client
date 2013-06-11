@@ -38,7 +38,7 @@ define([
 		@final
 		@default "paper-page"
 		**/
-		id: "paper-page",
+		id: "paper-page-",
 
 
 		/**
@@ -131,6 +131,8 @@ define([
 			_.bindAll(this);
 
 			var modelId = args.modelId;
+			this.id += args.modelId;
+
 			var self = this;
 
 			this.model = new PaperModel({id: modelId});
@@ -160,24 +162,15 @@ define([
 
 
 		/**
-		Inicializa as tabs 'Sobre' e 'Perguntas' e adiciona-as ao vetor de tabs
+		Inicializa as tabs 'Sobre', 'Comentários' e 'Perguntas' e adiciona-as ao vetor de tabs
 
 		@method createTabs
 		@protected
 		**/
 		createTabs: function (){
 
-			this.about = new AboutView({
-				descName		: this.descName,
-				description 	: this.model.get('description'),
-
-				speakersTitle	: this.speakersTitle,
-				speakers 		: this.model.get('speakers')
-			});
-			this.addTab(this.about,{id: this.aboutTabId, name: this.aboutTabName});
-
-			//chamada do método createTabs da superclasse
-			EventView.prototype.createTabs.apply(this);
+			this.createAboutTab();
+			this.createCommentsTab();
 
 			var paper = this.model;
 			var questions = paper.get('questions');

@@ -19,7 +19,8 @@ require.config({
 		// Put shims here.
 		'jquerymobile.config'	: ['jquery'],
 		'jquerymobile'			: ['jquery','jquerymobile.config'],
-		'handlebars.config' 	: ['handlebars']
+		'handlebars.config' 	: ['handlebars'],
+		'fullcalendar'			: ['jquery']
 	}
 
 });

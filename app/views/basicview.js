@@ -126,17 +126,20 @@ define([
 
 
 		/**
-		Inicia a transição de página do jQuery Mobile para  apágina corrente
+		Inicia a transição de página do jQuery Mobile para a página corrente
 
 		@method enhanceJQMComponentsAPI
 		@private
 		**/
 		enhanceJQMComponentsAPI: function () {
-			$.mobile.changePage("#" + this.id, {
+
+			var $page = $("#" + this.id + ":last");
+
+			$.mobile.changePage($page, {
 				changeHash: false
 			});
 
-			$("#" + this.id).trigger("create");
+			$page.trigger("create");
 		},
 
 

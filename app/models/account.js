@@ -1,6 +1,8 @@
 define([
     "jquery",
-    "backbone"
+    "backbone",
+
+    "backbone.localStorage"
 ], 
 
 function ($, Backbone) {
