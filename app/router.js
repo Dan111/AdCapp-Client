@@ -5,19 +5,26 @@ define([
 
   "views/paper",
   "views/session",
+  "views/keynote",
+  "views/workshop",
+  "views/socialevent",
+
   "views/profile",
   "views/userslist",
   "views/eventslist",
   "views/agenda",
   "views/contacts",
   "views/notifications",
+  "views/registration",
   "views/maininfo",
   "views/mainmenu",
   "views/rankings",
   "views/papersrank"
 ],
 
-function (Backbone, PaperView, SessionView, ProfileView, UsersListView, EventsListView, AgendaView, ContactsView, NotificationsView, MainInfoView, MainMenuView, RankingsView, PapersRankView) {
+function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEventView, 
+	ProfileView, UsersListView, EventsListView, AgendaView, ContactsView, NotificationsView, RegistrationView,
+	MainInfoView, MainMenuView, RankingsView, PapersRankView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -41,6 +48,8 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, EventsLi
 			"agenda"        : "agenda",
 			"maininfo"      : "maininfo",
 			"mainmenu"      : "mainmenu",
+
+			//listas
 			"speakers"      : "speakers",
 			"participants"  : "participants",
 			"papers"		: "papers",
@@ -48,11 +57,19 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, EventsLi
 			"keynotes"		: "keynotes",
 			"workshops"		: "workshops",
 			"socials"		: "socials",
+
+			//páginas de evento
 			"paper/:id"     : "paper",
 			"session/:id"   : "session",
+			"keynote/:id"   : "keynote",
+			"workshop/:id"  : "workshop",
+			"social/:id"    : "social", 
+
 			"user/:id"      : "user",
 			"contacts"      : "contacts",
 			"notifications"	: "notifications",
+			"registration"	: "registration",
+
 			"rankings"		: "rankings",
 			"rankings/papers": "papersrank",
 		},
@@ -129,6 +146,45 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, EventsLi
 		session: function(id) {
 			console.log("ROUTE: paper");
 			new SessionView({modelId: id});
+		},
+
+
+		/**
+		Route da página de keynote
+
+		@method keynote
+		@param {Number} id Id do keynote
+		@private
+		**/
+		keynote: function(id) {
+			console.log("ROUTE: keynote");
+			new KeynoteView({modelId: id});
+		},
+
+
+		/**
+		Route da página de workshop
+
+		@method keynote
+		@param {Number} id Id do workshop
+		@private
+		**/
+		workshop: function(id) {
+			console.log("ROUTE: workshop");
+			new WorkshopView({modelId: id});
+		},
+
+
+		/**
+		Route da página de workshop
+
+		@method keynote
+		@param {Number} id Id do workshop
+		@private
+		**/
+		social: function(id) {
+			console.log("ROUTE: social event");
+			new SocialEventView({modelId: id});
 		},
 
 
@@ -252,6 +308,19 @@ function (Backbone, PaperView, SessionView, ProfileView, UsersListView, EventsLi
 			console.log("ROUTE: notifications");
 			new NotificationsView();
 		},
+
+
+		/**
+		Route do menu de notificações
+
+		@method contacts
+		@private
+		**/
+		registration: function(){
+			console.log("ROUTE: registration");
+			new RegistrationView();
+		},
+
 
 		/**
 		Route do menu de rankings

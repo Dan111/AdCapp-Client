@@ -74,7 +74,7 @@ function ($, Backbone, Event, App) {
 		**/
 		arrayOfEventIds: function(){
 			return  _.map(this.get('papers'), function(paper){
-				return paper.get("event_id");
+				return paper["event_id"];
 			});
 		}
 

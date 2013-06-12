@@ -296,7 +296,7 @@
 
 
 
-  <!-- Página das notificções -->
+  <!-- Página das notificações -->
   <script type="text/x-handlebars-template"  id="notifications-template">
 
 
@@ -328,6 +328,28 @@
     {{/if}}
 
     <br>
+
+  </script>
+
+
+
+  <!-- Página das notificações -->
+  <script type="text/x-handlebars-template" id="registration-template">
+
+    <div data-role="popup" id="popupMenu" data-theme="z">
+      <div style="padding:10px 20px; color: white;">
+        <h3>Insira as suas credenciais</h3>
+
+        <input name="email" id="email-form" value="" placeholder="email" size="30" data-theme="a" type="text">
+        <input name="code" id="reg-code" value="" placeholder="código" size="15" data-theme="a" type="text">
+
+        <button id="submit-button" data-theme="b" data-icon="check">Registar</button>
+        <button id="cancel-button" data-theme="d" data-icon="delete">Cancelar</button>
+        <br>
+        <button id="resend-button" data-theme="f" data-icon="info">Reenviar código</button>
+      </div>
+    </div>
+
 
   </script>
 
@@ -1016,8 +1038,8 @@
                 </a>
               </div>
               <div class="ui-block-b">
-                <a href="#" data-role="button" class="square"  data-iconpos="right" data-theme="b">
-                  Test
+                <a href="#registration" data-role="button" class="square" data-iconpos="right" data-theme="b">
+                  Registration
                 </a>
               </div>
               <div class="ui-block-c ">
