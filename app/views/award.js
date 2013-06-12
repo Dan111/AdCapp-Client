@@ -181,7 +181,7 @@ define([
 			//ou seja, obtendo só a informação necessária
 			return _.map(array, function(element){
 								var attrs = element.attributes;
-								if(this.isEvent)
+								if(that.isEvent)
 									return {
 										url 		: that.typesInfo[that.eventsType].url + attrs.id.toString(),
 										title 		: attrs.name,

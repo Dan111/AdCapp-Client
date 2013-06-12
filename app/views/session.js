@@ -104,15 +104,15 @@ define([
 
 
 		/**
-		Nome da tab de palestras
+		Id's de evento dos papers da sessão
 
-		@property id 
-		@type String
+		@property eventIds
+		@type Array
 		@static
 		@final
-		@default "Papers"
+		@default "null"
 		**/
-		paperIds: null,
+		eventIds: null,
 
 
 		/**
@@ -194,9 +194,9 @@ define([
 			//chamada do método render da superclasse
 			EventView.prototype.render.apply(this);
 
-			this.paperIds = this.model.arrayOfPaperIds();
+			this.eventIds = this.model.arrayOfEventIds();
 
-			var hasEvents = this.personalAgenda.hasEvents(this.paperIds);
+			var hasEvents = this.personalAgenda.hasEvents(this.eventIds);
 
 			if(!hasEvents)
 			{	
@@ -238,11 +238,11 @@ define([
 		addRemoveEvent: function (){
 			var personalAgenda = this.personalAgenda;
 
-			var hasEvents = personalAgenda.hasEvents(this.paperIds);
+			var hasEvents = personalAgenda.hasEvents(this.eventIds);
 
 			if(hasEvents)
 			{	
-				_.each(this.paperIds, function(paperId){
+				_.each(this.eventIds, function(paperId){
 					personalAgenda.removeEvent(paperId)
 				});
 				personalAgenda.save();
@@ -250,7 +250,7 @@ define([
 			}
 			else
 			{
-				_.each(this.paperIds, function(paperId){
+				_.each(this.eventIds, function(paperId){
 					personalAgenda.addEvent(paperId)
 				});
 				personalAgenda.save();
