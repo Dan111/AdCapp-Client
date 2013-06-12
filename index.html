@@ -190,9 +190,6 @@
         {{content}}
       </p>
 
-<<<<<<< HEAD
-
-
       {{#isDefined votes}}
 
         <button data-mini="true" data-inline="true" question-id="{{question_id}}" class="vote-question" type="button" data-theme="a" data-disabled="true" user-voted={{#if has_voted}}"true"{{else}}"false"{{/if}}>
@@ -212,14 +209,6 @@
         </button>
 
       {{/isDefined}}
-=======
-      {{#if votes}}
-          <div class="question-ranking">
-            <i question-id="{{question_id}}" class="like-button icon-thumbs-up icon-4x {{#if has_voted}}question-voted{{/if}}"></i>
-            <span class="question-votes">+{{votes}}</span> 
-          </div> 
-      {{/if}}
->>>>>>> e960490c3bae01027116e42b4b354260987ee880
 
     </div>
 
