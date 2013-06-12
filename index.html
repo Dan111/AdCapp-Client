@@ -172,6 +172,7 @@
   <!-- Comentário -->
   <script type="text/x-handlebars-template" id="comment-partial">
     <div class="comment {{#if new_comment}}new{{/if}}" data-theme="e">
+      
       <div class="ui-grid-a">
         <div class="ui-block-a">
           <div class="ui-btn">
@@ -191,11 +192,26 @@
         {{content}}
       </p>
 
+
+
       {{#isDefined votes}}
-          <div class="question-ranking">
-            <i question-id="{{question_id}}" class="like-button icon-thumbs-up icon-4x {{#if has_voted}}question-voted{{/if}}"></i>
-            <span class="question-votes">+{{votes}}</span> 
-          </div> 
+
+        <button data-mini="true" data-inline="true" question-id="{{question_id}}" class="vote-question" type="button" data-theme="a" data-disabled="true" user-voted={{#if has_voted}}"true"{{else}}"false"{{/if}}>
+
+          <span class="like-button" question-id="{{question_id}}">
+
+            {{#if has_voted}}
+              <i class="icon-ok icon-2x"></i>
+            {{else}}
+              <i class="icon-thumbs-up icon-2x"></i>
+            {{/if}}
+
+          </span>
+
+
+          <span class="question-votes" question-id="{{question_id}}">+{{votes}}</span> 
+        </button>
+
       {{/isDefined}}
 
     </div>

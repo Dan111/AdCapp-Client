@@ -85,7 +85,7 @@ function (Backbone, $, _, Account, Notifications) {
 
 
 	/**
-	Tipos de eventos
+	Constantes dos vários tipos de entidados
 
 	@property TYPES 
 	@type Object
@@ -97,7 +97,8 @@ function (Backbone, $, _, Account, Notifications) {
 		SESSION	: "Session",
 		KEYNOTE	: "Keynote",
 		WORKSHOP: "Workshop",
-		SOCIAL	: "SocialEvent"
+		SOCIAL	: "SocialEvent",
+		QUESTION: "Question"
 	};
 
 

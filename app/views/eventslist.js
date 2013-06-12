@@ -69,7 +69,7 @@ define([
         eventos possíveis
 
         @property typesInfo
-        @type Javascript prototype
+        @type Object
         @static
         @final
         @protected
@@ -169,12 +169,12 @@ define([
 		@method treatEvents
 		@protected
 		@param {Event} event_obj modelo evento
-		@return {url: url do evento,
-				 name: nome do evento, 
-		    		start: data de início do evento na forma YYYY-MM-DD HH:mm, 
-		    		end: data de fim do evento na forma YYYY-MM-DD HH:mm,
-		    		local_name: nome da sala do evento, 
-		    		inagenda: booleano que indica se o evento está na agenda } 
+		@return {Object} 	url: url do evento,
+				 			name: nome do evento, 
+		    				start: data de início do evento na forma YYYY-MM-DD HH:mm, 
+		    				end: data de fim do evento na forma YYYY-MM-DD HH:mm,
+		    				local_name: nome da sala do evento, 
+		    				inagenda: booleano que indica se o evento está na agenda  
 		**/
 		treatEvents: function(event_obj){
 			var dateFormat = "YYYY-MM-DD HH:mm";

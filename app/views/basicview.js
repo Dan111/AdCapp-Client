@@ -89,7 +89,6 @@ define([
 			var html = template(context);
 
 			return html;
-
 		},
 
 

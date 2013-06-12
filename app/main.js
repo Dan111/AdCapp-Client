@@ -46,7 +46,9 @@ function (Backbone, $, Router, Profile, Contacts, configHandlebars, configApp) {
 		//activa o modo API nos pedidos ao server
 		Backbone.$.ajaxSetup({
 			data: {
-				"api": "true"
+				"api": "true",
+				"email"     : "fa@gmail.com", 
+                "password"  : "123456"
 			}
 
 		});

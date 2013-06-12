@@ -80,7 +80,7 @@ function (Handlebars, $, _, Moment) {
         //Verifica se a propriedade se encontra definida
         Handlebars.registerHelper('isDefined', function (param, body) {
             if(param != null)
-                return body(this);
+                return body.fn(this);
         });
 
 

@@ -103,7 +103,7 @@ define([
 
 		/**
 		Eventos aos quais a página responde. Para além dos herdados pela EventView,
-		há ainda o rendering da tab de perguntas
+		há ainda o rendering da tab de perguntas e o voto nestas
 
 		@property events
 		@type Object
@@ -112,7 +112,8 @@ define([
 		**/
 		events: function(){
 			return _.extend({
-				"click #questions-tab"	: "renderQuestionsTab"
+				"click #questions-tab"	: "renderQuestionsTab",
+				"click .vote-question"	: "voteQuestion"
 			}, EventView.prototype.events);
 		},
 
@@ -159,6 +160,44 @@ define([
 
 			return this;
 		},
+
+
+		/**
+		Vota na questão correspondente.
+
+		@method voteQuestion
+		@protected
+		@param {Event} Evento lançado quando se clicou no botão
+		**/
+		voteQuestion: function (e) {
+
+            var $this = $(e.target);
+            var id = $this.attr('question-id');
+
+            window.x = $this;
+
+            //se o utilizador já votou na questão, não é preciso reenviar o voto
+            if($this.attr('user-voted') === "true")
+            	return;
+
+            var self = this;
+
+            var success = function () {
+            	$this.attr('user-voted', "true"); //assinala que a questão foi votada pelo utilizador
+
+            	//muda o ícone do botão de voto
+            	$(".like-button[question-id=\'" + id + "\']").html('<i class="icon-ok icon-2x"></i>');
+
+            	//altera o número de votos
+            	var numVotes = $this.find(".question-votes").html();
+            	numVotes = parseInt(numVotes, 10);
+            	$(".question-votes[question-id=\'" + id + "\']").html('+' + (numVotes + 1));
+
+            	self.refreshJQM();
+            };
+
+            this.model.voteQuestion(id, success);
+        },
 
 
 		/**

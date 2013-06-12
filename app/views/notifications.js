@@ -131,7 +131,7 @@ define([
 
         @method readNotif
         @protected
-        @param {Event} Evento lançado quando se expandiu a notificação
+        @param {Event} e Evento lançado quando se expandiu a notificação
         **/
         readNotif: function (e) {
 

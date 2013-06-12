@@ -1,9 +1,10 @@
 define([
     "jquery",
-    "backbone"
+    "backbone",
+    "views/basicview"
 ], 
 
-function ($, Backbone) {
+function ($, Backbone, BasicView) {
 
 	/**
     Modelo que representa um evento

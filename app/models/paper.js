@@ -63,7 +63,39 @@ function ($, Backbone, Event, App) {
 		initialize: function (){
 			this.url += this.id;
 			this.type = window.app.TYPES.PAPER;
+		},
+
+
+		/**
+		Submete um voto na questão com o id passado como parâmetro
+
+		@method voteQuestion
+		@protected
+		@async
+		@param {Number} questionId Id da questão
+		@param {Function()} success Callback em caso de sucesso
+		**/
+		voteQuestion: function (questionId, success) {
+
+			$.ajax({
+                method: "POST",
+
+                url: App.URL + "votes/",
+
+                data: {               
+                    vote: {
+                        "votable_id"	: questionId,
+                        "votable_type"	: App.TYPES.QUESTION
+                    }
+                },
+
+                success: success
+			});
+
 		}
+
+
+
 
 	});
 

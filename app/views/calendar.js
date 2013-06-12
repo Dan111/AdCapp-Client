@@ -64,7 +64,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Dia corrente
 
         @property currentDay
-        @type Javascript Date Object
+        @type Date
         @protected
         @default null
         **/
@@ -74,7 +74,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Dia limite para fazer prev no calendário
 
         @property backLimitDate
-        @type Javascript Date Object
+        @type Date
         @protected
         @default null
         **/
@@ -84,7 +84,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Dia limite para fazer next no calendário
 
         @property forwardLimitDate
-        @type Javascript Date Object
+        @type Date
         @protected
         @default null
         **/
@@ -94,7 +94,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento do calendário
 
         @property $calendar
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -104,7 +104,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento de remoção de evento do calendário
 
         @property $removeevent
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -114,7 +114,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento de adição de evento do calendário
 
         @property $addevent
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -124,7 +124,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento do botão de remoção de evento do calendário
 
         @property $removeeventbutton
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -134,7 +134,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento do botão de adição de evento do calendário
 
         @property $addeventbutton
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -144,7 +144,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento do link para o perfil do orientador do workshop
 
         @property $teacherlink
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -154,7 +154,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento do link para o perfil do autor de um paper
 
         @property $authorlink
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -164,7 +164,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento anchor do link para o perfil do orientador do workshop
 
         @property $teacherlinkA
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -174,7 +174,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento anchor do link para o perfil do autor de um paper
 
         @property $authorlinkA
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -184,7 +184,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento anchor do link para a página de um evento
 
         @property $eventlinkA
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -194,7 +194,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento anchor do link para a página de um local
 
         @property $locallinkA
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -204,7 +204,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento input onde são digitadas pesquisas
 
         @property $searchbasic
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -214,7 +214,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento onde está o painel de pesquisa
 
         @property $searchpanel
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -224,7 +224,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Elemento relativo aos pop-up's
 
         @property $popup
-        @type Jquery Object
+        @type jQueryWrapper
         @protected
         @default null
         **/
@@ -235,7 +235,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         eventos possíveis
 
         @property typesInfo
-        @type Javascript prototype
+        @type Object
         @static
         @final
         @protected
