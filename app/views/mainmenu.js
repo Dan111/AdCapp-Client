@@ -14,6 +14,8 @@ define([
 
 		template: "mainmenu-template",
 
+        $menubutton: null,
+
 		initialize: function ()
 		{
 			_.bindAll(this);
@@ -41,48 +43,58 @@ define([
 			
 			this.setElement($("[data-role=content]"));
 
-			$(document).bind("scrollstart", function() {
-                that.closePopup;
-            });
-
+            //Eventos para o bom funcionamento do menu de icons
             $(document).bind("taphold", function() {
                 that.closePopup;
             });
 
+            //Quando tudo estiver pronto activa lança o método onDeviceReady
 			$(document).ready(function() {
 				  document.addEventListener("deviceready", that.onDeviceReady, false);
 			});
-
+            //Recalcula o tamanho do popup e reposiona-o
 			$(window).resize(function(){
     			that.resizePopUp();
-                that.positioningPopUp();
-                
+                that.positioningPopUp();      
     		});
+
+            this.$menubutton = $('#menu-button');
+
+            //Impede o scroll quando o popup está activo
+            this.$menubutton.on( "popupafteropen", function( event, ui ) {
+                $("body").on("touchmove", false);
+            } );
+            
+            //Volta a activar o scroll depois do popup fechar
+            this.$menubutton.on( "popupafterclose", function( event, ui ) {
+                $("body").unbind("touchmove");
+            } );
 
 			return this;
 
 		},
 
         closePopup: function(){
-            $('#menu-button').popup( "close" );
+            this.$menubutton.popup( "close" );
             this.menu = false;
+            $(window).unbind('scroll');
         },
 
         positioningPopUp: function(){
-            var toppos=($(window).height()/2) - ($('#menu-button').height()/2);
-            var leftpos=($(window).width()/2) - ($('#menu-button').width()/2);
-            $('#menu-button').css("top", toppos).css("left",leftpos-16);
+            var toppos=($(window).height()/2) - (this.$menubutton.height()/2);
+            var leftpos=($(window).width()/2) - (this.$menubutton.width()/2);
+
+            this.$menubutton.css("top", toppos).css("left",leftpos-16);
         },
 
         resizePopUp: function(){
-            $('#menu-button').width($(window).width());
+            this.$menubutton.width($(window).width());
         },
 
 		onDeviceReady: function() {
 			var that = this;
         	document.addEventListener("menubutton", that.onMenuKeyDown, false);
     	},
-
 
     	onMenuKeyDown: function() {
     		that = this;
@@ -91,20 +103,18 @@ define([
             
     		if(this.menu === false)
     		{
-    			$('#menu-button').popup({
+    			this.$menubutton.popup({
   					afterclose: function( event, ui ) {that.menu = false;}
 				});
 
-    			$('#menu-button').popup('open');
-
-                that.positioningPopUp();
+    			this.$menubutton.popup('open');
+                this.positioningPopUp();
 
     			this.menu = true;
     		}
     		else
-    		{
     			this.closePopup();
-    		}	
+
     	}
     });
 });
