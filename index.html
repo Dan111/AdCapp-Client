@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/mainmenu.css">
   <link rel="stylesheet" href="assets/notifications.css">
   <link rel="stylesheet" href="assets/eventslist.css">
+   <link rel="stylesheet" href="assets/ranking.css">
 
 
 
@@ -48,8 +49,8 @@
       </div>
 
       <div class="ui-grid-a">
-        <div class="event-day-wrapper ui-block-a">
-          <div class="ui-btn-inner paper-info">
+        <div class="ui-block-a">
+          <div class="ui-btn paper-info">
             <span class="center-text" id="event-day">{{room_name}}</span>
           </div>
         </div>
@@ -60,22 +61,19 @@
         </div>
       </div>
 
+
       <br>
       <hr>
+      <br>
 
-      {{#ifLengthGreater tabs 1}}
 
-        <br>
-
-        <div data-role="navbar">
-          <ul>
-            {{#each tabs}}
-              <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
-            {{/each}}
-          </ul>
-        </div>
-        
-      {{/ifLengthGreater}}
+      <div data-role="navbar">
+        <ul>
+          {{#each tabs}}
+            <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
 
       <br>
 
@@ -140,7 +138,7 @@
 
     <div id="comment-form">
 
-      <label for="comment-input">{{title}}:</label>
+      <label for="comment-input">Novo Comentário:</label>
       <textarea cols="40" rows="8" name="comment-input" id="comment-input"></textarea>
 
       <div class="ui-grid-a">
@@ -192,6 +190,7 @@
         {{content}}
       </p>
 
+<<<<<<< HEAD
 
 
       {{#isDefined votes}}
@@ -213,6 +212,14 @@
         </button>
 
       {{/isDefined}}
+=======
+      {{#if votes}}
+          <div class="question-ranking">
+            <i question-id="{{question_id}}" class="like-button icon-thumbs-up icon-4x {{#if has_voted}}question-voted{{/if}}"></i>
+            <span class="question-votes">+{{votes}}</span> 
+          </div> 
+      {{/if}}
+>>>>>>> e960490c3bae01027116e42b4b354260987ee880
 
     </div>
 
@@ -334,8 +341,6 @@
     <br>
 
   </script>
-
-
 
 
 
@@ -466,7 +471,7 @@
               </a>
             </div>
             <div class="ui-block-b">
-              <a href="#" data-role="button" class="square" data-corners="true"  data-iconpos="right" data-theme="b">
+              <a href="#rankings" data-role="button" class="square" data-corners="true"  data-iconpos="right" data-theme="b">
                 <div class="square-info">
                   <br>
                   <i class="icon-trophy icon-4x"></i>
@@ -580,7 +585,7 @@
           </a>
         </div>
         <div class="ui-block-b">
-          <a data-bypass="true" href="mailto:{{user.email}}" data-role="button" id="email-user"data-theme="f" >
+          <a href="#" data-role="button" id="email-user"data-theme="f" >
             <i class="button-icon icon-envelope-alt "></i>E-mail
           </a>
         </div>
@@ -607,9 +612,9 @@
         {{#if publishSchedule}}
             <h2 id="events-watch-title">Eventos que vou Assistir</h2>
 
-            <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e" >{{nameNextEvent}}</a>
+            <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f" >{{nameNextEvent}}</a>
               
-            <a href="#personalschedule/{{userId}}" data-role="button" data-theme="d" >
+            <a href="#personalschedule/{{userId}}" data-role="button" data-theme="f" >
               <i class="button-icon icon-calendar "></i>Agenda
             </a>
 
@@ -684,7 +689,7 @@
               <h2>{{name}}</h2>
               <p>{{institution}}</p>
               <p>{{area}}</p>
-              </a>
+            </a>
          </li>
       {{/each}}
     </ul>
@@ -796,7 +801,155 @@
       </div>
   </script>
 
-  
+
+
+
+  <!-- Rankings -->
+
+   <script type="text/x-handlebars-template"  id="rankingsmenu-template">
+
+          <div>
+                <a href="#" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
+                  <div class="square-info">
+                    <br>
+                    <i ><img class="speaker-pic" src="assets/speaker.png"></i>
+                    <br>
+                    <br>
+                    Oradores
+                  </div>
+                </a>
+                <a href="#rankings/papers" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" >
+                  <div class="square-info">
+                    <br>
+                    <i class="icon-file-alt icon-4x"></i>
+                    <br>
+                    <br>
+                    Papers
+                  </div>
+                </a>
+                <a href="#" data-role="button" class="square square-wrapper" data-corners="true" data-iconpos="right" data-theme="f">
+                 <div class="square-info">
+                    <br>
+                    <i ><img class="keynote-pic" src="assets/keynote.png"></i>
+                    <br>
+                    <br>
+                    Keynotes
+                  </div>
+                </a>
+                <a href="#" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" >
+                  <div class="square-info">
+                    <br>
+                    <i class="icon-list-alt icon-4x"></i>
+                    <br>
+                    <br>
+                    Sessões
+                  </div>
+              </a>
+              <a href="#" data-role="button" id="rankings-solo" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
+                  <div class="square-info">
+                    <br>
+                    <i class="icon-cogs icon-4x"></i>
+                    <br>
+                    <br>
+                    Workshops
+                  </div>
+              </a>
+        </div>
+
+  </script>
+
+  <!-- Página de Prémio -->
+
+   <script type="text/x-handlebars-template"  id="award-template">
+
+      <div data-role="navbar" id="prizes-tab-chooser" data-theme="f">
+        <ul>
+          <li ><a href="" id="awards-tab"  class="ui-btn-active" >Prémios</a></li>
+          <li><a href="" id="users-votes-tab" >Votos de Utilizadores</a></li>
+        </ul>
+      </div>
+      </br>
+      <div id="prize-tab-placeholder"> 
+        
+      </div>
+  </script>
+  <!-- Tab de Prémios da organização -->
+  <script type="text/x-handlebars-template"  id="awards-template">
+      <h1 id="awards-title">Premiados</h1>
+      </br>
+        <ul id="awards-list" data-role="listview" data-theme="a" data-inset="true">
+          {{#if isEvent}}
+            {{#each awards}}
+                <li>
+                  <a href="{{url}}">
+                    <h2>{{title}}</h2>
+                    <p >{{parseDate datetime}}</p>
+                    <p class="center-text">{{room_name}}</p>
+                  </a>
+               </li>
+            {{/each}}
+          {{else}}
+            {{#each awards}}
+                <li>
+                  <a href="{{url}}">
+                    <img class="profile-pic" src="assets/morgan.jpg">
+                    <h2>{{name}}</h2>
+                    <p>{{institution}}</p>
+                    <p>{{area}}</p>
+                  </a>
+               </li>
+            {{/each}}
+          {{/if}}
+        </ul>
+      
+  </script>
+
+  <!-- Tab do Mais Votado -->
+  <script type="text/x-handlebars-template"  id="users-votes-template">
+
+     <h1 id="awards-title">Mais Votado</h1>
+     </br>
+      {{#if isEvent}}
+        <a href="{{url}}" data-role="button" data-theme="f">
+          <p>{{title}}</p>
+          <p>{{parseDate datetime}}</p>
+          <p class="center-text">{{room_name}}</p>
+          <p>{{votes}}</p>
+        </a>
+      {{else}}
+        <a href="{{url}}" data-role="button" data-theme="f">
+          <img class="profile-pic" src="assets/morgan.jpg">
+          <p>{{name}}</p>
+          <p>{{institution}}</p>
+          <p>{{area}}</p>
+          <p>{{votes}}</p>
+        </a>
+      {{/if}}
+      <br>
+      <h2 "awards-title">Outros</h2>
+      <br>
+      <ul id="others-list" data-role="listview" data-theme="a" data-inset="true">
+        {{#if isEvent}}
+          {{#each others}}
+              <li data-theme="a">
+                <a href="{{url}}">
+                  <h2>{{title}}</h2>
+                  <span class="ui-li-count">{{votes}}</span>
+                </a>
+             </li>
+          {{/each}}
+        {{else}}
+          {{#each others}}
+              <li>
+                <a href="{{url}}">
+                  <h2>{{name}}</h2>
+                  <span class="ui-li-count">{{votes}}</span>
+                </a>
+             </li>
+          {{/each}}
+        {{/if}}
+      </ul>     
+  </script>
 
 </head>
 

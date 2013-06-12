@@ -68,13 +68,13 @@ function ($, Backbone, Event, App) {
 		/**
 		Coloca todos os ids dos eventos da sessão num vetor
 
-		@method arrayOfPaperIds
+		@method arrayOfEventIds
 		@protected
-		@return {Array} Vetor de inteiros com os ids das palestras da sessão
+		@return {Array} Vetor de inteiros com os ids de evento das palestras da sessão
 		**/
-		arrayOfPaperIds: function(){
+		arrayOfEventIds: function(){
 			return  _.map(this.get('papers'), function(paper){
-				return paper.id;
+				return paper.get("event_id");
 			});
 		}
 

@@ -413,19 +413,19 @@ define([
 		**/
 		addRemoveEvent: function () {
 			var model = this.model.attributes;
-			var hasEvent = this.personalAgenda.hasEvent(this.model.id);
+			var hasEvent = this.personalAgenda.hasEvent(model.event_id);
 
 			if(hasEvent)
 			{
 				//retira o evento da agenda pessoal
-                this.personalAgenda.removeEvent(this.model.id);
+                this.personalAgenda.removeEvent(model.event_id);
                 this.personalAgenda.save();
                 $('#add-remove-event').next().remove();
 			}
 			else
 			{
 				 
-            	this.personalAgenda.addEvent(this.model.id);
+            	this.personalAgenda.addEvent(model.event_id);
             	this.personalAgenda.save();
                 $('#add-remove-event').parent().append(this.checkIcon);
 			}
