@@ -13,9 +13,9 @@ define([
   "views/userslist",
   "views/eventslist",
   "views/agenda",
-  "views/contacts",
+  //"views/contacts",
   "views/notifications",
-  "views/registration",
+  "views/options",
   "views/maininfo",
   "views/mainmenu",
   "views/rankings",
@@ -25,7 +25,7 @@ define([
 ],
 
 function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEventView, 
-	ProfileView, UsersListView, EventsListView, AgendaView, ContactsView, NotificationsView, RegistrationView,
+	ProfileView, UsersListView, EventsListView, AgendaView, /*ContactsView, */NotificationsView, OptionsView,
 	MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView, LocalView) {
 
   	/**
@@ -72,7 +72,7 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 			"user/:id"      : "user",
 			"contacts"      : "contacts",
 			"notifications"	: "notifications",
-			"registration"	: "registration",
+			"options"		: "options",
 
 			"rankings"		: "rankings",
 			"rankings/papers": "papersrank",
@@ -304,7 +304,11 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		contacts: function(){
 			console.log("ROUTE: contacts");
-			new ContactsView();
+
+			require(["views/contacts"], function (ContactsView) {
+				new ContactsView();
+			});
+			
 		},
 
 
@@ -321,14 +325,14 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 
 
 		/**
-		Route do menu de notificações
+		Route do menu de opções
 
-		@method contacts
+		@method options
 		@private
 		**/
-		registration: function(){
-			console.log("ROUTE: registration");
-			new RegistrationView();
+		options: function(){
+			console.log("ROUTE: options");
+			new OptionsView();
 		},
 
 

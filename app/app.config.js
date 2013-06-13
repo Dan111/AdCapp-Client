@@ -23,7 +23,7 @@ function (Backbone, $, _, Account, Notifications) {
 	@type Account
 	@static
 	**/
-	app.account = new Account();
+	app.account = new Account({id: 1});
 	app.account.fetch(); //carrega a informação da conta, caso esteja 
 						//guardada no dispositivo
 

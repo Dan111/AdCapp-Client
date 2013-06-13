@@ -11,7 +11,7 @@ define([
 	/**
 	Página de registo do dispositivo
 
-	@class RegistrationView
+	@class OptionsView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -37,7 +37,7 @@ define([
         @final
         @default "notification-page"
         **/
-        id: "registration-page",
+        id: "opions-page",
 
 
         /**
@@ -47,9 +47,9 @@ define([
         @type String
         @static
         @final
-        @default "Notificações"
+        @default "Opções"
         **/
-        pageName: "Registo",
+        pageName: "Opções",
 
 
 		/**
@@ -61,7 +61,16 @@ define([
 		@protected
 		@default "event-template"
 		**/
-		template: "registration-template",
+		template: "options-template",
+
+
+
+		submitButton: "#submit-button",
+		cancelButton: "#cancel-button",
+		resendButton: "#resend-button",
+
+		emailForm: "#email-form",
+		codeForm: "#code-form",
 
 
 
@@ -82,7 +91,7 @@ define([
 
 		@constructor
 		@protected
-		@class RegistrationView
+		@class OptionsView
 		**/
 		initialize: function ()
 		{
@@ -108,8 +117,6 @@ define([
 			this.setElement($("[data-role=content]"));
 			this.render();
 
-			$('#popupMenu').popup('open', { positionTo: "window" });
-
 			//$(document).trigger("onresize");
 		},
 
@@ -127,9 +134,64 @@ define([
 
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();
+
+			this.setupPopup();
 			
 			return this;
-		}
+		},
+
+
+
+		setupPopup: function () {
+
+			var self = this;
+
+			$('#popupMenu').on("popupafteropen", function() { 
+				
+				$(self.submitButton).unbind("click").bind("click", function(event){
+					self.registerDevice();
+				});
+
+
+				$(self.cancelButton).unbind("click").bind("click", function(event){
+					self.cancelRegistration();
+				});
+
+
+				$(self.resendButton).unbind("click").bind("click", function(event){
+					self.resendCode();
+				});
+								
+			});
+
+			$('#popupMenu').popup('open', { positionTo: "window" });
+
+		},
+
+
+		registerDevice: function() {
+
+			var email = $(this.emailForm).val();
+			var code = $(this.codeForm).val();
+
+			console.log(email);
+			console.log(code);
+
+			this.account.registerDevice(email, code);
+
+		},
+
+
+
+		cancelRegistration: function() {
+
+		},
+
+
+
+		resendCode: function() {
+
+		},
 
 
 	});

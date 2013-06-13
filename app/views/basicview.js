@@ -114,7 +114,8 @@ define([
 			$.mobile.loading( 'show', {
 				            text: options.text,
 				            textVisible: true,
-				            textonly: true
+				            textonly: true,
+				            theme: "d"
 			});
 
 			setTimeout(function (){

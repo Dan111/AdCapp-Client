@@ -1,11 +1,12 @@
 define([
     "jquery",
     "backbone",
+    "views/basicview",
 
     "backbone.localStorage"
 ], 
 
-function ($, Backbone) {
+function ($, Backbone, BasicView) {
 
 	/**
     Guarda as configurações da aplicação definidas pelo utilizador.
@@ -38,11 +39,17 @@ function ($, Backbone) {
         **/
 		defaults: {
 
+            id: 1,
+
 			alert_notifs: true,
 			notif_timeout: 15,
 
 			logged: false,
-			publish_schedule: false
+			publish_schedule: false,
+
+            profile: null,
+            email: null,
+            code: null
 
 		},
 
@@ -79,7 +86,90 @@ function ($, Backbone) {
         **/
 		isLogged: function () {
 			return this.get('logged');
-		}
+		},
+
+
+        getEmail: function (){
+            return this.get('email');
+        },
+
+
+        getCode: function (){
+            return this.get('code');
+        },
+
+
+
+        registerDevice: function (email, code) {
+
+            var self = this;
+
+            $.ajax({
+                method: "POST",
+
+                url: "http://localhost:3000/login",
+            
+                data:{
+                    "email"     : email, 
+                    "password"  : code
+                },
+
+                beforeSend: function () {
+                    $.mobile.loading( 'show', {
+                            text: "A registar dispositivo",
+                            textVisible: true,
+                            theme: "d"
+                    });
+                },
+
+                complete: function () {
+                    //override do ajaxsetup para nao fazer hide do load spinner
+                },
+
+                success: function (data) {
+                    $.mobile.loading( 'hide' );
+
+                    self.set("profile", data);
+                    self.set("email", email);
+                    self.set("code", code);
+                    self.setupCredentials(email, code);
+
+                    self.save();
+                    BasicView.prototype.showErrorOverlay({text: "Registo concluído com sucesso"});
+                },
+
+                error: function (){
+                    BasicView.prototype.showErrorOverlay({text: "Registo inválido"});
+                }
+            });
+        },
+
+
+        setupCredentials: function () {
+
+            var email = this.getEmail();
+            var code = this.getCode();
+
+            if(email == null || code == null)
+                return false;
+            
+            Backbone.$.ajaxSetup({
+                data: {
+                    "email"     : email, 
+                    "password"  : code
+                }
+            });
+
+            $.ajaxSetup({
+                data: {
+                    "email"     : email, 
+                    "password"  : code
+                }
+            });
+
+            return true;
+
+        }
 
 	});
 

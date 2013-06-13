@@ -7,6 +7,8 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, ContactModel, Contacts, BasicView) {
 
+	console.log("Contacts loaded");
+
 	/**
 	View do menu de contactos da aplicação
 

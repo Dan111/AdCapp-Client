@@ -103,8 +103,6 @@ function ($, Backbone, BasicView) {
 
                 //TODO: alterar email e password quando o registo do dispositivo funcionar
                 data: { 
-                    "email"     : "fa@gmail.com", 
-                    "password"  : "123456", 
                     "content"   : options.text, 
                     "id"        : this.id, 
                     type        : this.type
@@ -113,7 +111,8 @@ function ($, Backbone, BasicView) {
                 beforeSend: function () {
                     $.mobile.loading( 'show', {
                             text: "A enviar",
-                            textVisible: true
+                            textVisible: true,
+                            theme: "d"
                     });
                 },
 

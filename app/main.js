@@ -35,22 +35,19 @@ function (Backbone, $, Router, Profile, Contacts, configHandlebars, configApp) {
 			},
 
 			beforeSend: function() {
-				$.mobile.loading('show');
+				$.mobile.loading('show', {theme: "d"});
 			},
 
 			complete: function() {
-				$.mobile.loading('hide');
+				$.mobile.loading('hide', {theme: "d"});
 			}
 		});
 
 		//activa o modo API nos pedidos ao server
 		Backbone.$.ajaxSetup({
 			data: {
-				"api": "true",
-				"email"     : "fa@gmail.com", 
-                "password"  : "123456"
+				"api": "true"
 			}
-
 		});
 
 
