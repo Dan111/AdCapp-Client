@@ -2,9 +2,9 @@ define([
     "jquery",
     "backbone",
     "handlebars",
-    "collections/users",
+    "collections/listusers",
     "views/basicview"
-], function ($, Backbone, Handlebars, UserCollection, BasicView) {
+], function ($, Backbone, Handlebars, ListUserCollection, BasicView) {
 
 	/**
 	View das páginas com listagens de oradores e participantes
@@ -99,7 +99,7 @@ define([
 			this.id = args.pageId;
 			this.pageName = args.pageName; 
 
-			this.users = new UserCollection({isSpeakers: this.speakers});
+			this.users = new ListUserCollection({isSpeakers: this.speakers});
 
 			this.users.fetch({
 				success: function () {

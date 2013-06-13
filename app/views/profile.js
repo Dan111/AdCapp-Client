@@ -224,12 +224,23 @@ define([
             console.log("general tab");
             //atributos do user do perfil
             var user = this.user.attributes;
+            var nextEventId = null;
+            var nextEventType = null;
+            var nextEventName = null;
+
+            if(user.nextEvent !== null)
+            {
+                nextEventId = user.nextEvent.idNextEvent;
+                nextEventType = user.nextEvent.type;
+                nextEventName = user.nextEvent.nameNextEvent;
+            }
 
             //informação necessária para a tab geral do perfil
             var context = {
                 publishSchedule: user.publish_schedule,
-                idNextEvent : user.nextEvent.idNextEvent,
-                nameNextEvent : user.nextEvent.nameNextEvent,
+                idNextEvent : nextEventId,
+                type : nextEventType,
+                nameNextEvent : nextEventName,
                 userId : user.id,
                 events : user.events,
                 bio : user.bio

@@ -49,6 +49,15 @@ function (Handlebars, $, _, Moment) {
             return first;
         });
 
+        //Dado o nome do utilizador, devolve apenas o primeiro nome e o último nome
+        Handlebars.registerHelper('getFirstAndLastName', function (param) {
+            var name = param.toString();
+
+            var first = name.substring(0, name.indexOf(" "));
+            var last = name.substring( name.lastIndexOf(" ") + 1, name.length);
+            return first +" "+ last;
+        });
+
         //Devolve o último nome do utilizador
         Handlebars.registerHelper('getLastName', function (param) {
             var name = param.toString();

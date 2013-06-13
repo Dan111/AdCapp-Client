@@ -621,25 +621,26 @@
   <script type="text/x-handlebars-template" id="general-info-template">
       <div id="general-info">
         {{#if publishSchedule}}
-            <h2 id="events-watch-title">Eventos que vou Assistir</h2>
-
-            <a href="#paper/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f" >{{nameNextEvent}}</a>
+            {{#if idNextEvent}}
+              <h2 id="events-watch-title">Eventos que vou Assistir</h2>
               
+              <a href="#{{type}}/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f" >{{nameNextEvent}}</a>
+            {{/if}}
             <a href="#personalschedule/{{userId}}" data-role="button" data-theme="f" >
               <i class="button-icon icon-calendar "></i>Agenda
             </a>
+            {{#if events}}
+              <h2 id="events-watch-make">Eventos que vou realizar</h2>
 
-            <h2 id="events-watch-make">Eventos que vou realizar</h2>
+              <p id="events-make">
+                {{#each events}}
+                  <a href="#{{type}}/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
+                {{/each}}
+              </p>
 
-            <p id="events-make">
-              {{#each events}}
-                <a href="#paper/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
-              {{/each}}
-            </p>
-
-            <br>
-            <br>
-
+              <br>
+              <br>
+            {{/if}}
             <div id="user-bio" data-role="collapsible" data-collapsed="false" data-theme="a" >
               <h4>Bio</h4>
               <p>
@@ -820,7 +821,7 @@
    <script type="text/x-handlebars-template"  id="rankingsmenu-template">
 
           <div>
-                <a href="#" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
+                <a href="#rankings/speakers" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
                   <div class="square-info">
                     <br>
                     <i ><img class="speaker-pic" src="assets/speaker.png"></i>
@@ -869,7 +870,7 @@
 
   </script>
 
-  <!-- Página de Prémio -->
+   <!-- Página de Prémio -->
 
    <script type="text/x-handlebars-template"  id="award-template">
 
@@ -888,14 +889,15 @@
   <script type="text/x-handlebars-template"  id="awards-template">
       <h1 id="awards-title">Premiados</h1>
       </br>
+      {{#if awards}}
         <ul id="awards-list" data-role="listview" data-theme="a" data-inset="true">
           {{#if isEvent}}
             {{#each awards}}
                 <li>
                   <a href="{{url}}">
-                    <h2>{{title}}</h2>
-                    <p >{{parseDate datetime}}</p>
-                    <p class="center-text">{{room_name}}</p>
+                    <h2 class="awards-name">{{title}}</h2>
+                    <p class="awards-name">{{parseDate datetime}}</p>
+                    <p class="center-text awards-name">{{room_name}}</p>
                   </a>
                </li>
             {{/each}}
@@ -904,15 +906,17 @@
                 <li>
                   <a href="{{url}}">
                     <img class="profile-pic" src="assets/morgan.jpg">
-                    <h2>{{name}}</h2>
-                    <p>{{institution}}</p>
-                    <p>{{area}}</p>
+                    <h2 class="awards-name">{{name}}</h2>
+                    <p class="awards-name">{{institution}}</p>
+                    <p class="awards-name">{{area}}</p>
                   </a>
                </li>
             {{/each}}
           {{/if}}
         </ul>
-      
+      {{else}}
+      <h2 id="awards-title">Ainda não foram atribuídos prémios</h2>
+      {{/if}}
   </script>
 
   <!-- Tab do Mais Votado -->
@@ -921,45 +925,73 @@
      <h1 id="awards-title">Mais Votado</h1>
      </br>
       {{#if isEvent}}
-        <a href="{{url}}" data-role="button" data-theme="f">
-          <p>{{title}}</p>
-          <p>{{parseDate datetime}}</p>
-          <p class="center-text">{{room_name}}</p>
-          <p>{{votes}}</p>
-        </a>
+       
+        <h2 >{{title}}</h2>
+        <h3>{{parseDate datetime}}</h3>
+        <h3 >{{room_name}}</h3>
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+              <h3 >Votos:  {{votes}}</h3>
+          </div>
+          <div class="ui-block-b">
+              <span data-role="button" data-theme="f">Votar <i class="icon-plus-sign"></i></span>
+          </div>
+        </div>
+        <a href="{{url}}" data-role="button" data-theme="f">Ver página do Evento </a>
+
       {{else}}
-        <a href="{{url}}" data-role="button" data-theme="f">
-          <img class="profile-pic" src="assets/morgan.jpg">
-          <p>{{name}}</p>
-          <p>{{institution}}</p>
-          <p>{{area}}</p>
-          <p>{{votes}}</p>
-        </a>
+
+        {{> userinfo user}}
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+              <h3 >Votos:  {{votes}}</h3>
+          </div>
+          <div class="ui-block-b">
+              <span data-role="button" data-theme="f">Votar <i class="icon-plus-sign"></i></span>
+          </div>
+        </div>
+        <a href="{{url}}" data-role="button" data-theme="f">Ver página do Orador </a>
+
       {{/if}}
       <br>
       <h2 "awards-title">Outros</h2>
       <br>
-      <ul id="others-list" data-role="listview" data-theme="a" data-inset="true">
+      
         {{#if isEvent}}
           {{#each others}}
-              <li data-theme="a">
-                <a href="{{url}}">
-                  <h2>{{title}}</h2>
-                  <span class="ui-li-count">{{votes}}</span>
-                </a>
-             </li>
+              <div class="others-events">
+                <h3 class=id="awards-title">{{title}}</h3>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                      <a href="{{url}}" data-role="button" data-theme="a">
+                          Página
+                      </a>
+                    </div>
+                    <div class="ui-block-b">
+                    <span data-role="button" data-theme="f">
+                      
+                      Votos: {{votes}}
+                      <i class="icon-plus-sign "></i></span>            
+                    </div>
+                </div>
+              </div>
           {{/each}}
         {{else}}
           {{#each others}}
-              <li>
-                <a href="{{url}}">
-                  <h2>{{name}}</h2>
-                  <span class="ui-li-count">{{votes}}</span>
-                </a>
-             </li>
+              <div class="ui-grid-a">
+                  <div class="ui-block-a big-button">
+                    <a href="{{url}}" data-role="button" data-theme="a">
+                        <span class="other-name">{{getFirstAndLastName name}}</span>
+                        <span class="ui-li-count other-votes">{{votes}}</span>
+                      </a>
+                  </div>
+                  <div class="ui-block-b small-button"><span data-role="button" data-theme="f">
+                    <i class="icon-plus-sign "></i></span>               
+                  </div>
+              </div>
           {{/each}}
         {{/if}}
-      </ul>     
+           
   </script>
 
 </head>

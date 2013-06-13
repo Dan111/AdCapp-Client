@@ -2,74 +2,64 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/listuser"
+    "models/user"
 ], 
 
-function ($, Backbone, LocalStorage, listUser) {
+function ($, Backbone, LocalStorage, User) {
 
 	/**
-    Coleção de utilizadores para serem mostrados em lista
+    Coleção de users
 
-    @class UserCollection
+    @class UsersCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
 
 		/**
-		Tipo do modelo utilizado na collection
+        Tipo do modelo utilizado na collection
 
-		@property model 
-		@type Backbone.Model
-		@final
-		@protected
-		@default listUser
-		**/
-		model: listUser,
-
-		/**
-        Url do servidor para fazer fecth da collection
-
-        @property url 
-        @type String
-        @static
+        @property model 
+        @type Backbone.Model
         @final
-        @default ""
-        **/
-		url: "",
-
-		//localStorage: new Backbone.LocalStorage('users-backbone'),
-
-		/**
-        Construtor da coleção. Verifca o booleano passado como parametro
-        e escolhe a url a utilizar no fecth da collection
-
-        @constructor
         @protected
-        @class UserCollection
-        @param {Object} args contém booleano para distinguir oradores de participantes
-        	@param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
+        @default User
         **/
-		initialize: function (args){
+		model: User,
 
-			if(args.isSpeakers)
-				this.url = "http://danielmagro.apiary.io/speakers";
-			else
-				this.url = "http://danielmagro.apiary.io/participants";
+		url: "http://danielmagro.apiary.io/users",
 
-			console.log('UserS');
+
+		initialize: function (){
 		},
 
-		/**
-        Comparador de modelos
+	    /**
+        Devolve o modelo user da collection que tem como id o id 
+        passado
 
-        @method comparator
+        @method getById
         @protected
-        @param {listUser} user modelo de informação de utilizador para lista
-        @return {String} nome do user
+        @param {integer} id id de um user
+        @return {User} modelo com o id passado
         **/
-		comparator: function( user ) {
-	      return user.get('name');
-	    }
+	    getById: function (id){
+            return  this.find( function(user){ return user.get("id") === id; });
+        },
+
+        /**
+        Devolve os modelos da collection que tem como id os ids
+        passados no array
+
+        @method getByIds
+        @protected
+        @param {Array} arrayOfIds array de ids
+        @return {Array} array de modelos User
+        **/
+        getByIds: function(arrayOfIds){
+            that = this;
+            return _.map(arrayOfIds, function(id){
+                return that.getById(id);
+            });
+        }
 
 
 	});

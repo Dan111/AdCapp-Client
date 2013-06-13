@@ -19,12 +19,13 @@ define([
   "views/maininfo",
   "views/mainmenu",
   "views/rankings",
-  "views/papersrank"
+  "views/papersrank",
+  "views/speakersrank",
 ],
 
 function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEventView, 
 	ProfileView, UsersListView, EventsListView, AgendaView, ContactsView, NotificationsView, RegistrationView,
-	MainInfoView, MainMenuView, RankingsView, PapersRankView) {
+	MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -72,6 +73,7 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 
 			"rankings"		: "rankings",
 			"rankings/papers": "papersrank",
+			"rankings/speakers"	: "speakersrank",
 		},
 
 		/**
@@ -342,6 +344,17 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		papersrank: function(){
 			console.log("ROUTE: rankings papers");
 			new PapersRankView();
+		},
+
+		/**
+		Route da página de prémios dos oradores
+
+		@method speakersrank
+		@private
+		**/
+		speakersrank: function(){
+			console.log("ROUTE: rankings speakers");
+			new SpeakersRankView();
 		},
 	});
 

@@ -154,7 +154,11 @@ define([
 		},
 
 		renderAwardsTab: function() {
-			var awards = this.treatPrizesArray();
+			var awards = [];
+			if(this.prizesArray === null)
+				awards = null;
+			else
+				awards = this.treatPrizesArray();
 
 			var context = {
 					isEvent	: this.isEvent,
@@ -227,10 +231,8 @@ define([
 			else
 				return {
 					isEvent		: this.isEvent,
-					url 		: "#/users"+attrs.id.toString(),
-					name 		: attrs.name,
-					institution : attrs.institution,
-					area 		: attrs.area,
+					url 		: "#/users"+model.id.toString(),
+					user        : model,
 					votes 		: this.getVotes(model.id),
 					others		: others
 				};

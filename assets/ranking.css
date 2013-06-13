@@ -1,3 +1,41 @@
 #awards-title{
 	text-align: center;
 }
+
+.most-voted-titles{
+	text-align: center;
+	margin-bottom: 4px;
+}
+
+.awards-name{
+	text-align: justify;
+	white-space: normal !important;
+}
+.others-events{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: rgb(52, 73, 94); 
+}
+
+.other-votes{
+	height: 20px;
+	width: 30px;
+	background-color: silver;
+	color: black;
+	border-radius: 75%;
+	float: right;
+}
+
+.other-name{
+
+	float: left;
+
+}
+
+.ui-block-a.big-button{
+	width: 80% !important;
+}
+
+.ui-block-b.small-button{
+	width: 20% !important;
+}
