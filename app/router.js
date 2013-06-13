@@ -21,11 +21,12 @@ define([
   "views/rankings",
   "views/papersrank",
   "views/speakersrank",
+  "views/local",
 ],
 
 function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEventView, 
 	ProfileView, UsersListView, EventsListView, AgendaView, ContactsView, NotificationsView, RegistrationView,
-	MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView) {
+	MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView, LocalView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -65,6 +66,8 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 			"keynote/:id"   : "keynote",
 			"workshop/:id"  : "workshop",
 			"social/:id"    : "social", 
+
+			"local/:id"		: "local",
 
 			"user/:id"      : "user",
 			"contacts"      : "contacts",
@@ -187,6 +190,11 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		social: function(id) {
 			console.log("ROUTE: social event");
 			new SocialEventView({modelId: id});
+		},
+
+		local: function(id) {
+			console.log("ROUTE: local");
+			new LocalView({modelId: id});
 		},
 
 
