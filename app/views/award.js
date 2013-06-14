@@ -96,6 +96,35 @@ define([
 			this.render();
 		},
 
+		getStarted: function(AwardView, self, isEvent, eventsType, collection){
+
+			var attrs = this.ranksInfo.attributes;
+
+			this.isEvent = isEvent;
+
+			this.eventsType = eventsType;
+
+			this.votesArray = attrs.competitors;
+
+			this.prizesArray = attrs.awards;
+
+			this.modelCollection = collection;
+
+			this.voted = attrs.voted;
+
+			this.modelId = this.votesArray[0].id;
+
+			this.modelCollection.fetch({
+				success: function () {
+					self.model = self.modelCollection.get(self.modelId);
+					AwardView.prototype.initialize.apply(self);
+				},
+				error: function (){
+					console.log("Fail ");
+				}
+			});	
+		},
+
 
 		/**
 		Faz o rendering das páginas de prémios

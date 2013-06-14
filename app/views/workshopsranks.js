@@ -4,9 +4,9 @@ define([
     "underscore",
     "handlebars",
     "models/ranksinfo",
-    "collections/workshops",
+    "collections/genericeventcollection",
     "views/award"
-], function ($, Backbone, _, Handlebars, RanksInfo, WorkshopsCollection, AwardView) {
+], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
 	View da página de prémios dos workshop's
@@ -62,42 +62,12 @@ define([
 			this.ranksInfo = new RanksInfo({type:"workshops"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(self);
+					self.getStarted(AwardView, self, true, app.TYPES.WORKSHOP, new GenericEventCollection({type:"workshops"}));
 				}
 			});
 
 			
 		},
-
-
-		getStarted: function(self){
-
-			var attrs = this.ranksInfo.attributes;
-
-			this.isEvent = true;
-
-			this.eventsType = app.TYPES.WORKSHOP;
-
-			this.votesArray = attrs.competitors;
-
-			this.prizesArray = attrs.awards;
-
-			this.modelCollection = new WorkshopsCollection();
-
-			this.voted = attrs.voted;
-
-			this.modelId = this.votesArray[0].id;
-
-			this.modelCollection.fetch({
-				success: function () {
-					self.model = self.modelCollection.getById(self.modelId);
-					AwardView.prototype.initialize.apply(self);
-				},
-				error: function (){
-					console.log("Fail ");
-				}
-			});	
-		}
 
 	});
 

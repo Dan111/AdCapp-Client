@@ -47,7 +47,7 @@ define([
 		@type String
 		@static
 		@final
-		@default "Palestra"
+		@default "Prémios Oradores"
 		**/
 		pageName: "Prémios Oradores",
 
@@ -62,42 +62,13 @@ define([
 			this.ranksInfo = new RanksInfo({type:"speakers"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(self);
+					self.getStarted(AwardView, self, false, null, new UsersCollection());
 				}
 			});
 
 			
 		},
 
-
-		getStarted: function(self){
-
-			var attrs = this.ranksInfo.attributes;
-
-			this.isEvent = false;
-
-			this.eventsType = null;
-
-			this.votesArray = attrs.competitors;
-
-			this.prizesArray = attrs.awards;
-
-			this.modelCollection = new UsersCollection();
-
-			this.voted = attrs.voted;
-
-			this.modelId = this.votesArray[0].id;
-
-			this.modelCollection.fetch({
-				success: function () {
-					self.model = self.modelCollection.getById(self.modelId);
-					AwardView.prototype.initialize.apply(self);
-				},
-				error: function (){
-					console.log("Fail ");
-				}
-			});	
-		}
 
 	});
 

@@ -4,9 +4,9 @@ define([
     "underscore",
     "handlebars",
     "models/ranksinfo",
-    "collections/sessions",
+    "collections/genericeventcollection",
     "views/award"
-], function ($, Backbone, _, Handlebars, RanksInfo, SessionsCollection, AwardView) {
+], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
 	View da página de prémios das sessões
@@ -47,7 +47,7 @@ define([
 		@type String
 		@static
 		@final
-		@default "Prémios Sessions"
+		@default "Prémios Sessões"
 		**/
 		pageName: "Prémios Sessions",
 
@@ -62,42 +62,12 @@ define([
 			this.ranksInfo = new RanksInfo({type:"sessions"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(self);
+					self.getStarted(AwardView, self, true, app.TYPES.SESSION, new GenericEventCollection({type:"sessions"}));
 				}
 			});
 
 			
 		},
-
-
-		getStarted: function(self){
-
-			var attrs = this.ranksInfo.attributes;
-
-			this.isEvent = true;
-
-			this.eventsType = app.TYPES.SESSION;
-
-			this.votesArray = attrs.competitors;
-
-			this.prizesArray = attrs.awards;
-
-			this.modelCollection = new SessionsCollection();
-
-			this.voted = attrs.voted;
-
-			this.modelId = this.votesArray[0].id;
-
-			this.modelCollection.fetch({
-				success: function () {
-					self.model = self.modelCollection.getById(self.modelId);
-					AwardView.prototype.initialize.apply(self);
-				},
-				error: function (){
-					console.log("Fail ");
-				}
-			});	
-		}
 
 	});
 
