@@ -107,7 +107,7 @@ function ($, Backbone, BasicView) {
             $.ajax({
                 method: "POST",
 
-                url: "http://localhost:3000/login",
+                url: window.app.URL + "login",
             
                 data:{
                     "email"     : email, 
@@ -142,6 +142,47 @@ function ($, Backbone, BasicView) {
                     BasicView.prototype.showErrorOverlay({text: "Registo inválido"});
                 }
             });
+        },
+
+
+        resendCode: function (email) {
+
+            var self = this;
+
+            $.ajax({
+                method: "POST",
+
+                url: window.app.URL + "resend",
+            
+                data:{
+                    "email": email
+                },
+
+                beforeSend: function () {
+                    $.mobile.loading( 'show', {
+                            text: "A processar pedido",
+                            textVisible: true,
+                            theme: "d"
+                    });
+                },
+
+                complete: function () {
+                    //override do ajaxsetup para nao fazer hide do load spinner
+                },
+
+                success: function (data) {
+                    $.mobile.loading( 'hide' );
+
+                    console.log("resend success");
+
+                    BasicView.prototype.showErrorOverlay({text: "Código de activação reenviado.\nVerifique o seu email."});
+                },
+
+                error: function (){
+                    BasicView.prototype.showErrorOverlay({text: "Email inválido"});
+                }
+            });
+
         },
 
 

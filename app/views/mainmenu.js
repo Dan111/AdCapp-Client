@@ -50,7 +50,7 @@ define([
 
             //Quando tudo estiver pronto activa lança o método onDeviceReady
 			$(document).ready(function() {
-				  document.addEventListener("deviceready", that.onDeviceReady, false);
+				  that.onDeviceReady();
 			});
             //Recalcula o tamanho do popup e reposiona-o
 			$(window).resize(function(){
@@ -93,16 +93,38 @@ define([
 
 		onDeviceReady: function() {
 			var that = this;
-        	document.addEventListener("menubutton", that.onMenuKeyDown, false);
+
+            console.log("device ready");
+
+        	//document.addEventListener("menubutton", that.onMenuKeyDown, false);
+            //window.addEventListener("onkeydown", that.onMenuKeyDown, false);
+
+            //document.menubutton = this.onMenuKeyDown;
+
+            $(document).off("menubutton");
+            $(document).on("menubutton", this.onMenuKeyDown);
+
+            // document.removeEventListener("menubutton", that.onMenuKeyDown, false);
+            // document.addEventListener("menubutton", that.onMenuKeyDown, false);
+
+            //$(document).unbind("menubutton").bind("menubutton", this.onMenuKeyDown);
+
+            //window.onkeydown = this.onMenuKeyDown;
     	},
 
     	onMenuKeyDown: function() {
     		that = this;
+
+            console.log("key down4");
     		
     		this.resizePopUp();
             
     		if(this.menu === false)
     		{
+
+                console.log("open menu");
+
+
     			this.$menubutton.popup({
   					afterclose: function( event, ui ) {that.menu = false;}
 				});

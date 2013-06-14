@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="assets/mainmenu.css">
   <link rel="stylesheet" href="assets/notifications.css">
   <link rel="stylesheet" href="assets/eventslist.css">
-   <link rel="stylesheet" href="assets/ranking.css">
+  <link rel="stylesheet" href="assets/ranking.css">
 
 
 
@@ -49,8 +49,8 @@
       </div>
 
       <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <div class="ui-btn paper-info">
+        <div class="event-day-wrapper ui-block-a">
+          <div class="ui-btn-inner paper-info">
             <span class="center-text" id="event-day">{{room_name}}</span>
           </div>
         </div>
@@ -67,13 +67,21 @@
       <br>
 
 
-      <div data-role="navbar">
-        <ul>
-          {{#each tabs}}
-            <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
-          {{/each}}
-        </ul>
-      </div>
+      {{#ifLengthGreater tabs 1}}
+
+        <br>
+
+        <div data-role="navbar">
+          <ul>
+            {{#each tabs}}
+              <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+        
+      {{/ifLengthGreater}}
+
+
 
       <br>
 
@@ -138,7 +146,7 @@
 
     <div id="comment-form">
 
-      <label for="comment-input">Novo Comentário:</label>
+      <label for="comment-input">{{title}}:</label>
       <textarea cols="40" rows="8" name="comment-input" id="comment-input"></textarea>
 
       <div class="ui-grid-a">
@@ -364,17 +372,29 @@
   <!-- Página das notificações -->
   <script type="text/x-handlebars-template" id="options-template">
 
-    <div data-role="popup" id="popupMenu" data-theme="z" data-dismissible="false">
+    <button id="register-device" data-theme="a">
+      <i class="icon-signin icon-large button-icon"></i> Registar dispositivo
+    </button>
+
+    <div data-role="popup" id="popupMenu" data-theme="z">
       <div style="padding:10px 20px; color: white;">
         <h3>Insira as suas credenciais</h3>
 
         <input data-theme="d" name="email" id="email-form" value="" placeholder="email" size="30" data-theme="a" type="email">
         <input data-theme="d" name="code" id="code-form" value="" placeholder="código" size="15" data-theme="a" type="text">
 
-        <button id="submit-button" data-theme="b" data-icon="check">Registar</button>
-        <button id="cancel-button" data-theme="d" data-icon="delete">Cancelar</button>
+        <button id="submit-button" data-theme="b">
+          <i class="icon-ok-sign button-icon"></i>Registar
+        </button>
+        <button id="cancel-button" data-theme="d">
+          <i class="icon-remove-sign button-icon"></i>Cancelar
+        </button>
+
         <br>
-        <button id="resend-button" data-theme="f" data-icon="info">Reenviar código</button>
+
+        <button id="resend-button" data-theme="f">
+          <i class="icon-question-sign button-icon"></i>Reenviar código
+        </button>
       </div>
     </div>
 
@@ -624,7 +644,7 @@
           </a>
         </div>
         <div class="ui-block-b">
-          <a href="#" data-role="button" id="email-user"data-theme="f" >
+          <a data-bypass="true" href="mailto:{{user.email}}" data-role="button" id="email-user"data-theme="f" >
             <i class="button-icon icon-envelope-alt "></i>E-mail
           </a>
         </div>

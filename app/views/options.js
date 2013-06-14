@@ -83,6 +83,8 @@ define([
 		**/
 		events: {
 
+			"click #register-device": "setupPopup"
+
 		},
 
 
@@ -99,25 +101,10 @@ define([
 
 			this.account = App.account;
 
-			
-			console.log("event binding");
-
-			// $(document).on("onresize", function () {
-			// 	console.log("event triggered");
-			// 	$('#popupMenu').popup('reposition', {positionTo: "window"});
-			// });
-
-			// $(document).on("pageinit", function () {
-			// 	console.log("event triggered 2");
-				
-			// });
-
-
 			this.renderLayout();
 			this.setElement($("[data-role=content]"));
 			this.render();
 
-			//$(document).trigger("onresize");
 		},
 
 
@@ -135,7 +122,7 @@ define([
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();
 
-			this.setupPopup();
+			// this.setupPopup();
 			
 			return this;
 		},
@@ -184,12 +171,27 @@ define([
 
 
 		cancelRegistration: function() {
-
+			$('#popupMenu').popup('close');
 		},
 
 
 
 		resendCode: function() {
+
+			var email = $(this.emailForm).val();
+
+			if(email.length < 5) //se a string do email for demasiado pequena, não vale a pena enviar um pedido ao server
+			{
+				console.log("email too short");
+
+				BasicView.prototype.showErrorOverlay({text: "Insira um email válido"});
+				return;
+			}
+
+			console.log(email);
+
+			this.account.resendCode(email);
+
 
 		},
 

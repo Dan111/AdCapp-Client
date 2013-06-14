@@ -26,6 +26,7 @@ function (Backbone, $, _, Account, Notifications) {
 	app.account = new Account({id: 1});
 	app.account.fetch(); //carrega a informação da conta, caso esteja 
 						//guardada no dispositivo
+	app.account.setupCredentials(); //configura o jQuery para enviar as credenciais
 
 
 	/**
