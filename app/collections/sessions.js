@@ -2,16 +2,16 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/paper",
+    "models/session",
     "app.config"
 ], 
 
-function ($, Backbone, LocalStorage, Paper, App) {
+function ($, Backbone, LocalStorage, Session, App) {
 
 	/**
-    Coleção de papers
+    Coleção de sessions
 
-    @class PapersCollection
+    @class SessionsCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
@@ -23,27 +23,27 @@ function ($, Backbone, LocalStorage, Paper, App) {
         @type Backbone.Model
         @final
         @protected
-        @default Paper
+        @default Session
         **/
-		model: Paper,
+		model: Session,
 
-		url: App.URL + "papers",
+		url: App.URL + "sessions",
 
 
 		initialize: function (){
 		},
 
 	    /**
-        Devolve o modelo paper da collection que tem como id o id 
+        Devolve o modelo session da collection que tem como id o id 
         passado
 
         @method getById
         @protected
-        @param {integer} id id de um paper
-        @return {Paper} modelo com o id passado
+        @param {integer} id id de um session
+        @return {Session} modelo com o id passado
         **/
 	    getById: function (id){
-            return  this.find( function(paper){ return paper.get("id") === id; });
+            return  this.find( function(session){ return session.get("id") === id; });
         },
 
         /**
@@ -53,7 +53,7 @@ function ($, Backbone, LocalStorage, Paper, App) {
         @method getByIds
         @protected
         @param {Array} arrayOfIds array de ids
-        @return {Array} array de modelos Paper
+        @return {Array} array de modelos Session
         **/
         getByIds: function(arrayOfIds){
             that = this;

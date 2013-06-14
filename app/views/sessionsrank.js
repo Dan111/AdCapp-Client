@@ -4,14 +4,14 @@ define([
     "underscore",
     "handlebars",
     "models/ranksinfo",
-    "collections/papers",
+    "collections/sessions",
     "views/award"
-], function ($, Backbone, _, Handlebars, RanksInfo, PapersCollection, AwardView) {
+], function ($, Backbone, _, Handlebars, RanksInfo, SessionsCollection, AwardView) {
 
 	/**
-	View da página de prémios das palestras
+	View da página de prémios das sessões
 
-	@class PapersRankView
+	@class SessionsRankView
 	@extends AwardView
 	**/
 	return AwardView.extend({
@@ -35,9 +35,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "paper-award-page"
+		@default "session-award-page"
 		**/
-		id: "paper-award-page",
+		id: "session-award-page",
 
 
 		/**
@@ -47,9 +47,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "Prémios Palestras"
+		@default "Prémios Sessions"
 		**/
-		pageName: "Prémios Palestras",
+		pageName: "Prémios Sessions",
 
 
 
@@ -59,7 +59,7 @@ define([
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"papers"});
+			this.ranksInfo = new RanksInfo({type:"sessions"});
 			this.ranksInfo.fetch({
 				success: function () {
 					self.getStarted(self);
@@ -76,13 +76,13 @@ define([
 
 			this.isEvent = true;
 
-			this.eventsType = app.TYPES.PAPER;
+			this.eventsType = app.TYPES.SESSION;
 
 			this.votesArray = attrs.competitors;
 
 			this.prizesArray = attrs.awards;
 
-			this.modelCollection = new PapersCollection();
+			this.modelCollection = new SessionsCollection();
 
 			this.voted = attrs.voted;
 

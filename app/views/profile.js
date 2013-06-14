@@ -230,9 +230,9 @@ define([
 
             if(user.nextEvent !== null)
             {
-                nextEventId = user.nextEvent.idNextEvent;
-                nextEventType = user.nextEvent.type;
-                nextEventName = user.nextEvent.nameNextEvent;
+                nextEventId = user.nextEvent.id;
+                nextEventType = user.nextEvent.type.toLowerCase();
+                nextEventName = user.nextEvent.name;
             }
 
             //informação necessária para a tab geral do perfil

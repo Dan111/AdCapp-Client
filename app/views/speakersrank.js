@@ -35,7 +35,7 @@ define([
 		@type String
 		@static
 		@final
-		@default "user-page"
+		@default "user-award-page"
 		**/
 		id: "user-award-page",
 

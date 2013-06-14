@@ -4,8 +4,9 @@ define([
     "underscore",
     "handlebars",
     "models/event",
-    "views/basicview"
-], function ($, Backbone, _, Handlebars, EventModel, BasicView) {
+    "views/basicview",
+    "app.config"
+], function ($, Backbone, _, Handlebars, EventModel, BasicView, App) {
 
 	/**
 	View abstracta das páginas de prémios
@@ -67,9 +68,7 @@ define([
 
 		voted: null,
 
-		typesInfo: {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-					"session": {url: '#sessions/'}},
+		typesInfo: app.TYPESINFO,
 
 		/**
 		Eventos lançados pela transição entre tabs
@@ -261,28 +260,44 @@ define([
             this.refresher(html);
 		},
 
+		incrementVote: function(){
+			var votes = $('#votes[value='+ this.voted+'] span').text();
+           	console.log(votes);
+
+           	$('#votes[value='+ this.voted+'] span').empty();
+    		var newVotes = parseInt(votes) + 1;
+    		$('#votes[value='+ this.voted+'] span').text(newVotes);
+
+           	$('#vote-button[value='+ this.voted+'] i').remove();
+           	$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-check-sign"></i>');
+		},
+
+		decrementVote: function(){
+			var votes = $('#votes[value='+ this.voted+'] span').text();
+
+        	$('#votes[value='+ this.voted+'] span').empty();
+        	var newVotes = parseInt(votes) - 1;
+        	$('#votes[value='+ this.voted+'] span').text(newVotes);
+
+        	$('#vote-button[value='+ this.voted+'] i').remove();
+        	$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-plus-sign"></i>');
+		},
+
 		vote: function(e){
 
 			if(this.voted !== null)
 	        {
-	        	var votes = $('#votes[value='+ this.voted+'] span').text();
-	        	console.log(votes);
-	        	$('#votes[value='+ this.voted+'] span').empty();
-	        	var newVotes = parseInt(votes) - 1;
-	        	$('#votes[value='+ this.voted+'] span').text(newVotes);
-
-	        	$('#vote-button[value='+ this.voted+'] i').remove();
-	        	$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-plus-sign"></i>');
+	        	this.decrementVote();
 	        }
 
 			var that = this;
-			//COLOCAR A URL CORRECTA
-			var url = "http://danielmagro.apiary.io/vote";
+
+			var url = "http://localhost:3000/" + "votes";
 
 			e.preventDefault();
    			var id = parseInt($(e.currentTarget).attr("value"));
 
-   			console.log(id.toString());
+
    			var votable_type = this.eventsType;
 
    			if(votable_type  === null)
@@ -299,9 +314,11 @@ define([
 
                 //MUDAR O USER ID PARA O ID DO UTILIZADOR DO DISPOSITIVO
                 data: { 
-                    user_id: 0,
-                    votable_id: id,
-                    votable_type: votable_type
+                	vote: {
+	                    "user_id": 1,
+	                    "votable_id": id,
+	                    "votable_type": votable_type
+	                }
                 },
 
                 beforeSend: function () {
@@ -321,19 +338,13 @@ define([
                   	that.showErrorOverlay({text:"Voto atribuído"});
                    	that.voted = id;
 
-                   	var votes = $('#votes[value='+ that.voted+'] span').text();
-                   	console.log(votes);
-
-                   	$('#votes[value='+ that.voted+'] span').empty();
-	        		var newVotes = parseInt(votes) + 1;
-	        		$('#votes[value='+ that.voted+'] span').text(newVotes);
-
-                   	$('#vote-button[value='+ that.voted+'] i').remove();
-                   	$('#vote-button[value='+ that.voted+'] .ui-btn-text').append('<i class="icon-check-sign"></i>');
+                   	that.incrementVote();
                 },
 
                 error: function (){
                     that.showErrorOverlay({text: "Erro no envio"});
+                    //Para tirar o efeito do decrement
+                   	that.incrementVote();
                 }
             });
 	        

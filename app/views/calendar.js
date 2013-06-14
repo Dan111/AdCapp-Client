@@ -240,10 +240,11 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @final
         @protected
         @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'}}
+					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+					"session": {url: '#sessions/'}};
         **/
-		typesInfo: {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'}},
+
+		typesInfo: app.TYPESINFO,
 
 
 		/**
@@ -430,7 +431,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @example
         	{	
         		id: 1,
-			    typeId: 1,
+			    type_id: 1,
 			    name: "Data Management",
 				hours: "2013-05-29T08:00:00Z", 
 				duration": 20, 
@@ -440,7 +441,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			}
         **/
 		setPopUp: function(attributes){
-			var type = attributes.type;
+			var type = attributes.type.toLowerCase();
 
 			if(type === "paper")
 			{
@@ -474,9 +475,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				this.$addeventbutton.attr("value", attributes.id);
 			}
 			//Vê o tipo do evento e vai ao typesInfo buscar a url correcta
-			var url = this.typesInfo[attributes.type].url;
+			var url = this.typesInfo[type].url;
 
-			this.$eventlinkA.attr("href", url + attributes.typeId);
+			this.$eventlinkA.attr("href", url + attributes.type_id);
 			this.$locallinkA.attr("href", "#local/" +  attributes.local_id);
 		},
 
@@ -547,7 +548,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
             var startDate = Moment(date);
 		   	var duration = eventAttrs.duration;
 
-			var color = this.getColor(eventAttrs.type);
+			var color = this.getColor(eventAttrs.type.toLowerCase());
 			var imageurl = "";
 
 		   	if(this.personalEvents.hasEvent(eventAttrs.id))

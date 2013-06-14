@@ -26,7 +26,7 @@ function (Backbone, $, _, Account, Notifications) {
 	app.account = new Account({id: 1});
 	app.account.fetch(); //carrega a informação da conta, caso esteja 
 						//guardada no dispositivo
-
+	app.account.setupCredentials(); //configura o jQuery para enviar as credenciais
 
 	/**
 	Endereço do servidor onde estão disponíveis as informações
@@ -101,6 +101,10 @@ function (Backbone, $, _, Account, Notifications) {
 		QUESTION: "Question",
 		USER: "User"
 	};
+
+	app.TYPESINFO = {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+					"session": {url: '#sessions/'}};
 
 
 	/**

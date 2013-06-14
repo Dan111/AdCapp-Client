@@ -2,16 +2,16 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/paper",
+    "models/workshop",
     "app.config"
 ], 
 
-function ($, Backbone, LocalStorage, Paper, App) {
+function ($, Backbone, LocalStorage, Workshop, App) {
 
 	/**
-    Coleção de papers
+    Coleção de workshop's
 
-    @class PapersCollection
+    @class WorkshopsCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
@@ -23,27 +23,27 @@ function ($, Backbone, LocalStorage, Paper, App) {
         @type Backbone.Model
         @final
         @protected
-        @default Paper
+        @default Workshop
         **/
-		model: Paper,
+		model: Workshop,
 
-		url: App.URL + "papers",
+		url: App.URL + "workshops",
 
 
 		initialize: function (){
 		},
 
 	    /**
-        Devolve o modelo paper da collection que tem como id o id 
+        Devolve o modelo workshop da collection que tem como id o id 
         passado
 
         @method getById
         @protected
-        @param {integer} id id de um paper
-        @return {Paper} modelo com o id passado
+        @param {integer} id id de um workshop
+        @return {Workshop} modelo com o id passado
         **/
 	    getById: function (id){
-            return  this.find( function(paper){ return paper.get("id") === id; });
+            return  this.find( function(workshop){ return workshop.get("id") === id; });
         },
 
         /**
@@ -53,7 +53,7 @@ function ($, Backbone, LocalStorage, Paper, App) {
         @method getByIds
         @protected
         @param {Array} arrayOfIds array de ids
-        @return {Array} array de modelos Paper
+        @return {Array} array de modelos Workshop
         **/
         getByIds: function(arrayOfIds){
             that = this;
