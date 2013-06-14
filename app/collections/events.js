@@ -3,10 +3,11 @@ define([
     "backbone",
     "underscore",
     "backbone.localStorage",
-    "models/event"
+    "models/event",
+    "app.config"
 ], 
 
-function ($, Backbone, _, LocalStorage, Event) {
+function ($, Backbone, _, LocalStorage, Event, App) {
 
     /**
     Coleção de eventos

@@ -4,14 +4,14 @@ define([
     "underscore",
     "handlebars",
     "models/ranksinfo",
-    "collections/users",
+    "collections/genericeventcollection",
     "views/award"
-], function ($, Backbone, _, Handlebars, RanksInfo, UsersCollection, AwardView) {
+], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
-	View da página de prémios dos oradores
+	View da página de prémios dos keynotes
 
-	@class SpeakersRankView
+	@class KeynotesRankView
 	@extends AwardView
 	**/
 	return AwardView.extend({
@@ -35,9 +35,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "user-award-page"
+		@default "keynote-award-page"
 		**/
-		id: "user-award-page",
+		id: "keynote-award-page",
 
 
 		/**
@@ -47,9 +47,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "Prémios Oradores"
+		@default "Prémios Keynotes"
 		**/
-		pageName: "Prémios Oradores",
+		pageName: "Prémios Keynotes",
 
 
 
@@ -59,16 +59,15 @@ define([
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"speakers"});
+			this.ranksInfo = new RanksInfo({type:"keynotes"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(AwardView, self, false, null, new UsersCollection());
+					self.getStarted(AwardView, self, true, app.TYPES.KEYNOTE, new GenericEventCollection({type:"keynotes"}));
 				}
 			});
 
 			
 		},
-
 
 	});
 

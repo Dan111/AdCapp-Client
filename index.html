@@ -682,7 +682,7 @@
 
               <p id="events-make">
                 {{#each events}}
-                  <a href="#{{type}}/{{id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
+                  <a href="#{{type}}/{{type_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
                 {{/each}}
               </p>
 
@@ -806,16 +806,16 @@
 
       <div id="prev-next" class="ui-grid-c">
         <div class="ui-block-a">
-          <a href="" data-role="button" id="my-prev" data-theme="f" ><i class="icon-chevron-left icon-2x"></i></a>
+          <a href="" data-role="button" id="my-prev" data-theme="f" ><i class="icon-chevron-left"></i></a>
         </div>
         <div class="ui-block-b">
           <a href="" data-role="button" id="my-today"data-theme="a" ><i ><img class="today-pic" src="assets/today.png"></i></i></a>
         </div>
         <div class="ui-block-c">
-          <a href="#searchpanel" data-role="button" data-theme="a"><i class="icon-search icon-2x"></i></a>
+          <a href="#searchpanel" data-role="button" data-theme="a"><i class="icon-search "></i></a>
         </div>
         <div class="ui-block-d">
-          <a href="" data-role="button" id="my-next"data-theme="f" ><i class="icon-chevron-right icon-2x"></i></a>
+          <a href="" data-role="button" id="my-next"data-theme="f" ><i class="icon-chevron-right"></i></a>
         </div>
       </div>
 
@@ -887,7 +887,7 @@
                     Papers
                   </div>
                 </a>
-                <a href="#" data-role="button" class="square square-wrapper" data-corners="true" data-iconpos="right" data-theme="f">
+                <a href="#rankings/keynotes" data-role="button" class="square square-wrapper" data-corners="true" data-iconpos="right" data-theme="f">
                  <div class="square-info">
                     <br>
                     <i ><img class="keynote-pic" src="assets/keynote.png"></i>
@@ -896,7 +896,7 @@
                     Keynotes
                   </div>
                 </a>
-                <a href="#" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" >
+                <a href="#rankings/sessions" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" >
                   <div class="square-info">
                     <br>
                     <i class="icon-list-alt icon-4x"></i>
@@ -905,7 +905,7 @@
                     Sessões
                   </div>
               </a>
-              <a href="#" data-role="button" id="rankings-solo" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
+              <a href="#rankings/workshops" data-role="button" id="rankings-solo" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
                   <div class="square-info">
                     <br>
                     <i class="icon-cogs icon-4x"></i>
@@ -979,10 +979,17 @@
         <h3 >{{room_name}}</h3>
         <div class="ui-grid-a">
           <div class="ui-block-a">
-              <h3 >Votos:  {{votes}}</h3>
+              <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
           </div>
           <div class="ui-block-b">
-              <span data-role="button" data-theme="f">Votar <i class="icon-plus-sign"></i></span>
+              <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                Votar 
+                {{#if isvoted }}
+                  <i class="icon-check-sign"></i>
+                {{else}}
+                  <i class="icon-plus-sign"></i>
+                {{/if}}
+              </span>
           </div>
         </div>
         <a href="{{url}}" data-role="button" data-theme="f">Ver página do Evento </a>
@@ -992,10 +999,17 @@
         {{> userinfo user}}
         <div class="ui-grid-a">
           <div class="ui-block-a">
-              <h3 >Votos:  {{votes}}</h3>
+              <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
           </div>
           <div class="ui-block-b">
-              <span data-role="button" data-theme="f">Votar <i class="icon-plus-sign"></i></span>
+              <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                Votar 
+                {{#if isvoted }}
+                  <i class="icon-check-sign"></i>
+                {{else}}
+                  <i class="icon-plus-sign"></i>
+                {{/if}}
+              </span>
           </div>
         </div>
         <a href="{{url}}" data-role="button" data-theme="f">Ver página do Orador </a>
@@ -1016,10 +1030,14 @@
                       </a>
                     </div>
                     <div class="ui-block-b">
-                    <span data-role="button" data-theme="f">
-                      
-                      Votos: {{votes}}
-                      <i class="icon-plus-sign "></i></span>            
+                    <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                      Votos: <span id="votes" value="{{id}}"><span> {{votes}}</span></span>
+                      {{#if isvoted }}
+                        <i class="icon-check-sign"></i>
+                      {{else}}
+                        <i class="icon-plus-sign"></i>
+                      {{/if}}
+                    </span>            
                     </div>
                 </div>
               </div>
@@ -1029,12 +1047,18 @@
               <div class="ui-grid-a">
                   <div class="ui-block-a big-button">
                     <a href="{{url}}" data-role="button" data-theme="a">
-                        <span class="other-name">{{getFirstAndLastName name}}</span>
-                        <span class="ui-li-count other-votes">{{votes}}</span>
+                        <span class="other-name awards-name">{{getFirstAndLastName name}}</span>
+                        <span id="votes" class="other-votes" value="{{id}}"><span> {{votes}}</span></span>
                       </a>
                   </div>
-                  <div class="ui-block-b small-button"><span data-role="button" data-theme="f">
-                    <i class="icon-plus-sign "></i></span>               
+                  <div  class="ui-block-b small-button">
+                  <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                    {{#if isvoted }}
+                      <i class="icon-check-sign"></i>
+                    {{else}}
+                      <i class="icon-plus-sign"></i>
+                    {{/if}}
+                  </span>               
                   </div>
               </div>
           {{/each}}

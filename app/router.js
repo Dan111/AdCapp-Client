@@ -76,7 +76,10 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 
 			"rankings"		: "rankings",
 			"rankings/papers": "papersrank",
+			"rankings/workshops": "workshopsrank",
 			"rankings/speakers"	: "speakersrank",
+			"rankings/sessions"	: "sessionsrank",
+			"rankings/keynotes"	: "keynotesrank",
 		},
 
 		/**
@@ -367,6 +370,48 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		speakersrank: function(){
 			console.log("ROUTE: rankings speakers");
 			new SpeakersRankView();
+		},
+
+		/**
+		Route da página de prémios dos workshops
+
+		@method workshopsrank
+		@private
+		**/
+		workshopsrank: function(){
+			console.log("ROUTE: rankings workshops");
+
+			require(["views/workshopsrank"], function (WorkshopsRankView) {
+				new WorkshopsRankView();
+			});
+		},
+
+		/**
+		Route da página de prémios dos keynotes
+
+		@method keynotesrank
+		@private
+		**/
+		keynotesrank: function(){
+			console.log("ROUTE: rankings keynotes");
+
+			require(["views/keynotesrank"], function (KeynotesRankView) {
+				new KeynotesRankView();
+			});
+		},
+
+		/**
+		Route da página de prémios das sessões
+
+		@method sessionsrank
+		@private
+		**/
+		sessionsrank: function(){
+			console.log("ROUTE: rankings keynotes");
+
+			require(["views/sessionsrank"], function (SessionsRankView) {
+				new SessionsRankView();
+			});
 		},
 	});
 

@@ -4,9 +4,9 @@ define([
     "underscore",
     "handlebars",
     "models/ranksinfo",
-    "collections/papers",
+    "collections/genericeventcollection",
     "views/award"
-], function ($, Backbone, _, Handlebars, RanksInfo, PapersCollection, AwardView) {
+], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
 	View da página de prémios das palestras
@@ -35,7 +35,7 @@ define([
 		@type String
 		@static
 		@final
-		@default "paper-page"
+		@default "paper-award-page"
 		**/
 		id: "paper-award-page",
 
@@ -47,7 +47,7 @@ define([
 		@type String
 		@static
 		@final
-		@default "Palestra"
+		@default "Prémios Palestras"
 		**/
 		pageName: "Prémios Palestras",
 
@@ -62,39 +62,11 @@ define([
 			this.ranksInfo = new RanksInfo({type:"papers"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(self);
+					self.getStarted(AwardView, self, true, app.TYPES.PAPER, new GenericEventCollection({type:"papers"}));
 				}
 			});
 
 			
-		},
-
-
-		getStarted: function(self){
-
-			var attrs = this.ranksInfo.attributes;
-
-			this.isEvent = true;
-
-			this.eventsType = "paper";
-
-			this.votesArray = attrs.competitors;
-
-			this.prizesArray = attrs.awards;
-
-			this.modelCollection = new PapersCollection();
-
-			this.modelId = this.votesArray[0].id;
-
-			this.modelCollection.fetch({
-				success: function () {
-					self.model = self.modelCollection.getById(self.modelId);
-					AwardView.prototype.initialize.apply(self);
-				},
-				error: function (){
-					console.log("Fail ");
-				}
-			});	
 		}
 
 	});
