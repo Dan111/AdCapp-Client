@@ -49,7 +49,7 @@ define([
 		@final
 		@default "Palestra"
 		**/
-		pageName: "Prémios Oradoress",
+		pageName: "Prémios Oradores",
 
 
 
@@ -83,6 +83,8 @@ define([
 			this.prizesArray = attrs.awards;
 
 			this.modelCollection = new UsersCollection();
+
+			this.voted = attrs.voted;
 
 			this.modelId = this.votesArray[0].id;
 

@@ -34,9 +34,9 @@ define([
         @type String
         @static
         @final
-        @default "profile-page"
+        @default "profile-page-"
         **/
-        id: "profile-page",
+        id: "profile-page-",
 
         /**
         Nome da página de perfil
@@ -126,7 +126,7 @@ define([
             _.bindAll(this);
 
             var modelId = args.modelId;
-
+            this.id += args.modelId;
             var self = this;
 
             this.mycontacts = new Contacts();

@@ -76,13 +76,15 @@ define([
 
 			this.isEvent = true;
 
-			this.eventsType = "paper";
+			this.eventsType = app.TYPES.PAPER;
 
 			this.votesArray = attrs.competitors;
 
 			this.prizesArray = attrs.awards;
 
 			this.modelCollection = new PapersCollection();
+
+			this.voted = attrs.voted;
 
 			this.modelId = this.votesArray[0].id;
 

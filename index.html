@@ -792,7 +792,7 @@
           <a href="" data-role="button" id="my-today"data-theme="a" ><i ><img class="today-pic" src="assets/today.png"></i></i></a>
         </div>
         <div class="ui-block-c">
-          <a href="#searchpanel" data-role="button" data-theme="a"><i class="icon-search icon-2x"></i></a>
+          <a href="#searchpanel" data-role="button" data-theme="a"><i class="icon-search "></i></a>
         </div>
         <div class="ui-block-d">
           <a href="" data-role="button" id="my-next"data-theme="f" ><i class="icon-chevron-right icon-2x"></i></a>
@@ -959,10 +959,17 @@
         <h3 >{{room_name}}</h3>
         <div class="ui-grid-a">
           <div class="ui-block-a">
-              <h3 >Votos:  {{votes}}</h3>
+              <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
           </div>
           <div class="ui-block-b">
-              <span data-role="button" data-theme="f">Votar <i class="icon-plus-sign"></i></span>
+              <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                Votar 
+                {{#if isvoted }}
+                  <i class="icon-check-sign"></i>
+                {{else}}
+                  <i class="icon-plus-sign"></i>
+                {{/if}}
+              </span>
           </div>
         </div>
         <a href="{{url}}" data-role="button" data-theme="f">Ver página do Evento </a>
@@ -972,10 +979,17 @@
         {{> userinfo user}}
         <div class="ui-grid-a">
           <div class="ui-block-a">
-              <h3 >Votos:  {{votes}}</h3>
+              <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
           </div>
           <div class="ui-block-b">
-              <span data-role="button" data-theme="f">Votar <i class="icon-plus-sign"></i></span>
+              <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                Votar 
+                {{#if isvoted }}
+                  <i class="icon-check-sign"></i>
+                {{else}}
+                  <i class="icon-plus-sign"></i>
+                {{/if}}
+              </span>
           </div>
         </div>
         <a href="{{url}}" data-role="button" data-theme="f">Ver página do Orador </a>
@@ -996,10 +1010,14 @@
                       </a>
                     </div>
                     <div class="ui-block-b">
-                    <span data-role="button" data-theme="f">
-                      
-                      Votos: {{votes}}
-                      <i class="icon-plus-sign "></i></span>            
+                    <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                      Votos: <span id="votes" value="{{id}}"><span> {{votes}}</span></span>
+                      {{#if isvoted }}
+                        <i class="icon-check-sign"></i>
+                      {{else}}
+                        <i class="icon-plus-sign"></i>
+                      {{/if}}
+                    </span>            
                     </div>
                 </div>
               </div>
@@ -1009,12 +1027,18 @@
               <div class="ui-grid-a">
                   <div class="ui-block-a big-button">
                     <a href="{{url}}" data-role="button" data-theme="a">
-                        <span class="other-name">{{getFirstAndLastName name}}</span>
-                        <span class="ui-li-count other-votes">{{votes}}</span>
+                        <span class="other-name awards-name">{{getFirstAndLastName name}}</span>
+                        <span id="votes" class="other-votes" value="{{id}}"><span> {{votes}}</span></span>
                       </a>
                   </div>
-                  <div class="ui-block-b small-button"><span data-role="button" data-theme="f">
-                    <i class="icon-plus-sign "></i></span>               
+                  <div  class="ui-block-b small-button">
+                  <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                    {{#if isvoted }}
+                      <i class="icon-check-sign"></i>
+                    {{else}}
+                      <i class="icon-plus-sign"></i>
+                    {{/if}}
+                  </span>               
                   </div>
               </div>
           {{/each}}

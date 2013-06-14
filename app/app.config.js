@@ -98,7 +98,8 @@ function (Backbone, $, _, Account, Notifications) {
 		KEYNOTE	: "Keynote",
 		WORKSHOP: "Workshop",
 		SOCIAL	: "SocialEvent",
-		QUESTION: "Question"
+		QUESTION: "Question",
+		USER: "User"
 	};
 
 

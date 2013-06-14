@@ -65,14 +65,15 @@ define([
 
 		ranksInfo: null,
 
+		voted: null,
+
 		typesInfo: {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
 					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 					"session": {url: '#sessions/'}},
 
 		/**
 		Eventos lançados pela transição entre tabs
-		e ainda eventos de adição e remoção do evento 
-		da agenda pessoal
+		
 
 		@property events
 		@type Object
@@ -81,7 +82,8 @@ define([
 		events: {
 
 			"click #awards-tab"			: "renderAwardsTab",
-			"click #users-votes-tab"		: "renderUsersVotesTab"
+			"click #users-votes-tab"	: "renderUsersVotesTab",
+			"click #vote-button" 		: "vote"
 		},
 
 
@@ -135,7 +137,8 @@ define([
 				return _.map(elementsArray, function(element){
 					var attrs = element.attributes;
 					return {
-						url 		: that.typesInfo[that.eventsType].url + attrs.id.toString(),
+						id 			: attrs.id.toString(),
+						url 		: that.typesInfo[that.eventsType.toLowerCase()].url + attrs.id.toString(),
 						title 		: attrs.name,
 						datetime 	: attrs.hour,
 						room_name 	: attrs.local.name,
@@ -145,6 +148,7 @@ define([
 				return _.map(elementsArray, function(element){
 					var attrs = element.attributes;
 					return {
+						id 			: attrs.id.toString(),
 						url 		: "#/users"+attrs.id.toString(),
 						name 		: attrs.name,
 						institution : attrs.institution,
@@ -187,12 +191,16 @@ define([
 								var attrs = element.attributes;
 								if(that.isEvent)
 									return {
-										url 		: that.typesInfo[that.eventsType].url + attrs.id.toString(),
+										isvoted  	: that.voted === attrs.id,
+										id 			: attrs.id.toString(),
+										url 		: that.typesInfo[that.eventsType.toLowerCase()].url + attrs.id.toString(),
 										title 		: attrs.name,
 										votes 		: that.getVotes(attrs.id)
 									}
 								else
 									return {
+										isvoted  	: that.voted === attrs.id,
+										id 			: attrs.id.toString(),
 										url 		: "#/users"+attrs.id.toString(),
 										name 		: attrs.name,
 										votes 		: that.getVotes(attrs.id)
@@ -221,7 +229,9 @@ define([
 			if(this.isEvent)
 				return {
 					isEvent		: this.isEvent,
-					url 		: this.typesInfo[this.eventsType].url + model.id.toString(),
+					isvoted  	: this.voted === model.id,
+					id 			: model.id.toString(),
+					url 		: this.typesInfo[this.eventsType.toLowerCase()].url + model.id.toString(),
 					title 		: model.name,
 					datetime 	: model.hour,
 					room_name 	: model.local.name,
@@ -231,6 +241,8 @@ define([
 			else
 				return {
 					isEvent		: this.isEvent,
+					isvoted  	: this.voted === model.id,
+					id 			: model.id.toString(),
 					url 		: "#/users"+model.id.toString(),
 					user        : model,
 					votes 		: this.getVotes(model.id),
@@ -247,6 +259,85 @@ define([
             var html = this.compileTemplate(this.usersVotesTemplate, context);
 
             this.refresher(html);
+		},
+
+		vote: function(e){
+
+			if(this.voted !== null)
+	        {
+	        	var votes = $('#votes[value='+ this.voted+'] span').text();
+	        	console.log(votes);
+	        	$('#votes[value='+ this.voted+'] span').empty();
+	        	var newVotes = parseInt(votes) - 1;
+	        	$('#votes[value='+ this.voted+'] span').text(newVotes);
+
+	        	$('#vote-button[value='+ this.voted+'] i').remove();
+	        	$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-plus-sign"></i>');
+	        }
+
+			var that = this;
+			//COLOCAR A URL CORRECTA
+			var url = "http://danielmagro.apiary.io/vote";
+
+			e.preventDefault();
+   			var id = parseInt($(e.currentTarget).attr("value"));
+
+   			console.log(id.toString());
+   			var votable_type = this.eventsType;
+
+   			if(votable_type  === null)
+   				votable_type = "User";
+
+   			$.ajax({
+                method: "POST",
+
+                async: false,
+
+                timeout: 5000,
+
+                url: url,
+
+                //MUDAR O USER ID PARA O ID DO UTILIZADOR DO DISPOSITIVO
+                data: { 
+                    user_id: 0,
+                    votable_id: id,
+                    votable_type: votable_type
+                },
+
+                beforeSend: function () {
+                    $.mobile.loading( 'show', {
+                            text: "A enviar",
+                            textVisible: true
+                    });
+                },
+
+                complete: function () {
+                    //override do ajaxsetup para nao fazer hide do load spinner
+                },
+
+                success: function () {
+                    $.mobile.loading( 'hide' );
+                   	// options.success();
+                  	that.showErrorOverlay({text:"Voto atribuído"});
+                   	that.voted = id;
+
+                   	var votes = $('#votes[value='+ that.voted+'] span').text();
+                   	console.log(votes);
+
+                   	$('#votes[value='+ that.voted+'] span').empty();
+	        		var newVotes = parseInt(votes) + 1;
+	        		$('#votes[value='+ that.voted+'] span').text(newVotes);
+
+                   	$('#vote-button[value='+ that.voted+'] i').remove();
+                   	$('#vote-button[value='+ that.voted+'] .ui-btn-text').append('<i class="icon-check-sign"></i>');
+                },
+
+                error: function (){
+                    that.showErrorOverlay({text: "Erro no envio"});
+                }
+            });
+	        
+	        
 		}
 
 	});
