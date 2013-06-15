@@ -89,17 +89,46 @@ function ($, Backbone, BasicView) {
 		},
 
 
+        /**
+        Devolve o nome do utilizador
+
+        @method getName
+        @return {String} Nome do utilizador.
+        **/
+        getName: function (){
+            return this.get('profile')['name'];
+        },
+
+
+        /**
+        Devolve o email do utilizador.
+
+        @method getEmail
+        @return {String} Email do utilizador.
+        **/
         getEmail: function (){
             return this.get('email');
         },
 
 
+        /**
+        Devolve o código de registo do utilizador.
+
+        @method getCode
+        @return {String} Código de registo do utilizador.
+        **/
         getCode: function (){
             return this.get('code');
         },
 
 
+        /**
+        Regista o dispositivo no server
 
+        @method registerDevice
+        @param {String} email Email do utilizador
+        @param {String} code Código de registo do utilizador
+        **/
         registerDevice: function (email, code) {
 
             var self = this;
@@ -145,6 +174,13 @@ function ($, Backbone, BasicView) {
         },
 
 
+        /**
+        Reenvia o código de registo para o email especificado, caso esteja presente
+        na base de dados do servidor
+
+        @method resendCode
+        @param {String} email Email do utilizador
+        **/
         resendCode: function (email) {
 
             var self = this;
@@ -186,6 +222,14 @@ function ($, Backbone, BasicView) {
         },
 
 
+        /**
+        Configura o método Ajax do jQuery e do Backbone para enviarem as credenciais de
+        autenticação em cada pedido
+
+        @method setupCredentials
+        @return {Boolean} Retorna true se a configuração foi bem sucedida, isto é, se o dispositivo
+                            já foi registado com sucesso.
+        **/
         setupCredentials: function () {
 
             var email = this.getEmail();

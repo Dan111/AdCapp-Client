@@ -22,7 +22,7 @@ function ($, Backbone, App) {
 		@private
 		@default "/feedbacks/"
 		**/
-		url: /*App.URL + */"http://localhost:3000/feedbacks/",
+		url: App.URL + "feedbacks/",
 		
 
 		/**
