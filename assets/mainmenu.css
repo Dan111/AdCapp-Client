@@ -1,11 +1,37 @@
 .square {
 	margin: 0px !important;
+	margin-bottom: 10px !important;
 	-moz-border-radius: 0px !important;
 	border-radius: 0px;
 	margin: 0px;
 	height: 130px;
 
 }
+
+ .square.ui-btn-up-f{
+	background-color:transparent;
+	border: none;
+	color: black;
+ }
+
+ .square.ui-btn-hover-f{
+ 	background-color: #34495e;
+	border: none;
+	color: white;
+ }
+
+ .square.ui-btn-active{
+ 	background-color: #34495e;
+	border: none;
+	color: white;
+ }
+
+  .square.ui-btn-down-f{
+ 	background-color: #34495e;
+	border: none;
+	color: white;
+ }
+ 
 .square .ui-btn-inner{
 	height: 130px;
 }
