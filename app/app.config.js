@@ -63,6 +63,17 @@ function (Backbone, $, _, Account, Notifications) {
 
 
 	/**
+	Email oficial da conferência
+
+	@property confEmail 
+	@type String
+	@static
+	@final
+	**/
+	app.confEmail = "adcapp.g22@gmail.com";
+
+
+	/**
 	Data do início da conferência
 
 	@property startDate 

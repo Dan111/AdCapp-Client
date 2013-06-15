@@ -2,31 +2,21 @@ define([
   "backbone",
 
   //Views
-
-  "views/paper",
-  "views/session",
-  "views/keynote",
-  "views/workshop",
-  "views/socialevent",
-
   "views/profile",
   "views/userslist",
   "views/eventslist",
   "views/agenda",
-  //"views/contacts",
-  "views/notifications",
-  "views/options",
+
   "views/maininfo",
   "views/mainmenu",
   "views/rankings",
   "views/papersrank",
   "views/speakersrank",
-  "views/local",
+  "views/local"
 ],
 
-function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEventView, 
-	ProfileView, UsersListView, EventsListView, AgendaView, /*ContactsView, */NotificationsView, OptionsView,
-	MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView, LocalView) {
+function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView, 
+		MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView, LocalView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -73,6 +63,7 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 			"contacts"      : "contacts",
 			"notifications"	: "notifications",
 			"options"		: "options",
+			"feedback"		: "feedback",
 
 			"rankings"		: "rankings",
 			"rankings/papers": "papersrank",
@@ -140,20 +131,26 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		paper: function(id) {
 			console.log("ROUTE: paper");
-			new PaperView({modelId: id});
+
+			require(["views/paper"], function (PaperView) {
+				new PaperView({modelId: id});
+			});
 		},
 
 
 		/**
 		Route da página de sessão
 
-		@method index
+		@method session
 		@param {Number} id Id da sessão
 		@private
 		**/
 		session: function(id) {
-			console.log("ROUTE: paper");
-			new SessionView({modelId: id});
+			console.log("ROUTE: session");
+
+			require(["views/session"], function (SessionView) {
+				new SessionView({modelId: id});
+			});
 		},
 
 
@@ -166,7 +163,10 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		keynote: function(id) {
 			console.log("ROUTE: keynote");
-			new KeynoteView({modelId: id});
+
+			require(["views/keynote"], function (KeynoteView) {
+				new KeynoteView({modelId: id});
+			});
 		},
 
 
@@ -179,7 +179,10 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		workshop: function(id) {
 			console.log("ROUTE: workshop");
-			new WorkshopView({modelId: id});
+
+			require(["views/workshop"], function (WorkshopView) {
+				new WorkshopView({modelId: id});
+			});
 		},
 
 
@@ -192,8 +195,12 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		social: function(id) {
 			console.log("ROUTE: social event");
-			new SocialEventView({modelId: id});
+
+			require(["views/socialevent"], function (SocialEventView) {
+				new SocialEventView({modelId: id});
+			});
 		},
+
 
 		local: function(id) {
 			console.log("ROUTE: local");
@@ -323,7 +330,10 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		notifications: function(){
 			console.log("ROUTE: notifications");
-			new NotificationsView();
+
+			require(["views/notifications"], function (NotificationsView) {
+				new NotificationsView();
+			});
 		},
 
 
@@ -335,7 +345,10 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 		**/
 		options: function(){
 			console.log("ROUTE: options");
-			new OptionsView();
+
+			require(["views/options"], function (OptionsView) {
+				new OptionsView();
+			});
 		},
 
 
@@ -413,6 +426,21 @@ function (Backbone, PaperView, SessionView, KeynoteView, WorkshopView, SocialEve
 				new SessionsRankView();
 			});
 		},
+
+
+		/**
+		Route da página de feedback
+
+		@method feedback
+		@private
+		**/
+		feedback: function(){
+			console.log("ROUTE: feedback");
+
+			require(["views/feedback"], function (FeedbackView) {
+				new FeedbackView();
+			});
+		}
 	});
 
   	return Router;

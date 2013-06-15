@@ -369,7 +369,7 @@
 
 
 
-  <!-- Página das notificações -->
+  <!-- Página das opções -->
   <script type="text/x-handlebars-template" id="options-template">
 
     <button id="register-device" data-theme="a">
@@ -397,6 +397,36 @@
         </button>
       </div>
     </div>
+
+
+  </script>
+
+
+
+  <!-- Página de feedback -->
+  <script type="text/x-handlebars-template" id="feedback-template">
+
+    <h1>Envie-nos o seu feedback...</h1>
+
+    <a data-bypass="true" href="mailto:{{email}}" data-role="button" id="email-feedback" data-theme="f" >
+      <i class="button-icon icon-envelope-alt "></i>Enviar um comentário
+    </a>
+
+    <br>
+
+    <h1>...e responda aos nossos inquéritos</h1>
+
+    <ul id="forms-list" data-role="listview" data-theme="f" data-inset="true">
+
+        {{#each forms}}
+        <li>
+          <a data-bypass="true" href="{{link}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+        {{/each}}
+
+    </ul>
 
 
   </script>
@@ -554,7 +584,7 @@
               </a>
             </div>
             <div class="ui-block-b">
-              <a href="" data-role="button" class="square" data-corners="true"  data-iconpos="right" data-theme="g">
+              <a href="#feedback" data-role="button" class="square" data-corners="true"  data-iconpos="right" data-theme="g">
                 <div class="square-info">
                   <br>
                   <i class="icon-bullhorn icon-4x"></i>
