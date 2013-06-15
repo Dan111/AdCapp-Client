@@ -313,6 +313,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			this.fullCalendarSetter(this.toShowEvents);
 
+			var that = this;
+			$(window).off( "swipeleft");
+			$(window).off( "swiperight");
+			$(window).on( "swipeleft",  function( event ) { that.next(); } );
+			$(window).on( "swiperight",  function( event ) { that.prev(); } );
+
 			return this;
 
 		},
