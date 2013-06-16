@@ -246,6 +246,7 @@ define([
 					personalAgenda.removeEvent(paperId)
 				});
 				personalAgenda.save();
+				personalAgenda.sendPersonalAgenda();
 				$('#add-remove-event').next().remove();
 			}
 			else
@@ -254,6 +255,7 @@ define([
 					personalAgenda.addEvent(paperId)
 				});
 				personalAgenda.save();
+				personalAgenda.sendPersonalAgenda();
                 $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
 			}
 		}

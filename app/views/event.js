@@ -420,6 +420,7 @@ define([
 				//retira o evento da agenda pessoal
                 this.personalAgenda.removeEvent(model.event_id);
                 this.personalAgenda.save();
+                this.personalAgenda.sendPersonalAgenda();
                 $('#add-remove-event').next().remove();
 			}
 			else
@@ -427,6 +428,7 @@ define([
 				 
             	this.personalAgenda.addEvent(model.event_id);
             	this.personalAgenda.save();
+            	this.personalAgenda.sendPersonalAgenda();
                 $('#add-remove-event').parent().append(this.checkIcon);
 			}
 		}
