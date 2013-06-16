@@ -11,6 +11,8 @@ require.config({
 		'fullcalendar'			: "../vendor/libs/fullcalendar",
 		'jquerymobile.config' 	: 'jquerymobile.config',
 		'handlebars.config' 	: 'handlebars.config',
+		'backbone.cachingsync'	: '../vendor/libs/backbone.cachingsync',
+		'burry'					: '../vendor/libs/burry',
 		'app.config'			: 'app.config'
 	 
 	},
@@ -20,6 +22,7 @@ require.config({
 		'jquerymobile.config'	: ['jquery'],
 		'jquerymobile'			: ['jquery','jquerymobile.config'],
 		'handlebars.config' 	: ['handlebars'],
+		'backbone.cachingsync'	: ['burry'],
 		'fullcalendar'			: ['jquery']
 	}
 
