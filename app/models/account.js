@@ -1,12 +1,13 @@
 define([
     "jquery",
     "backbone",
+    "underscore",
     "views/basicview",
 
     "backbone.localStorage"
 ], 
 
-function ($, Backbone, BasicView) {
+function ($, Backbone, _, BasicView) {
 
 	/**
     Guarda as configurações da aplicação definidas pelo utilizador.
@@ -45,7 +46,6 @@ function ($, Backbone, BasicView) {
 			notif_timeout: 15,
 
 			logged: false,
-			publish_schedule: false,
 
             profile: null,
             email: null,
@@ -97,6 +97,17 @@ function ($, Backbone, BasicView) {
         **/
         getName: function (){
             return this.get('profile')['name'];
+        },
+
+
+        /**
+        Devolve o id do utilizador
+
+        @method getUserId
+        @return {Number} Id do utilizador.
+        **/
+        getUserId: function (){
+            return this.get('profile')['id'];
         },
 
 
@@ -254,6 +265,93 @@ function ($, Backbone, BasicView) {
 
             return true;
 
+        },
+
+
+        //TODO: Docs
+        updateOptions: function (options) {
+
+            //actualiza as opções locais (por exemplo, de quanto em quanto tempo deve verificar actualizações)
+            var newOptions = this.mergeOptions(this.attributes, options);
+            this.set(newOptions);
+
+            //actualiza o perfil do utilizador e os contactos sociais
+            var newProfile = this.mergeOptions(this.get('profile'), options);
+            var newSocialContacts = this.mergeOptions(this.get('profile')['socialContacts'],
+                                                        options);
+            newProfile['socialContacts'] = newSocialContacts;
+            this.set('profile', newProfile);
+
+
+            this.save();
+            this.pushOptionsToServer({options: options});
+
+        },
+
+
+
+        pushOptionsToServer: function (args) {
+
+            if(args.options == null)
+                args.options = _.extend(this.get('profile'), 
+                                        this.get('profile')['socialContacts']);
+
+
+            var self = this;
+
+            $.ajax({
+                method: "POST",
+
+                url: window.app.URL + "users/" + self.getUserId(),
+            
+                data: _.extend({
+                    "_method": "put"
+                },args.options),
+
+                beforeSend: function () {
+                    //override do ajax loader
+                },
+
+                complete: function () {
+                    //override do ajaxsetup para nao fazer hide do load spinner
+                },
+
+                success: function (data) {
+                    self.set('profile', data);
+                    self.save();
+                },
+
+                error: function (){
+                    if(args.showError)
+                    {
+                        BasicView.prototype.showErrorOverlay({text: "As opções não foram guardadas no servidor."});
+                    }
+                }
+            });
+
+        },
+
+
+        mergeOptions: function (oldOptions, newOptions) {
+
+            if(newOptions == null)
+                return oldOptions;
+
+            var options_keys = _.keys(oldOptions);
+
+            newOptions = _.chain(newOptions)
+                            .omit('id')
+                            .pick(options_keys)
+                            .value();
+
+            return _.extend(oldOptions, newOptions);
+
+        },
+
+
+        resetAccount: function () {
+            this.set(this.defaults);
+            this.save();
         }
 
 	});

@@ -35,9 +35,9 @@ define([
         @type String
         @static
         @final
-        @default "notification-page"
+        @default "options-page"
         **/
-        id: "opions-page",
+        id: "options-page",
 
 
         /**
@@ -64,7 +64,18 @@ define([
 		template: "options-template",
 
 
+		/**
+		Conta do utilizador
 
+		@property account 
+		@type Account
+		@private
+		@default null
+		**/
+		account: null,
+
+
+		//TODO: Docs
 		submitButton: "#submit-button",
 		cancelButton: "#cancel-button",
 		resendButton: "#resend-button",
@@ -83,7 +94,11 @@ define([
 		**/
 		events: {
 
-			"click #register-device": "setupPopup"
+			"click #register-device": "setupPopup",
+			"click #save-settings": "saveOptions",
+			"click #cancel-settings": "cancelOptions",
+
+			"change #alert-notifs": "toggleNotifSlider"
 
 		},
 
@@ -117,12 +132,12 @@ define([
 		**/
 		render: function () {
 
-			var html = this.compileTemplate(this.template, null);
+			var context = this.account.attributes;
+
+			var html = this.compileTemplate(this.template, context);
 
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();
-
-			// this.setupPopup();
 			
 			return this;
 		},
@@ -161,9 +176,6 @@ define([
 			var email = $(this.emailForm).val();
 			var code = $(this.codeForm).val();
 
-			console.log(email);
-			console.log(code);
-
 			this.account.registerDevice(email, code);
 
 		},
@@ -175,7 +187,7 @@ define([
 		},
 
 
-
+		//TODO: Docs
 		resendCode: function() {
 
 			var email = $(this.emailForm).val();
@@ -194,6 +206,69 @@ define([
 
 
 		},
+
+
+
+
+		saveOptions: function () {
+			console.log("save options");
+
+			var newOptions = this.getNewOptions();
+			this.account
+		},
+
+
+
+		getNewOptions: function () { //TODO: guardar os wrappers em atributos
+
+			var options = {};
+
+			var publishOption = $("#publish-schedule").find(":selected").attr("value");
+			options.publish_schedule = publishOption === "on";
+
+			var alertNotifs = $("#alert-notifs").find(":selected").attr("value");
+			options.alert_notifs = alertNotifs === 'on';
+
+			var notifTimeout = $("#notif-timeout").val();
+			options.notif_timeout = parseInt(notifTimeout, 10);
+
+			var area = $("#profile-area").val();
+			options.area = area;
+
+			var image = $("#profile-image").val();
+			options.image = image;
+
+			var bio = $("#profile-bio").val();
+			options.bio = bio;
+
+			var socialContacts = $("#options-social-contacts input");
+			socialContacts.each(function (index) {
+				var $this = $(this);
+
+				options[$this.attr('name')] = $this.val();
+			});
+
+
+			this.account.updateOptions(options);
+
+		},
+
+
+		cancelOptions: function() {
+			history.go(-1);
+		},
+
+
+		toggleNotifSlider: function () {
+
+			var alertNotifs = $("#alert-notifs").find(":selected").attr("value");
+
+			if(alertNotifs === "on")
+				$("#notif-slider").show();
+			else if(alertNotifs === "off")
+				$("#notif-slider").hide();
+
+		}
 
 
 	});

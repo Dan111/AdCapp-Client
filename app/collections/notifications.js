@@ -40,7 +40,7 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 		@private
 		@default "/notifications"
 		**/
-		url: "http://adcapp.apiary.io/notifications",
+		url: "http://adcapp.apiary.io/notifications", //TODO: colocar o url correcto
 
 
 		/**
