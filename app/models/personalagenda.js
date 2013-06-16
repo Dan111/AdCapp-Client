@@ -67,10 +67,59 @@ function ($, Backbone, _) {
 				this.localStorage =  new Backbone.LocalStorage('personal-agenda-backbone')
 			else
         		//adiciona o id do modelo ao url, para o Backbone poder fazer fetch da informação
-				this.url = "user/"+this.id+"/schedule";
+				this.url = App.URL + "users/" + this.get("id") + "/schedule";
 
 
 		},
+
+        /**
+        Envia a agenda pessoal para o servidor
+
+        @method sendPersonalAgenda
+        @protected
+        **/
+        sendPersonalAgenda: function()
+        {
+            var url = this.url;
+            var chosen = this.get("chosen_events");
+            var that =this;
+            $.ajax({
+                method: "POST",
+
+                async: false,
+
+                timeout: 5000,
+
+                url: url,
+
+                data: { 
+                    "chosen_events": chosen
+                },
+
+                beforeSend: function () {
+                    $.mobile.loading( 'show', {
+                            text: "A enviar",
+                            textVisible: true
+                    });
+                },
+
+                complete: function () {
+                    //override do ajaxsetup para nao fazer hide do load spinner
+                },
+
+                success: function () {
+                    $.mobile.loading( 'hide' );
+                    // options.success();
+                    //that.showErrorOverlay({text:"Acção bem Sucedida"});
+                    
+                },
+
+                error: function (){
+                    //that.showErrorOverlay({text: "Erro no envio"});
+                    
+                }
+            });
+        },
 
 		/**
         Verifica se um evento está no array da agenda pessoal, retornando

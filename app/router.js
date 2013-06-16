@@ -2,21 +2,11 @@ define([
   "backbone",
 
   //Views
-  "views/profile",
-  "views/userslist",
-  "views/eventslist",
-  "views/agenda",
-
-  "views/maininfo",
-  "views/mainmenu",
-  "views/rankings",
-  "views/papersrank",
-  "views/speakersrank",
+  
   "views/local"
 ],
 
-function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView, 
-		MainInfoView, MainMenuView, RankingsView, PapersRankView, SpeakersRankView, LocalView) {
+function (Backbone, LocalView) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -92,7 +82,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		agenda: function() {
 			console.log("ROUTE: agenda");
-			new AgendaView();
+
+			require(["views/agenda"], function (AgendaView) {
+				new AgendaView();
+			});
+			
 		},
 
 
@@ -105,7 +99,10 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		maininfo: function() {
 			console.log("ROUTE: mainInfo");
 
-			new MainInfoView();
+			require(["views/maininfo"], function (MainInfoView) {
+				new MainInfoView();
+			});
+			
 		},
 
 
@@ -118,7 +115,10 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		mainmenu: function() {
 			console.log("ROUTE: mainmenu");
 
-			new MainMenuView();
+			require(["views/mainmenu"], function (MainMenuView) {
+				new MainMenuView();
+			});
+			
 		},
 
 
@@ -208,7 +208,7 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		},
 
 
-		/**
+				/**
 		Route da página do utilizador
 
 		@method user
@@ -217,7 +217,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		user: function(id){
 			console.log("ROUTE: user");
-			new ProfileView({modelId: id});
+
+			require(["views/profile"], function (ProfileView) {
+				new ProfileView({modelId: id});
+			});
+			
 		},
 
 
@@ -229,7 +233,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		speakers: function(){
 			console.log("ROUTE: speakers");
-			new UsersListView({isSpeakers: true, pageId: "speakers-page", pageName: "Oradores"});
+			
+			require(["views/userslist"], function (UsersListView) {
+				new UsersListView({isSpeakers: true, pageId: "speakers-page", pageName: "Oradores"});
+			});
+			
 		},
 
 
@@ -241,7 +249,12 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		participants: function(){
 			console.log("ROUTE: participants");
-			new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
+
+			require(["views/userslist"], function (UsersListView) {
+				new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
+			});
+			
+			
 		},
 
 
@@ -252,8 +265,12 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		@private
 		**/
 		papers: function(){
-			console.log("ROUTE: participants");
-			new EventsListView({type: "paper", pageId: "papers-page", pageName: "Papers"});
+			console.log("ROUTE: papers");
+			
+			require(["views/eventslist"], function (EventsListView) {
+				new EventsListView({type: "paper", pageId: "papers-page", pageName: "Papers"});
+			});
+			
 		},
 
 
@@ -265,7 +282,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		sessions: function(){
 			console.log("ROUTE: sessions");
-			new EventsListView({type: "session", pageId: "sessions-page", pageName: "Sessões"});
+
+			require(["views/eventslist"], function (EventsListView) {
+				new EventsListView({type: "session", pageId: "sessions-page", pageName: "Sessões"});
+			});
+			
 		},
 
 
@@ -278,7 +299,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 
 		keynotes: function(){
 			console.log("ROUTE: keynotes");
-			new EventsListView({type: "keynote", pageId: "keynotes-page", pageName: "Keynotes"});
+
+			require(["views/eventslist"], function (EventsListView) {
+				new EventsListView({type: "keynote", pageId: "keynotes-page", pageName: "Keynotes"});
+			});
+			
 		},
 
 
@@ -290,7 +315,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		workshops: function(){
 			console.log("ROUTE: workshops");
-			new EventsListView({type: "workshop", pageId: "workshops-page", pageName: "Workshops"});
+
+			require(["views/eventslist"], function (EventsListView) {
+				new EventsListView({type: "workshop", pageId: "workshops-page", pageName: "Workshops"});
+			});
+			
 		},
 
 
@@ -302,7 +331,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		socials: function(){
 			console.log("ROUTE: socials");
-			new EventsListView({type: "social", pageId: "socials-page", pageName: "Eventos Sociais"});
+
+			require(["views/eventslist"], function (EventsListView) {
+				new EventsListView({type: "social", pageId: "socials-page", pageName: "Eventos Sociais"});
+			});
+			
 		},
 
 
@@ -360,7 +393,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		rankings: function(){
 			console.log("ROUTE: rankings");
-			new RankingsView();
+
+			require(["views/rankings"], function (RankingsView) {
+				new RankingsView();
+			});
+			
 		},
 
 		/**
@@ -371,7 +408,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		papersrank: function(){
 			console.log("ROUTE: rankings papers");
-			new PapersRankView();
+
+			require(["views/papersrank"], function (PapersRankView) {
+				new PapersRankView();
+			});
+			
 		},
 
 		/**
@@ -382,7 +423,11 @@ function (Backbone, ProfileView, UsersListView, EventsListView, AgendaView,
 		**/
 		speakersrank: function(){
 			console.log("ROUTE: rankings speakers");
-			new SpeakersRankView();
+
+			require(["views/speakersrank"], function (SpeakersRankView) {
+				new SpeakersRankView();
+			});
+			
 		},
 
 		/**

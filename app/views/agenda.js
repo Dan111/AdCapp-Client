@@ -118,16 +118,16 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//Por enquanto para teste fica como utilizador 0 o utilizador do 
 			//dispositivo, mas quando o registo/login estiver feito teremos
 			//de passar o id correspondente
-			this.personalAgenda = new PersonalAgenda({id: 0, Personal: true});
+			this.personalAgenda = new PersonalAgenda({id: 1, Personal: true});
 
 			this.conferenceEvents = new EventCollection({isPersonal: false});	
 
 			this.personalAgenda.fetch({
 				success: function () {
-					console.log("Personal Events loaded from server");
+					console.log("Personal Events loaded");
 				},
 				error: function (){
-					console.log("Fail to get events from server or don't have any");
+					console.log("Fail to get events or don't have any");
 				}
 			});
 		

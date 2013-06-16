@@ -636,11 +636,14 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//remove no modelo com o array
 			this.personalEvents.removeEvent(parseInt(eventId));
 			this.personalEvents.save();
-
+			
+			this.personalEvents.sendPersonalAgenda();
 
 			this.$popup.popup('close');
 
 		},
+
+		
 
 		/**
         Adciona um evento à agenda pessoal do utilizador do dispositivo
@@ -657,6 +660,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			this.personalEvents.addEvent(parseInt(eventId));
 			this.personalEvents.save();
+			
+			this.personalEvents.sendPersonalAgenda();
 
 			this.$popup.popup('close');
 

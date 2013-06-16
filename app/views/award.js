@@ -177,7 +177,7 @@ define([
 					var attrs = element.attributes;
 					return {
 						id 			: attrs.id.toString(),
-						url 		: "#/users"+attrs.id.toString(),
+						url 		: "#/users/"+attrs.id.toString(),
 						name 		: attrs.name,
 						institution : attrs.institution,
 						area 		: attrs.area,
@@ -229,7 +229,7 @@ define([
 									return {
 										isvoted  	: that.voted === attrs.id,
 										id 			: attrs.id.toString(),
-										url 		: "#/users"+attrs.id.toString(),
+										url 		: "#/users/"+attrs.id.toString(),
 										name 		: attrs.name,
 										votes 		: that.getVotes(attrs.id)
 									}
