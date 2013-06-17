@@ -59,7 +59,7 @@ define([
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"speakers"});
+			this.ranksInfo = new RanksInfo({type:"user"});
 			this.ranksInfo.fetch({
 				success: function () {
 					self.getStarted(AwardView, self, false, null, new UsersCollection());

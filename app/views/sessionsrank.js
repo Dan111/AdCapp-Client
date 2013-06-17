@@ -59,7 +59,7 @@ define([
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"sessions"});
+			this.ranksInfo = new RanksInfo({type:"session"});
 			this.ranksInfo.fetch({
 				success: function () {
 					self.getStarted(AwardView, self, true, app.TYPES.SESSION, new GenericEventCollection({type:"sessions"}));

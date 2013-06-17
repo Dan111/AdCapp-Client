@@ -554,6 +554,7 @@
   <!-- Página do menu de informações -->
 
     <script type="text/x-handlebars-template"  id="maininfo-template">
+          <a href="#generalsearch" id="info-search" data-role="button" data-theme="a"><i class="icon-search "></i> Pesquisa</a>
 
           <div>
                <div class="ui-grid-a square-wrapper">
@@ -654,6 +655,169 @@
              </div>
         </div>
 
+        
+
+  </script>
+
+  <!-- Página de pesquisa geral -->
+  <script type="text/x-handlebars-template"  id="search-page-template">
+      
+    <input type="search" name="search" id="general-search-basic" value=""/>
+    <fieldset data-role="controlgroup">
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <input type="checkbox" name="participantscheck" id="participant" value="participants" data-theme="a">
+          <label for="participant">Participantes</label>
+        </div>
+        <div class="ui-block-b">
+          <input type="checkbox" name="speakerscheck" id="speaker" value="speakers" data-theme="a">
+          <label for="speaker">Oradores</label>
+        </div>
+      </div>
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <input type="checkbox" name="paperscheck" id="paper" value="papers" data-theme="a">
+          <label for="paper">Palestra</label>
+        </div>
+        <div class="ui-block-b">
+          <input type="checkbox" name="keynotescheck" id="keynote" value="keynotes" data-theme="a">
+          <label for="keynote">Keynotes</label>
+        </div>
+      </div>
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <input type="checkbox" name="workshopscheck" id="workshop" value="workshops" data-theme="a">
+          <label for="workshop">Workshops</label>
+        </div>
+        <div class="ui-block-b">
+          <input type="checkbox" name="sessionscheck" id="session" value="sessions" data-theme="a">
+          <label for="session">Sessões</label>
+        </div>
+      </div>
+
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <input type="checkbox" name="socialscheck" id="socialevent" value="socials" data-theme="a">
+          <label for="socialevent">Sociais</label>
+        </div>
+        <div class="ui-block-b">
+          <input type="checkbox" name="localscheck" id="local" value="locals" data-theme="a">
+          <label for="local">Locais</label>
+        </div>
+      </div> 
+    </fieldset>
+
+    <a id="search" data-role="button" data-theme="a"><i class="icon-search "></i> Pesquisar</a>
+
+    <div id="search-results">
+      
+    </div>
+      
+  </script>
+
+  <!-- Partial que mostra os resultados da pesquisa geral -->
+  <script type="text/x-handlebars-template" id="general-results-partial">
+    <ul data-role="listview" data-inset="true" data-divider-theme="a">
+        {{#if participants}}
+          <li data-role="list-divider">Participantes</li>
+          {{#each participants}}
+            <li>
+              <a href="{{url}}">
+                <img class="profile-pic" src="assets/morgan.jpg">
+                <h2 class="awards-name">{{name}}</h2>
+                <p>{{institution}}</p>
+                <p>{{area}}</p>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if speakers}}
+          <li data-role="list-divider">Oradores</li>
+          {{#each speakers}}
+            <li>
+              <a href="{{url}}">
+                <img class="profile-pic" src="assets/morgan.jpg">
+                <h2 class="awards-name">{{name}}</h2>
+                <p>{{institution}}</p>
+                <p>{{area}}</p>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if papers}}
+          <li data-role="list-divider">Papers</li>
+          {{#each papers}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+                <h2>Início: {{start}}</h2>
+                <h2>Fim: {{end}}</h2>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if keynotes}}
+          <li data-role="list-divider">Keynotes</li>
+          {{#each keynotes}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+                <h2>Início: {{start}}</h2>
+                <h2>Fim: {{end}}</h2>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if workshops}}
+          <li data-role="list-divider">Workshos</li>
+          {{#each workshops}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+                <h2>Início: {{start}}</h2>
+                <h2>Fim: {{end}}</h2>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if sessions}}
+          <li data-role="list-divider">Sessões</li>
+          {{#each sessions}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+                <h2>Início: {{start}}</h2>
+                <h2>Fim: {{end}}</h2>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if socialevents}}
+          <li data-role="list-divider">Eventos Sociais</li>
+          {{#each socialevents}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+                <h2>Início: {{start}}</h2>
+                <h2>Fim: {{end}}</h2>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+
+        {{#if locals}}
+          <li data-role="list-divider">locais</li>
+
+        {{/if}}
+    </ul>
   </script>
 
 
