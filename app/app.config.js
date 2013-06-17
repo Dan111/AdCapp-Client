@@ -37,7 +37,7 @@ function (Backbone, $, _, Account, Notifications) {
 	@static
 	@final
 	**/
-	window.app.URL = "http://localhost:3000/"; /*http://193.136.122.153/";*/
+	window.app.URL = "http://193.136.122.153/";
 
 
 	/**

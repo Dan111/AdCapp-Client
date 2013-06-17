@@ -2,7 +2,9 @@ define([
     "jquery",
     "backbone",
     "models/event",
-    "app.config"
+    "app.config",
+
+    "backbone.cachingsync"
 ], 
 
 function ($, Backbone, Event, App) {
@@ -24,7 +26,9 @@ function ($, Backbone, Event, App) {
 		@default "/papers/"
 		**/
 		url: App.URL + "papers/",
-		
+
+
+		sync: Backbone.cachingSync(Backbone.sync, 'papers'),
 
 		/**
         Atributos predefinidos do modelo.

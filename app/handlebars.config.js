@@ -76,16 +76,6 @@ function (Handlebars, $, _, Moment) {
         });
 
 
-        //Devolve a data formatada para as notificações
-        Handlebars.registerHelper('formatDate', function (date) {
-            var date = date.toString();
-
-            var formattedDate = Moment(date); //TODO: pôr em português
-            return formattedDate.utc().calendar();
-
-        });
-
-
         //Verifica se a propriedade se encontra definida
         Handlebars.registerHelper('isDefined', function (param, body) {
             if(param != null)

@@ -268,7 +268,12 @@ function ($, Backbone, _, BasicView) {
         },
 
 
-        //TODO: Docs
+        /**
+        Actualiza as opções com os valores passados como parâmetro
+
+        @method updateOptions
+        @param {Object} options Os novos valores que cada opção deve tomar
+        **/
         updateOptions: function (options) {
 
             //actualiza as opções locais (por exemplo, de quanto em quanto tempo deve verificar actualizações)
@@ -289,7 +294,16 @@ function ($, Backbone, _, BasicView) {
         },
 
 
+        /**
+        Guarda as alterações feitas no perfil pessoal no servidor
 
+        @method pushOptionsToServer
+        @async
+        @param {Object} args Argumentos da função
+            @param {Object} args.options Os pares chave e valor a serem guardados no servidor
+            @param {Object} [args.showError=false] Caso seja true, é apresentada uma mensagem a informar se
+                                                    as alterações não foram guardados no servidor
+        **/
         pushOptionsToServer: function (args) {
 
             if(args.options == null)
@@ -332,6 +346,17 @@ function ($, Backbone, _, BasicView) {
         },
 
 
+        /**
+        Altera os campos de oldOptions usando os valores de newOptions. Com este método, evita-se criar
+        novos atributos no objecto oldOptions, o que poderia acontecer caso se usasse o método extend
+        do Underscore
+
+        @method mergeOptions
+        @private
+        @param {Object} oldOptions Objecto com as opções actuais
+        @param {Object} newOptions Objecto com as opções que se quer alterar
+        @return {Object} O objecto oldOptions com as opções actualizadas
+        **/
         mergeOptions: function (oldOptions, newOptions) {
 
             if(newOptions == null)
@@ -349,6 +374,11 @@ function ($, Backbone, _, BasicView) {
         },
 
 
+        /**
+        Atribui a todas os atributos de Account os valores predefinidos
+
+        @method resetAccount
+        **/
         resetAccount: function () {
             this.set(this.defaults);
             this.save();

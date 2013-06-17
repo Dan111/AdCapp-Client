@@ -75,18 +75,63 @@ define([
 		account: null,
 
 
-		//TODO: Docs
+		/**
+		Id do botão para submeter o registo do dispositivo, presente no popup
+
+		@property submitButton 
+		@type String
+		@private
+		@default "#submit-button"
+		**/
 		submitButton: "#submit-button",
-		cancelButton: "#cancel-button",
-		resendButton: "#resend-button",
-
-		emailForm: "#email-form",
-		codeForm: "#code-form",
-
 
 
 		/**
-		Listeners dos botões do formulário de registo
+		Id do botão para cancelar o registo do dispositivo, presente no popup
+
+		@property cancelButton 
+		@type String
+		@private
+		@default "#cancel-button"
+		**/
+		cancelButton: "#cancel-button",
+
+
+		/**
+		Id do botão para pedir o reenvio do código de registo, presente no popup
+
+		@property resendButton 
+		@type String
+		@private
+		@default "#resend-button"
+		**/
+		resendButton: "#resend-button",
+
+
+		/**
+		Campo de texto para inserir o email, presente no popup
+
+		@property emailForm 
+		@type String
+		@private
+		@default "#email-form"
+		**/
+		emailForm: "#email-form",
+
+
+		/**
+		Campo de texto para inserir o código de activação, presente no popup
+
+		@property codeForm 
+		@type String
+		@private
+		@default "#code-form"
+		**/
+		codeForm: "#code-form",
+
+
+		/**
+		Listeners dos botões do formulário de registo e de configurações
 
 		@property events
 		@type Object
@@ -104,7 +149,7 @@ define([
 
 
 		/**
-		Construtor da classe abstracta.
+		Construtor da página de opções
 
 		@constructor
 		@protected
@@ -124,7 +169,7 @@ define([
 
 
 		/**
-		Faz o rendering do layout base das páginas de informações
+		Faz o rendering do formulário das opções
 
 		@method render
 		@protected
@@ -143,7 +188,13 @@ define([
 		},
 
 
+		/**
+		Faz o rendering do popup com o formulário de registo e configuar os listeners
+		dos botões
 
+		@method setupPopup
+		@private
+		**/
 		setupPopup: function () {
 
 			var self = this;
@@ -171,6 +222,12 @@ define([
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica no botão de submissão de registo
+
+		@method registerDevice
+		@private
+		**/
 		registerDevice: function() {
 
 			var email = $(this.emailForm).val();
@@ -181,13 +238,23 @@ define([
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica no botão de cancelar o registo
 
+		@method cancelRegistration
+		@private
+		**/
 		cancelRegistration: function() {
 			$('#popupMenu').popup('close');
 		},
 
 
-		//TODO: Docs
+		/**
+		Função chamada quando o utilizador clica no botão de reenvio de código de registo
+
+		@method resendCode
+		@private
+		**/
 		resendCode: function() {
 
 			var email = $(this.emailForm).val();
@@ -208,18 +275,32 @@ define([
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica no botão guardar as opções, iniciando o
+		processo de guardar as opções localmente e no servidor
 
-
+		@method saveOptions
+		@private
+		**/
 		saveOptions: function () {
 			console.log("save options");
 
 			var newOptions = this.getNewOptions();
-			this.account
+			this.account.updateOptions(newOptions);
+
+			BasicView.prototype.showErrorOverlay({text: "Opções guardadas"});
 		},
 
 
+		/**
+		Obtém os valores presentes nos vários inputs do formulário de opções e coloca-los
+		num mapa.
 
-		getNewOptions: function () { //TODO: guardar os wrappers em atributos
+		@method getNewOptions
+		@private
+		@return {Object} Objecto com as opções inseridas pelo utilizador
+		**/
+		getNewOptions: function () {
 
 			var options = {};
 
@@ -249,16 +330,27 @@ define([
 			});
 
 
-			this.account.updateOptions(options);
+			return options;
 
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica no botão de cancelar a alteração das opções
+
+		@method cancelOptions
+		**/
 		cancelOptions: function() {
 			history.go(-1);
 		},
 
 
+		/**
+		Função chamada quando o utilizador clica switch de receber alertas de notificações, 
+		fazendo show ou hide do slider do tempo consoante o switch esteja on ou off
+
+		@method toggleNotifSlider
+		**/
 		toggleNotifSlider: function () {
 
 			var alertNotifs = $("#alert-notifs").find(":selected").attr("value");

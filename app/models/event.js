@@ -88,7 +88,7 @@ function ($, Backbone, BasicView) {
                                 console.log("Comentário submetido");
                             })
         **/
-        submitComment: function (options){ //TODO: factorizar método
+        submitComment: function (options){
 
             var self = this;
 

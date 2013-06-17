@@ -240,7 +240,6 @@ define([
 
 					self.model.fetch();
 
-					//TODO: colocar author_name correcto quando o registo do dispositivo funcionar
 					var newComment = self.compileTemplate(self.commentPartial, {author_name: App.account.getName(), 
 																				content: text, new_comment: true});
 					self.$("#comments").prepend(newComment);

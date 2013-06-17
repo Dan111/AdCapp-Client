@@ -198,7 +198,13 @@ function (Backbone) {
 		},
 
 
-		//TODO: Docs
+		/**
+		Route da página de um local
+
+		@method local
+		@param {Number} id Id do local
+		@private
+		**/
 		local: function(id) {
 			console.log("ROUTE: local");
 
