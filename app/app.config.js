@@ -37,7 +37,7 @@ function (Backbone, $, _, Account, Notifications) {
 	@static
 	@final
 	**/
-	window.app.URL = "http://localhost:3000/"; /*http://193.136.122.153/";*/
+	window.app.URL = "http://193.136.122.153/";
 
 
 	/**
@@ -115,8 +115,8 @@ function (Backbone, $, _, Account, Notifications) {
 	};
 
 	app.TYPESINFO = {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-					"session": {url: '#sessions/'}};
+					"socialevent": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+					"session": {url: '#session/'}};
 
 
 	/**

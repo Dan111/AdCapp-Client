@@ -3,11 +3,13 @@ define([
     "backbone",
     "underscore",
     "backbone.localStorage",
+    "backbone.cachingsync",
     "models/event",
     "app.config"
 ], 
 
-function ($, Backbone, _, LocalStorage, Event, App) {
+
+function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
 
     /**
     Coleção de eventos
@@ -35,12 +37,14 @@ function ($, Backbone, _, LocalStorage, Event, App) {
         @type String
         @static
         @final
-        @default null
+        @default App.URL + "events"
         **/
-		url: null,
+		url: App.URL + "events",
 
 		localStorage: null,
 
+        sync: Backbone.cachingSync(Backbone.sync, 'events'),
+        
         /**
         Construtor da coleção. Verifca o booleano passado como parametro
         e escolhe a url ou o localStorage para fazer fetch 
@@ -52,8 +56,7 @@ function ($, Backbone, _, LocalStorage, Event, App) {
             @param {boolean} args.isPersonal booleano que verifica se temos de ir ao server ou à localStorage
         **/
 		initialize: function (args){
-            if(!args.isPersonal)
-                this.url = "http://danielmagro.apiary.io/events";
+            
 
 			console.log('EventS');
 		},

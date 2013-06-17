@@ -120,7 +120,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			//de passar o id correspondente
 			this.personalAgenda = new PersonalAgenda({id: 1, Personal: true});
 
-			this.conferenceEvents = new EventCollection({isPersonal: false});	
+			this.conferenceEvents = new EventCollection();	
 
 			this.personalAgenda.fetch({
 				success: function () {
@@ -131,12 +131,11 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				}
 			});
 		
-			this.conferenceEvents.fetch({
-				success: function () {
-					self.renderLayout();
-					self.render();
-				}
-			});
+			this.conferenceEvents.fetch().done(function () {
+                self.renderLayout();
+                self.render();
+                
+               });
 
 
 		},

@@ -1,9 +1,10 @@
 define([
     "jquery",
-    "backbone"
+    "backbone",
+    "app.config"
 ], 
 
-function ($, Backbone) {
+function ($, Backbone, App) {
 	
 	/**
     Modelo de utilizadores/participantes da conferência
@@ -20,9 +21,9 @@ function ($, Backbone) {
         @type String
         @static
         @final
-        @default "http://danielmagro.apiary.io/users/"
+        @default "App.URL + "users/""
         **/
-		url: "http://danielmagro.apiary.io/users/",
+		url: App.URL + "users/",
 
 		/**
         Defaults dos atributos do modelo

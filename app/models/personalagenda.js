@@ -1,10 +1,12 @@
 define([
     "jquery",
     "backbone",
-    "underscore"
+    "underscore",
+    "app.config",
+    "views/basicview"
 ], 
 
-function ($, Backbone, _) {
+function ($, Backbone, _, App, BasicView) {
 
 	/**
     Modelo de agenda pessoal
@@ -80,7 +82,7 @@ function ($, Backbone, _) {
         **/
         sendPersonalAgenda: function()
         {
-            var url = this.url;
+            var url = App.URL + "users/" + this.get("id") + "/schedule";
             var chosen = this.get("chosen_events");
             var that =this;
             $.ajax({
@@ -95,6 +97,7 @@ function ($, Backbone, _) {
                 data: { 
                     "chosen_events": chosen
                 },
+
 
                 beforeSend: function () {
                     $.mobile.loading( 'show', {
@@ -115,7 +118,8 @@ function ($, Backbone, _) {
                 },
 
                 error: function (){
-                    //that.showErrorOverlay({text: "Erro no envio"});
+                    $.mobile.loading( 'hide' );
+                    alert( "Erro no envio");
                     
                 }
             });

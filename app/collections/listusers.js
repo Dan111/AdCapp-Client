@@ -2,10 +2,11 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/listuser"
+    "models/listuser",
+    "app.config"
 ], 
 
-function ($, Backbone, LocalStorage, listUser) {
+function ($, Backbone, LocalStorage, listUser, App) {
 
 	/**
     Coleção de utilizadores para serem mostrados em lista
@@ -52,9 +53,9 @@ function ($, Backbone, LocalStorage, listUser) {
 		initialize: function (args){
 
 			if(args.isSpeakers)
-				this.url = "http://danielmagro.apiary.io/speakers";
-			else
-				this.url = "http://danielmagro.apiary.io/participants";
+                this.url = App.URL + "speakers";
+            else
+                this.url = App.URL + "participants";
 
 			console.log('UserS');
 		},

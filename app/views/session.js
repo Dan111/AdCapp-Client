@@ -197,12 +197,14 @@ define([
 			this.eventIds = this.model.arrayOfEventIds();
 
 			var hasEvents = this.personalAgenda.hasEvents(this.eventIds);
-
+			
 			if(!hasEvents)
 			{	
 				$('#add-remove-event').next().remove();
 
 			}
+			else
+				$('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
 
 		},
 

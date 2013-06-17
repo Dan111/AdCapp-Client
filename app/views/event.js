@@ -181,8 +181,8 @@ define([
 
 			this.tabs = [];
 			this.tabNames = [];
-
-			this.personalAgenda = new PersonalAgendaModel({id: 0, Personal: true});
+			//MUDAR ID QUANDO TIVERMOS O ID DO UTILIZADOR DO DISPOSITIVO
+			this.personalAgenda = new PersonalAgendaModel({id: 1, Personal: true});
 
 			this.personalAgenda.fetch({
 				success: function () {
@@ -247,7 +247,7 @@ define([
 			//TODO: arranjar uma solução mais elegante
 			this.$("[data-role=navbar] a:first").addClass("ui-btn-active");
 
-			if(this.personalAgenda.hasEvent(this.model.id))
+			if(this.personalAgenda.hasEvent(this.model.get("event_id")))
                 $('#add-remove-event').parent().append(this.checkIcon);
 			
 			return this;

@@ -1,10 +1,11 @@
 define([
     "jquery",
     "backbone",
-    "views/basicview"
+    "views/basicview",
+    "app.config"
 ], 
 
-function ($, Backbone, BasicView) {
+function ($, Backbone, BasicView, App) {
 
 	/**
     Modelo que representa um evento
@@ -21,9 +22,9 @@ function ($, Backbone, BasicView) {
         @type String
         @static
         @final
-        @default "http://danielmagro.apiary.io/events/"
+        @default "App.URL + "events/""
         **/
-		url: "http://danielmagro.apiary.io/events/",
+		url: App.URL + "events/",
 
         /**
         Tipo do evento

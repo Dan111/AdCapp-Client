@@ -836,12 +836,24 @@
               <br>
               <br>
             {{/if}}
-            <div id="user-bio" data-role="collapsible" data-collapsed="false" data-theme="a" >
-              <h4>Bio</h4>
-              <p>
-                {{bio}}
-              </p>
-            </div>
+            
+        {{/if}}
+
+        {{#if bio}}
+          <div id="user-bio" data-role="collapsible" data-collapsed="false" data-theme="a" >
+            <h4>Bio</h4>
+            <p>
+              {{bio}}
+            </p>
+          </div>
+        {{else}}
+          <div id="user-bio" data-role="collapsible" data-collapsed="false" data-theme="a" >
+            <h4>Bio</h4>
+            <p>
+              <h2 >Não tem informação disponível</h2>
+            </p>
+          </div>
+    
         {{/if}}
       </div>
   </script>
