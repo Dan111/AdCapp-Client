@@ -59,7 +59,7 @@ define([
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"workshops"});
+			this.ranksInfo = new RanksInfo({type:"workshop"});
 			this.ranksInfo.fetch({
 				success: function () {
 					self.getStarted(AwardView, self, true, app.TYPES.WORKSHOP, new GenericEventCollection({type:"workshops"}));

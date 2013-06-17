@@ -66,7 +66,7 @@ define([
 
 		ranksInfo: null,
 
-		voted: null,
+		voted: -1,
 
 		typesInfo: app.TYPESINFO,
 
@@ -314,14 +314,14 @@ define([
 
 		vote: function(e){
 
-			if(this.voted !== null)
+			if(this.voted !== -1)
 	        {
 	        	this.decrementVote();
 	        }
 
 			var that = this;
 
-			var url = "http://localhost:3000/" + "votes";
+			var url = App.URL + "votes";
 
 			e.preventDefault();
    			var id = parseInt($(e.currentTarget).attr("value"));

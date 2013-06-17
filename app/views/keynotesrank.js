@@ -59,7 +59,7 @@ define([
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"keynotes"});
+			this.ranksInfo = new RanksInfo({type:"keynote"});
 			this.ranksInfo.fetch({
 				success: function () {
 					self.getStarted(AwardView, self, true, app.TYPES.KEYNOTE, new GenericEventCollection({type:"keynotes"}));

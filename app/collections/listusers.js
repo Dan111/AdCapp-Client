@@ -70,9 +70,21 @@ function ($, Backbone, LocalStorage, listUser, App) {
         **/
 		comparator: function( user ) {
 	      return user.get('name');
-	    }
+	    },
 
-
+        getUsersWithString: function(string){
+            var lowerString = string.toLowerCase();
+            return this.filter(function(obj) {
+                    if(obj.get('name').toLowerCase().indexOf(lowerString) > -1)
+                        return true;
+                    else if(obj.get('institution').toLowerCase().indexOf(lowerString) > -1)
+                        return true;
+                    else if(obj.get('area').toLowerCase().indexOf(lowerString) > -1)
+                        return true;
+                    else
+                        return false;
+                });
+        },
 	});
 
 });

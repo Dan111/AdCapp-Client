@@ -36,7 +36,9 @@ function (Handlebars, $, _, Moment) {
 
         //Partial do calendar
         Handlebars.registerPartial('calendar', $("#calendar-partial").html());
-
+        
+//Partial de resultados da pesquisa geral
+        Handlebars.registerPartial('generalresults', $("#general-results-partial").html());
 
 
         /* HELPER */

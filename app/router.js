@@ -57,6 +57,8 @@ function (Backbone) {
 			"rankings/speakers"	: "speakersrank",
 			"rankings/sessions"	: "sessionsrank",
 			"rankings/keynotes"	: "keynotesrank",
+
+			"generalsearch"	: "generalsearch",
 		},
 
 		/**
@@ -471,7 +473,7 @@ function (Backbone) {
 		@private
 		**/
 		sessionsrank: function(){
-			console.log("ROUTE: rankings keynotes");
+			console.log("ROUTE: rankings sessions");
 
 			require(["views/sessionsrank"], function (SessionsRankView) {
 				new SessionsRankView();
@@ -491,7 +493,21 @@ function (Backbone) {
 			require(["views/feedback"], function (FeedbackView) {
 				new FeedbackView();
 			});
-		}
+		},
+
+		/**
+		Route da página de pesquisa geral
+
+		@method generalsearch
+		@private
+		**/
+		generalsearch: function(){
+			console.log("ROUTE: generalsearch");
+
+			require(["views/generalsearch"], function (GeneralSearchView) {
+				new GeneralSearchView();
+			});
+		},
 	});
 
   	return Router;
