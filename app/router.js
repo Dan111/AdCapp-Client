@@ -1,12 +1,8 @@
 define([
-  "backbone",
-
-  //Views
-  
-  "views/local"
+  "backbone"
 ],
 
-function (Backbone, LocalView) {
+function (Backbone) {
 
   	/**
 	Router principal da app, responsável por traduzir os links em métodos a serem chamados
@@ -202,13 +198,17 @@ function (Backbone, LocalView) {
 		},
 
 
+		//TODO: Docs
 		local: function(id) {
 			console.log("ROUTE: local");
-			new LocalView({modelId: id});
+
+			require(["views/local"], function (LocalView) {
+				new LocalView({modelId: id});
+			});
 		},
 
 
-				/**
+		/**
 		Route da página do utilizador
 
 		@method user
