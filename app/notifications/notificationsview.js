@@ -1,13 +1,15 @@
-define([
+define("notifications/notificationsview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
     "views/basicview",
-    "models/notification",
+    "./notification",
     "models/account",
-    "collections/notifications"
-], function ($, Backbone, _, Handlebars, BasicView, Notification, Account, NotificationsCollection) {
+    "./notifications",
+    "text!./notifications.html"
+], function ($, Backbone, _, Handlebars, BasicView, Notification, Account, NotificationsCollection, NotifTemplate) {
 
     /**
     View do menu de notificações
@@ -50,7 +52,7 @@ define([
         @protected
         @default "notifications-template"
         **/
-        template: "notifications-template",
+        template: NotifTemplate,
 
 
         /**
@@ -115,7 +117,12 @@ define([
                 notifications: notifs
             };
 
-            var html = this.compileTemplate(this.template, context);
+            var html = this.compileTextTemplate(this.template, context);
+
+            /*TODO*/
+            /*var template = Handlebars.compile(this.template);
+            var html = template(context);*/
+            /**/
 
             this.$el.html(html);
             this.enhanceJQMComponentsAPI();

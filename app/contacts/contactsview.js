@@ -1,11 +1,13 @@
-define([
+define("contacts/contactsview",
+[
     "jquery",
     "backbone",
     "handlebars",
-    "models/contact",
-    "collections/contacts",
-    "views/basicview"
-], function ($, Backbone, Handlebars, ContactModel, Contacts, BasicView) {
+    "./contact",
+    "./contacts",
+    "views/basicview",
+    "text!./contacts.html"
+], function ($, Backbone, Handlebars, ContactModel, Contacts, BasicView, ContactsTemplate) {
 
 	console.log("Contacts loaded");
 
@@ -63,7 +65,7 @@ define([
 		@protected
 		@default "contacts-template"
 		**/
-		template: "contacts-template",
+		template: ContactsTemplate,
 
 
 		/**
@@ -122,7 +124,7 @@ define([
 				contacts: this.contacts.toJSON()
 			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.$el.html(html);
 			this.enhanceJQMComponentsAPI();

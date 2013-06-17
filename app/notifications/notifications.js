@@ -1,8 +1,9 @@
-define([
+define("notifications/notifications",
+[
     "jquery",
     "backbone",
     "underscore",
-    "models/notification",
+    "./notification",
     "storagewrapper"
 ], 
 

@@ -93,6 +93,18 @@ define([
 
 
 		/**
+		TODO: Docs
+		**/
+		compileTextTemplate: function (text, context) {
+
+			var template = Handlebars.compile(text);
+			var html = template(context);
+
+			return html;
+		},
+
+
+		/**
 		Apresenta um popup com uma mensagem
 
 		@method showErrorOverlay

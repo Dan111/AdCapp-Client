@@ -4,7 +4,7 @@ define([
     "handlebars",
     "models/user",
     "views/basicview",
-    "collections/contacts"
+    "contacts/contacts"
 
 ], function ($, Backbone, Handlebars, UserModel, BasicView, Contacts) {
 

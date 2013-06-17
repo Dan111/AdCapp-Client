@@ -1,0 +1,26 @@
+<ul id="users-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+
+  {{#each contacts}}
+    <li>
+          <a href="#user/{{user_id}}">
+            <img class="profile-pic" src="assets/morgan.jpg">
+            <h2>{{user_name}}</h2>
+            <a data-bypass="true" href="mailto:{{email}}" type="button" data-inline="true" data-mini="true" data-theme="f">
+              <i class="icon-envelope-alt icon-large"></i> Enviar E-mail
+            </a>
+          </a>
+
+          <a class="remove-contact" user-id="{{user_id}}" data-icon="delete" data-theme="z">
+            Remover Contacto
+          </a>
+
+    </li>
+  {{/each}}
+
+</ul>
+
+<br>
+
+{{#if contacts}}
+  <button id="export-contacts" type="button" data-theme="a">Exportar Contactos</button>
+{{/if}}

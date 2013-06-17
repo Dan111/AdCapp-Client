@@ -1,8 +1,9 @@
-define([
+define("contacts/contacts",
+[
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/contact"
+    "./contact"
 ], 
 
 function ($, Backbone, LocalStorage, Contact) {

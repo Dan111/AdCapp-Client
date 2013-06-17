@@ -354,7 +354,7 @@ function (Backbone) {
 		contacts: function(){
 			console.log("ROUTE: contacts");
 
-			require(["views/contacts"], function (ContactsView) {
+			require(["contacts/contactsview"], function (ContactsView) {
 				new ContactsView();
 			});
 			
@@ -370,7 +370,7 @@ function (Backbone) {
 		notifications: function(){
 			console.log("ROUTE: notifications");
 
-			require(["views/notifications"], function (NotificationsView) {
+			require(["notifications/notificationsview"], function (NotificationsView) {
 				new NotificationsView();
 			});
 		},

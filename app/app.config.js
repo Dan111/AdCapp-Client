@@ -4,7 +4,7 @@ define([
 	"underscore",
 
 	"models/account",
-	"collections/notifications"
+	"notifications/notifications"
 ],
 
 /**

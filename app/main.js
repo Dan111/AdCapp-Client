@@ -2,8 +2,6 @@ require([
 	"backbone",
 	"jquery",
 	"router",
-	"views/profile",
-	"collections/contacts",
 	"handlebars.config",
 	"app.config",
 
@@ -18,7 +16,7 @@ Classe principal que trata de inicializar a app
 
 @class Main
 **/
-function (Backbone, $, Router, Profile, Contacts, configHandlebars, configApp) {
+function (Backbone, $, Router, configHandlebars, configApp) {
 
 	$(function () {
 
