@@ -115,8 +115,8 @@ function (Backbone, $, _, Account, Notifications) {
 	};
 
 	app.TYPESINFO = {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-					"session": {url: '#sessions/'}};
+					"socialevent": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+					"session": {url: '#session/'}};
 
 
 	/**

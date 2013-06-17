@@ -2,10 +2,11 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/user"
+    "models/user",
+    "app.config"
 ], 
 
-function ($, Backbone, LocalStorage, User) {
+function ($, Backbone, LocalStorage, User, App) {
 
 	/**
     Coleção de users
@@ -26,7 +27,7 @@ function ($, Backbone, LocalStorage, User) {
         **/
 		model: User,
 
-		url: "http://danielmagro.apiary.io/users",
+		url: App.URL + "users",
 
 
 		initialize: function (){

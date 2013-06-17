@@ -77,9 +77,7 @@ define([
 				  "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 				  "session": {url: '#sessions/'}},}
         **/
-		typesInfo: {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-					"session": {url: '#sessions/'}},
+		typesInfo: app.TYPESINFO,
 
 		/**
 		Construtor da classe EventsListView.
@@ -109,9 +107,9 @@ define([
 			this.pageName = args.pageName; 
 			//PARTE DO ID TEM DE SER ALTERADA PARA USAR O ID DO UTILIZADOR DO
 			//DISPOSITIVO
-			this.personalEvents = this.personalAgenda = new PersonalAgenda({id: 0, Personal: true});
+			this.personalEvents = this.personalAgenda = new PersonalAgenda({id: 1, Personal: true});
 
-			this.listEvents = new EventCollection({isPersonal: false});
+			this.listEvents = new EventCollection();
 
 			this.personalAgenda.fetch({
 				success: function () {
@@ -122,12 +120,11 @@ define([
 				}
 			});
 
-			this.listEvents.fetch({
-				success: function () {
-					self.renderLayout();
-					self.render();
-				}
-			});
+			this.listEvents.fetch().done(function () {
+			    self.renderLayout();
+				self.render();
+			    
+			   });
 		},
 
 		/**

@@ -268,9 +268,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			var self = this;
 			//Data do dia em que estamos, para testes
-			var d = 29;
-			var m = 4;//meses no javascript date são de 0-11
-			var y = 2013;
+			var d = 6;
+			var m = 8;//meses no javascript date são de 0-11
+			var y = 2012;
 			this.date = new Date(y,m,d);
 
 			//Limites em termos de datas, sempre + e - 3 dias do que esta definido, para testes
@@ -576,6 +576,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @return {String} cor do tipo de evento
         **/
 		getColor: function(type){
+			
 			return this.typesInfo[type].color;
 		},
 

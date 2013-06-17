@@ -1,10 +1,11 @@
 define([
     "jquery",
     "backbone",
-    "views/basicview"
+    "views/basicview",
+    "app.config"
 ], 
 
-function ($, Backbone, BasicView) {
+function ($, Backbone, BasicView, App) {
 
 	/**
     Modelo de uma palestra
@@ -52,7 +53,7 @@ function ($, Backbone, BasicView) {
         @example "papers", "sessions", "speakers", "keynotes" ou "workshops"
         **/
 		initialize: function (args){
-			this.url = "http://danielmagro.apiary.io/rankings/" + args.type;
+			this.url = App.URL + "rankings/" + args.type;
 		},
 
 		

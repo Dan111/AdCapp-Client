@@ -34,17 +34,17 @@ function ($, Backbone, LocalStorage, Paper, Keynote, Session, Workshop, App) {
         url: "",
 
         typesCollectionInfo: {
-                                "papers"    :{model: Paper, url: "http://danielmagro.apiary.io/papers"},
-                                "keynotes"  :{model: Keynote, url: "http://danielmagro.apiary.io/keynotes"},
-                                "sessions"  :{model: Session, url: "http://danielmagro.apiary.io/sessions"},
-                                "workshops" :{model: Workshop, url: "http://danielmagro.apiary.io/workshops"}
+                                "papers"    :{model: Paper, url: "papers"},
+                                "keynotes"  :{model: Keynote, url: "keynotes"},
+                                "sessions"  :{model: Session, url: "sessions"},
+                                "workshops" :{model: Workshop, url: "workshops"}
         },
 
 		initialize: function (args){
 
             var type = this.typesCollectionInfo[args.type];
             this.model = type.model;
-            this.url = type.url;
+            this.url = App.URL + type.url;
 
 		},
 
