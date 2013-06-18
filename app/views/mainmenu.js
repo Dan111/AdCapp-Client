@@ -5,43 +5,110 @@ define([
     "views/basicview"
 ], function ($, Backbone, Handlebars, BasicView) {
 
-	return BasicView.extend({
+    /**
+    View do menu príncipal
 
-		el: $("[data-role=content]"),
+    @class MainMenuView
+    @extends BasicView
+    **/
+    return BasicView.extend({
 
-		id: "pageId",
-		pageName: "Main Menu",
+        /**
+        Elemento da DOM onde são colocados todas as páginas
 
-		template: "mainmenu-template",
+        @property el 
+        @type String
+        @static
+        @final
+        @default $("[data-role=content]")
+        **/
+        el: $("[data-role=content]"),
 
+        /**
+        Id da página
+
+        @property id 
+        @type String
+        @static
+        @final
+        @default "menu-page"
+        **/
+        id: "menu-page",
+
+        /**
+        Nome da página, apresentado no header
+
+        @property pageName 
+        @type String
+        @static
+        @final
+        @default "Menu"
+        **/
+        pageName: "Menu",
+
+        /**
+        Template da página
+
+        @property template 
+        @type String
+        @final
+        @protected
+        @default "mainmenu-template"
+        **/
+        template: "mainmenu-template",
+
+        /**
+        Botão de menu
+
+        @property $menubutton
+        @type Jquey Object
+        @protected
+        @default null
+        **/
         $menubutton: null,
 
-		initialize: function ()
-		{
-			_.bindAll(this);
+        /**
+        Construtor da classe. Faz o render da página e coloca
+        o booleano menu a false, querendo isto dizer que o menu
+        de icons não está aberto
 
-			var self = this;
+        @constructor
+        @protected
+        @class MainMenuView
+        **/
+        initialize: function ()
+        {
+            _.bindAll(this);
 
-			this.menu = false;
+            var self = this;
 
-			self.renderLayout();
-			self.render();
-			
-		},
+            this.menu = false;
 
+            self.renderLayout();
+            self.render();
+            
+        },
 
-		render: function () {
-			var that = this;
+        /**
+        Faz o rendering do layout da página e ainda trata de activar eventos
+        para o bom funcionamento da página
 
-			var context = null;
+        @method render
+        @protected
+        @chainable
+        **/
+        render: function () {
+            var that = this;
 
-			var html = this.compileTemplate(this.template, context);
+            var context = null;
 
-			$("[data-role=content]").append(html);
-			this.enhanceJQMComponentsAPI();
+            var html = this.compileTemplate(this.template, context);
 
-			
-			this.setElement($("[data-role=content]"));
+            $("[data-role=content]").append(html);
+            this.enhanceJQMComponentsAPI();
+
+            
+            this.setElement($("[data-role=content]"));
 
             //Eventos para o bom funcionamento do menu de icons
             $(document).bind("taphold", function() {
@@ -49,14 +116,14 @@ define([
             });
 
             //Quando tudo estiver pronto activa lança o método onDeviceReady
-			$(document).ready(function() {
-				  that.onDeviceReady();
-			});
+            $(document).ready(function() {
+                  that.onDeviceReady();
+            });
             //Recalcula o tamanho do popup e reposiona-o
-			$(window).resize(function(){
-    			that.resizePopUp();
+            $(window).resize(function(){
+                that.resizePopUp();
                 that.positioningPopUp();      
-    		});
+            });
 
             this.$menubutton = $('#menu-button');
 
@@ -70,16 +137,28 @@ define([
                 $("body").unbind("touchmove");
             } );
 
-			return this;
+            return this;
 
-		},
+        },
 
+        /**
+        Fecha o menu de icons e faz um unbind 
+
+        @method closePopup
+        @protected
+        **/
         closePopup: function(){
             this.$menubutton.popup( "close" );
             this.menu = false;
             $(window).unbind('scroll');
         },
 
+        /**
+        Posiciona o menu de icons consoante as dimensões da janela
+
+        @method positioningPopUp
+        @protected
+        **/
         positioningPopUp: function(){
             var toppos=($(window).height()/2) - (this.$menubutton.height()/2);
             var leftpos=($(window).width()/2) - (this.$menubutton.width()/2);
@@ -87,56 +166,59 @@ define([
             this.$menubutton.css("top", toppos).css("left",leftpos-16);
         },
 
+        /**
+        Redimensiona o menu de icons consoante as dimensões da janela
+
+        @method resizePopUp
+        @protected
+        **/
         resizePopUp: function(){
             this.$menubutton.width($(window).width());
         },
 
-		onDeviceReady: function() {
-			var that = this;
+        /**
+        Activa o evento que permite abrir e fechar o menu de icons
 
-            console.log("device ready");
-
-        	//document.addEventListener("menubutton", that.onMenuKeyDown, false);
-            //window.addEventListener("onkeydown", that.onMenuKeyDown, false);
-
-            //document.menubutton = this.onMenuKeyDown;
+        @method onDeviceReady
+        @protected
+        **/
+        onDeviceReady: function() {
+            var that = this;    
 
             $(document).off("menubutton");
             $(document).on("menubutton", this.onMenuKeyDown);
 
-            // document.removeEventListener("menubutton", that.onMenuKeyDown, false);
-            // document.addEventListener("menubutton", that.onMenuKeyDown, false);
+        },
 
-            //$(document).unbind("menubutton").bind("menubutton", this.onMenuKeyDown);
+        /**
+        Trata da abertura e do fecho do menu de icons
 
-            //window.onkeydown = this.onMenuKeyDown;
-    	},
-
-    	onMenuKeyDown: function() {
-    		that = this;
-
-            console.log("key down4");
-    		
-    		this.resizePopUp();
+        @method onMenuKeyDown
+        @protected
+        **/
+        onMenuKeyDown: function() {
+            that = this;
             
-    		if(this.menu === false)
-    		{
+            this.resizePopUp();
+            
+            if(this.menu === false)
+            {
 
                 console.log("open menu");
 
 
-    			this.$menubutton.popup({
-  					afterclose: function( event, ui ) {that.menu = false;}
-				});
+                this.$menubutton.popup({
+                    afterclose: function( event, ui ) {that.menu = false;}
+                });
 
-    			this.$menubutton.popup('open');
+                this.$menubutton.popup('open');
                 this.positioningPopUp();
 
-    			this.menu = true;
-    		}
-    		else
-    			this.closePopup();
+                this.menu = true;
+            }
+            else
+                this.closePopup();
 
-    	}
+        }
     });
 });

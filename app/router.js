@@ -341,7 +341,7 @@ function (Backbone) {
 			console.log("ROUTE: socials");
 
 			require(["views/eventslist"], function (EventsListView) {
-				new EventsListView({type: "social", pageId: "socials-page", pageName: "Eventos Sociais"});
+				new EventsListView({type: "socialevent", pageId: "socials-page", pageName: "Eventos Sociais"});
 			});
 			
 		},

@@ -10,27 +10,108 @@ define([
     "collections/locals"
 ], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection, LocalsCollection) {
 
+	/**
+	View abstracta das páginas de prémios
+
+	@class GeneralSearchView
+	@extends BasicView
+	**/
 	return BasicView.extend({
 
+		/**
+		Elemento da DOM onde são colocados todas as páginas
+
+		@property el 
+		@type String
+		@static
+		@final
+		@default "div[data-role=content]"
+		**/
 		el: $("[data-role=content]"),
 
+		/**
+		Id da página
+
+		@property id 
+		@type String
+		@static
+		@final
+		@default "search-page"
+		**/
 		id: "search-page",
+
+		/**
+		Nome da página, apresentado no header
+
+		@property pageName 
+		@type String
+		@static
+		@final
+		@default "Pesquisa Geral"
+		**/
 		pageName: "Pesquisa Geral",
 
+		/**
+		Template da página
+
+		@property template 
+		@type String
+		@final
+		@protected
+		@default "search-page-template"
+		**/
 		template: "search-page-template",
+
+		/**
+		Partial dos resultados da pesquisa
+
+		@property partial 
+		@type String
+		@final
+		@protected
+		@default "general-results-partial"
+		**/
 		partial: "general-results-partial",
 		
+		/**
+        Dicionário que guarda informações relativas aos tipos de
+        resultados possíveis
+
+        @property searchable
+        @type Object
+        @static
+        @final
+        @protected
+        @default {"paper": {url: '#paper/'}, "workshop": {url: '#workshop/'}, 
+					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
+					"session": {url: '#session/'}, "speaker": {url: '#user/'}, 
+					"participant":{url: '#user/'}, "local": {url: '#local/'}},
+        **/
 		searchable: {"paper": {url: '#paper/'}, "workshop": {url: '#workshop/'}, 
 					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
 					"session": {url: '#session/'}, "speaker": {url: '#user/'}, 
 					"participant":{url: '#user/'}, "local": {url: '#local/'}},
 
+		/**
+		Eventos lançados pela interacção coma página
+
+		@property events
+		@type Object
+		@protected
+		**/
 		events: {
 
 			"click #search" : "search",
 
 		},
 
+		/**
+        Construtor da classe. Vai buscar a informação necessária paras as pesquisas e faz o render da página
+
+        @constructor
+        @protected
+        @class GeneralSearchView
+        **/
 		initialize: function ()
 		{
 			
@@ -78,9 +159,13 @@ define([
 		},
 
 
+		/**
+		Faz o rendering da página sem resultados, ou seja, estado inicial
 
-
-
+		@method render
+		@protected
+		@chainable
+		**/
 		render: function () {
 
 			
@@ -100,6 +185,27 @@ define([
 
 		},
 
+		/**
+        Método que trata da informação a ser apresentada na parte de resultados
+
+        @method treatResults
+        @protected
+        @param {Array} conferenceEvents eventos resultantes da pesquisa
+        @param {Array} participants participantes  resultantes da pesquisa
+        @param {Array} speakers oradores resultantes da pesquisa
+        @param {Array} locals locais  resultantes da pesquisa
+        @return {Object} objecto que contem as listas de resultados de cada tipo pesquisável
+        @example {
+				"participants" 	: [],
+				"speakers" 	  	: [],
+				"papers"		: [],
+				"keynotes" 		: [],
+				"workshops" 	: [],
+				"sessions" 		: [],
+				"socialevents" 	: [],
+				"locals" 		: [], 
+			} 
+        **/
 		treatResults: function(conferenceEvents, participants, speakers, locals) {
 			
 			var that = this;
@@ -179,10 +285,16 @@ define([
 			return results;
 		},
 
+		/**
+        Método que trata de recolher os termos de pesquisa e faz a pesquisa em si, 
+        seguidamente invoca o treatResults para recolher a informação dos resultados
+        e por fim apresenta-os
 
+        @method search
+        @protected
+        **/
 		search: function() {
-  				console.log(this.listSpeakers);
-				console.log("search");
+  				
 	  			var terms = $("#general-search-basic").val().trim();
 
 	  			var counter = 0;
@@ -263,9 +375,6 @@ define([
 
 				$("#search-results").append(html);
 				this.enhanceJQMComponentsAPI();
-				
-			
-
   		},
 
 	});

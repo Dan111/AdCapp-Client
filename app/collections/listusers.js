@@ -8,26 +8,26 @@ define([
 
 function ($, Backbone, LocalStorage, listUser, App) {
 
-	/**
+    /**
     Coleção de utilizadores para serem mostrados em lista
 
     @class ListUserCollection
     @extends Backbone.Collection
     **/
-	return Backbone.Collection.extend({
+    return Backbone.Collection.extend({
 
-		/**
-		Tipo do modelo utilizado na collection
+        /**
+        Tipo do modelo utilizado na collection
 
-		@property model 
-		@type Backbone.Model
-		@final
-		@protected
-		@default listUser
-		**/
-		model: listUser,
+        @property model 
+        @type Backbone.Model
+        @final
+        @protected
+        @default listUser
+        **/
+        model: listUser,
 
-		/**
+        /**
         Url do servidor para fazer fecth da collection
 
         @property url 
@@ -36,11 +36,11 @@ function ($, Backbone, LocalStorage, listUser, App) {
         @final
         @default ""
         **/
-		url: "",
+        url: "",
 
-		//localStorage: new Backbone.LocalStorage('users-backbone'),
+        //localStorage: new Backbone.LocalStorage('users-backbone'),
 
-		/**
+        /**
         Construtor da coleção. Verifca o booleano passado como parametro
         e escolhe a url a utilizar no fecth da collection
 
@@ -48,19 +48,19 @@ function ($, Backbone, LocalStorage, listUser, App) {
         @protected
         @class ListUserCollection
         @param {Object} args contém booleano para distinguir oradores de participantes
-        	@param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
+            @param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
         **/
-		initialize: function (args){
+        initialize: function (args){
 
-			if(args.isSpeakers)
+            if(args.isSpeakers)
                 this.url = App.URL + "speakers";
             else
                 this.url = App.URL + "participants";
 
-			console.log('UserS');
-		},
+            console.log('UserS');
+        },
 
-		/**
+        /**
         Comparador de modelos
 
         @method comparator
@@ -68,10 +68,19 @@ function ($, Backbone, LocalStorage, listUser, App) {
         @param {listUser} user modelo de informação de utilizador para lista
         @return {String} nome do user
         **/
-		comparator: function( user ) {
-	      return user.get('name');
-	    },
+        comparator: function( user ) {
+          return user.get('name');
+        },
 
+        /**
+        Filtra a collection devolvendo um array com os 
+        objectos que teem no nome, na instituição ou na area a string passada
+
+        @method getEventsWithString
+        @protected
+        @param {String} string termo de filtragem
+        @return {Array} array de modelos listUser
+        **/
         getUsersWithString: function(string){
             var lowerString = string.toLowerCase();
             return this.filter(function(obj) {
@@ -85,6 +94,6 @@ function ($, Backbone, LocalStorage, listUser, App) {
                         return false;
                 });
         },
-	});
+    });
 
 });

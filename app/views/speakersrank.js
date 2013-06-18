@@ -29,7 +29,7 @@ define([
 
 
 		/**
-		ID usado pelo div que contém a página
+		Id da página
 
 		@property id 
 		@type String
@@ -54,6 +54,15 @@ define([
 
 
 
+		/**
+		Construtor da classe. Faz o render da página, vai buscar a 
+		informação dos prémios e rankings e quando tiver essa informação
+		chama o método getStarted para fazer o rendering da página
+
+		@constructor
+		@protected
+		@class SpeakersRankView
+		**/
 		initialize: function ()
 		{
 			_.bindAll(this);

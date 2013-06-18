@@ -7,10 +7,11 @@ define([
     "moment",
     "events/common/events",
     "models/personalagenda",
-    "views/basicview"
+    "views/basicview",
+    "app.config"
 ], 
 
-function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView) {
+function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView, App) {
 
 	/**
     View dos calendários
@@ -243,7 +244,6 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 					"session": {url: '#sessions/'}};
         **/
-
 		typesInfo: app.TYPESINFO,
 
 
@@ -373,26 +373,30 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				       	// do evento em questão
 						$('#popupMenu').on( "popupafteropen", function( event, ui ) { 
 							$("#remove-event-button").unbind("click").bind("click", function(event){
-								
-  								that.removeEvent();
-  								
-  								if(!that.inPersonal)
-  								{
-  									calEvent.imageurl=null;
-  									$('#calendar').fullCalendar('updateEvent', calEvent);
-  								}
-  								else //se estiver na personalizada remove o evento do calendario
-  									$('#calendar').fullCalendar('removeEvents',calEvent._id);
+								if(App.account.isLogged())
+    							{
+	  								that.removeEvent();
+	  								
+	  								if(!that.inPersonal)
+	  								{
+	  									calEvent.imageurl=null;
+	  									$('#calendar').fullCalendar('updateEvent', calEvent);
+	  								}
+	  								else //se estiver na personalizada remove o evento do calendario
+	  									$('#calendar').fullCalendar('removeEvents',calEvent._id);
+	  							}
 							});
 
 							$("#add-event-button").unbind("click").bind("click", function(event){
   								that.addEvent();
-
-  								if(!that.inPersonal)
-  								{
-  									calEvent.imageurl="assets/star_white.gif";
-  									$('#calendar').fullCalendar('updateEvent', calEvent);
-  								}	
+  								if(App.account.isLogged())
+    							{
+	  								if(!that.inPersonal)
+	  								{
+	  									calEvent.imageurl="assets/star_white.gif";
+	  									$('#calendar').fullCalendar('updateEvent', calEvent);
+	  								}	
+	  							}
 							});
 						});
 
@@ -625,23 +629,28 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         **/
 		removeEvent: function() {
 			var eventId = this.$removeeventbutton.attr("value").trim();
-			console.log("remove "+eventId);
 
 			//Guarda o dia em que estava antes da pesquisa
 			this.currentDay = this.$calendar.fullCalendar('getDate');
+			if(App.account.isLogged())
+    		{
+				//remove na collection se estiver na pessoal
+				if(this.inPersonal)
+					this.toShowEvents.hasEvent(parseInt(eventId)).destroy;
 
-			//remove na collection se estiver na pessoal
-			if(this.inPersonal)
-				this.toShowEvents.hasEvent(parseInt(eventId)).destroy;
+				//remove no modelo com o array
+				this.personalEvents.removeEvent(parseInt(eventId));
+				this.personalEvents.save();
+				
+				this.personalEvents.sendPersonalAgenda();
 
-			//remove no modelo com o array
-			this.personalEvents.removeEvent(parseInt(eventId));
-			this.personalEvents.save();
-			
-			this.personalEvents.sendPersonalAgenda();
-
-			this.$popup.popup('close');
-
+				this.$popup.popup('close');
+			}
+			else
+			{
+				this.$popup.popup('close');	
+                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+             }
 		},
 
 		
@@ -654,18 +663,25 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         **/
 		addEvent: function() {
 			var eventId = this.$addeventbutton.attr("value").trim();
-			console.log("add "+eventId);
 
 			//Guarda o dia em que estava antes da pesquisa
 			this.currentDay = this.$calendar.fullCalendar('getDate');
 
-			this.personalEvents.addEvent(parseInt(eventId));
-			this.personalEvents.save();
-			
-			this.personalEvents.sendPersonalAgenda();
+			if(App.account.isLogged())
+    		{
 
-			this.$popup.popup('close');
+				this.personalEvents.addEvent(parseInt(eventId));
+				this.personalEvents.save();
+				
+				this.personalEvents.sendPersonalAgenda();
 
+				this.$popup.popup('close');
+			}
+			else
+			{
+				this.$popup.popup('close');	
+                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+            }
 		}
 
 	});

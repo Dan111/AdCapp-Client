@@ -11,8 +11,9 @@ define("events/common/eventview",
     "./commentsview",
     "./abouteventview",
 
-    "text!../templates/event.html"
-], function ($, Backbone, _, Handlebars, PersonalAgendaModel, BasicView, CommentsView, AboutView, EventTemplate) {
+    "text!../templates/event.html",
+    "app.config"
+], function ($, Backbone, _, Handlebars, PersonalAgendaModel, BasicView, CommentsView, AboutView, EventTemplate, App) {
 
 	/**
 	View abstracta das páginas de informações de cada evento
@@ -185,17 +186,22 @@ define("events/common/eventview",
 
 			this.tabs = [];
 			this.tabNames = [];
-			//MUDAR ID QUANDO TIVERMOS O ID DO UTILIZADOR DO DISPOSITIVO
-			this.personalAgenda = new PersonalAgendaModel({id: 1, Personal: true});
+			if(App.account.isLogged())
+            {
 
-			this.personalAgenda.fetch({
-				success: function () {
-					console.log("Personal Events loaded");
-				},
-				error: function (){
-					console.log("Fail to get events or don't have any");
-				}
-			});
+    			this.personalAgenda = new PersonalAgenda({id: App.account.getUserId(), Personal: true});
+
+    			this.personalAgenda.fetch({
+    				success: function () {
+    					console.log("Personal Events loaded");
+    				},
+    				error: function (){
+    					console.log("Fail to get events or don't have any");
+    				}
+    			});
+            }
+            else
+		      this.personalAgenda = new PersonalAgenda({id: 0, Personal: true});
 
 			this.renderLayout();
 			this.setElement($("[data-role=content]"));
@@ -417,24 +423,31 @@ define("events/common/eventview",
 		**/
 		addRemoveEvent: function () {
 			var model = this.model.attributes;
-			var hasEvent = this.personalAgenda.hasEvent(model.event_id);
+			if(App.account.isLogged())
+            {
+				var hasEvent = this.personalAgenda.hasEvent(model.event_id);
 
-			if(hasEvent)
-			{
-				//retira o evento da agenda pessoal
-                this.personalAgenda.removeEvent(model.event_id);
-                this.personalAgenda.save();
-                this.personalAgenda.sendPersonalAgenda();
-                $('#add-remove-event').next().remove();
+				if(hasEvent)
+				{
+					//retira o evento da agenda pessoal
+	                this.personalAgenda.removeEvent(model.event_id);
+	                this.personalAgenda.save();
+	                this.personalAgenda.sendPersonalAgenda();
+	                $('#add-remove-event').next().remove();
+				}
+				else
+				{
+					 
+	            	this.personalAgenda.addEvent(model.event_id);
+	            	this.personalAgenda.save();
+	            	this.personalAgenda.sendPersonalAgenda();
+	                $('#add-remove-event').parent().append(this.checkIcon);
+				}
 			}
 			else
 			{
-				 
-            	this.personalAgenda.addEvent(model.event_id);
-            	this.personalAgenda.save();
-            	this.personalAgenda.sendPersonalAgenda();
-                $('#add-remove-event').parent().append(this.checkIcon);
-			}
+                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+            }
 		}
 
 	});

@@ -50,7 +50,7 @@ function ($, Backbone, BasicView, App) {
         @class RankInfo
         @param {Oject} args contém o tipo de ranking
             @param {String} args.type tipo de ranking
-        @example "papers", "sessions", "speakers", "keynotes" ou "workshops"
+        @example "paper", "session", "user", "keynote" ou "workshop"
         **/
 		initialize: function (args){
 			this.url = App.URL + "rankings/" + args.type;

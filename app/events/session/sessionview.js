@@ -8,8 +8,9 @@ define("events/session/sessionview",
     "./session",
     "models/personalagenda",
     "../common/eventview",
-    "../common/sessionpapersview"
-], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, SessionPapersView) {
+    "../common/sessionpapersview",
+    "app.config"
+], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, SessionPapersView, App) {
 
 	/**
 	View da página de sessão
@@ -238,28 +239,35 @@ define("events/session/sessionview",
 		@protected
 		**/
 		addRemoveEvent: function (){
-			var personalAgenda = this.personalAgenda;
+			if(App.account.isLogged())
+            {
+				var personalAgenda = this.personalAgenda;
 
-			var hasEvents = personalAgenda.hasEvents(this.eventIds);
+				var hasEvents = personalAgenda.hasEvents(this.eventIds);
 
-			if(hasEvents)
-			{	
-				_.each(this.eventIds, function(paperId){
-					personalAgenda.removeEvent(paperId)
-				});
-				personalAgenda.save();
-				personalAgenda.sendPersonalAgenda();
-				$('#add-remove-event').next().remove();
+				if(hasEvents)
+				{	
+					_.each(this.eventIds, function(paperId){
+						personalAgenda.removeEvent(paperId)
+					});
+					personalAgenda.save();
+					personalAgenda.sendPersonalAgenda();
+					$('#add-remove-event').next().remove();
+				}
+				else
+				{
+					_.each(this.eventIds, function(paperId){
+						personalAgenda.addEvent(paperId)
+					});
+					personalAgenda.save();
+					personalAgenda.sendPersonalAgenda();
+	                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
+				}
 			}
 			else
 			{
-				_.each(this.eventIds, function(paperId){
-					personalAgenda.addEvent(paperId)
-				});
-				personalAgenda.save();
-				personalAgenda.sendPersonalAgenda();
-                $('#add-remove-event').parent().append('<i id="check-event" class="icon-check-sign pull-right"></i>');
-			}
+                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+            }
 		}
 		
 

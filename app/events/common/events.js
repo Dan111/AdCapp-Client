@@ -19,7 +19,7 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
     @class EventCollection
     @extends Backbone.Collection
     **/
-	return Backbone.Collection.extend({
+    return Backbone.Collection.extend({
 
         /**
         Tipo do modelo utilizado na collection
@@ -30,7 +30,7 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         @protected
         @default Event
         **/
-		model: Event,
+        model: Event,
 
         /**
         Url do servidor para fazer fecth da collection
@@ -41,27 +41,34 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         @final
         @default App.URL + "events"
         **/
-		url: App.URL + "events",
+        url: App.URL + "events",
 
-		localStorage: null,
+        localStorage: null,
 
+        /**
+        Sync da colecção, que com a ajuda do cachingSync,
+        trata do caching desta colecção
+
+        @property sync
+        @type String
+        @static
+        @final
+        @default Backbone.cachingSync(Backbone.sync, 'events')
+        **/
         sync: Backbone.cachingSync(Backbone.sync, 'events'),
         
         /**
-        Construtor da coleção. Verifca o booleano passado como parametro
-        e escolhe a url ou o localStorage para fazer fetch 
+        Construtor da coleção.
 
         @constructor
         @protected
         @class EventCollection
-        @param {Object} args contém booleano
-            @param {boolean} args.isPersonal booleano que verifica se temos de ir ao server ou à localStorage
         **/
-		initialize: function (args){
+        initialize: function (){
             
 
-			console.log('EventS');
-		},
+            console.log('EventS');
+        },
 
         
         /**
@@ -76,7 +83,7 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
             return  this.find( function(event_obj){ return event_obj.get("id") === id; });
         },
 
-		
+        
         /**
         Devolve o evento com um dado name,
         caso contrário devolve null
@@ -86,13 +93,13 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         @param {String} name nome de uma evento
         @return {Event} modelo Event
         **/
-		getEventByName: function(name){
+        getEventByName: function(name){
             
             return  this.find( function(event_obj){ 
-            	if(event_obj.get("name") === name)
-            		return event_obj; 
-            	else
-            		return null;
+                if(event_obj.get("name") === name)
+                    return event_obj; 
+                else
+                    return null;
             });
         },
 
@@ -185,6 +192,6 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
 
 
 
-	});
+    });
 
 });

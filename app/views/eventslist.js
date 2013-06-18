@@ -6,8 +6,10 @@ define([
     "moment",
     "models/personalagenda",
     "events/common/events",
-    "views/basicview"
-], function ($, Backbone, _, Handlebars, Moment, PersonalAgenda, EventCollection, BasicView) {
+    "collections/locals",
+    "views/basicview",
+    "app.config"
+], function ($, Backbone, _, Handlebars, Moment, PersonalAgenda, EventCollection, LocalsCollection, BasicView, App) {
 
 	/**
 	View das páginas com listagens de eventos
@@ -75,7 +77,7 @@ define([
         @protected
         @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
 				  "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-				  "session": {url: '#sessions/'}},}
+				  "session": {url: '#session/'}},}
         **/
 		typesInfo: app.TYPESINFO,
 
@@ -105,26 +107,44 @@ define([
 			this.eventType = args.type;
 			this.id = args.pageId;
 			this.pageName = args.pageName; 
-			//PARTE DO ID TEM DE SER ALTERADA PARA USAR O ID DO UTILIZADOR DO
-			//DISPOSITIVO
-			this.personalEvents = this.personalAgenda = new PersonalAgenda({id: 1, Personal: true});
+		
+
+			if(App.account.isLogged())
+            {
+
+    			this.personalEvents = new PersonalAgenda({id: App.account.getUserId(), Personal: true});
+
+    			this.personalEvents.fetch({
+    				success: function () {
+    					console.log("Personal Events loaded");
+    				},
+    				error: function (){
+    					console.log("Fail to get events or don't have any");
+    				}
+    			});
+            }
+            else
+		      this.personalEvents = new PersonalAgenda({id: 0, Personal: true});
+
+			this.locals = new LocalsCollection();
 
 			this.listEvents = new EventCollection();
 
-			this.personalAgenda.fetch({
+
+			this.locals.fetch({
 				success: function () {
-					console.log("Personal Events loaded from server");
+					console.log("localsloaded");
+					self.listEvents.fetch().done(function () {
+				    	self.renderLayout();
+						self.render();
+			   		});
 				},
-				error: function (){
-					console.log("Fail to get events from server or don't have any");
+				error: function () {
+					console.log("localsNOTloaded");
 				}
 			});
 
-			this.listEvents.fetch().done(function () {
-			    self.renderLayout();
-				self.render();
-			    
-			   });
+			
 		},
 
 		/**
@@ -139,7 +159,7 @@ define([
 		**/
 		render: function () {
 			var types = {};
-
+			console.log(this.eventType);
 			types[this.eventType] = true;
 			var models = this.listEvents.getEventsOfType(types);
 
@@ -182,6 +202,7 @@ define([
             var startDate = Moment(date);
 		   	var duration = eventAttrs.duration;
 
+		   	var local_name = this.locals.get(eventAttrs.local_id).get("name");
 
 			var inagenda = false;
 
@@ -190,7 +211,7 @@ define([
 		    //ALTERAR LOCAL_NAME QUANDO TIVER COLLECTION DE LOCAIS
 		    return{url: this.typesInfo[eventAttrs.type.toLowerCase()].url + eventAttrs.type_id.toString(), name: eventAttrs.name, 
 		    		start: startDate.utc().format(dateFormat), end: startDate.add('minutes',duration).utc().format(dateFormat),
-		    		local_name: "Sala1", inagenda: inagenda };
+		    		local_name: local_name, inagenda: inagenda };
 		}
 
 

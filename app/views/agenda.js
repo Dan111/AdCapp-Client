@@ -8,20 +8,21 @@ define([
     "events/common/events",
     "models/personalagenda",
     "views/calendar",
-    "views/basicview"
+    "views/basicview",
+    "app.config"
 ], 
 
-function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, CalendarView, BasicView) {
+function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, CalendarView, BasicView, App) {
 
-	/**
+    /**
     View da página da agenda
 
     @class AgendaView
     @extends BasicView
     **/
-	return BasicView.extend({
+    return BasicView.extend({
 
-		/**
+        /**
         Id da página da agenda
 
         @property id 
@@ -30,7 +31,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @final
         @default "agenda-page"
         **/
-		id: "agenda-page",
+        id: "agenda-page",
 
         /**
         Nome da página da agenda
@@ -40,8 +41,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @static
         @final
         @default "Agenda"
-        **/		
-		pageName: "Agenda",
+        **/     
+        pageName: "Agenda",
 
         /**
         Template da agenda
@@ -52,7 +53,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @protected
         @default "agenda-template"
         **/
-		template: "agenda-template",
+        template: "agenda-template",
 
         /**
         Eventos lançados pela transição entre tabs,
@@ -63,12 +64,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @type Object
         @protected
         **/
-		events: {
-			'click #generalAgenda' : 'renderGeneral',
-			'click #personalAgenda' : 'renderPersonal',
-		},
+        events: {
+            'click #generalAgenda' : 'renderGeneral',
+            'click #personalAgenda' : 'renderPersonal',
+        },
 
- 		/**
+        /**
         Modelo da agenda pessoal
 
         @property personalAgenda
@@ -77,9 +78,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @protected
         @default null
         **/
-		personalAgenda: null,
+        personalAgenda: null,
 
-		/**
+        /**
         Coleção dos eventos da conferência
 
         @property conferenceEvents
@@ -88,9 +89,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @protected
         @default null
         **/
-		conferenceEvents: null,
+        conferenceEvents: null,
 
-		/**
+        /**
         View que apresenta o tipo de agenda escolhido,
         neste caso ou é a agenda geral ou a personalizada
 
@@ -100,45 +101,49 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @protected
         @default null
         **/
-		calendarView: null,
+        calendarView: null,
 
-		/**
+        /**
         Construtor da classe AgendaView. Faz o fecth da agenda personalizada,
         da coleção de eventos da conferência e faz o rendering da página
 
         @constructor
         @class AgendaView
         **/
-		initialize: function ()
-		{
-			_.bindAll(this);
+        initialize: function ()
+        {
+            _.bindAll(this);
 
-			var self = this;
+            var self = this;
 
-			//Por enquanto para teste fica como utilizador 0 o utilizador do 
-			//dispositivo, mas quando o registo/login estiver feito teremos
-			//de passar o id correspondente
-			this.personalAgenda = new PersonalAgenda({id: 1, Personal: true});
 
-			this.conferenceEvents = new EventCollection();	
+            if(App.account.isLogged())
+            {
 
-			this.personalAgenda.fetch({
-				success: function () {
-					console.log("Personal Events loaded");
-				},
-				error: function (){
-					console.log("Fail to get events or don't have any");
-				}
-			});
-		
-			this.conferenceEvents.fetch().done(function () {
+                this.personalAgenda = new PersonalAgenda({id: App.account.getUserId(), Personal: true});
+
+                this.personalAgenda.fetch({
+                    success: function () {
+                        console.log("Personal Events loaded");
+                    },
+                    error: function (){
+                        console.log("Fail to get events or don't have any");
+                    }
+                });
+            }
+            else
+              this.personalAgenda = new PersonalAgenda({id: 0, Personal: true});
+
+            this.conferenceEvents = new EventCollection();  
+
+            this.conferenceEvents.fetch().done(function () {
                 self.renderLayout();
                 self.render();
                 
                });
 
 
-		},
+        },
 
         /**
         Faz o rendering do layout base da página da agenda
@@ -147,57 +152,63 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @protected
         @chainable
         **/
-		render: function () {
+        render: function () {
 
-			var context = null;
-			var html = this.compileTemplate(this.template, context);
+            var context = null;
+            var html = this.compileTemplate(this.template, context);
 
-			$("[data-role=content]").append(html);
-			this.enhanceJQMComponentsAPI();
+            $("[data-role=content]").append(html);
+            this.enhanceJQMComponentsAPI();
 
-			this.setElement($("[data-role=content]"));
-			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalAgenda, inPersonal: false});
-
-
-			return this;
-
-		},
+            this.setElement($("[data-role=content]"));
+            this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalAgenda, inPersonal: false});
 
 
-		/**
+            return this;
+
+        },
+
+
+        /**
         Faz o rendering do calendário com todos os eventos da conferência
 
         @method renderGeneral
         @protected
         **/
-		renderGeneral: function() {
-			this.calendarView.undelegateEvents();
-			this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalAgenda, inPersonal: false}) ;
-		},
+        renderGeneral: function() {
+            this.calendarView.undelegateEvents();
+            this.calendarView = new CalendarView({toShowEvents: this.conferenceEvents, personalEvents: this.personalAgenda, inPersonal: false}) ;
+        },
 
-		/**
+        /**
         Faz o rendering do calendário com todos os eventos da agenda personalizada
 
         @method renderPersonal
         @protected
         **/
-		renderPersonal: function() {
-			this.calendarView.undelegateEvents();
-			var personalLocalAgenda = new EventCollection({isPersonal: true});
+        renderPersonal: function() {
+            if(App.account.isLogged())
+            {
 
-			//quando se cria uma collection por alguma razão já vem com um elemento com defaults
-			//daí o reset
-			personalLocalAgenda.reset();
-			var modelsArray = this.conferenceEvents.getEventsFromIdArray(this.personalAgenda.get("chosen_events")); 
-			personalLocalAgenda.add(modelsArray);
+                this.calendarView.undelegateEvents();
+                var personalLocalAgenda = new EventCollection({isPersonal: true});
 
-			this.calendarView = new CalendarView({toShowEvents: personalLocalAgenda, personalEvents: this.personalAgenda, inPersonal: true}) ;
-		},
+                //quando se cria uma collection por alguma razão já vem com um elemento com defaults
+                //daí o reset
+                personalLocalAgenda.reset();
+                var modelsArray = this.conferenceEvents.getEventsFromIdArray(this.personalAgenda.get("chosen_events")); 
+                personalLocalAgenda.add(modelsArray);
+
+                this.calendarView = new CalendarView({toShowEvents: personalLocalAgenda, personalEvents: this.personalAgenda, inPersonal: true}) ;
+            }
+            else
+                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+        },
 
 
 
 
-	});
+    });
 
 
 });
