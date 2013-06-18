@@ -59,7 +59,7 @@ define([
 		@type String
 		@final
 		@protected
-		@default "event-template"
+		@default "options-template"
 		**/
 		template: "options-template",
 

@@ -1,7 +1,9 @@
-define([
+define("events/workshop/workshop",
+[
     "jquery",
     "backbone",
-    "models/event",
+
+    "../common/event",
     "app.config"
 ], 
 

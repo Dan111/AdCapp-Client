@@ -5,7 +5,7 @@ define([
     "handlebars",
     "fullcalendar",
     "moment",
-    "collections/events",
+    "events/common/events",
     "models/personalagenda",
     "views/basicview"
 ], 

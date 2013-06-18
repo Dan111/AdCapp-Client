@@ -1,17 +1,18 @@
-define([
+define("events/socialevent/socialeventview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
 
-    "models/workshop",
-    "views/event",
-], function ($, Backbone, _, Handlebars, WorkshopModel, EventView) {
+    "./socialevent",
+    "../common/eventview",
+], function ($, Backbone, _, Handlebars, SocialEventModel, EventView) {
 
 	/**
-	View da página de workshop
+	View da página do evento social
 
-	@class WorkshopView
+	@class SocialEventView
 	@extends EventView
 	**/
 	return EventView.extend({
@@ -35,9 +36,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "workshop-page"
+		@default "social-page"
 		**/
-		id: "workshop-page-",
+		id: "social-page-",
 
 
 		/**
@@ -47,9 +48,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "Workshop"
+		@default "Evento Social"
 		**/
-		pageName: "Workshop",
+		pageName: "Evento Social",
 
 
 		/**
@@ -65,25 +66,25 @@ define([
 
 
 		/**
-		Título dos envolvidos
+		Título dos envolvidos. O evento social não tem este atributo.
 
 		@property speakersTitle 
 		@type String
 		@static
 		@final
-		@default "Tutores"
+		@default null
 		**/
-		speakersTitle: "Tutores",
+		speakersTitle: null,
 
 
 		/**
-		Carrega a informação do workshop com o id passado como parâmetro,
+		Carrega a informação do evento social com o id passado como parâmetro,
 		e chama o construtor da superclasse.
 
 		@constructor
-		@class WorkshopView
+		@class SocialEventView
 		@param {Object} args Parâmetros da view
-			@param {String} args.modelId ID da sessão a ser associada à view
+			@param {String} args.modelId ID do evento social a ser associado à view
 		**/
 		initialize: function (args)
 		{
@@ -94,7 +95,7 @@ define([
 			
 			var self = this;
 
-			this.model = new WorkshopModel({id: modelId});
+			this.model = new SocialEventModel({id: modelId});
 			this.model.fetch({
 				success: function () {
 					EventView.prototype.initialize.apply(self);
@@ -106,7 +107,7 @@ define([
 
 
 		/**
-		Inicializa as tabs 'Sobre' e 'Comentários' e adiciona-as ao vetor de tabs
+		Inicializa as tabs 'Sobre' e adiciona-a ao vetor de tabs
 
 		@method createTabs
 		@protected
@@ -114,9 +115,8 @@ define([
 		createTabs: function (){
 
 			this.createAboutTab();
-			this.createCommentsTab();
 
-		},
+		}
 		
 
 

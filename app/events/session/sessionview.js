@@ -1,15 +1,15 @@
-define([
+define("events/session/sessionview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/session",
+
+    "./session",
     "models/personalagenda",
-    "views/event",
-    "views/comment",
-    "views/aboutevent",
-    "views/sessionpapers"
-], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, CommentsView, AboutView, SessionPapersView) {
+    "../common/eventview",
+    "../common/sessionpapersview"
+], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, SessionPapersView) {
 
 	/**
 	View da página de sessão

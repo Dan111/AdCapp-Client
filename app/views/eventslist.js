@@ -5,7 +5,7 @@ define([
     "handlebars",
     "moment",
     "models/personalagenda",
-    "collections/events",
+    "events/common/events",
     "views/basicview"
 ], function ($, Backbone, _, Handlebars, Moment, PersonalAgenda, EventCollection, BasicView) {
 

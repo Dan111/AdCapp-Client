@@ -1,16 +1,17 @@
-define([
+define("events/keynote/keynote",
+[
     "jquery",
     "backbone",
-    "models/event",
+    "../common/event",
     "app.config"
 ], 
 
 function ($, Backbone, Event, App) {
 
 	/**
-    Modelo de um evento social
+    Modelo de um keynote
 
-    @class SocialEvent
+    @class Keynote
     @extends Event
     **/
 	return Event.extend({
@@ -21,9 +22,9 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/social_events/"
+		@default "/keynotes/"
 		**/
-		url: App.URL + "social_events/",
+		url: App.URL + "keynotes/",
 		
 
 		/**
@@ -42,8 +43,10 @@ function ($, Backbone, Event, App) {
 			duration:0,
 			is_scheduled: false,
 			local: null,
-			social_type: null,
-			description: "Sem descrição"
+			speakers:null,
+			description: "Sem descrição",
+			themes: null,
+			comments: null
 		},
 
 
@@ -52,11 +55,11 @@ function ($, Backbone, Event, App) {
 
         @constructor
         @protected
-        @class SocialEvent
+        @class Keynote
         **/
 		initialize: function (){
 			this.url += this.id;
-			this.type = window.app.TYPES.SOCIAL;
+			this.type = window.app.TYPES.KEYNOTE;
 		}
 
 	});

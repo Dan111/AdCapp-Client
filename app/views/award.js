@@ -3,7 +3,7 @@ define([
     "backbone",
     "underscore",
     "handlebars",
-    "models/event",
+    "events/common/event",
     "views/basicview",
     "app.config"
 ], function ($, Backbone, _, Handlebars, EventModel, BasicView, App) {

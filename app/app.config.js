@@ -3,7 +3,7 @@ define([
 	"jquery",
 	"underscore",
 
-	"models/account",
+	"account/account",
 	"notifications/notifications"
 ],
 

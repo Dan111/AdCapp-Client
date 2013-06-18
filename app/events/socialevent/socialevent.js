@@ -1,17 +1,18 @@
-define([
+define("events/socialevent/socialevent",
+[
     "jquery",
     "backbone",
-    "models/event",
+    "../common/event",
     "app.config"
 ], 
 
 function ($, Backbone, Event, App) {
 
 	/**
-    Modelo de uma sessão
+    Modelo de um evento social
 
-    @class Session
-    @extends Backbone.Model
+    @class SocialEvent
+    @extends Event
     **/
 	return Event.extend({
 
@@ -21,10 +22,10 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/sessions/"
+		@default "/social_events/"
 		**/
-		url: App.URL + "sessions/",
-
+		url: App.URL + "social_events/",
+		
 
 		/**
         Atributos predefinidos do modelo.
@@ -41,14 +42,9 @@ function ($, Backbone, Event, App) {
 			hour:0,
 			duration:0,
 			is_scheduled: false,
-			session_id: 0,
 			local: null,
-			speakers:null,
-			papers: null,
-			description: "Sem descrição",
-			themes: null,
-			comments: null
-
+			social_type: null,
+			description: "Sem descrição"
 		},
 
 
@@ -57,25 +53,11 @@ function ($, Backbone, Event, App) {
 
         @constructor
         @protected
-        @class Session
+        @class SocialEvent
         **/
 		initialize: function (){
 			this.url += this.id;
-			this.type = window.app.TYPES.SESSION;
-		},
-
-
-		/**
-		Coloca todos os ids dos eventos da sessão num vetor
-
-		@method arrayOfEventIds
-		@protected
-		@return {Array} Vetor de inteiros com os ids de evento das palestras da sessão
-		**/
-		arrayOfEventIds: function(){
-			return  _.map(this.get('papers'), function(paper){
-				return paper["event_id"];
-			});
+			this.type = window.app.TYPES.SOCIAL;
 		}
 
 	});

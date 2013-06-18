@@ -1,14 +1,18 @@
-define([
+define("events/common/eventview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/paper",
+
     "models/personalagenda",
+
     "views/basicview",
-    "views/comment",
-    "views/aboutevent"
-], function ($, Backbone, _, Handlebars, PaperModel, PersonalAgendaModel, BasicView, CommentsView, AboutView) {
+    "./commentsview",
+    "./abouteventview",
+
+    "text!../templates/event.html"
+], function ($, Backbone, _, Handlebars, PersonalAgendaModel, BasicView, CommentsView, AboutView, EventTemplate) {
 
 	/**
 	View abstracta das páginas de informações de cada evento
@@ -51,7 +55,7 @@ define([
 		@protected
 		@default "event-template"
 		**/
-		template: "event-template",
+		template: EventTemplate,
 
 
 		/**
@@ -236,7 +240,7 @@ define([
 		render: function () {
 
 			var context = this.getContext();
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();

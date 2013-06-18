@@ -2,10 +2,10 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/paper",
-    "models/keynote",
-    "models/session",
-    "models/workshop",
+    "events/paper/paper",
+    "events/keynote/keynote",
+    "events/session/session",
+    "events/workshop/workshop",
     "app.config"
 ], 
 

@@ -1,7 +1,8 @@
-define([
+define("events/paper/paper",
+[
     "jquery",
     "backbone",
-    "models/event",
+    "../common/event",
     "app.config",
 
     "backbone.cachingsync"

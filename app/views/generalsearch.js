@@ -5,7 +5,7 @@ define([
     "handlebars",
     "moment",
     "views/basicview",
-    "collections/events",
+    "events/common/events",
     "collections/listusers",
 ], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection) {
 

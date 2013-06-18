@@ -1,17 +1,18 @@
-define([
+define("events/session/session",
+[
     "jquery",
     "backbone",
-    "models/event",
+    "../common/event",
     "app.config"
 ], 
 
 function ($, Backbone, Event, App) {
 
 	/**
-    Modelo de um keynote
+    Modelo de uma sessão
 
-    @class Keynote
-    @extends Event
+    @class Session
+    @extends Backbone.Model
     **/
 	return Event.extend({
 
@@ -21,10 +22,10 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/keynotes/"
+		@default "/sessions/"
 		**/
-		url: App.URL + "keynotes/",
-		
+		url: App.URL + "sessions/",
+
 
 		/**
         Atributos predefinidos do modelo.
@@ -41,11 +42,14 @@ function ($, Backbone, Event, App) {
 			hour:0,
 			duration:0,
 			is_scheduled: false,
+			session_id: 0,
 			local: null,
 			speakers:null,
+			papers: null,
 			description: "Sem descrição",
 			themes: null,
 			comments: null
+
 		},
 
 
@@ -54,11 +58,25 @@ function ($, Backbone, Event, App) {
 
         @constructor
         @protected
-        @class Keynote
+        @class Session
         **/
 		initialize: function (){
 			this.url += this.id;
-			this.type = window.app.TYPES.KEYNOTE;
+			this.type = window.app.TYPES.SESSION;
+		},
+
+
+		/**
+		Coloca todos os ids dos eventos da sessão num vetor
+
+		@method arrayOfEventIds
+		@protected
+		@return {Array} Vetor de inteiros com os ids de evento das palestras da sessão
+		**/
+		arrayOfEventIds: function(){
+			return  _.map(this.get('papers'), function(paper){
+				return paper["event_id"];
+			});
 		}
 
 	});

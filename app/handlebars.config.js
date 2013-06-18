@@ -2,7 +2,9 @@ define([
 	'handlebars',
 	'jquery',
     "underscore",
-    'moment'
+    'moment',
+
+    "text!events/templates/_comment.html"
 ], 
 
 /**
@@ -10,7 +12,7 @@ Classe que trata de inicializar os partials e os helpers do Handlebars
 
 @class HandlebarsConfig
 **/
-function (Handlebars, $, _, Moment) {
+function (Handlebars, $, _, Moment, CommentPartial) {
 
     return function () {
 
@@ -26,7 +28,7 @@ function (Handlebars, $, _, Moment) {
         Handlebars.registerPartial('userinfo', $("#user-info-partial").html());
 
         //Partial de um comentario
-        Handlebars.registerPartial('comment', $("#comment-partial").html());
+        Handlebars.registerPartial('comment', CommentPartial);
 
         //Partial da lista de speakers
         Handlebars.registerPartial('speaker', $("#speaker-partial").html());

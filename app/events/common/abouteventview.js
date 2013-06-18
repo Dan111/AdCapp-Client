@@ -1,9 +1,12 @@
-define([
+define("events/common/abouteventview",
+[
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview"
-], function ($, Backbone, Handlebars, BasicView) {
+
+    "views/basicview",
+    "text!../templates/aboutevent.html"
+], function ($, Backbone, Handlebars, BasicView, AboutEventTemplate) {
 
 	/**
 	View da tab 'Sobre' presente nas páginas dos eventos
@@ -47,7 +50,7 @@ define([
 		@final
 		@default "event-about-tab-template"
 		**/
-		template: "event-about-tab-template",
+		template: AboutEventTemplate,
 
 
 		/**
@@ -165,7 +168,7 @@ define([
 				speakers 		: this.speakers
 			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.$el.html(html);
 

@@ -1,13 +1,14 @@
-define([
+define("events/paper/paperview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/paper",
-    "views/event",
-    "views/comment",
-    "views/aboutevent"
-], function ($, Backbone, _, Handlebars, PaperModel, EventView, CommentsView, AboutView) {
+
+    "./paper",
+    "../common/eventview",
+    "../common/commentsview"
+], function ($, Backbone, _, Handlebars, PaperModel, EventView, CommentsView) {
 
 	/**
 	View da página de palestra

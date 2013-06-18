@@ -130,7 +130,7 @@ function (Backbone) {
 		paper: function(id) {
 			console.log("ROUTE: paper");
 
-			require(["views/paper"], function (PaperView) {
+			require(["events/paper/paperview"], function (PaperView) {
 				new PaperView({modelId: id});
 			});
 		},
@@ -146,7 +146,7 @@ function (Backbone) {
 		session: function(id) {
 			console.log("ROUTE: session");
 
-			require(["views/session"], function (SessionView) {
+			require(["events/session/sessionview"], function (SessionView) {
 				new SessionView({modelId: id});
 			});
 		},
@@ -162,7 +162,7 @@ function (Backbone) {
 		keynote: function(id) {
 			console.log("ROUTE: keynote");
 
-			require(["views/keynote"], function (KeynoteView) {
+			require(["events/keynote/keynoteview"], function (KeynoteView) {
 				new KeynoteView({modelId: id});
 			});
 		},
@@ -178,7 +178,7 @@ function (Backbone) {
 		workshop: function(id) {
 			console.log("ROUTE: workshop");
 
-			require(["views/workshop"], function (WorkshopView) {
+			require(["events/workshop/workshopview"], function (WorkshopView) {
 				new WorkshopView({modelId: id});
 			});
 		},
@@ -194,7 +194,7 @@ function (Backbone) {
 		social: function(id) {
 			console.log("ROUTE: social event");
 
-			require(["views/socialevent"], function (SocialEventView) {
+			require(["events/socialevent/socialeventview"], function (SocialEventView) {
 				new SocialEventView({modelId: id});
 			});
 		},
@@ -387,7 +387,7 @@ function (Backbone) {
 		options: function(){
 			console.log("ROUTE: options");
 
-			require(["views/options"], function (OptionsView) {
+			require(["account/optionsview"], function (OptionsView) {
 				new OptionsView();
 			});
 		},

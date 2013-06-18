@@ -1,0 +1,45 @@
+<div class="comment {{#if new_comment}}new{{/if}}" data-theme="e">
+      
+  <div class="ui-grid-a">
+    <div class="ui-block-a">
+      <div class="ui-btn">
+        <span id="comment-author-firstname">{{getFirstName author_name}}</span>
+        <br>
+        <span id="comment-author-lastname">{{getLastName author_name}}</span>
+      </div>
+    </div>
+    <div class="ui-block-b">
+      <a class="comment-author-link" href="#user/{{author_id}}" data-role="button" data-theme="f">
+        <i class="button-icon icon-user "></i>Perfil
+      </a>
+    </div>
+  </div>
+
+  <p class="comment-content">
+    {{content}}
+  </p>
+
+  {{#isDefined votes}}
+
+    <button data-mini="true" data-inline="true" question-id="{{question_id}}" class="vote-question" type="button" data-theme="a" data-disabled="true" user-voted={{#if has_voted}}"true"{{else}}"false"{{/if}}>
+
+      <span class="like-button" question-id="{{question_id}}">
+
+        {{#if has_voted}}
+          <i class="icon-ok icon-2x"></i>
+        {{else}}
+          <i class="icon-thumbs-up icon-2x"></i>
+        {{/if}}
+
+      </span>
+
+
+      <span class="question-votes" question-id="{{question_id}}">+{{votes}}</span> 
+    </button>
+
+  {{/isDefined}}
+
+</div>
+
+<br>
+<br>

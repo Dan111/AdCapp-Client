@@ -1,0 +1,56 @@
+
+<h1 id="paper-title">{{title}}</h1>
+
+<div class="ui-grid-a">
+  <div class="ui-block-a">
+    <div class="ui-btn paper-info">
+      <span id="event-day">{{parseDate datetime}}</span>
+    </div>
+  </div>
+  <div class="ui-block-b">
+    <button id="add-remove-event" type="button" data-theme="f">
+      <i class="button-icon icon-calendar-empty"></i> Ad. Agenda
+    </button>
+  </div>
+</div>
+
+<div class="ui-grid-a">
+  <div class="event-day-wrapper ui-block-a">
+    <div class="ui-btn-inner paper-info">
+      <span class="center-text" id="event-day">{{room_name}}</span>
+    </div>
+  </div>
+  <div class="ui-block-b">
+    <a href="#local/{{room_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f">
+      Pág. Sala
+    </a>
+  </div>
+</div>
+
+
+<br>
+<hr>
+<br>
+
+
+{{#ifLengthGreater tabs 1}}
+
+  <br>
+
+  <div data-role="navbar">
+    <ul>
+      {{#each tabs}}
+        <li><a data-theme="a" id="{{id}}">{{name}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+  
+{{/ifLengthGreater}}
+
+
+
+<br>
+
+<div id="tab-content">
+
+</div>

@@ -1,9 +1,12 @@
-define([
+define("events/common/sessionpapersview",
+[
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview"
-], function ($, Backbone, Handlebars, BasicView) {
+    "views/basicview",
+
+    "text!../templates/sessionpapers.html"
+], function ($, Backbone, Handlebars, BasicView, SessionPapersTemplate) {
 
 	/**
 	View da tab 'Papers' presente na página de sessão
@@ -47,7 +50,7 @@ define([
 		@final
 		@default "session-papers-tab-template"
 		**/
-		template: "session-papers-tab-template",
+		template: SessionPapersTemplate,
 
 
 		/**
@@ -101,7 +104,7 @@ define([
 				papers 		: this.papers
 			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.$el.html(html);
 

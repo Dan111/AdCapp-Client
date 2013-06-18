@@ -4,9 +4,10 @@ define("notifications/notificationsview",
     "backbone",
     "underscore",
     "handlebars",
+    
     "views/basicview",
     "./notification",
-    "models/account",
+    "account/account",
     "./notifications",
     "text!./notifications.html"
 ], function ($, Backbone, _, Handlebars, BasicView, Notification, Account, NotificationsCollection, NotifTemplate) {

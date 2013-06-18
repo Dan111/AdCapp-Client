@@ -1,0 +1,17 @@
+<div>
+  <h1>{{descName}}</h1>
+    <p id="abstract">
+      {{description}}
+    </p>
+</div>
+
+<br>
+
+<h1>{{speakersTitle}}</h1>
+
+{{#each speakers}}
+  {{> userinfo this}}
+  <a href="#user/{{id}}" data-role="button" data-theme="f">
+    <i class="button-icon icon-user "></i>Pág. Perfil
+  </a>
+{{/each}}

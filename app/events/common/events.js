@@ -1,10 +1,12 @@
-define([
+define("events/common/events",
+[
     "jquery",
     "backbone",
     "underscore",
     "backbone.localStorage",
     "backbone.cachingsync",
-    "models/event",
+
+    "./event",
     "app.config"
 ], 
 

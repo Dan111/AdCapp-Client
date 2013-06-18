@@ -1,10 +1,14 @@
-define([
+define("events/common/commentsview",
+[
     "jquery",
     "backbone",
     "handlebars",
     "views/basicview",
-    "app.config"
-], function ($, Backbone, Handlebars, BasicView, App) {
+    "app.config",
+
+    "text!../templates/comments.html",
+    "text!../templates/_comment.html"
+], function ($, Backbone, Handlebars, BasicView, App, CommentsTemplate, CommentPartialTemplate) {
 
 	/**
 	View da tab 'Comentários' presente nas páginas dos eventos
@@ -36,7 +40,7 @@ define([
 		@final
 		@default "tab-content"
 		**/
-		id: "tab-content", //para fazer refresh do jqm
+		id: "tab-content",
 
 
 		/**
@@ -49,7 +53,7 @@ define([
 		@final
 		@default "comments-tab-template"
 		**/
-		template: "comments-tab-template",
+		template: CommentsTemplate,
 
 
 		/**
@@ -61,7 +65,7 @@ define([
 		@final
 		@default "comment-partial"
 		**/
-		commentPartial: "comment-partial",
+		commentPartial: CommentPartialTemplate,
 
 
 		/**
@@ -165,7 +169,7 @@ define([
 			if(!this.el)
 				this.setElement($("#tab-content"));
 
-			var html = this.compileTemplate(this.template, {title: this.title,
+			var html = this.compileTextTemplate(this.template, {title: this.title,
 															comments: this.model.get(this.url)});
 
 			this.$el.html(html);
@@ -240,7 +244,7 @@ define([
 
 					self.model.fetch();
 
-					var newComment = self.compileTemplate(self.commentPartial, {author_name: App.account.getName(), 
+					var newComment = self.compileTextTemplate(self.commentPartial, {author_name: App.account.getName(), 
 																				content: text, new_comment: true});
 					self.$("#comments").prepend(newComment);
 					

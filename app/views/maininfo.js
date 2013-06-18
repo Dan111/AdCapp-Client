@@ -3,7 +3,7 @@ define([
     "backbone",
     "handlebars",
     "views/basicview",
-    "collections/events",
+    "events/common/events",
     "collections/listusers",
 ], function ($, Backbone, Handlebars, BasicView, EventCollection, ListUserCollection) {
 
