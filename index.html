@@ -723,93 +723,49 @@
         {{#if participants}}
           <li data-role="list-divider">Participantes</li>
           {{#each participants}}
-            <li>
-              <a href="{{url}}">
-                <img class="profile-pic" src="assets/morgan.jpg">
-                <h2 class="awards-name">{{name}}</h2>
-                <p>{{institution}}</p>
-                <p>{{area}}</p>
-              </a>
-            </li>
+            {{> usersresult this}}
           {{/each}}
         {{/if}}
 
         {{#if speakers}}
           <li data-role="list-divider">Oradores</li>
           {{#each speakers}}
-            <li>
-              <a href="{{url}}">
-                <img class="profile-pic" src="assets/morgan.jpg">
-                <h2 class="awards-name">{{name}}</h2>
-                <p>{{institution}}</p>
-                <p>{{area}}</p>
-              </a>
-            </li>
+            {{> usersresult this}}
           {{/each}}
         {{/if}}
 
         {{#if papers}}
           <li data-role="list-divider">Papers</li>
           {{#each papers}}
-            <li>
-              <a href="{{url}}">
-                <h1 class="awards-name">{{name}} </h1>
-                <h2>Início: {{start}}</h2>
-                <h2>Fim: {{end}}</h2>
-              </a>
-            </li>
+            {{> eventsresult this}}
           {{/each}}
         {{/if}}
 
         {{#if keynotes}}
           <li data-role="list-divider">Keynotes</li>
           {{#each keynotes}}
-            <li>
-              <a href="{{url}}">
-                <h1 class="awards-name">{{name}} </h1>
-                <h2>Início: {{start}}</h2>
-                <h2>Fim: {{end}}</h2>
-              </a>
-            </li>
+            {{> eventsresult this}}
           {{/each}}
         {{/if}}
 
         {{#if workshops}}
           <li data-role="list-divider">Workshos</li>
           {{#each workshops}}
-            <li>
-              <a href="{{url}}">
-                <h1 class="awards-name">{{name}} </h1>
-                <h2>Início: {{start}}</h2>
-                <h2>Fim: {{end}}</h2>
-              </a>
-            </li>
+            {{> eventsresult this}}
           {{/each}}
         {{/if}}
 
         {{#if sessions}}
           <li data-role="list-divider">Sessões</li>
           {{#each sessions}}
-            <li>
-              <a href="{{url}}">
-                <h1 class="awards-name">{{name}} </h1>
-                <h2>Início: {{start}}</h2>
-                <h2>Fim: {{end}}</h2>
-              </a>
-            </li>
+            {{> eventsresult this}}
           {{/each}}
         {{/if}}
 
         {{#if socialevents}}
           <li data-role="list-divider">Eventos Sociais</li>
           {{#each socialevents}}
-            <li>
-              <a href="{{url}}">
-                <h1 class="awards-name">{{name}} </h1>
-                <h2>Início: {{start}}</h2>
-                <h2>Fim: {{end}}</h2>
-              </a>
-            </li>
+            {{> eventsresult this}}
           {{/each}}
         {{/if}}
 
@@ -826,6 +782,28 @@
     </ul>
   </script>
 
+  <!-- Partial que lista os eventos de um tipo, resultantes da pesquisa -->
+  <script type="text/x-handlebars-template" id="events-result-partial">
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+                <h2>Início: {{start}}</h2>
+                <h2>Fim: {{end}}</h2>
+              </a>
+            </li>
+  </script>
+
+  <!-- Partial que lista os participantes/oradores, resultantes da pesquisa -->
+  <script type="text/x-handlebars-template" id="users-result-partial">
+            <li>
+              <a href="{{url}}">
+                <img class="profile-pic" src="assets/morgan.jpg">
+                <h2 class="awards-name">{{name}}</h2>
+                <p>{{institution}}</p>
+                <p>{{area}}</p>
+              </a>
+            </li>
+  </script>
 
   <!-- Página do Menu Principal -->
 
@@ -1198,6 +1176,8 @@
    <script type="text/x-handlebars-template"  id="rankingsmenu-template">
 
           <div>
+            <div class="ui-grid-a">
+              <div class="ui-block-a">
                 <a href="#rankings/speakers" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
                   <div class="square-info">
                     <br>
@@ -1207,7 +1187,9 @@
                     Oradores
                   </div>
                 </a>
-                <a href="#rankings/papers" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" >
+              </div>
+              <div class="ui-block-b">
+                <a href="#rankings/papers" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
                   <div class="square-info">
                     <br>
                     <i class="icon-file-alt icon-4x"></i>
@@ -1216,7 +1198,10 @@
                     Papers
                   </div>
                 </a>
-                <a href="#rankings/keynotes" data-role="button" class="square square-wrapper" data-corners="true" data-iconpos="right" data-theme="f">
+              </div>
+            </div>
+            <div class="square odd">
+                <a href="#rankings/keynotes" data-role="button" class="square" data-corners="true" data-iconpos="right" data-theme="f">
                  <div class="square-info">
                     <br>
                     <i ><img class="keynote-pic" src="assets/keynote.png"></i>
@@ -1225,7 +1210,10 @@
                     Keynotes
                   </div>
                 </a>
-                <a href="#rankings/sessions" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" >
+            </div>
+            <div class="ui-grid-a">
+              <div class="ui-block-a">
+                <a href="#rankings/sessions" data-role="button" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
                   <div class="square-info">
                     <br>
                     <i class="icon-list-alt icon-4x"></i>
@@ -1233,16 +1221,20 @@
                     <br>
                     Sessões
                   </div>
-              </a>
-              <a href="#rankings/workshops" data-role="button" id="rankings-solo" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
-                  <div class="square-info">
-                    <br>
-                    <i class="icon-cogs icon-4x"></i>
-                    <br>
-                    <br>
-                    Workshops
-                  </div>
-              </a>
+                </a>
+              </div>
+              <div class="ui-block-b">
+                <a href="#rankings/workshops" data-role="button" id="rankings-solo" class="square square-wrapper" data-corners="true"  data-iconpos="right" data-theme="f">
+                    <div class="square-info">
+                      <br>
+                      <i class="icon-cogs icon-4x"></i>
+                      <br>
+                      <br>
+                      Workshops
+                    </div>
+                </a>
+              </div>
+            </div>
         </div>
 
   </script>

@@ -13,7 +13,7 @@ define("events/common/eventview",
 
     "text!../templates/event.html",
     "app.config"
-], function ($, Backbone, _, Handlebars, PersonalAgendaModel, BasicView, CommentsView, AboutView, EventTemplate, App) {
+], function ($, Backbone, _, Handlebars, PersonalAgenda, BasicView, CommentsView, AboutView, EventTemplate, App) {
 
 	/**
 	View abstracta das páginas de informações de cada evento

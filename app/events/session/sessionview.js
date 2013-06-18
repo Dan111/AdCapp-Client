@@ -10,7 +10,7 @@ define("events/session/sessionview",
     "../common/eventview",
     "../common/sessionpapersview",
     "app.config"
-], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgendaModel, EventView, SessionPapersView, App) {
+], function ($, Backbone, _, Handlebars, SessionModel, PersonalAgenda, EventView, SessionPapersView, App) {
 
 	/**
 	View da página de sessão

@@ -39,9 +39,14 @@ function (Handlebars, $, _, Moment, CommentPartial) {
         //Partial do calendar
         Handlebars.registerPartial('calendar', $("#calendar-partial").html());
         
-//Partial de resultados da pesquisa geral
+        //Partial de resultados da pesquisa geral
         Handlebars.registerPartial('generalresults', $("#general-results-partial").html());
 
+        //Partial de listagem de eventos 
+        Handlebars.registerPartial('eventsresult', $("#events-result-partial").html());
+
+        //Partial  de listagem de users
+        Handlebars.registerPartial('usersresult', $("#users-result-partial").html());
 
         /* HELPER */
 
