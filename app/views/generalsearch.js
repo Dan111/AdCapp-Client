@@ -7,7 +7,8 @@ define([
     "views/basicview",
     "events/common/events",
     "collections/listusers",
-], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection) {
+    "collections/locals"
+], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection, LocalsCollection) {
 
 	return BasicView.extend({
 
@@ -21,7 +22,8 @@ define([
 		
 		searchable: {"paper": {url: '#paper/'}, "workshop": {url: '#workshop/'}, 
 					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
-					"session": {url: '#session/'}, "speaker": {url: '#user/'}, "participant":{url: '#user/'}},
+					"session": {url: '#session/'}, "speaker": {url: '#user/'}, 
+					"participant":{url: '#user/'}, "local": {url: '#local/'}},
 
 		events: {
 
@@ -35,9 +37,19 @@ define([
 			_.bindAll(this);
 
 			var self = this;
+			this.listLocals = new LocalsCollection();
 			this.listParticipants = new ListUserCollection({isSpeakers: false});
 			this.listSpeakers = new ListUserCollection({isSpeakers: true});
 			this.listEvents = new EventCollection();
+
+			this.listLocals.fetch({
+				success: function () {
+					console.log("localsloaded");
+				},
+				error: function () {
+					console.log("localsNOTloaded");
+				}
+			});
 
 			this.listParticipants.fetch({
 				success: function () {
@@ -89,7 +101,7 @@ define([
 		},
 
 		treatResults: function(conferenceEvents, participants, speakers, locals) {
-			//MELHORAR CÓDIGO COM USO DE PROTOTIPO EM VEZ DE TANTOS ARGS
+			
 			var that = this;
 			var results = {
 				"participants" 	: null,
@@ -154,10 +166,16 @@ define([
 
 			if(locals)
 			{
-				results["locals"] = locals;
+				results["locals"] = _.map(locals, function (obj) {
+					var attrs = obj.attributes;
+					return {
+						url 		: that.searchable["local"].url + attrs.id,
+						name 		: attrs.name,
+					}
+				}); 
 			}
 
-			console.log(results);
+			
 			return results;
 		},
 
@@ -171,6 +189,7 @@ define([
 				var eventTypes = {};
 				var speakers = false;
 				var participants = false;
+				var locals = false;
 
 
 				_.chain(this.searchable)
@@ -183,6 +202,8 @@ define([
 						participants = checkValue;
 	  				else if(pair[0] === "speaker")
 	  					speakers = checkValue;
+	  				else if(pair[0] === "local")
+	  			 		locals = checkValue;
 	  				else
 	  				{
 	  					eventTypes[pair[0]] = checkValue;
@@ -198,13 +219,15 @@ define([
 	  			var eventsResults = [];
 	  			var participantsResults = [];
 	  			var speakersResults = [];
+	  			var localsResults = [];
 
 
-	  			if(counter === 0 && !speakers && !participants)
+	  			if(counter === 0 && !speakers && !participants && !locals)
 	  			{ //Apenas os resultados por string
 	  				speakersResults = this.listSpeakers.getUsersWithString(terms);
 	  				participantsResults = this.listParticipants.getUsersWithString(terms);
 	  				eventsResults = this.listEvents.getEventsWithString(terms);
+	  				localsResults = this.listLocals.getLocalsWithString(terms);
 
 	  			}
 	  			else
@@ -225,10 +248,15 @@ define([
 		  			{
 		  				participantsResults = this.listParticipants.getUsersWithString(terms);
 		  			}
+
+		  			if(locals)
+		  			{
+		  				localsResults = this.listLocals.getLocalsWithString(terms);
+		  			}
 	  			}
 
 	  			$("#search-results").empty();
-	  			var results = this.treatResults(eventsResults, participantsResults, speakersResults, null);
+	  			var results = this.treatResults(eventsResults, participantsResults, speakersResults, localsResults);
 
 	  			var context = results;
 	  			var html = this.compileTemplate(this.partial, context);

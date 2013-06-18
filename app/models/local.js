@@ -1,13 +1,14 @@
 define([
     "jquery",
-    "backbone"
+    "backbone",
+    "app.config"
 ], 
 
-function ($, Backbone) {
+function ($, Backbone, App) {
 
 	return Backbone.Model.extend({
 
-		url: "http://danielmagro.apiary.io/Rooms/",
+		url: App.URL + "/locals/",
 
 		defaults: {
 
