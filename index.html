@@ -815,7 +815,13 @@
 
         {{#if locals}}
           <li data-role="list-divider">locais</li>
-
+          {{#each locals}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+              </a>
+            </li>
+          {{/each}}
         {{/if}}
     </ul>
   </script>
