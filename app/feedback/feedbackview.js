@@ -1,12 +1,16 @@
-define([
+define("feedback/feedbackview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
+
     "views/basicview",
-    "models/feedback",
-    "app.config"
-], function ($, Backbone, _, Handlebars, BasicView, Feedback, App) {
+    "./feedback",
+    "app.config",
+
+    "text!./feedback.html"
+], function ($, Backbone, _, Handlebars, BasicView, Feedback, App, FeedbackTemplate) {
 
     /**
     View do menu de feedback
@@ -49,7 +53,7 @@ define([
         @protected
         @default "feedback-template"
         **/
-        template: "feedback-template",
+        template: FeedbackTemplate,
 
 
         /**
@@ -102,7 +106,7 @@ define([
                 forms: this.feedback.get('forms')
             };
 
-            var html = this.compileTemplate(this.template, context);
+            var html = this.compileTextTemplate(this.template, context);
 
             this.$el.html(html);
             this.enhanceJQMComponentsAPI();

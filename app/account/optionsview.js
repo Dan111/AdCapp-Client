@@ -1,12 +1,15 @@
-define([
+define("account/optionsview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
 
     "views/basicview",
-    "app.config"
-], function ($, Backbone, _, Handlebars, BasicView, App) {
+    "app.config",
+
+    "text!./options.html"
+], function ($, Backbone, _, Handlebars, BasicView, App, OptionsTemplate) {
 
 	/**
 	Página de registo do dispositivo
@@ -61,7 +64,7 @@ define([
 		@protected
 		@default "options-template"
 		**/
-		template: "options-template",
+		template: OptionsTemplate,
 
 
 		/**
@@ -179,7 +182,7 @@ define([
 
 			var context = this.account.attributes;
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();

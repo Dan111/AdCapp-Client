@@ -1,8 +1,10 @@
 define([
     "jquery",
     "backbone",
-    "handlebars"
-], function ($, Backbone, Handlebars) {
+    "handlebars",
+
+    "text!common/layout.html"
+], function ($, Backbone, Handlebars, LayoutTemplate) {
 
 	/**
 	View abstracta extendida por todas as outras views.
@@ -60,7 +62,7 @@ define([
 			var name = this.pageName;
 
 			var context = {page_id: pid, page_name: name};
-			var html = this.compileTemplate("layout-template", context);
+			var html = this.compileTextTemplate(LayoutTemplate, context);
 
 			//adiciona página ao body
 			$("body").append(html);

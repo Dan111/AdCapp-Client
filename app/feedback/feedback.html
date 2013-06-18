@@ -1,0 +1,21 @@
+<h1>Envie-nos o seu feedback...</h1>
+
+<a data-bypass="true" href="mailto:{{email}}" data-role="button" id="email-feedback" data-theme="f" >
+  <i class="button-icon icon-envelope-alt "></i>Enviar um comentário
+</a>
+
+<br>
+
+<h1>...e responda aos nossos inquéritos</h1>
+
+<ul id="forms-list" data-role="listview" data-theme="f" data-inset="true">
+
+    {{#each forms}}
+    <li>
+      <a data-bypass="true" href="{{link}}" data-icon="arrow-r" data-iconpos="right">
+        {{name}}
+      </a>
+    </li>
+    {{/each}}
+
+</ul>

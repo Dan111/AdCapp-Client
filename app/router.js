@@ -490,7 +490,7 @@ function (Backbone) {
 		feedback: function(){
 			console.log("ROUTE: feedback");
 
-			require(["views/feedback"], function (FeedbackView) {
+			require(["feedback/feedbackview"], function (FeedbackView) {
 				new FeedbackView();
 			});
 		},

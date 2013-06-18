@@ -1,0 +1,141 @@
+<button id="register-device" data-theme="a">
+  <i class="icon-signin icon-large button-icon"></i> Registar dispositivo
+</button>
+
+<br>
+<hr>
+
+<div id="options-form">
+
+  <label for="alert-notifs">Receber alertas de novas notificações:</label>
+  <select name="alert-notifs" id="alert-notifs" data-role="slider" data-theme="f">
+      <option value="off">Não</option>
+      <option value="on" {{#if alert_notifs}}selected="selected"{{/if}}>Sim</option>
+  </select>
+
+  <br>
+
+  <div id="notif-slider" {{#if alert_notifs}} {{else}}style="display:none;"{{/if}}>
+    <label for="notif-timeout">Período de actualização (em minutos):</label>
+    <input name="notif-timeout" id="notif-timeout" value="{{notif_timeout}}" min="0" max="60" type="range">
+  </div>
+
+  <br>
+  <hr>
+
+  <label for="publish-schedule">Publicar Agenda:</label>
+  <select name="publish-schedule" id="publish-schedule" data-role="slider" data-theme="f">
+      <option value="off">Não</option>
+      <option value="on" {{#if profile.publish_schedule}}selected="selected"{{/if}}>Sim</option>
+  </select>
+
+  <br>
+  <hr>
+
+  <label for="profile-area">Área de Trabalho:</label>
+  <input name="profile-area" id="profile-area" value="{{profile.area}}" type="text">
+
+  <br>
+
+  <label for="profile-image">Imagem de perfil:</label>
+  <input name="profile-image" id="profile-image" value="{{profile.image}}" type="text">
+
+  <br>
+
+  <label for="profile-bio">Sobre mim:</label>
+  <textarea name="profile-bio" id="profile-bio">{{profile.bio}}</textarea>
+
+  <br>
+  <hr>
+
+  <h2>Contactos Sociais</h2>
+
+  <!--TODO: conseguir pôr o ícone ao lado do input -->
+
+  <div id="options-social-contacts">
+
+
+    <label for="website"><i class="icon-globe icon-2x"></i>Webiste</label>
+    <input name="website" size="10" id="social-website" value="{{profile.socialContacts.website}}" type="text">
+
+
+    <br>
+
+    <label for="facebook"><i class="icon-facebook-sign icon-2x"></i>Facebook</label>
+    <input name="facebook" size="10" id="social-facebook" value="{{profile.socialContacts.facebook}}" type="text">
+
+
+    <br>
+
+
+    <label for="twitter"><i class="icon-twitter-sign icon-2x"></i>Twitter</label>
+    <input name="twitter" size="10" id="social-twitter" value="{{profile.socialContacts.twitter}}" type="text">
+
+
+    <br>
+
+
+    <label for="linkedin"><i class="icon-linkedin-sign icon-2x"></i>LinkedIn</label>
+    <input name="linkedin" size="10" id="social-linkedin" value="{{profile.socialContacts.linkedin}}" type="text">
+
+
+    <br>
+
+
+    <label for="github"><i class="icon-github-sign icon-2x"></i>GitHub</label>
+    <input name="github" size="10" id="social-github" value="{{profile.socialContacts.github}}" type="text">
+
+
+    <br>
+
+
+    <label for="googleplus"><i class="icon-google-plus-sign icon-2x"></i>Google+</label>
+    <input name="googleplus" size="10" id="social-google-plus" value="{{profile.socialContacts.googleplus}}" type="text">
+
+
+    <br>
+
+  </div>
+
+</div>
+
+
+<div class="ui-grid-a">
+
+    <div class="ui-block-a">
+      <button id="save-settings" data-theme="g">
+        <i class="icon-ok icon-large button-icon"></i>Guardar
+      </button>
+    </div>
+
+    <div class="ui-block-b">
+      <button id="cancel-settings" data-theme="d">
+        <i class="icon-remove-sign button-icon"></i>Cancelar
+      </button>
+    </div>
+
+</div>
+
+
+
+<div data-role="popup" id="popupMenu" data-theme="z">
+  <div style="padding:10px 20px; color: white;">
+    <h3>Insira as suas credenciais</h3>
+
+    <input data-theme="d" name="email" id="email-form" value="" placeholder="email" size="30" data-theme="a" type="email">
+    <input data-theme="d" name="code" id="code-form" value="" placeholder="código" size="15" data-theme="a" type="text">
+
+    <button id="submit-button" data-theme="b">
+      <i class="icon-ok-sign button-icon"></i>Registar
+    </button>
+    <button id="cancel-button" data-theme="d">
+      <i class="icon-remove-sign button-icon"></i>Cancelar
+    </button>
+
+    <br>
+
+    <button id="resend-button" data-theme="f">
+      <i class="icon-question-sign button-icon"></i>Reenviar código
+    </button>
+  </div>
+</div>
