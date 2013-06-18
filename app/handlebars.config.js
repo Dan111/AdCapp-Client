@@ -44,6 +44,11 @@ function (Handlebars, $, _, Moment, App, CommentPartial) {
         //Partial de resultados da pesquisa geral
         Handlebars.registerPartial('generalresults', $("#general-results-partial").html());
 
+        //Partial de listagem de eventos 
+        Handlebars.registerPartial('eventsresult', $("#events-result-partial").html());
+
+        //Partial  de listagem de users
+        Handlebars.registerPartial('usersresult', $("#users-result-partial").html());
 
         /* HELPER */
 

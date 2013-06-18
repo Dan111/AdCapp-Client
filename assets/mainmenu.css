@@ -8,7 +8,15 @@
 
 }
 
- .square.ui-btn-up-f{
+.odd{
+	margin-left:auto !important;
+	margin-right:auto !important;
+	height: 50% !important;
+	width: 50% !important;
+}
+
+
+.square.ui-btn-up-f{
 	background-color:transparent;
 	border: none;
 	color: black;
