@@ -1,22 +1,27 @@
-<button id="new-comment" type="button" data-theme="a" data-iconshadow="false">
-  <i class="button-icon icon-comment "></i>{{title}}
-</button>
 
-<div id="comment-form">
+{{#isLogged}}
 
-  <label for="comment-input">{{title}}:</label>
-  <textarea cols="40" rows="8" name="comment-input" id="comment-input"></textarea>
+  <button id="new-comment" type="button" data-theme="a" data-iconshadow="false">
+    <i class="button-icon icon-comment "></i>{{title}}
+  </button>
 
-  <div class="ui-grid-a">
-    <div class="ui-block-a">
-        <button id="cancel-comment" type="button" data-icon="delete" data-theme="d">Cancelar</button>
+  <div id="comment-form">
+
+    <label for="comment-input">{{title}}:</label>
+    <textarea cols="40" rows="8" name="comment-input" id="comment-input"></textarea>
+
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+          <button id="cancel-comment" type="button" data-icon="delete" data-theme="d">Cancelar</button>
+      </div>
+      <div class="ui-block-b">
+        <button id="submit-comment" type="button" data-icon="check" data-theme="b">Submeter</button>
+      </div>
     </div>
-    <div class="ui-block-b">
-      <button id="submit-comment" type="button" data-icon="check" data-theme="b">Submeter</button>
-    </div>
+
   </div>
 
-</div>
+{{/isLogged}}
 
 <br>
 

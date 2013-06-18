@@ -587,7 +587,7 @@ define([
 			}
 	        else
 			{
-                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+                this.showErrorOverlay({text:App.MSG.REGISTRATION_NEEDED});
             }
 	        
 		}

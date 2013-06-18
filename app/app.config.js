@@ -120,6 +120,19 @@ function (Backbone, $, _, Account, Notifications) {
 
 
 	/**
+	Constantes de várias mensagens usadas pela app
+
+	@property MSG 
+	@type Object
+	@static
+	@final
+	**/
+	app.MSG = {
+		REGISTRATION_NEEDED: "Por favor, registe-se nas opções."
+	};
+
+
+	/**
 	Atualiza as notificações
 
 	@method updateNotifs

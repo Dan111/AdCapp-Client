@@ -202,7 +202,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
                 this.calendarView = new CalendarView({toShowEvents: personalLocalAgenda, personalEvents: this.personalAgenda, inPersonal: true}) ;
             }
             else
-                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+                this.showErrorOverlay({text:App.MSG.REGISTRATION_NEEDED});
         },
 
 

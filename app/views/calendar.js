@@ -649,7 +649,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			else
 			{
 				this.$popup.popup('close');	
-                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+                this.showErrorOverlay({text:App.MSG.REGISTRATION_NEEDED});
              }
 		},
 
@@ -680,7 +680,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			else
 			{
 				this.$popup.popup('close');	
-                this.showErrorOverlay({text:"Por favor registe-se nas opções"});
+                this.showErrorOverlay({text:App.MSG.REGISTRATION_NEEDED});
             }
 		}
 

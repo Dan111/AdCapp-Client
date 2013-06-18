@@ -4,6 +4,8 @@ define([
     "underscore",
     'moment',
 
+    "app.config",
+
     "text!events/templates/_comment.html"
 ], 
 
@@ -12,7 +14,7 @@ Classe que trata de inicializar os partials e os helpers do Handlebars
 
 @class HandlebarsConfig
 **/
-function (Handlebars, $, _, Moment, CommentPartial) {
+function (Handlebars, $, _, Moment, App, CommentPartial) {
 
     return function () {
 
@@ -39,7 +41,7 @@ function (Handlebars, $, _, Moment, CommentPartial) {
         //Partial do calendar
         Handlebars.registerPartial('calendar', $("#calendar-partial").html());
         
-//Partial de resultados da pesquisa geral
+        //Partial de resultados da pesquisa geral
         Handlebars.registerPartial('generalresults', $("#general-results-partial").html());
 
 
@@ -86,7 +88,11 @@ function (Handlebars, $, _, Moment, CommentPartial) {
                 return body.fn(this);
         });
 
-
+        //Verifica se o utilizador está registado
+        Handlebars.registerHelper('isLogged', function (param, body) {
+            if(App.account.isLogged())
+                return body.fn(this);
+        });
 
         //Faz o rendering do bloco caso o vetor tenha um length 
         //superior ao especificado

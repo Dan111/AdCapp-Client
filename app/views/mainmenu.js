@@ -2,8 +2,9 @@ define([
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview"
-], function ($, Backbone, Handlebars, BasicView) {
+    "views/basicview",
+    "app.config"
+], function ($, Backbone, Handlebars, BasicView, App) {
 
     /**
     View do menu príncipal
@@ -66,6 +67,21 @@ define([
         @default null
         **/
         $menubutton: null,
+
+
+
+        /**
+        Definição dos listeners dos eventos
+
+        @property events
+        @type Object
+        @protected
+        **/
+        events: {
+
+            "click [href=#feedback]": "unauthorizedAccess"
+
+        },
 
         /**
         Construtor da classe. Faz o render da página e coloca
@@ -219,6 +235,16 @@ define([
             else
                 this.closePopup();
 
+        },
+
+
+        unauthorizedAccess: function () {
+            console.log("unauthorized");
+
+            var self = this;
+            setTimeout(function (){
+                self.showErrorOverlay({text: App.MSG.REGISTRATION_NEEDED});
+            }, 500);
         }
     });
 });

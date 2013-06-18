@@ -95,7 +95,14 @@ define([
 
 
 		/**
-		TODO: Docs
+		Compila um template Handlebars com o contexto dado e retorna o HTML gerado. A diferença para com
+		o compileTemplate é que recebe uma string com o template em vez do id.
+
+		@method compileTextTemplate
+		@static
+		@param {String} text String com o template
+		@param {Object} context Contexto da compilação do template
+		@return {String} HTML gerado através da compilação do template
 		**/
 		compileTextTemplate: function (text, context) {
 

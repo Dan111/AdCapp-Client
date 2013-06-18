@@ -120,11 +120,6 @@ define("notifications/notificationsview",
 
             var html = this.compileTextTemplate(this.template, context);
 
-            /*TODO*/
-            /*var template = Handlebars.compile(this.template);
-            var html = template(context);*/
-            /**/
-
             this.$el.html(html);
             this.enhanceJQMComponentsAPI();
             

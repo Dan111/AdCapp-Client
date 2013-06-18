@@ -986,28 +986,31 @@
   <script type="text/x-handlebars-template" id="general-info-template">
       <div id="general-info">
         {{#if publishSchedule}}
-            {{#if idNextEvent}}
+            
               <h2 id="events-watch-title">Eventos que vou Assistir</h2>
-              
+            {{#if idNextEvent}} 
               <a href="#{{type}}/{{idNextEvent}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="f" >{{nameNextEvent}}</a>
             {{/if}}
             <a href="#personalschedule/{{userId}}" data-role="button" data-theme="f" >
               <i class="button-icon icon-calendar "></i>Agenda
             </a>
-            {{#if events}}
-              <h2 id="events-watch-make">Eventos que vou realizar</h2>
-
-              <p id="events-make">
-                {{#each events}}
-                  <a href="#{{type}}/{{type_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
-                {{/each}}
-              </p>
-
-              <br>
-              <br>
-            {{/if}}
-            
         {{/if}}
+
+
+        {{#if events}}
+          <h2 id="events-watch-make">Eventos que vou realizar</h2>
+
+          <p id="events-make">
+            {{#each events}}
+              <a href="#{{type}}/{{type_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
+            {{/each}}
+          </p>
+
+          <br>
+          <br>
+        {{/if}}
+            
+        
 
         {{#if bio}}
           <div id="user-bio" data-role="collapsible" data-collapsed="false" data-theme="a" >

@@ -19,25 +19,29 @@
     {{content}}
   </p>
 
-  {{#isDefined votes}}
+  {{#isLogged}}
 
-    <button data-mini="true" data-inline="true" question-id="{{question_id}}" class="vote-question" type="button" data-theme="a" data-disabled="true" user-voted={{#if has_voted}}"true"{{else}}"false"{{/if}}>
+    {{#isDefined votes}}
 
-      <span class="like-button" question-id="{{question_id}}">
+      <button data-mini="true" data-inline="true" question-id="{{question_id}}" class="vote-question" type="button" data-theme="a" data-disabled="true" user-voted={{#if has_voted}}"true"{{else}}"false"{{/if}}>
 
-        {{#if has_voted}}
-          <i class="icon-ok icon-2x"></i>
-        {{else}}
-          <i class="icon-thumbs-up icon-2x"></i>
-        {{/if}}
+        <span class="like-button" question-id="{{question_id}}">
 
-      </span>
+          {{#if has_voted}}
+            <i class="icon-ok icon-2x"></i>
+          {{else}}
+            <i class="icon-thumbs-up icon-2x"></i>
+          {{/if}}
+
+        </span>
 
 
-      <span class="question-votes" question-id="{{question_id}}">+{{votes}}</span> 
-    </button>
+        <span class="question-votes" question-id="{{question_id}}">+{{votes}}</span> 
+      </button>
 
-  {{/isDefined}}
+    {{/isDefined}}
+
+  {{/isLogged}}
 
 </div>
 
