@@ -5,7 +5,7 @@ define("notifications/notificationsview",
     "underscore",
     "handlebars",
     
-    "views/basicview",
+    "common/basicview",
     "./notification",
     "account/account",
     "./notifications",

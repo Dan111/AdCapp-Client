@@ -9,7 +9,7 @@ define("agenda/agendaview",
     "events/common/events",
     "./personalagenda",
     "./calendarview",
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!./agenda.html"

@@ -2,7 +2,7 @@ define([
     "jquery",
     "backbone",
     "underscore",
-    "views/basicview",
+    "common/basicview",
 
     "backbone.localStorage"
 ], 

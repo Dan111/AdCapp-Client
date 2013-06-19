@@ -3,7 +3,7 @@ define("informations/maininfoview",
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview",
+    "common/basicview",
     "events/common/events",
     
     "text!./infomenu.html"

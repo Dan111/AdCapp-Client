@@ -4,7 +4,7 @@ define("notifications/notifications",
     "backbone",
     "underscore",
     "./notification",
-    "storagewrapper"
+    "common/storagewrapper"
 ], 
 
 function ($, Backbone, _, Notification, StorageWrapper) {

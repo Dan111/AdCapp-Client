@@ -5,7 +5,7 @@ define("account/optionsview",
     "underscore",
     "handlebars",
 
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!./options.html"

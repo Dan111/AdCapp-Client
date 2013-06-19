@@ -5,7 +5,7 @@ define("feedback/feedbackview",
     "underscore",
     "handlebars",
 
-    "views/basicview",
+    "common/basicview",
     "./feedback",
     "app.config",
 

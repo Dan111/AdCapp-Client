@@ -3,7 +3,7 @@ define([
     "backbone",
     "underscore",
     "app.config",
-    "views/basicview"
+    "common/basicview"
 ], 
 
 function ($, Backbone, _, App, BasicView) {

@@ -5,7 +5,7 @@ define("contacts/contactsview",
     "handlebars",
     "./contact",
     "./contacts",
-    "views/basicview",
+    "common/basicview",
     "text!./contacts.html"
 ], function ($, Backbone, Handlebars, ContactModel, Contacts, BasicView, ContactsTemplate) {
 

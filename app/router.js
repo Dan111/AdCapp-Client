@@ -130,7 +130,7 @@ function (Backbone) {
 		mainmenu: function() {
 			console.log("ROUTE: mainmenu");
 
-			require(["views/mainmenu"], function (MainMenuView) {
+			require(["common/mainmenu/mainmenu"], function (MainMenuView) {
 				new MainMenuView();
 			});
 			
@@ -227,7 +227,7 @@ function (Backbone) {
 		local: function(id) {
 			console.log("ROUTE: local");
 
-			require(["views/local"], function (LocalView) {
+			require(["map/locals/localview"], function (LocalView) {
 				new LocalView({modelId: id});
 			});
 		},

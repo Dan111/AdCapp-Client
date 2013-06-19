@@ -1,18 +1,22 @@
-define([
+define("map/locals/localview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/local",
-    "views/basicview"
-], function ($, Backbone, _, Handlebars, LocalModel, BasicView) {
+
+    "./local",
+    "common/basicview",
+
+    "text!./local.html"
+], function ($, Backbone, _, Handlebars, LocalModel, BasicView, LocalTemplate) {
 
 
 	return BasicView.extend({
 
 		el: "div[data-role=content]",
 
-		template: "local-template",
+		template: LocalTemplate,
 
 		pageName: "Local",
 
@@ -50,7 +54,7 @@ define([
 
 			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
             this.enhanceJQMComponentsAPI();

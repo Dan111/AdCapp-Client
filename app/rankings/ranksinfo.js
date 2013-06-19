@@ -1,7 +1,7 @@
 define([
     "jquery",
     "backbone",
-    "views/basicview",
+    "common/basicview",
     "app.config"
 ], 
 

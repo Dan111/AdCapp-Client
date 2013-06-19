@@ -3,7 +3,7 @@ define("events/common/commentsview",
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!../templates/comments.html",

@@ -8,7 +8,7 @@ define("agenda/calendarview",
     "moment",
     "events/common/events",
     "./personalagenda",
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!./_calendar.html"

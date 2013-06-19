@@ -4,7 +4,7 @@ define("informations/userslist/userslistview",
     "backbone",
     "handlebars",
     "./listusers",
-    "views/basicview",
+    "common/basicview",
 
     "text!./userslist.html"
 ], function ($, Backbone, Handlebars, ListUserCollection, BasicView, UsersListTemplate) {

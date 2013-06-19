@@ -5,7 +5,7 @@ define("profile/profileview",
     "underscore",
     "handlebars",
     "./user",
-    "views/basicview",
+    "common/basicview",
     "contacts/contacts",
 
     "text!./profilebase.html",

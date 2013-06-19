@@ -4,7 +4,7 @@ define("events/common/abouteventview",
     "backbone",
     "handlebars",
 
-    "views/basicview",
+    "common/basicview",
     "text!../templates/aboutevent.html"
 ], function ($, Backbone, Handlebars, BasicView, AboutEventTemplate) {
 

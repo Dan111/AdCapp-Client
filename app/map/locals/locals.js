@@ -1,8 +1,10 @@
-define([
+define("map/locals/locals",
+[
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/local",
+
+    "./local",
     "app.config"
 ], 
 

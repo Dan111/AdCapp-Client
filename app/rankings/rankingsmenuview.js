@@ -3,7 +3,7 @@ define("rankings/rankingsmenuview",
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview",
+    "common/basicview",
 
     "text!./rankings.html"
 ], function ($, Backbone, Handlebars, BasicView, RankingsTemplate) {

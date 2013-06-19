@@ -1,9 +1,10 @@
-define([
+define("common/basicview",
+[
     "jquery",
     "backbone",
     "handlebars",
 
-    "text!common/layout.html"
+    "text!./layout.html"
 ], function ($, Backbone, Handlebars, LayoutTemplate) {
 
 	/**

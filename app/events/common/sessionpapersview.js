@@ -3,7 +3,7 @@ define("events/common/sessionpapersview",
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview",
+    "common/basicview",
 
     "text!../templates/sessionpapers.html"
 ], function ($, Backbone, Handlebars, BasicView, SessionPapersTemplate) {

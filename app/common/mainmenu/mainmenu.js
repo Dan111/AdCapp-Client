@@ -1,8 +1,10 @@
-define([
+define("common/mainmenu/mainmenu",
+[
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview",
+
+    "../basicview",
     "app.config"
 ], function ($, Backbone, Handlebars, BasicView, App) {
 

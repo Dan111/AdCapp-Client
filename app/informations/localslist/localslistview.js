@@ -5,7 +5,7 @@ define("informations/localslist/localslistview",
     "underscore",
     "handlebars",
     "collections/locals",
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!./localslist.html"

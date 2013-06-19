@@ -8,7 +8,7 @@ define("informations/eventslist/eventslistview",
     "agenda/personalagenda",
     "events/common/events",
     "collections/locals",
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!./eventslist.html"

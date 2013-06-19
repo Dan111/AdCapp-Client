@@ -1,0 +1,23 @@
+<h1>{{local_name}}</h1>
+
+<br>
+
+<a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="b">
+        Ver no Mapa
+</a>
+
+<br>
+<hr>
+<br>
+
+<ul id="social-contacts-list" class="adaptable-list" data-role="listview" data-theme="f" data-inset="true">
+    
+    {{#each events}}
+        <li>
+          <a href="#event/{{id}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+    {{/each}}
+
+</ul>

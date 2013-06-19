@@ -7,7 +7,7 @@ define("events/common/eventview",
 
     "agenda/personalagenda",
 
-    "views/basicview",
+    "common/basicview",
     "./commentsview",
     "./abouteventview",
 

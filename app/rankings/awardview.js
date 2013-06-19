@@ -5,7 +5,7 @@ define("rankings/awardview",
     "underscore",
     "handlebars",
     "events/common/event",
-    "views/basicview",
+    "common/basicview",
     "app.config",
 
     "text!./award.html",
