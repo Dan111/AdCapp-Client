@@ -28,6 +28,16 @@ function ($, Backbone, Event, App) {
 
 
 		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-session'),
+
+
+		/**
         Atributos predefinidos do modelo.
 
         @property defaults

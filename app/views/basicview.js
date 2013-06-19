@@ -123,7 +123,7 @@ define([
 			@param {Integer} [options.time=2000] Durante quanto tempo, em milisegundos, 
 													deve o popup ser apresentado
 		@example
-			showErrorOverlay("Erro", 5000)
+			showErrorOverlay({text: "Erro", time: 5000})
 		**/
 		showErrorOverlay: function (options) {
 

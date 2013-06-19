@@ -1,9 +1,26 @@
+{{#isLogged}}
+
+  <div id="registration-info">
+
+    <b>Dispositivo Registado</b>
+    <br>
+    <b>Utilizador:</b> {{profile.name}} ({{profile.email}})
+    <br>
+    <b>Instituição:</b> {{profile.institution}}
+    <br>
+    <br>
+
+  </div>
+
+{{/isLogged}}
+
 <button id="register-device" data-theme="a">
   <i class="icon-signin icon-large button-icon"></i> Registar dispositivo
 </button>
 
 <br>
 <hr>
+
 
 <div id="options-form">
 
@@ -17,8 +34,10 @@
 
   <div id="notif-slider" {{#if alert_notifs}} {{else}}style="display:none;"{{/if}}>
     <label for="notif-timeout">Período de actualização (em minutos):</label>
-    <input name="notif-timeout" id="notif-timeout" value="{{notif_timeout}}" min="0" max="60" type="range">
+    <input name="notif-timeout" id="notif-timeout" value="{{notif_timeout}}" min="5" max="60" type="range">
   </div>
+
+  {{#isLogged}}
 
   <br>
   <hr>
@@ -97,6 +116,8 @@
 
   </div>
 
+  {{/isLogged}}
+
 </div>
 
 
@@ -122,7 +143,7 @@
   <div style="padding:10px 20px; color: white;">
     <h3>Insira as suas credenciais</h3>
 
-    <input data-theme="d" name="email" id="email-form" value="" placeholder="email" size="30" data-theme="a" type="email">
+    <input data-theme="d" name="email" id="email-form" value="{{profile.email}}" placeholder="email" size="30" data-theme="a" type="email">
     <input data-theme="d" name="code" id="code-form" value="" placeholder="código" size="15" data-theme="a" type="text">
 
     <button id="submit-button" data-theme="b">

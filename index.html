@@ -978,11 +978,21 @@
         {{#if events}}
           <h2 id="events-watch-make">Eventos que vou realizar</h2>
 
-          <p id="events-make">
-            {{#each events}}
-              <a href="#{{type}}/{{type_id}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a"  >{{name}}</a>
-            {{/each}}
-          </p>
+          <div id="events-make">
+
+            <ul id="forms-list" class="adaptable-list" data-role="listview" data-theme="f" data-inset="true">
+
+              {{#each events}}
+              <li>
+                <a href="#{{type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+                  {{name}}
+                </a>
+              </li>
+              {{/each}}
+
+            </ul>
+          
+          </div>
 
           <br>
           <br>

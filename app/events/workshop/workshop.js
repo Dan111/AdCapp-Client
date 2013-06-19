@@ -26,6 +26,16 @@ function ($, Backbone, Event, App) {
 		@default "/workshops/"
 		**/
 		url: App.URL + "workshops/",
+
+
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-workshop'),
 		
 
 		/**

@@ -25,6 +25,16 @@ function ($, Backbone, Event, App) {
 		@default "/social_events/"
 		**/
 		url: App.URL + "social_events/",
+
+
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-social-event'),
 		
 
 		/**

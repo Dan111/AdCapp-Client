@@ -3,9 +3,7 @@ define("events/paper/paper",
     "jquery",
     "backbone",
     "../common/event",
-    "app.config",
-
-    "backbone.cachingsync"
+    "app.config"
 ], 
 
 function ($, Backbone, Event, App) {
@@ -29,7 +27,15 @@ function ($, Backbone, Event, App) {
 		url: App.URL + "papers/",
 
 
-		sync: Backbone.cachingSync(Backbone.sync, 'papers'),
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-paper'),
+
 
 		/**
         Atributos predefinidos do modelo.

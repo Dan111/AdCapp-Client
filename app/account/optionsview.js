@@ -184,7 +184,7 @@ define("account/optionsview",
 
 			var html = this.compileTextTemplate(this.template, context);
 
-			this.$el.append(html);
+			this.$el.html(html);
 			this.enhanceJQMComponentsAPI();
 			
 			return this;
@@ -236,7 +236,13 @@ define("account/optionsview",
 			var email = $(this.emailForm).val();
 			var code = $(this.codeForm).val();
 
-			this.account.registerDevice(email, code);
+			var self = this;
+			var success = function () {
+				console.log("success");
+				self.render();
+			}
+
+			this.account.registerDevice(email, code, success);
 
 		},
 

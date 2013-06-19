@@ -137,10 +137,12 @@ function ($, Backbone, _, BasicView) {
         Regista o dispositivo no server
 
         @method registerDevice
+        @async
         @param {String} email Email do utilizador
         @param {String} code Código de registo do utilizador
+        @param {Function} successCallback Função de callback em caso de sucesso
         **/
-        registerDevice: function (email, code) {
+        registerDevice: function (email, code, successCallback) {
 
             var self = this;
 
@@ -174,6 +176,9 @@ function ($, Backbone, _, BasicView) {
                     self.set("code", code);
                     self.set("logged", true);
                     self.setupCredentials(email, code);
+
+                    if(successCallback)
+                        successCallback();
 
                     self.save();
                     BasicView.prototype.showErrorOverlay({text: "Registo concluído com sucesso"});
@@ -277,13 +282,18 @@ function ($, Backbone, _, BasicView) {
         **/
         updateOptions: function (options) {
 
+            var profile = this.get('profile') || {};
+
             //actualiza as opções locais (por exemplo, de quanto em quanto tempo deve verificar actualizações)
             var newOptions = this.mergeOptions(this.attributes, options);
             this.set(newOptions);
 
+            //actualiza o intervalo de actualização
+            window.app.setUpdateInterval(this.get('notif_timeout') * 1000 * 60);
+
             //actualiza o perfil do utilizador e os contactos sociais
-            var newProfile = this.mergeOptions(this.get('profile'), options);
-            var newSocialContacts = this.mergeOptions(this.get('profile')['socialContacts'],
+            var newProfile = this.mergeOptions(profile, options);
+            var newSocialContacts = this.mergeOptions(profile['socialContacts'] || {},
                                                         options);
             newProfile['socialContacts'] = newSocialContacts;
             this.set('profile', newProfile);
@@ -301,11 +311,16 @@ function ($, Backbone, _, BasicView) {
         @method pushOptionsToServer
         @async
         @param {Object} args Argumentos da função
-            @param {Object} args.options Os pares chave e valor a serem guardados no servidor
+            @param {Object} [args.options=profile] Os pares chave e valor a serem guardados no servidor
             @param {Object} [args.showError=false] Caso seja true, é apresentada uma mensagem a informar se
                                                     as alterações não foram guardados no servidor
         **/
         pushOptionsToServer: function (args) {
+
+            if(!this.isLogged())
+                return;
+
+            args = args || {};
 
             if(args.options == null)
                 args.options = _.extend(this.get('profile'), 
@@ -320,6 +335,7 @@ function ($, Backbone, _, BasicView) {
                 url: window.app.URL + "users/" + self.getUserId(),
             
                 data: _.extend({
+                    "api": true, //este método é chamado antes de a main configurar o ajax
                     "_method": "put"
                 },args.options),
 

@@ -1,7 +1,9 @@
 define([
     "jquery",
     "backbone",
-    "app.config"
+    "app.config",
+
+    "backbone.cachingsync"
 ], 
 
 function ($, Backbone, App) {
@@ -23,6 +25,16 @@ function ($, Backbone, App) {
 		@default "/feedbacks/"
 		**/
 		url: App.URL + "feedbacks/",
+
+
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-feedback'),
 		
 
 		/**

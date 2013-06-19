@@ -1,6 +1,8 @@
 define([
     "jquery",
-    "backbone"
+    "backbone",
+
+    "backbone.cachingsync"
 ], 
 
 function ($, Backbone) {
@@ -21,7 +23,17 @@ function ($, Backbone) {
 		@private
 		@default "/notifications/"
 		**/
-		url: "http://adcapp.apiary.io/notifications/",
+		url: window.app.URL + "notifications/",
+
+
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-notification'),
 
 
 		/**

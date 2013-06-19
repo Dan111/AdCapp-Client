@@ -25,6 +25,16 @@ function ($, Backbone, Event, App) {
 		@default "/keynotes/"
 		**/
 		url: App.URL + "keynotes/",
+
+
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-keynote'),
 		
 
 		/**

@@ -3,8 +3,7 @@ define([
 	"jquery",
 	"underscore",
 
-	"account/account",
-	"notifications/notifications"
+	"account/account"
 ],
 
 /**
@@ -12,7 +11,7 @@ Responsável por inicializar o objecto global com as configurações da aplicaç
 
 @class AppConfig
 **/
-function (Backbone, $, _, Account, Notifications) {
+function (Backbone, $, _, Account) {
 
 	var app = window.app = window.app || {};
 
@@ -23,10 +22,13 @@ function (Backbone, $, _, Account, Notifications) {
 	@type Account
 	@static
 	**/
-	app.account = new Account({id: 1});
-	app.account.fetch(); //carrega a informação da conta, caso esteja 
-						//guardada no dispositivo
-	app.account.setupCredentials(); //configura o jQuery para enviar as credenciais
+
+	if(!app.account) {
+		app.account = new Account({id: 1});
+		app.account.fetch(); //carrega a informação da conta, caso esteja 
+							//guardada no dispositivo
+		app.account.setupCredentials(); //configura o jQuery para enviar as credenciais
+	}
 	
 
 	/**
@@ -133,32 +135,57 @@ function (Backbone, $, _, Account, Notifications) {
 
 
 	/**
-	Atualiza as notificações
+	Atualiza as notificações, agenda pessoal e opções
 
-	@method updateNotifs
+	@method update
 	@static
 	**/
-	app.updateNotifs = function () {
-		var notifs = new Notifications();
-		notifs.fetch({
-			beforeSend: function (){
-				//override do ajax loader
-			}
-		});
+	app.update = function () {
+
+		//actualiza as notificações, caso o utilizador tenha activado a opção
+		if(app.account.alertNotif()) {
+			require(["notifications/notifications"], function (Notifications) {
+				var notifs = new Notifications();
+				notifs.fetch({
+					beforeSend: function (){
+						//override do ajax loader
+					}
+				});
+			});
+		}
+
+		app.account.pushOptionsToServer();
+
+		//TODO: actualizar agenda pessoal
 	};
 
 
-	//Caso o utilizador queira ser avisado de novas notificações,
-	//faz-se a atualização quando a aplicação inicializa e configura-se
-	//a verificação periódica
-	if(app.account.alertNotif()) {
-		//app.updateNotifs();
+	/**
+	Cria o intervalo de actualização de informações
+
+	@method setUpdateInterval
+	@static
+	@param {Number} time Duração do intervalo (em milissegundos)
+	**/
+	app.setUpdateInterval = function (time) {
+
+		if(app.updateInterval)
+			clearInterval(app.updateInterval);
 
 		//Verifica se há novas notificações periodicamente
-		app.notifInterval =  app.notifInterval || setInterval(function () {
-			app.updateNotifs();
-		}, app.account.getNotifTimeout() * 60 * 1000); //converter de minutos para milisegundos
+		app.updateInterval = setInterval(function () {
+			app.update();
+		}, time); //converter de minutos para milisegundos
+
+	};
+
+	//Inicializa o intervalo de actualização
+	if(!app.updateInterval) {
+		var updateTime = app.account.getNotifTimeout() * 60 * 1000;
+		app.setUpdateInterval(updateTime);
+		app.update();
 	}
+
 
 	return window.app;
 

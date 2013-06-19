@@ -2,7 +2,9 @@ define([
     "jquery",
     "backbone",
     "views/basicview",
-    "app.config"
+    "app.config",
+
+    "backbone.cachingsync"
 ], 
 
 function ($, Backbone, BasicView, App) {
