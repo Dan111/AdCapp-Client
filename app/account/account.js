@@ -172,6 +172,7 @@ function ($, Backbone, _, BasicView) {
                     self.set("profile", data);
                     self.set("email", email);
                     self.set("code", code);
+                    self.set("logged", true);
                     self.setupCredentials(email, code);
 
                     self.save();
