@@ -1,0 +1,55 @@
+<div id="prev-next" class="ui-grid-c">
+        <div class="ui-block-a">
+          <a  data-role="button" id="my-prev" data-theme="f" ><i class="icon-chevron-left"></i></a>
+        </div>
+        <div class="ui-block-b">
+          <a  data-role="button" id="my-today"data-theme="a" ><i ><img class="today-pic" src="assets/today.png"></i></i></a>
+        </div>
+        <div class="ui-block-c">
+          <a href="#searchpanel" data-role="button" data-theme="a"><i class="icon-search "></i></a>
+        </div>
+        <div class="ui-block-d">
+          <a data-role="button" id="my-next"data-theme="f" ><i class="icon-chevron-right"></i></a>
+        </div>
+      </div>
+
+      
+
+      <div id='calendar' style="width:100%;"></div>
+
+
+      <div data-role="popup" id="popupMenu" data-theme="a">
+          <ul data-role="listview" data-inset="true" style="min-width:160px;" data-theme="a">
+              <li id="remove-event" data-theme="a"><button id="remove-event-button" value="" data-theme="d">Remover Evento</button></li>
+              <li id="add-event" data-theme="a"><button id="add-event-button" value="" data-theme="g">Adicionar Evento</button></li>
+              <li id="event-link" data-theme="a"><a href="" >Página Evento</a></li>
+              <li id="author-link" data-theme="a"><a href="" >Autor</a></li>
+              <li id="teacher-link" data-theme="a"><a href="" >Professor</a></li>
+              <li id="local-link" data-theme="a"><a href="" >Local</a></li>
+          </ul>
+      </div>
+
+     
+      <div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true"> 
+          <div class="panel-content">
+            <h3>Pesquisa</h3>
+
+            <div id="agendaform">
+                <input type="search" name="search" id="search-basic" value=""/>
+                <fieldset data-role="controlgroup">
+                    <legend>Tipos de Eventos</legend>
+                    <input type="checkbox" name="paperscheck" id="paper" value="papers" data-theme="a">
+                    <label for="paper">Palestra</label>
+                    <input type="checkbox" name="workshopscheck" id="workshop" value="workshops" data-theme="a">
+                    <label for="workshop">Workshop</label>
+                    <input type="checkbox" name="socialscheck" id="social" value="socials" data-theme="a">
+                    <label for="social">Social</label>
+                    <input type="checkbox" name="keynotescheck" id="keynote" value="keynotes" data-theme="a">
+                    <label for="keynote">Keynote</label>
+                </fieldset>
+            </div>
+
+            <a href="" data-rel="close" id="close-button" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Fechar</a>
+          </div>
+   
+      </div>

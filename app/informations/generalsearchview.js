@@ -1,4 +1,5 @@
-define([
+define("informations/generalsearchview",
+[
     "jquery",
     "backbone",
     "underscore",
@@ -6,9 +7,12 @@ define([
     "moment",
     "views/basicview",
     "events/common/events",
-    "collections/listusers",
-    "collections/locals"
-], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection, LocalsCollection) {
+    "informations/userslist/listusers",
+    "collections/locals",
+
+	"text!./searchpage.html",
+	"text!./_generalresults.html"
+], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection, LocalsCollection, SearchPageTemplate, GeneralResultsPartial) {
 
 	/**
 	View abstracta das páginas de prémios
@@ -55,12 +59,12 @@ define([
 		Template da página
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "search-page-template"
+		@default SearchPageTemplate
 		**/
-		template: "search-page-template",
+		template: SearchPageTemplate,
 
 		/**
 		Partial dos resultados da pesquisa
@@ -69,9 +73,9 @@ define([
 		@type String
 		@final
 		@protected
-		@default "general-results-partial"
+		@default GeneralResultsPartial
 		**/
-		partial: "general-results-partial",
+		partial: GeneralResultsPartial,
 		
 		/**
         Dicionário que guarda informações relativas aos tipos de
@@ -173,7 +177,7 @@ define([
 	  				results : null
 	  			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
 			this.enhanceJQMComponentsAPI();
@@ -371,7 +375,7 @@ define([
 	  			var results = this.treatResults(eventsResults, participantsResults, speakersResults, localsResults);
 
 	  			var context = results;
-	  			var html = this.compileTemplate(this.partial, context);
+	  			var html = this.compileTextTemplate(this.partial, context);
 
 				$("#search-results").append(html);
 				this.enhanceJQMComponentsAPI();

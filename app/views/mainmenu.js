@@ -241,13 +241,10 @@ define([
         unauthorizedAccess: function () {
             console.log("unauthorized");
 
-            if(!App.account.isLogged())
-            {
-                var self = this;
-                setTimeout(function (){
-                    self.showErrorOverlay({text: App.MSG.REGISTRATION_NEEDED});
-                }, 500);
-            }
+            var self = this;
+            setTimeout(function (){
+                self.showErrorOverlay({text: App.MSG.REGISTRATION_NEEDED});
+            }, 500);
         }
     });
 });

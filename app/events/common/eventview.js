@@ -5,7 +5,7 @@ define("events/common/eventview",
     "underscore",
     "handlebars",
 
-    "models/personalagenda",
+    "agenda/personalagenda",
 
     "views/basicview",
     "./commentsview",

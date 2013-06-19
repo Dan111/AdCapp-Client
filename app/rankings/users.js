@@ -2,7 +2,7 @@ define([
     "jquery",
     "backbone",
     "backbone.localStorage",
-    "models/user",
+    "profile/user",
     "app.config"
 ], 
 

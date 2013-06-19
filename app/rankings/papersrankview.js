@@ -1,17 +1,18 @@
-define([
+define("rankings/papersrankview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/ranksinfo",
-    "collections/genericeventcollection",
-    "views/award"
+    "./ranksinfo",
+    "./genericeventcollection",
+    "./awardview"
 ], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
-	View da página de prémios dos keynotes
+	View da página de prémios das palestras
 
-	@class KeynotesRankView
+	@class PapersRankView
 	@extends AwardView
 	**/
 	return AwardView.extend({
@@ -35,9 +36,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "keynote-award-page"
+		@default "paper-award-page"
 		**/
-		id: "keynote-award-page",
+		id: "paper-award-page",
 
 
 		/**
@@ -47,10 +48,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "Prémios Keynotes"
+		@default "Prémios Palestras"
 		**/
-		pageName: "Prémios Keynotes",
-
+		pageName: "Prémios Palestras",
 
 
 
@@ -61,22 +61,22 @@ define([
 
 		@constructor
 		@protected
-		@class KeynotesRankView
+		@class PapersRankView
 		**/
 		initialize: function ()
 		{
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"keynote"});
+			this.ranksInfo = new RanksInfo({type:"paper"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(AwardView, self, true, app.TYPES.KEYNOTE, new GenericEventCollection({type:"keynotes"}));
+					self.getStarted(AwardView, self, true, app.TYPES.PAPER, new GenericEventCollection({type:"papers"}));
 				}
 			});
 
 			
-		},
+		}
 
 	});
 

@@ -1,0 +1,30 @@
+<h1 id="awards-title">Premiados</h1>
+</br>
+{{#if awards}}
+  <ul id="awards-list" data-role="listview" data-theme="a" data-inset="true">
+    {{#if isEvent}}
+      {{#each awards}}
+          <li>
+            <a href="{{url}}">
+              <h2 class="awards-name">{{title}}</h2>
+              <p class="awards-name">{{parseDate datetime}}</p>
+              <p class="center-text awards-name">{{room_name}}</p>
+            </a>
+         </li>
+      {{/each}}
+    {{else}}
+      {{#each awards}}
+          <li>
+            <a href="{{url}}">
+              <img class="profile-pic" src="assets/morgan.jpg">
+              <h2 class="awards-name">{{name}}</h2>
+              <p class="awards-name">{{institution}}</p>
+              <p class="awards-name">{{area}}</p>
+            </a>
+         </li>
+      {{/each}}
+    {{/if}}
+  </ul>
+{{else}}
+<h2 id="awards-title">Ainda não foram atribuídos prémios</h2>
+{{/if}}

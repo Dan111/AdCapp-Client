@@ -1,10 +1,13 @@
-define([
+define("informations/userslist/userslistview",
+[
     "jquery",
     "backbone",
     "handlebars",
-    "collections/listusers",
-    "views/basicview"
-], function ($, Backbone, Handlebars, ListUserCollection, BasicView) {
+    "./listusers",
+    "views/basicview",
+
+    "text!./userslist.html"
+], function ($, Backbone, Handlebars, ListUserCollection, BasicView, UsersListTemplate) {
 
 	/**
 	View das páginas com listagens de oradores e participantes
@@ -53,12 +56,12 @@ define([
 		de listas de utilizadores
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "users-template"
+		@default UsersListTemplate
 		**/
-		template: "users-template",
+		template: UsersListTemplate,
 		
 		/**
 		Collection com modelos do tipo ListUser,
@@ -129,7 +132,7 @@ define([
 				users : models
 			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
 			this.enhanceJQMComponentsAPI();

@@ -1,17 +1,18 @@
-define([
+define("rankings/sessionsrankview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/ranksinfo",
-    "collections/genericeventcollection",
-    "views/award"
+    "./ranksinfo",
+    "./genericeventcollection",
+    "./awardview"
 ], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
-	View da página de prémios dos workshop's
+	View da página de prémios das sessões
 
-	@class WorkshopsRankView
+	@class SessionsRankView
 	@extends AwardView
 	**/
 	return AwardView.extend({
@@ -35,9 +36,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "workshop-award-page"
+		@default "session-award-page"
 		**/
-		id: "workshop-award-page",
+		id: "session-award-page",
 
 
 		/**
@@ -47,10 +48,9 @@ define([
 		@type String
 		@static
 		@final
-		@default "Prémios Workshops"
+		@default "Prémios Sessões"
 		**/
-		pageName: "Prémios Workshops",
-
+		pageName: "Prémios Sessions",
 
 
 
@@ -61,17 +61,17 @@ define([
 
 		@constructor
 		@protected
-		@class WorkshopsRankView
+		@class SessionsRankView
 		**/
 		initialize: function ()
 		{
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"workshop"});
+			this.ranksInfo = new RanksInfo({type:"session"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(AwardView, self, true, app.TYPES.WORKSHOP, new GenericEventCollection({type:"workshops"}));
+					self.getStarted(AwardView, self, true, app.TYPES.SESSION, new GenericEventCollection({type:"sessions"}));
 				}
 			});
 

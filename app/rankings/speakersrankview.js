@@ -1,11 +1,12 @@
-define([
+define("rankings/speakersrankview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "models/ranksinfo",
-    "collections/users",
-    "views/award"
+    "./ranksinfo",
+    "./users",
+    "./awardview"
 ], function ($, Backbone, _, Handlebars, RanksInfo, UsersCollection, AwardView) {
 
 	/**

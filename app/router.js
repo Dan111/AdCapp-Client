@@ -24,6 +24,7 @@ function (Backbone) {
 			""              : "main",
 			"index"         : "index",
 			"agenda"        : "agenda",
+			"personalschedule/:id" : "othersagenda",
 			"maininfo"      : "maininfo",
 			"mainmenu"      : "mainmenu",
 
@@ -35,6 +36,7 @@ function (Backbone) {
 			"keynotes"		: "keynotes",
 			"workshops"		: "workshops",
 			"socials"		: "socials",
+			"locals"		: "locals",
 
 			//páginas de evento
 			"paper/:id"     : "paper",
@@ -81,8 +83,23 @@ function (Backbone) {
 		agenda: function() {
 			console.log("ROUTE: agenda");
 
-			require(["views/agenda"], function (AgendaView) {
+			require(["agenda/agendaview"], function (AgendaView) {
 				new AgendaView();
+			});
+			
+		},
+
+		/**
+		Route da agenda pessoal de outro utilizador
+
+		@method othersagenda
+		@private
+		**/
+		othersagenda: function(id) {
+			console.log("ROUTE: othersagenda");
+
+			require(["agenda/othersagendaview"], function (OthersAgendaView) {
+				new OthersAgendaView({userId: id});
 			});
 			
 		},
@@ -97,7 +114,7 @@ function (Backbone) {
 		maininfo: function() {
 			console.log("ROUTE: mainInfo");
 
-			require(["views/maininfo"], function (MainInfoView) {
+			require(["informations/maininfoview"], function (MainInfoView) {
 				new MainInfoView();
 			});
 			
@@ -226,7 +243,7 @@ function (Backbone) {
 		user: function(id){
 			console.log("ROUTE: user");
 
-			require(["views/profile"], function (ProfileView) {
+			require(["profile/profileview"], function (ProfileView) {
 				new ProfileView({modelId: id});
 			});
 			
@@ -242,7 +259,7 @@ function (Backbone) {
 		speakers: function(){
 			console.log("ROUTE: speakers");
 			
-			require(["views/userslist"], function (UsersListView) {
+			require(["informations/userslist/userslistview"], function (UsersListView) {
 				new UsersListView({isSpeakers: true, pageId: "speakers-page", pageName: "Oradores"});
 			});
 			
@@ -258,7 +275,7 @@ function (Backbone) {
 		participants: function(){
 			console.log("ROUTE: participants");
 
-			require(["views/userslist"], function (UsersListView) {
+			require(["informations/userslist/userslistview"], function (UsersListView) {
 				new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
 			});
 			
@@ -275,7 +292,7 @@ function (Backbone) {
 		papers: function(){
 			console.log("ROUTE: papers");
 			
-			require(["views/eventslist"], function (EventsListView) {
+			require(["informations/eventslist/eventslistview"], function (EventsListView) {
 				new EventsListView({type: "paper", pageId: "papers-page", pageName: "Papers"});
 			});
 			
@@ -291,7 +308,7 @@ function (Backbone) {
 		sessions: function(){
 			console.log("ROUTE: sessions");
 
-			require(["views/eventslist"], function (EventsListView) {
+			require(["informations/eventslist/eventslistview"], function (EventsListView) {
 				new EventsListView({type: "session", pageId: "sessions-page", pageName: "Sessões"});
 			});
 			
@@ -308,7 +325,7 @@ function (Backbone) {
 		keynotes: function(){
 			console.log("ROUTE: keynotes");
 
-			require(["views/eventslist"], function (EventsListView) {
+			require(["informations/eventslist/eventslistview"], function (EventsListView) {
 				new EventsListView({type: "keynote", pageId: "keynotes-page", pageName: "Keynotes"});
 			});
 			
@@ -324,7 +341,7 @@ function (Backbone) {
 		workshops: function(){
 			console.log("ROUTE: workshops");
 
-			require(["views/eventslist"], function (EventsListView) {
+			require(["informations/eventslist/eventslistview"], function (EventsListView) {
 				new EventsListView({type: "workshop", pageId: "workshops-page", pageName: "Workshops"});
 			});
 			
@@ -340,11 +357,27 @@ function (Backbone) {
 		socials: function(){
 			console.log("ROUTE: socials");
 
-			require(["views/eventslist"], function (EventsListView) {
+			require(["informations/eventslist/eventslistview"], function (EventsListView) {
 				new EventsListView({type: "socialevent", pageId: "socials-page", pageName: "Eventos Sociais"});
 			});
 			
 		},
+
+		/**
+		Route da lista de locais
+
+		@method locals
+		@private
+		**/
+		locals: function(){
+			console.log("ROUTE: locals");
+
+			require(["informations/localslist/localslistview"], function (LocalsCollection) {
+				new LocalsCollection();
+			});
+			
+		},
+
 
 
 		/**
@@ -402,7 +435,7 @@ function (Backbone) {
 		rankings: function(){
 			console.log("ROUTE: rankings");
 
-			require(["views/rankings"], function (RankingsView) {
+			require(["rankings/rankingsmenuview"], function (RankingsView) {
 				new RankingsView();
 			});
 			
@@ -417,7 +450,7 @@ function (Backbone) {
 		papersrank: function(){
 			console.log("ROUTE: rankings papers");
 
-			require(["views/papersrank"], function (PapersRankView) {
+			require(["rankings/papersrankview"], function (PapersRankView) {
 				new PapersRankView();
 			});
 			
@@ -432,7 +465,7 @@ function (Backbone) {
 		speakersrank: function(){
 			console.log("ROUTE: rankings speakers");
 
-			require(["views/speakersrank"], function (SpeakersRankView) {
+			require(["rankings/speakersrankview"], function (SpeakersRankView) {
 				new SpeakersRankView();
 			});
 			
@@ -447,7 +480,7 @@ function (Backbone) {
 		workshopsrank: function(){
 			console.log("ROUTE: rankings workshops");
 
-			require(["views/workshopsrank"], function (WorkshopsRankView) {
+			require(["rankings/workshopsrankview"], function (WorkshopsRankView) {
 				new WorkshopsRankView();
 			});
 		},
@@ -461,7 +494,7 @@ function (Backbone) {
 		keynotesrank: function(){
 			console.log("ROUTE: rankings keynotes");
 
-			require(["views/keynotesrank"], function (KeynotesRankView) {
+			require(["rankings/keynotesrankview"], function (KeynotesRankView) {
 				new KeynotesRankView();
 			});
 		},
@@ -475,7 +508,7 @@ function (Backbone) {
 		sessionsrank: function(){
 			console.log("ROUTE: rankings sessions");
 
-			require(["views/sessionsrank"], function (SessionsRankView) {
+			require(["rankings/sessionsrankview"], function (SessionsRankView) {
 				new SessionsRankView();
 			});
 		},
@@ -504,7 +537,7 @@ function (Backbone) {
 		generalsearch: function(){
 			console.log("ROUTE: generalsearch");
 
-			require(["views/generalsearch"], function (GeneralSearchView) {
+			require(["informations/generalsearchview"], function (GeneralSearchView) {
 				new GeneralSearchView();
 			});
 		},

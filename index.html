@@ -257,7 +257,7 @@
 
 
 
-  <!-- Informação do utilizador (avatar, nome, instituição, área) -->
+  <!-- Informação do utilizador (avatar, nome, instituição, área) 
   <script type="text/x-handlebars-template" id="user-info-partial">
 
     <div class="ui-grid-a">
@@ -273,7 +273,7 @@
           <span class="profile-area">{{area}}</span >
         </div>
     </div>
-  </script>
+  </script> -->
 
 
 
@@ -551,7 +551,7 @@
 
 
 
-  <!-- Página do menu de informações -->
+  <!-- Página do menu de informações
 
     <script type="text/x-handlebars-template"  id="maininfo-template">
           <a href="#generalsearch" id="info-search" data-role="button" data-theme="a"><i class="icon-search "></i> Pesquisa</a>
@@ -642,7 +642,7 @@
                     </a>
                   </div>
                   <div class="ui-block-b">
-                    <a href="" data-role="button" class="square" data-corners="true"  data-iconpos="right" data-theme="f">
+                    <a href="#locals" data-role="button" class="square" data-corners="true"  data-iconpos="right" data-theme="f">
                       <div class="square-info">
                         <br>
                         <i class="icon-map-marker icon-4x"></i>
@@ -659,7 +659,7 @@
 
   </script>
 
-  <!-- Página de pesquisa geral -->
+  Página de pesquisa geral
   <script type="text/x-handlebars-template"  id="search-page-template">
       
     <input type="search" name="search" id="general-search-basic" value=""/>
@@ -717,7 +717,7 @@
       
   </script>
 
-  <!-- Partial que mostra os resultados da pesquisa geral -->
+   Partial que mostra os resultados da pesquisa geral 
   <script type="text/x-handlebars-template" id="general-results-partial">
     <ul data-role="listview" data-inset="true" data-divider-theme="a">
         {{#if participants}}
@@ -782,7 +782,7 @@
     </ul>
   </script>
 
-  <!-- Partial que lista os eventos de um tipo, resultantes da pesquisa -->
+  Partial que lista os eventos de um tipo, resultantes da pesquisa 
   <script type="text/x-handlebars-template" id="events-result-partial">
             <li>
               <a href="{{url}}">
@@ -793,7 +793,7 @@
             </li>
   </script>
 
-  <!-- Partial que lista os participantes/oradores, resultantes da pesquisa -->
+ Partial que lista os participantes/oradores, resultantes da pesquisa 
   <script type="text/x-handlebars-template" id="users-result-partial">
             <li>
               <a href="{{url}}">
@@ -803,7 +803,7 @@
                 <p>{{area}}</p>
               </a>
             </li>
-  </script>
+  </script> -->
 
   <!-- Página do Menu Principal -->
 
@@ -924,8 +924,8 @@
 
 
   <!-- Página de Perfil -->
-  <!-- Template base do perfil -->
-  <script type="text/x-handlebars-template"  id="profile-template">
+  <!-- Template base do perfil
+    <script type="text/x-handlebars-template"  id="profile-template">
       
 
       <div id="info-box" >
@@ -960,7 +960,7 @@
       </div>
   </script>
 
-  <!-- Opção geral da tab do perfil-->
+   Opção geral da tab do perfil
   <script type="text/x-handlebars-template" id="general-info-template">
       <div id="general-info">
         {{#if publishSchedule}}
@@ -1019,7 +1019,7 @@
       </div>
   </script>
 
-  <!-- Opção contactos da tab do perfil-->
+    Opção contactos da tab do perfil
   <script type="text/x-handlebars-template" id="more-contacts-template">
     <div id="contacts-info">
 
@@ -1053,12 +1053,13 @@
       </ul> 
     
     </div>
-  </script>
+  </script>  -->
 
 
-  <!-- Página de Lista de Utilizadores, tanto participantes como oradores -->
 
-  <!-- Template base para lista de users-->
+  <!-- Listas 
+
+   Template base para lista de users
   <script type="text/x-handlebars-template"  id="users-template">
 
     <ul id="users-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
@@ -1078,7 +1079,7 @@
 
 
 
-  <!--Listas de vários tipos de eventos-->
+  Listas de vários tipos de eventos
 
     <script type="text/x-handlebars-template"  id="events-template">
 
@@ -1100,7 +1101,23 @@
 
   </script>
 
-  <!-- Parte da agenda -->
+  <!--Listas de locais
+
+    <script type="text/x-handlebars-template"  id="locals-template">
+
+    <ul id="events-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
+      {{#each localsList}}
+          <li >
+            <a href="{{url}}" >
+              <h1>{{name}} </h1>
+            </a>
+         </li>
+      {{/each}}
+    </ul>
+
+  </script> -->
+
+  <!-- Parte da agenda 
 
   <script type="text/x-handlebars-template"  id="agenda-template">
 
@@ -1119,6 +1136,14 @@
       </div>
 
   </script>
+
+  <script type="text/x-handlebars-template"  id="others-agenda-template">
+
+      <div id="calendar-placeholder"> 
+        {{> calendar }}
+      </div>
+
+  </script> 
 
   <script type="text/x-handlebars-template"  id="calendar-partial">
 
@@ -1179,12 +1204,12 @@
           </div>
    
       </div>
-  </script>
+  </script> -->
 
 
 
 
-  <!-- Rankings -->
+  <!-- Rankings 
 
    <script type="text/x-handlebars-template"  id="rankingsmenu-template">
 
@@ -1252,7 +1277,7 @@
 
   </script>
 
-   <!-- Página de Prémio -->
+    Página de Prémio 
 
    <script type="text/x-handlebars-template"  id="award-template">
 
@@ -1267,7 +1292,7 @@
         
       </div>
   </script>
-  <!-- Tab de Prémios da organização -->
+  Tab de Prémios da organização 
   <script type="text/x-handlebars-template"  id="awards-template">
       <h1 id="awards-title">Premiados</h1>
       </br>
@@ -1301,7 +1326,7 @@
       {{/if}}
   </script>
 
-  <!-- Tab do Mais Votado -->
+  Tab do Mais Votado
   <script type="text/x-handlebars-template"  id="users-votes-template">
 
      <h1 id="awards-title">Mais Votado</h1>
@@ -1398,7 +1423,7 @@
           {{/each}}
         {{/if}}
            
-  </script>
+  </script> -->
 
 </head>
 

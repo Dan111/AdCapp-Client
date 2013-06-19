@@ -1,0 +1,12 @@
+<ul id="users-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
+  {{#each users}}
+      <li>
+        <a href="#user/{{id}}">
+          <img class="profile-pic" src="assets/morgan.jpg">
+          <h2>{{name}}</h2>
+          <p>{{institution}}</p>
+          <p>{{area}}</p>
+        </a>
+     </li>
+  {{/each}}
+</ul>

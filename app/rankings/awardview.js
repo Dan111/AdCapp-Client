@@ -1,12 +1,17 @@
-define([
+define("rankings/awardview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
     "events/common/event",
     "views/basicview",
-    "app.config"
-], function ($, Backbone, _, Handlebars, EventModel, BasicView, App) {
+    "app.config",
+
+    "text!./award.html",
+    "text!./awards.html",
+    "text!./usersvotes.html"
+], function ($, Backbone, _, Handlebars, EventModel, BasicView, App, AwardTemplate, AwardsTemplate, UserVotesTemplate) {
 
 	/**
 	View abstracta das páginas de prémios
@@ -32,34 +37,34 @@ define([
 		Template base de todas as páginas de prémio
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "award-template"
+		@default AwardTemplate
 		**/
-		template: "award-template",
+		template: AwardTemplate,
 
 		/**
 		Template da tab de premiados
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "awards-template"
+		@default AwardsTemplate
 		**/
-		awardsTemplate: "awards-template",
+		awardsTemplate: AwardsTemplate,
 
 		/**
 		Template da tab de votos de utilizadores
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "users-votes-template"
+		@default UserVotesTemplate
 		**/
-		usersVotesTemplate: "users-votes-template",
+		usersVotesTemplate: UserVotesTemplate,
 
 		/**
 		Modelo do evento ao qual corresponde esta página
@@ -251,7 +256,7 @@ define([
 
 			var context = null;
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.$el.append(html);
 			this.enhanceJQMComponentsAPI();
@@ -332,7 +337,7 @@ define([
 			};
 
 			//compilação do template com a sua informação
-            var html = this.compileTemplate(this.awardsTemplate, context);
+            var html = this.compileTextTemplate(this.awardsTemplate, context);
 
             this.refresher(html);
 		},
@@ -472,7 +477,7 @@ define([
 			var context = this.getMostVotedContext();
 			
 			//compilação do template com a sua informação
-            var html = this.compileTemplate(this.usersVotesTemplate, context);
+            var html = this.compileTextTemplate(this.usersVotesTemplate, context);
 
             this.refresher(html);
 		},

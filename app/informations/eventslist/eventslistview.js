@@ -1,15 +1,18 @@
-define([
+define("informations/eventslist/eventslistview",
+[
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
     "moment",
-    "models/personalagenda",
+    "agenda/personalagenda",
     "events/common/events",
     "collections/locals",
     "views/basicview",
-    "app.config"
-], function ($, Backbone, _, Handlebars, Moment, PersonalAgenda, EventCollection, LocalsCollection, BasicView, App) {
+    "app.config",
+
+    "text!./eventslist.html"
+], function ($, Backbone, _, Handlebars, Moment, PersonalAgenda, EventCollection, LocalsCollection, BasicView, App, EventsListTemplate) {
 
 	/**
 	View das páginas com listagens de eventos
@@ -46,12 +49,12 @@ define([
 		de listas de eventos
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "events-template"
+		@default EventsListTemplate
 		**/
-		template:"events-template",
+		template: EventsListTemplate,
 
 		/**
 		Nome da página em questão, muda consoante
@@ -168,7 +171,7 @@ define([
 				eventsList: treatedEvents
 			};
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
 			this.enhanceJQMComponentsAPI();

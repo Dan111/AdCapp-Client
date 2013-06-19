@@ -1,9 +1,12 @@
-define([
+define("rankings/rankingsmenuview",
+[
     "jquery",
     "backbone",
     "handlebars",
-    "views/basicview"
-], function ($, Backbone, Handlebars, BasicView) {
+    "views/basicview",
+
+    "text!./rankings.html"
+], function ($, Backbone, Handlebars, BasicView, RankingsTemplate) {
 
 	/**
 	View do menu de prémios
@@ -50,12 +53,12 @@ define([
 		Template da página
 
 		@property template 
-		@type String
+		@type template
 		@final
 		@protected
-		@default "rankingsmenu-template"
+		@default RankingsTemplate
 		**/
-		template: "rankingsmenu-template",
+		template: RankingsTemplate,
 
 		/**
 		Construtor da classe. Faz o render da página
@@ -86,7 +89,7 @@ define([
 
 			var context = null;
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
 			this.enhanceJQMComponentsAPI();

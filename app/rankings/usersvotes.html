@@ -1,0 +1,93 @@
+    <h1 id="awards-title">Mais Votado</h1>
+     </br>
+      {{#if isEvent}}
+       
+        <h2 >{{title}}</h2>
+        <h3>{{parseDate datetime}}</h3>
+        <h3 >{{room_name}}</h3>
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+              <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
+          </div>
+          <div class="ui-block-b">
+              <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                Votar 
+                {{#if isvoted }}
+                  <i class="icon-check-sign"></i>
+                {{else}}
+                  <i class="icon-plus-sign"></i>
+                {{/if}}
+              </span>
+          </div>
+        </div>
+        <a href="{{url}}" data-role="button" data-theme="f">Ver página do Evento </a>
+
+      {{else}}
+
+        {{> userinfo user}}
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+              <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
+          </div>
+          <div class="ui-block-b">
+              <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                Votar 
+                {{#if isvoted }}
+                  <i class="icon-check-sign"></i>
+                {{else}}
+                  <i class="icon-plus-sign"></i>
+                {{/if}}
+              </span>
+          </div>
+        </div>
+        <a href="{{url}}" data-role="button" data-theme="f">Ver página do Orador </a>
+
+      {{/if}}
+      <br>
+      <h2 "awards-title">Outros</h2>
+      <br>
+      
+        {{#if isEvent}}
+          {{#each others}}
+              <div class="others-events">
+                <h3 class=id="awards-title">{{title}}</h3>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                      <a href="{{url}}" data-role="button" data-theme="a">
+                          Página
+                      </a>
+                    </div>
+                    <div class="ui-block-b">
+                    <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                      Votos: <span id="votes" value="{{id}}"><span> {{votes}}</span></span>
+                      {{#if isvoted }}
+                        <i class="icon-check-sign"></i>
+                      {{else}}
+                        <i class="icon-plus-sign"></i>
+                      {{/if}}
+                    </span>            
+                    </div>
+                </div>
+              </div>
+          {{/each}}
+        {{else}}
+          {{#each others}}
+              <div class="ui-grid-a">
+                  <div class="ui-block-a big-button">
+                    <a href="{{url}}" data-role="button" data-theme="a">
+                        <span class="other-name awards-name">{{getFirstAndLastName name}}</span>
+                        <span id="votes" class="other-votes" value="{{id}}"><span> {{votes}}</span></span>
+                      </a>
+                  </div>
+                  <div  class="ui-block-b small-button">
+                  <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                    {{#if isvoted }}
+                      <i class="icon-check-sign"></i>
+                    {{else}}
+                      <i class="icon-plus-sign"></i>
+                    {{/if}}
+                  </span>               
+                  </div>
+              </div>
+          {{/each}}
+        {{/if}}

@@ -1,4 +1,5 @@
-define([
+define("agenda/calendarview",
+[
     "jquery",
     "backbone",
     "underscore",
@@ -6,12 +7,14 @@ define([
     "fullcalendar",
     "moment",
     "events/common/events",
-    "models/personalagenda",
+    "./personalagenda",
     "views/basicview",
-    "app.config"
+    "app.config",
+
+    "text!./_calendar.html"
 ], 
 
-function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView, App) {
+function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, PersonalAgenda, BasicView, App, CalendarPartial) {
 
 	/**
     View dos calendários
@@ -48,12 +51,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Template do calendário
 
         @property template 
-        @type String
+        @type template
         @final
         @protected
-        @default "calendar-partial"
+        @default CalendarPartial
         **/
-		template: "calendar-partial",
+		template: CalendarPartial,
 
 		events: {
 			'click #my-prev' : 'prev',
@@ -307,7 +310,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			$("#calendar").empty();
 
 			var context = null;
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			this.enhanceJQMComponentsAPI();
 

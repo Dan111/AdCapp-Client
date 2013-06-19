@@ -1,11 +1,13 @@
-define([
+define("informations/maininfoview",
+[
     "jquery",
     "backbone",
     "handlebars",
     "views/basicview",
     "events/common/events",
-    "collections/listusers",
-], function ($, Backbone, Handlebars, BasicView, EventCollection, ListUserCollection) {
+    
+    "text!./infomenu.html"
+], function ($, Backbone, Handlebars, BasicView, EventCollection, InfoMenuTemplate) {
 
  	/**
     View do menu de informações
@@ -52,12 +54,12 @@ define([
         Template da página
 
         @property template 
-        @type String
+        @type template
         @final
         @protected
-        @default "maininfo-template"
+        @default InfoMenuTemplate
         **/
-		template: "maininfo-template",
+		template: InfoMenuTemplate,
 
 		/**
         Construtor da classe. Faz o render da página
@@ -88,7 +90,7 @@ define([
 
 			var context = null;
 
-			var html = this.compileTemplate(this.template, context);
+			var html = this.compileTextTemplate(this.template, context);
 
 			$("[data-role=content]").append(html);
 			this.enhanceJQMComponentsAPI();

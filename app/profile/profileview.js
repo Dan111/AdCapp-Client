@@ -1,12 +1,17 @@
-define([
+define("profile/profileview",
+    [
     "jquery",
     "backbone",
+    "underscore",
     "handlebars",
-    "models/user",
+    "./user",
     "views/basicview",
-    "contacts/contacts"
+    "contacts/contacts",
 
-], function ($, Backbone, Handlebars, UserModel, BasicView, Contacts) {
+    "text!./profilebase.html",
+    "text!./generalinfo.html",
+    "text!./morecontacts.html",
+], function ($, Backbone, _, Handlebars, UserModel, BasicView, Contacts, ProfileBaseTemplate, GeneralInfoTemplate, MoreContactsTemplate) {
 
     /**
     View da página de perfil 
@@ -53,34 +58,49 @@ define([
         Template base do perfil
 
         @property template 
-        @type String
+        @type template
         @final
         @protected
         @default "profile-template"
         **/
-        template: "profile-template",
+        template: ProfileBaseTemplate,
 
         /**
         Template da tab de informaões gerais
 
         @property generalInfoTemplate
-        @type String
+        @type template
         @final
         @protected
-        @default "general-info-template"
+        @default GeneralInfoTemplate
         **/        
-        generalInfoTemplate: "general-info-template",
+        generalInfoTemplate: GeneralInfoTemplate,
 
         /**
         Template da tab de contactos sociais
 
         @property moreContactsTemplate 
-        @type String
+        @type template
         @final
         @protected
-        @default "more-contacts-template"
+        @default MoreContactsTemplate
         **/          
-        moreContactsTemplate: "more-contacts-template",
+        moreContactsTemplate: MoreContactsTemplate,
+
+        /**
+        Dicionário que guarda informações relativas aos tipos de
+        eventos possíveis
+
+        @property typesInfo
+        @type Object
+        @static
+        @final
+        @protected
+        @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+                    "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+                    "session": {url: '#sessions/'}};
+        **/
+        typesInfo: app.TYPESINFO,
 
         /**
         Modelo do perfil ao qual corresponde esta página
@@ -159,7 +179,7 @@ define([
             };
 
             //compilação do template com a sua informação
-            var html = this.compileTemplate(this.template, context);
+            var html = this.compileTextTemplate(this.template, context);
 
             $("[data-role=content]").append(html);
             this.enhanceJQMComponentsAPI();
@@ -214,6 +234,25 @@ define([
         },
 
         /**
+        Trata da informação necessária de cada evento
+
+        @method treatEvents
+        @protected
+        @return{Array} retorna um array de contextos de cada evento passado
+        **/
+        treatEvents: function(myEvents) {
+            console.log(myEvents);
+            var that = this;
+            return _.map(myEvents, function(obj){
+                var type = obj.type.toLowerCase();
+                return{
+                    url     : that.typesInfo[type].url + obj.id.toString(),
+                    name    : obj.name 
+                };
+            });
+        },
+
+        /**
         Faz o renderering da tab de informações gerais
 
         @method renderGeneral
@@ -242,12 +281,12 @@ define([
                 type : nextEventType,
                 nameNextEvent : nextEventName,
                 userId : user.id,
-                events : user.events,
+                events : this.treatEvents(user.events),
                 bio : user.bio
             };
 
             //compilação do template com a sua informação
-            var html = this.compileTemplate(this.generalInfoTemplate, context);
+            var html = this.compileTextTemplate(this.generalInfoTemplate, context);
 
             //adição do html pretendido e "refresh" para jquey mobile funcionar 
             $("#option-menu").html(html);
@@ -277,7 +316,7 @@ define([
             };
 
             //compilação do template com a sua informação
-            var html = this.compileTemplate(this.moreContactsTemplate, context);
+            var html = this.compileTextTemplate(this.moreContactsTemplate, context);
 
             //adição do html pretendido e "refresh" para jquey mobile funcionar 
             $("#option-menu").html(html);

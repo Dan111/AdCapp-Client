@@ -6,7 +6,12 @@ define([
 
     "app.config",
 
-    "text!events/templates/_comment.html"
+    "text!events/templates/_comment.html",
+    "text!informations/_generalresults.html",
+    "text!informations/_eventsresult.html",
+    "text!informations/_usersresult.html",
+    "text!agenda/_calendar.html",
+    "text!profile/_userinfo.html"
 ], 
 
 /**
@@ -14,7 +19,7 @@ Classe que trata de inicializar os partials e os helpers do Handlebars
 
 @class HandlebarsConfig
 **/
-function (Handlebars, $, _, Moment, App, CommentPartial) {
+function (Handlebars, $, _, Moment, App, CommentPartial, GeneralResultsPartial, EventsResultsPartial, UsersResultsPartial, CalendarPartial, UserInfoPartial) {
 
     return function () {
 
@@ -27,28 +32,22 @@ function (Handlebars, $, _, Moment, App, CommentPartial) {
         /*PARTIALS*/
 
         //Partial da informação de um utilizador (avatar, nome, instituiçao, area)
-        Handlebars.registerPartial('userinfo', $("#user-info-partial").html());
+        Handlebars.registerPartial('userinfo', UserInfoPartial);
 
         //Partial de um comentario
         Handlebars.registerPartial('comment', CommentPartial);
 
-        //Partial da lista de speakers
-        Handlebars.registerPartial('speaker', $("#speaker-partial").html());
-        
-        //Partial da lista de participants
-        Handlebars.registerPartial('participant', $("#participant-partial").html());
-
         //Partial do calendar
-        Handlebars.registerPartial('calendar', $("#calendar-partial").html());
+        Handlebars.registerPartial('calendar', CalendarPartial);
         
         //Partial de resultados da pesquisa geral
-        Handlebars.registerPartial('generalresults', $("#general-results-partial").html());
+        Handlebars.registerPartial('generalresults', GeneralResultsPartial);
 
         //Partial de listagem de eventos 
-        Handlebars.registerPartial('eventsresult', $("#events-result-partial").html());
+        Handlebars.registerPartial('eventsresult', EventsResultsPartial);
 
         //Partial  de listagem de users
-        Handlebars.registerPartial('usersresult', $("#users-result-partial").html());
+        Handlebars.registerPartial('usersresult', UsersResultsPartial);
 
         /* HELPER */
 
@@ -94,7 +93,7 @@ function (Handlebars, $, _, Moment, App, CommentPartial) {
         });
 
         //Verifica se o utilizador está registado
-        Handlebars.registerHelper('isLogged', function (body) {
+        Handlebars.registerHelper('isLogged', function (param, body) {
             if(App.account.isLogged())
                 return body.fn(this);
         });

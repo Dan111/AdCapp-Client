@@ -6,7 +6,7 @@ define("events/session/sessionview",
     "handlebars",
 
     "./session",
-    "models/personalagenda",
+    "agenda/personalagenda",
     "../common/eventview",
     "../common/sessionpapersview",
     "app.config"

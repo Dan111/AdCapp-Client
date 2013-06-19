@@ -1,0 +1,15 @@
+<ul id="events-lists" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true"  >
+  {{#each eventsList}}
+      <li data-icon="">
+        {{#if inagenda}}
+          <img id="pic"class="profile-pic" src="assets/star_white.gif">
+        {{/if}}
+        <a href="{{url}}" >
+          <h1>{{name}} </h1>
+          <h2>Início: {{start}}</h2>
+          <h2>Fim: {{end}}</h2>
+          <h2>{{local_name}}</h2>
+          </a>
+     </li>
+  {{/each}}
+</ul>

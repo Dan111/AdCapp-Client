@@ -1,0 +1,61 @@
+    <ul data-role="listview" data-inset="true" data-divider-theme="a">
+        {{#if participants}}
+          <li data-role="list-divider">Participantes</li>
+          {{#each participants}}
+            {{> usersresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if speakers}}
+          <li data-role="list-divider">Oradores</li>
+          {{#each speakers}}
+            {{> usersresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if papers}}
+          <li data-role="list-divider">Papers</li>
+          {{#each papers}}
+            {{> eventsresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if keynotes}}
+          <li data-role="list-divider">Keynotes</li>
+          {{#each keynotes}}
+            {{> eventsresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if workshops}}
+          <li data-role="list-divider">Workshos</li>
+          {{#each workshops}}
+            {{> eventsresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if sessions}}
+          <li data-role="list-divider">Sessões</li>
+          {{#each sessions}}
+            {{> eventsresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if socialevents}}
+          <li data-role="list-divider">Eventos Sociais</li>
+          {{#each socialevents}}
+            {{> eventsresult this}}
+          {{/each}}
+        {{/if}}
+
+        {{#if locals}}
+          <li data-role="list-divider">locais</li>
+          {{#each locals}}
+            <li>
+              <a href="{{url}}">
+                <h1 class="awards-name">{{name}} </h1>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+    </ul>
