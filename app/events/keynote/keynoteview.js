@@ -96,11 +96,11 @@ define("events/keynote/keynoteview",
 			var self = this;
 
 			this.model = new KeynoteModel({id: modelId});
-			this.model.fetch({
-				success: function () {
+			this.model.fetch().done(
+				function () {
 					EventView.prototype.initialize.apply(self);
 				}
-			});
+			);
 
 
 		},

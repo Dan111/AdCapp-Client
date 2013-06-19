@@ -81,13 +81,13 @@ define("feedback/feedbackview",
             this.feedback = new Feedback({id: 1});
 
             var self = this;
-            this.feedback.fetch({
-                success: function () {
+            this.feedback.fetch().done(
+                function () {
                     self.renderLayout();
                     self.setElement($(self.mainContainer));
                     self.render();
                 }
-            });
+            );
 
         },
 

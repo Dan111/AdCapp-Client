@@ -84,13 +84,13 @@ define("notifications/notificationsview",
             this.notifs = new NotificationsCollection();
 
             var self = this;
-            this.notifs.fetch({
-                success: function () {
+            this.notifs.fetch().done(
+                function () {
                     self.renderLayout();
                     self.setElement($(self.mainContainer));
                     self.render();
                 }
-            });
+            );
 
         },
 

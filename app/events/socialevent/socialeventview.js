@@ -96,11 +96,11 @@ define("events/socialevent/socialeventview",
 			var self = this;
 
 			this.model = new SocialEventModel({id: modelId});
-			this.model.fetch({
-				success: function () {
+			this.model.fetch().done(
+				function () {
 					EventView.prototype.initialize.apply(self);
 				}
-			});
+			);
 
 
 		},

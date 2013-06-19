@@ -141,8 +141,8 @@ define("events/paper/paperview",
 			this.model.fetch().done(
 				function () {
 					EventView.prototype.initialize.apply(self);
-				
-			});
+				}
+			);
 		},
 
 
