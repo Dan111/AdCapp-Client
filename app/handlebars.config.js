@@ -93,7 +93,7 @@ function (Handlebars, $, _, Moment, App, CommentPartial, GeneralResultsPartial, 
         });
 
         //Verifica se o utilizador está registado
-        Handlebars.registerHelper('isLogged', function (param) {
+        Handlebars.registerHelper('isLogged', function (body) {
             if(App.account.isLogged())
                 return body.fn(this);
         });
