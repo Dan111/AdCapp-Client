@@ -7,7 +7,7 @@ define("informations/eventslist/eventslistview",
     "moment",
     "agenda/personalagenda",
     "events/common/events",
-    "collections/locals",
+    "map/locals/locals",
     "common/basicview",
     "app.config",
 
@@ -214,7 +214,7 @@ define("informations/eventslist/eventslistview",
 		    //ALTERAR LOCAL_NAME QUANDO TIVER COLLECTION DE LOCAIS
 		    return{url: this.typesInfo[eventAttrs.type.toLowerCase()].url + eventAttrs.type_id.toString(), name: eventAttrs.name, 
 		    		start: startDate.utc().format(dateFormat), end: startDate.add('minutes',duration).utc().format(dateFormat),
-		    		local_name: local_name, inagenda: inagenda };
+		    		local_name: local_name, inagenda: inagenda, date: date, duration: duration };
 		}
 
 

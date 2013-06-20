@@ -4,7 +4,7 @@ define("informations/localslist/localslistview",
     "backbone",
     "underscore",
     "handlebars",
-    "collections/locals",
+    "map/locals/locals",
     "common/basicview",
     "app.config",
 

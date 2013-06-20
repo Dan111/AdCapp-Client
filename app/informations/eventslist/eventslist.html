@@ -2,13 +2,12 @@
   {{#each eventsList}}
       <li data-icon="">
         {{#if inagenda}}
-          <img id="pic"class="profile-pic" src="assets/star_white.gif">
+          <img class="pic" src="assets/star128.png">
         {{/if}}
         <a href="{{url}}" >
           <h1>{{name}} </h1>
-          <h2>Início: {{start}}</h2>
-          <h2>Fim: {{end}}</h2>
-          <h2>{{local_name}}</h2>
+          <p>{{parseDate date}} - {{duration}} minutos</p>
+          <p>{{local_name}}</p>
           </a>
      </li>
   {{/each}}

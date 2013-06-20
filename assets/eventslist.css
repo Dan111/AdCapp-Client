@@ -1,12 +1,15 @@
-
-
-#pic{
-	height: 18px;
-	width: 18px;
+.pic{
+	height: 20px;
+	width: 20px;
 	float: right;
-	position: relative;
-	top: 64px;
+	position: absolute;
+	top: 50%;
+	margin-top:-11px;
 	right: 35px;
-
 }
 
+
+.ui-li-heading {
+	overflow: visible;
+	white-space: normal;
+}

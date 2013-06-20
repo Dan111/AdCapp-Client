@@ -70,6 +70,19 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
             console.log('EventS');
         },
 
+
+        /**
+        Comparador de modelos
+
+        @method comparator
+        @protected
+        @param {Event} e Modelo de um evento
+        @return {String} Nome do modelo
+        **/
+        comparator: function( e ) {
+          return e.get('name');
+        },
+
         
         /**
         Verifica se um evento está na collection

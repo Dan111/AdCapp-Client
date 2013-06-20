@@ -357,6 +357,15 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					allDaySlot: false,
 					titleFormat: '',
 					slotMinutes: 10,
+					dayNames: ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'],
+					monthNamesShort:['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+ 										'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+					axisFormat: 'H:mm',
+					columnFormat:{
+					    month: 'ddd', 
+					    week: 'ddd M/d', 
+					    day: "dddd',' d 'de' MMM" 
+					},
 					editable: false,
 					events: treatedEvents,
 					eventRender: function(event, element) {

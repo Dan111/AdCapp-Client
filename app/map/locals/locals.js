@@ -35,6 +35,20 @@ function ($, Backbone, LocalStorage, Local, App) {
 		initialize: function (){
 		},
 
+
+        /**
+        Comparador de modelos
+
+        @method comparator
+        @protected
+        @param {Local} local Modelo de um local
+        @return {String} Nome do local
+        **/
+        comparator: function( local ) {
+          return local.get('name');
+        },
+
+
 	    /**
         Filtra a collection devolvendo um array com os 
         objectos que teem no nome a string passada

@@ -8,7 +8,7 @@ define("informations/generalsearchview",
     "common/basicview",
     "events/common/events",
     "informations/userslist/listusers",
-    "collections/locals",
+    "map/locals/locals",
 
 	"text!./searchpage.html",
 	"text!./_generalresults.html"
