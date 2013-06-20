@@ -295,10 +295,20 @@ define("account/optionsview",
 		saveOptions: function () {
 			console.log("save options");
 
+			var success = function () {
+				BasicView.prototype.showErrorOverlay({text: "Opções guardadas"});
+			};
+
+			var error = function () {
+				BasicView.prototype.showErrorOverlay({text: "As opções não foram guardadas no servidor."});
+			};
+
+
 			var newOptions = this.getNewOptions();
 			this.account.updateOptions(newOptions);
 
 			BasicView.prototype.showErrorOverlay({text: "Opções guardadas"});
+
 		},
 
 

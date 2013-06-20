@@ -5,3 +5,8 @@
 #users-lists li a{
 	text-decoration: none;
 }
+
+.profile-pic.ui-li-thumb {
+	height:80px;
+	width:80px;
+}
