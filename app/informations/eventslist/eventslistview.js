@@ -7,7 +7,7 @@ define("informations/eventslist/eventslistview",
     "moment",
     "agenda/personalagenda",
     "events/common/events",
-    "collections/locals",
+    "map/locals/locals",
     "common/basicview",
     "app.config",
 
