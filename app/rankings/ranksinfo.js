@@ -36,6 +36,7 @@ function ($, Backbone, BasicView, App) {
         @private
         **/
 		defaults: {
+            has_votes: false,
 			voted: -1,
     		awards:[],
     		competitors: []

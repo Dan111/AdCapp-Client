@@ -67,14 +67,24 @@ define("rankings/awardview",
 		usersVotesTemplate: UserVotesTemplate,
 
 		/**
-		Modelo do evento ao qual corresponde esta página
+		Array de mais votados
 
 		@property model 
-		@type Backbone.Model
+		@type Array
 		@protected
-		@default null
+		@default []
 		**/
-		model: null,
+		models: [],
+
+		/**
+		Booleano que representa a existência votos
+
+		@property hasVotes
+		@type boolean
+		@protected
+		@default false
+		**/
+		hasVotes: false,
 
 		/**
 		Booleano que representa se estamos a apresentar
@@ -219,6 +229,8 @@ define("rankings/awardview",
 
 			var attrs = this.ranksInfo.attributes;
 
+			this.hasVotes = attrs.has_votes;
+
 			this.isEvent = isEvent;
 
 			this.eventsType = eventsType;
@@ -231,11 +243,14 @@ define("rankings/awardview",
 
 			this.voted = attrs.voted;
 
-			this.modelId = this.votesArray[0].id;
+			if(this.hasVotes)
+				this.modelsId = this.getMostVoted(this.votesArray);
+
 
 			this.modelCollection.fetch({
 				success: function () {
-					self.model = self.modelCollection.get(self.modelId);
+					if(self.hasVotes)
+						self.models = self.modelCollection.getByIds(self.modelsId);
 					AwardView.prototype.initialize.apply(self);
 				},
 				error: function (){
@@ -244,6 +259,36 @@ define("rankings/awardview",
 			});	
 		},
 
+		/**
+        Método que permite obter o array de elementos com mais votos,
+        de um array em que os elementos são compostos por um id e um inteiro
+        que representa os votos
+
+        @method getMostVoted
+        @protected
+        @param {Array} array um array em que os elementos são compostos por um id e um inteiro que representa os votos
+        @return {Array} retorna um array de id's
+        **/
+		getMostVoted: function(array){
+			var maxVotes = array[0].votes;
+			var results = [];
+			var counter = 0;
+			var that = this;
+
+			this.lastModelIndex = 0;
+			
+			_.each(array, function(obj){
+				
+				if(obj.votes === maxVotes)
+				{
+					results.push(obj.id);
+					that.lastModelIndex = counter;
+				}
+				counter += 1;
+			});	
+
+			return results;
+		},
 
 		/**
 		Faz o rendering das páginas de prémios
@@ -360,6 +405,42 @@ define("rankings/awardview",
 		},
 
 		/**
+       	Método que trata de retornar um array com os contextos dos elementos com mais votos
+
+        @method treatVoteWinners
+        @protected
+        @return {Array} retorna array com os contexto dos elementos mais votados
+        **/
+		treatVoteWinners: function(){
+			var that = this;
+			return _.map(this.models, function(model){
+				var model = model.attributes;
+				if(that.isEvent)
+					return {
+						isvoted  	: that.voted === model.id,
+						id 			: model.id.toString(),
+						url 		: that.typesInfo[that.eventsType.toLowerCase()].url + model.id.toString(),
+						title 		: model.name,
+						datetime 	: model.hour,
+						room_name 	: model.local.name,
+						votes 		: that.getVotes(model.id),
+					};
+				else
+					return {
+						isvoted  	: that.voted === model.id,
+						id 			: model.id.toString(),
+						url 		: "#/users/"+model.id.toString(),
+						name       	: model.name,
+						institution	: model.institution,
+						area 		: model.area,
+						votes 		: that.getVotes(model.id),
+					};
+
+			});
+		},
+
+
+		/**
         Método que trata da informação a ser apresentada na tab votos de utilizadores,
         sobre os elementos que não são o mais votado
 
@@ -425,14 +506,15 @@ define("rankings/awardview",
         **/
 		getMostVotedContext: function(){
 			var that = this;
-			var model = this.model.attributes;
 			var context = {};
 
 			
-			//Trata do arra votes array, retirando apenas os id's
-			var array = _.map(_.rest(this.votesArray), function(obj){
+			//Trata do votesArray, retirando apenas os id's
+			//mais um para o utlimo com o voto maximo nao estar na parte dos outros
+			var array = _.map(_.rest(this.votesArray, this.lastModelIndex+1), function(obj){
 				return obj.id;
 			});
+
 
 			//Vai buscar os modelos necessários, passando os seus id's
 			var elementsArray = this.modelCollection.getByIds(array);
@@ -441,28 +523,13 @@ define("rankings/awardview",
 			var others = this.treatOthers(elementsArray);
 
 			//Construção dos contextos para os eventos ou para o oradores
-			if(this.isEvent)
-				return {
-					isEvent		: this.isEvent,
-					isvoted  	: this.voted === model.id,
-					id 			: model.id.toString(),
-					url 		: this.typesInfo[this.eventsType.toLowerCase()].url + model.id.toString(),
-					title 		: model.name,
-					datetime 	: model.hour,
-					room_name 	: model.local.name,
-					votes 		: this.getVotes(model.id),
-					others		: others
-				};
-			else
-				return {
-					isEvent		: this.isEvent,
-					isvoted  	: this.voted === model.id,
-					id 			: model.id.toString(),
-					url 		: "#/users/"+model.id.toString(),
-					user        : model,
-					votes 		: this.getVotes(model.id),
-					others		: others
-				};
+			return {
+				hasVotes 	: this.hasVotes,
+				isEvent		: this.isEvent,
+				votewinners : this.treatVoteWinners(),
+				others		: others
+			};
+
 
 		},
 
