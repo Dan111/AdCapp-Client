@@ -94,13 +94,12 @@ define("map/mapview",
         var param = $("#search").val();
         var locals = this.locals;
         var that = this;
-        var searchType = "ola";
         var searchTypes = new Array();
 
         types.forEach(function(type){ 
           if ($("#" + type).is(":checked")) {
             searchTypes = _.union(searchTypes, type);
-          };
+          }
         });
 
         console.log(searchTypes);
@@ -111,16 +110,11 @@ define("map/mapview",
 
         });
 
-        if(searchTypes.length == 0)
-            markers.forEach(function(marker) {
-              marker.setVisible(true);
-            });
-        else
-          locals.forEach(function(model) { 
-            if(_.contains(searchTypes, model.get("type")))
-              markers[model.get("id")].setVisible(true);
-            else
-              markers[model.get("id")].setVisible(false);
+        locals.forEach(function(model) { 
+          if(_.contains(searchTypes, model.get("type")))
+            markers[model.get("id")].setVisible(true);
+          else
+            markers[model.get("id")].setVisible(false);
         });
 
         if(typeof firstLocal != 'undefined') {

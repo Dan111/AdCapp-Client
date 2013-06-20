@@ -105,6 +105,10 @@ function (Handlebars, $, _, Moment, App, CommentPartial, GeneralResultsPartial, 
                 return body(this);
         });
 
+        Handlebars.registerHelper('toLowerCase', function(value) {
+                return value.toLowerCase();
+        });
+
 
 	};
 

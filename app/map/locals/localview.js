@@ -39,12 +39,27 @@ define("map/locals/localview",
                 }
             });
 
-
 		},
 
 
 		render: function () {
 			var model = this.model.attributes;
+
+			var sessions =  _.filter(model.events, function(e){ 
+				return e.type == "Session"; 
+			});
+			var papers =  _.filter(model.events, function(e){ 
+				return e.type == "Paper"; 
+			});
+			var keynotes =  _.filter(model.events, function(e){ 
+				return e.type == "Keynote"; 
+			});
+			var workshops =  _.filter(model.events, function(e){ 
+				return e.type == "Workshop"; 
+			});
+			var socials =  _.filter(model.events, function(e){ 
+				return e.type == "SocialEvent"; 
+			});
 
 			var context = {
 				local_name 		: model.name,
@@ -52,6 +67,12 @@ define("map/locals/localview",
 				coord_y 	: model.coord_y,
 				events 		: model.events,
 				localId		: model.id,
+				localType	: model.type,
+				sessions	: sessions,
+				papers		: papers,
+				keynotes	: keynotes,
+				workshops	: workshops,
+				socials 		: socials,
 
 			};
 

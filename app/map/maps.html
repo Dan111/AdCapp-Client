@@ -8,7 +8,7 @@
       <h4> Tipo de Local </h4>
       <fieldset data-role="controlgroup">
         {{#each localTypes}}
-          <input type="checkbox" id={{localTypes}} {{this}}>
+          <input type="checkbox" checked="checked" id={{localTypes}} {{this}}>
           <label for={{localTypes}} {{this}}>{{localTypes}} {{this}}</label>               
         {{/each}}
       </fieldset>

@@ -29,8 +29,8 @@ function ($, Backbone, LocalStorage, Local, App) {
         **/
 		model: Local,
 
-		//url: App.URL + "locals",
-url: "http://lcatalaya.apiary.io/Locals",
+		url: App.URL + "locals",
+//url: "http://lcatalaya.apiary.io/Locals",
 
 		initialize: function (){
 		},

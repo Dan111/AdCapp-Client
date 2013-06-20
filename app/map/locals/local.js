@@ -8,8 +8,8 @@ function ($, Backbone, App) {
 
 	return Backbone.Model.extend({
 
-		//url: App.URL + "/locals/",
-url: "http://lcatalaya.apiary.io/Locals/",
+		url: App.URL + "/locals/",
+//url: "http://lcatalaya.apiary.io/Locals/",
 		defaults: {
 
 			id: null,

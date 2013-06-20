@@ -2,6 +2,10 @@
 
 <br>
 
+<h3>Tipo: {{localType}}</h3>
+
+<br>
+
 <a href="#maps/{{localId}}" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="b">
         Ver no Mapa
 </a>
@@ -10,11 +14,44 @@
 <hr>
 <br>
 
-<ul id="social-contacts-list" class="adaptable-list" data-role="listview" data-theme="f" data-inset="true">
-    
-    {{#each events}}
+
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Sessões</li>
+	{{#each sessions}}
         <li>
-          <a href="#event/{{id}}" data-icon="arrow-r" data-iconpos="right">
+          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+    {{/each}}
+    <li data-role="list-divider">Papers</li>
+    {{#each papers}}
+        <li>
+          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+    {{/each}}
+    <li data-role="list-divider">Keynotes</li>
+	{{#each keynotes}}
+        <li>
+          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+    {{/each}}
+    <li data-role="list-divider">Workshops</li>
+    {{#each workshops}}
+        <li>
+          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+            {{name}}
+          </a>
+        </li>
+    {{/each}}
+    <li data-role="list-divider">Eventos Sociais</li>
+    {{#each socials}}
+        <li>
+          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
             {{name}}
           </a>
         </li>
