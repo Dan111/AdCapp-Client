@@ -181,16 +181,16 @@ define("map/mapview",
                   title: model.get("name")
               });
 
-        infoContent[model.get("id")] = "<br> <a href=local/" + model.get("id") + ">" + marker.title + "</a> <br> Tipo: " + model.get("type");
+              infoContent[model.get("id")] = "<br> <a href=local/" + model.get("id") + ">" + marker.title + "</a> <br> Tipo: " + model.get("type");
 
               google.maps.event.addListener(marker, 'click', function() {
                 infoWindow.setContent(infoContent[model.get("id")]);
                 infoWindow.open(map,marker);
               });
 
-              markers[model.get("id")] = marker;
+            markers[model.get("id")] = marker;
 
-              var hasType = _.find(types, function(t){ return t.toUpperCase() == model.get("type").toUpperCase() });
+            var hasType = _.find(types, function(t){ return t.toUpperCase() == model.get("type").toUpperCase() });
 
             if(!hasType)
               types = _.union(types, model.get("type"));

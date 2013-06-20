@@ -50,7 +50,8 @@ define("map/locals/localview",
 				local_name 		: model.name,
 				coord_x		: model.coord_x,
 				coord_y 	: model.coord_y,
-				events 		: model.events
+				events 		: model.events,
+				localId		: model.id,
 
 			};
 
