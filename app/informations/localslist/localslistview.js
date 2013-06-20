@@ -45,7 +45,7 @@ define("informations/localslist/localslistview",
 		Template da lista de locais
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default LocalsListTemplate

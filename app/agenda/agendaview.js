@@ -51,7 +51,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Template da agenda
 
         @property template 
-        @type template
+        @type String
         @final
         @protected
         @default AgendaTemplate

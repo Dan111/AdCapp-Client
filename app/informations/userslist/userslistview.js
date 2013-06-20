@@ -56,7 +56,7 @@ define("informations/userslist/userslistview",
 		de listas de utilizadores
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default UsersListTemplate

@@ -59,7 +59,7 @@ define("informations/generalsearchview",
 		Template da página
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default SearchPageTemplate

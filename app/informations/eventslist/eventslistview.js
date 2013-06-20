@@ -49,7 +49,7 @@ define("informations/eventslist/eventslistview",
 		de listas de eventos
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default EventsListTemplate
@@ -211,7 +211,7 @@ define("informations/eventslist/eventslistview",
 
 		   	if(this.personalEvents.hasEvent(eventAttrs.id))
 		    	inagenda = true;
-		    //ALTERAR LOCAL_NAME QUANDO TIVER COLLECTION DE LOCAIS
+		    
 		    return{url: this.typesInfo[eventAttrs.type.toLowerCase()].url + eventAttrs.type_id.toString(), name: eventAttrs.name, 
 		    		start: startDate.utc().format(dateFormat), end: startDate.add('minutes',duration).utc().format(dateFormat),
 		    		local_name: local_name, inagenda: inagenda, date: date, duration: duration };

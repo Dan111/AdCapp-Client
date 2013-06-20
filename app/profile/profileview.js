@@ -58,7 +58,7 @@ define("profile/profileview",
         Template base do perfil
 
         @property template 
-        @type template
+        @type String
         @final
         @protected
         @default "profile-template"
@@ -69,7 +69,7 @@ define("profile/profileview",
         Template da tab de informaões gerais
 
         @property generalInfoTemplate
-        @type template
+        @type String
         @final
         @protected
         @default GeneralInfoTemplate
@@ -80,7 +80,7 @@ define("profile/profileview",
         Template da tab de contactos sociais
 
         @property moreContactsTemplate 
-        @type template
+        @type String
         @final
         @protected
         @default MoreContactsTemplate

@@ -146,7 +146,8 @@ define("account/optionsview",
 			"click #save-settings": "saveOptions",
 			"click #cancel-settings": "cancelOptions",
 
-			"change #alert-notifs": "toggleNotifSlider"
+			"change #alert-notifs": "toggleNotifSlider",
+			"click #load-image": "uploadPhoto"
 
 		},
 
@@ -309,7 +310,7 @@ define("account/optionsview",
 		@private
 		@return {Object} Objecto com as opções inseridas pelo utilizador
 		**/
-		getNewOptions: function () {
+		getNewOptions: function () { //TODO: factorizar método
 
 			var options = {};
 
@@ -325,8 +326,8 @@ define("account/optionsview",
 			var area = $("#profile-area").val();
 			options.area = area;
 
-			var image = $("#profile-image").val();
-			options.image = image;
+			// var image = $("#profile-image").val();
+			// options.image = image;
 
 			var bio = $("#profile-bio").val();
 			options.bio = bio;
@@ -340,6 +341,51 @@ define("account/optionsview",
 
 
 			return options;
+
+		},
+
+
+
+		//TODO: Docs
+		uploadPhoto: function (e) {
+
+			var self = this;
+
+			var files = $("#profile-image").get(0).files;
+			var reader = new FileReader();
+
+			if(files.length === 0) {
+				this.showErrorOverlay({text: "Nenhuma imagem foi selecionada.", time:2000});
+				return;
+			}
+
+			var errorCallback = function () {
+				self.showErrorOverlay({text: "Erro no carregamento da imagem.", time:2000});
+			};
+
+			reader.onload = function (file) {
+
+				self.account.uploadPhoto(file, function (data) {
+
+					var url = data['data']['link'];
+
+					console.log("url" + url);
+
+					var imgTag = '<img class="profile-pic" src="' + url + '" '+
+									'alt="Profile" height="130px" width="130px"/>';
+
+					$("#profile-pic-wrapper").html(imgTag);
+
+					self.showErrorOverlay({text: "Imagem actualizada.", time:2000});
+
+				}, errorCallback);
+
+			};
+
+			reader.onerror = errorCallback;
+
+
+			reader.readAsBinaryString(files[0]);
 
 		},
 

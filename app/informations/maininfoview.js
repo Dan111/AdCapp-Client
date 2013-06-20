@@ -54,7 +54,7 @@ define("informations/maininfoview",
         Template da página
 
         @property template 
-        @type template
+        @type String
         @final
         @protected
         @default InfoMenuTemplate

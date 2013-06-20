@@ -37,7 +37,7 @@ define("rankings/awardview",
 		Template base de todas as páginas de prémio
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default AwardTemplate
@@ -48,7 +48,7 @@ define("rankings/awardview",
 		Template da tab de premiados
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default AwardsTemplate
@@ -59,7 +59,7 @@ define("rankings/awardview",
 		Template da tab de votos de utilizadores
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default UserVotesTemplate

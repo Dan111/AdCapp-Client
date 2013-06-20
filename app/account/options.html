@@ -56,13 +56,28 @@
 
   <br>
 
-  <label for="profile-image">Imagem de perfil:</label>
-  <input name="profile-image" id="profile-image" value="{{profile.image}}" type="text">
+  <label for="profile-bio">Sobre mim:</label>
+  <textarea name="profile-bio" id="profile-bio">{{profile.bio}}</textarea>
 
   <br>
 
-  <label for="profile-bio">Sobre mim:</label>
-  <textarea name="profile-bio" id="profile-bio">{{profile.bio}}</textarea>
+  <label for="profile-image">Imagem de perfil:</label>
+
+  <div id="profile-pic-wrapper">
+
+    {{#if profile.image}}
+      <img class="profile-pic" src="{{profile.image}}" alt="Profile" height="130px" width="130px"/>
+    {{else}}
+      <p>Não carregou nenhuma imagem</p>
+    {{/if}}
+
+  </div>
+
+  <input name="profile-image" id="profile-image" type="file">
+
+  <button id="load-image" data-theme="f">
+        <i class="icon-cloud-upload icon-large button-icon"></i> Carregar Imagem
+  </button>
 
   <br>
   <hr>

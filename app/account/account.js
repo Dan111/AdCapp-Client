@@ -29,6 +29,18 @@ function ($, Backbone, _, BasicView) {
 		localStorage: new Backbone.LocalStorage('account-backbone'),
 
 
+        /**
+        API key usada para o upload de imagens de perfil para o imgur
+
+        @property IMGUR_CLIENT_ID
+        @type String
+        @static
+        @final
+        @private
+        **/
+        IMGUR_CLIENT_ID: "96dbf82f933adfa",
+
+
 		/**
         Atributos predefinidos do modelo .
 
@@ -387,6 +399,53 @@ function ($, Backbone, _, BasicView) {
                             .value();
 
             return _.extend(oldOptions, newOptions);
+
+        },
+
+
+        /**
+        Carrega a imagem passada como parâmetro para o Imgur
+
+        TODO: Docs
+        **/
+        uploadPhoto: function (file, successCallback, errorCallback) {
+
+            var self = this;
+
+            var binstring = window.btoa(file.target.result);
+
+            $.ajax({
+
+              method: "POST",
+
+              url: "https://api.imgur.com/3/image",
+
+              data: {
+                image: binstring,
+
+                "client-id": this.IMGUR_CLIENT_ID,
+
+                type: "base64"
+              },
+
+              headers: {
+                "Authorization": "Client-ID " + this.IMGUR_CLIENT_ID
+              },
+
+              success: function (data) { //actualiza a imagem no server e chama o callback
+
+                var url = data['data']['link'];
+
+                self.updateOptions({image: url});
+
+                if(successCallback)
+                    successCallback(data);
+
+              },
+
+              error: errorCallback
+
+            }); 
 
         },
 

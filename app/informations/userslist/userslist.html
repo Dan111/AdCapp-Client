@@ -2,7 +2,11 @@
   {{#each users}}
       <li>
         <a href="#user/{{id}}">
-          <img class="profile-pic" src="assets/morgan.jpg">
+          {{#if image}}
+            <img class="profile-pic" src="{{image}}" alt="Profile"/>
+          {{else}}
+            <img class="profile-pic" src="assets/morgan.jpg" alt="Profile"/>
+          {{/if}}
           <h2>{{name}}</h2>
           <p>{{institution}}</p>
           <p>{{area}}</p>

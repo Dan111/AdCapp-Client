@@ -53,7 +53,7 @@ define("rankings/rankingsmenuview",
 		Template da página
 
 		@property template 
-		@type template
+		@type String
 		@final
 		@protected
 		@default RankingsTemplate
