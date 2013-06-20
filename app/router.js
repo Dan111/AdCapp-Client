@@ -27,6 +27,7 @@ function (Backbone) {
 			"personalschedule/:id" : "othersagenda",
 			"maininfo"      : "maininfo",
 			"mainmenu"      : "mainmenu",
+			"maps/:id"		: "maps",
 
 			//listas
 			"speakers"      : "speakers",
@@ -102,6 +103,14 @@ function (Backbone) {
 				new OthersAgendaView({userId: id});
 			});
 			
+		},
+
+		maps: function(id) {
+			console.log("ROUTE: maps");
+
+			require(["map/mapview"], function(MapsView) {
+				new MapsView({localId: id});
+			});
 		},
 
 

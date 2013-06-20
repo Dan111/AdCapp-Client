@@ -1,0 +1,22 @@
+<a data-icon="search" data-role="button" href="#searchpanel" data-theme="f">Procura</a>
+
+<div data-role="panel" id="searchpanel" data-position="right" data-display="overlay" data-swipe-close="true">
+  <div class="panel-content">
+      <h3> Pesquisa </h3>
+
+      <input name="password" id="search" value="" placeholder="Procurar local..." type="search">
+      <h4> Tipo de Local </h4>
+      <fieldset data-role="controlgroup">
+        {{#each localTypes}}
+          <input type="checkbox" id={{localTypes}} {{this}}>
+          <label for={{localTypes}} {{this}}>{{localTypes}} {{this}}</label>               
+        {{/each}}
+      </fieldset>
+      <a data-icon="search" data-role="button" href="#maps" id="submit" data-theme="a" data-inline="true" >Submit</a>
+  </div>
+</div>
+
+
+<div id="map_canvas" style="height:400px;"></div>
+
+

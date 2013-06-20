@@ -21,6 +21,10 @@ var jam = {
             "main": "moment.js"
         },
         {
+            "name": "requirejs-plugins",
+            "location": "../vendor/jam/requirejs-plugins"
+        },
+        {
             "name": "text",
             "location": "../vendor/jam/text",
             "main": "text.js"
@@ -70,6 +74,10 @@ if (typeof require !== "undefined" && require.config) {
             "main": "moment.js"
         },
         {
+            "name": "requirejs-plugins",
+            "location": "../vendor/jam/requirejs-plugins"
+        },
+        {
             "name": "text",
             "location": "../vendor/jam/text",
             "main": "text.js"
@@ -116,6 +124,10 @@ else {
             "name": "moment",
             "location": "../vendor/jam/moment",
             "main": "moment.js"
+        },
+        {
+            "name": "requirejs-plugins",
+            "location": "../vendor/jam/requirejs-plugins"
         },
         {
             "name": "text",

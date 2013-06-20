@@ -8,14 +8,16 @@ function ($, Backbone, App) {
 
 	return Backbone.Model.extend({
 
-		url: App.URL + "/locals/",
-
+		//url: App.URL + "/locals/",
+url: "http://lcatalaya.apiary.io/Locals/",
 		defaults: {
 
+			id: null,
 			name: null,
 			coord_x: 0,
 			coord_y: 0,
-			events: null
+			events: null,
+			type: null
 
 		},
 
