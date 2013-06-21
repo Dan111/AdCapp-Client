@@ -291,8 +291,10 @@ function ($, Backbone, _, BasicView) {
 
         @method updateOptions
         @param {Object} options Os novos valores que cada opção deve tomar
+        @param {Function} successCallback Função de callback em caso de sucesso
+        @param {Function} errorCallback Função de callback em caso de erro
         **/
-        updateOptions: function (options) {
+        updateOptions: function (options, successCallback, errorCallback) {
 
             var profile = this.get('profile') || {};
 
@@ -312,7 +314,7 @@ function ($, Backbone, _, BasicView) {
 
 
             this.save();
-            this.pushOptionsToServer({options: options});
+            this.pushOptionsToServer({options: options, success: successCallback, error: errorCallback});
 
         },
 
@@ -324,8 +326,8 @@ function ($, Backbone, _, BasicView) {
         @async
         @param {Object} args Argumentos da função
             @param {Object} [args.options=profile] Os pares chave e valor a serem guardados no servidor
-            @param {Object} [args.showError=false] Caso seja true, é apresentada uma mensagem a informar se
-                                                    as alterações não foram guardados no servidor
+            @param {Function} [args.success] Função de callback em caso de sucesso
+            @param {Function} [args.error] Função de callback em caso de erro
         **/
         pushOptionsToServer: function (args) {
 
@@ -362,13 +364,15 @@ function ($, Backbone, _, BasicView) {
                 success: function (data) {
                     self.set('profile', data);
                     self.save();
+
+                    if(args.success)
+                        args.success();
                 },
 
-                error: function (){
-                    if(args.showError)
-                    {
-                        BasicView.prototype.showErrorOverlay({text: "As opções não foram guardadas no servidor."});
-                    }
+                error: function () {
+                    if(args.error)
+                        args.error();
+
                 }
             });
 
@@ -406,7 +410,12 @@ function ($, Backbone, _, BasicView) {
         /**
         Carrega a imagem passada como parâmetro para o Imgur
 
-        TODO: Docs
+        @method uploadPhoto
+        @protected
+        @async
+        @param {File} file Ficheiro da imagem a ser carregada
+        @param {Function} successCallback Função de callback em caso de sucesso
+        @param {Function} errorCallback Função de callback em caso de erro
         **/
         uploadPhoto: function (file, successCallback, errorCallback) {
 

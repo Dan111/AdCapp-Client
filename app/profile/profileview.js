@@ -7,11 +7,12 @@ define("profile/profileview",
     "./user",
     "common/basicview",
     "contacts/contacts",
+    "app.config",
 
     "text!./profilebase.html",
     "text!./generalinfo.html",
     "text!./morecontacts.html",
-], function ($, Backbone, _, Handlebars, UserModel, BasicView, Contacts, ProfileBaseTemplate, GeneralInfoTemplate, MoreContactsTemplate) {
+], function ($, Backbone, _, Handlebars, UserModel, BasicView, Contacts, App, ProfileBaseTemplate, GeneralInfoTemplate, MoreContactsTemplate) {
 
     /**
     View da página de perfil 
@@ -171,11 +172,15 @@ define("profile/profileview",
         render: function () {
             //atributos do user do perfil
             var user = this.user.attributes;
+
+            //verifica se é o perfil do utilizador da aplicação
+            var isUser = App.account.isLogged() ? user.id === App.account.getUserId() : false;
             
             //informação base da página de um perfil
             var context = {
                 user : user,
-                author : user.author
+                author : user.author,
+                isUser: isUser
             };
 
             //compilação do template com a sua informação

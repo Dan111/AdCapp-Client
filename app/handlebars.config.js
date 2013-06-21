@@ -105,6 +105,7 @@ function (Handlebars, $, _, Moment, App, CommentPartial, GeneralResultsPartial, 
                 return body(this);
         });
 
+        //Converte a string para letras minúsculas
         Handlebars.registerHelper('toLowerCase', function(value) {
                 return value.toLowerCase();
         });

@@ -3,25 +3,39 @@
           {{> userinfo user}}
       </div> 
 
-      <div id="add-and-email" class="ui-grid-a">
-        <div class="ui-block-a">
-          <a data-role="button" id="add-user" data-theme="f" >
-            <i class="button-icon icon-plus"></i>Adicionar
-          </a>
-        </div>
-        <div class="ui-block-b">
-          <a data-bypass="true" href="mailto:{{user.email}}" data-role="button" id="email-user"data-theme="f" >
-            <i class="button-icon icon-envelope-alt "></i>E-mail
-          </a>
-        </div>
-      </div>
+      
 
+      {{#if isUser}}
+
+        <a href="#options" data-role="button" data-theme="f" >
+          <i class="button-icon icon-edit icon-large"></i> Editar Perfil
+        </a>
+
+      {{else}}
+
+        <div id="add-and-email" class="ui-grid-a">
+          <div class="ui-block-a">
+            <a data-role="button" id="add-user" data-theme="f" >
+              <i class="button-icon icon-plus"></i>Adicionar
+            </a>
+          </div>
+          <div class="ui-block-b">
+            <a data-bypass="true" href="mailto:{{user.email}}" data-role="button" id="email-user"data-theme="f" >
+              <i class="button-icon icon-envelope-alt "></i>E-mail
+            </a>
+          </div>
+        </div>
+
+      {{/if}}
+
+      <br>
+      <hr>
       <br>
       
 
       <div data-role="navbar" data-theme="a">
           <ul>
-              <li ><a id="general"  class="ui-btn-active" data-theme="a">Geral</a></li>
+              <li><a id="general"  class="ui-btn-active" data-theme="a">Geral</a></li>
               <li><a id="contacts" data-theme="a">Contactos</a></li>
           </ul>
       </div>

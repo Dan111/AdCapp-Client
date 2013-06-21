@@ -285,7 +285,7 @@ function (Backbone) {
 			console.log("ROUTE: participants");
 
 			require(["informations/userslist/userslistview"], function (UsersListView) {
-				new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participates"});
+				new UsersListView({isSpeakers: false, pageId: "participants-page", pageName: "Participantes"});
 			});
 			
 			

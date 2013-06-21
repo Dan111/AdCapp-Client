@@ -355,8 +355,12 @@ define("account/optionsview",
 		},
 
 
+		/**
+        Função chamada quando se clica no botão de carregar imagem
 
-		//TODO: Docs
+        @method uploadPhoto
+        @param {Event} e Evento lançado quando se clica no botão de carregar imagem
+        **/
 		uploadPhoto: function (e) {
 
 			var self = this;
