@@ -77,6 +77,17 @@ define("rankings/awardview",
 		models: [],
 
 		/**
+		Booleano que verifica se o elemento votado
+		pelo utilizador está entre os mais votados
+
+		@property isMostVoted
+		@type boolean
+		@protected
+		@default false
+		**/
+		isMostVoted: false,
+
+		/**
 		Booleano que representa a existência votos
 
 		@property hasVotes
@@ -354,7 +365,7 @@ define("rankings/awardview",
 					var attrs = element.attributes;
 					return {
 						id 			: attrs.id.toString(),
-						url 		: "#/users/"+attrs.id.toString(),
+						url 		: "#/user/"+attrs.id.toString(),
 						name 		: attrs.name,
 						institution : attrs.institution,
 						area 		: attrs.area,
@@ -429,7 +440,7 @@ define("rankings/awardview",
 					return {
 						isvoted  	: that.voted === model.id,
 						id 			: model.id.toString(),
-						url 		: "#/users/"+model.id.toString(),
+						url 		: "#/user/"+model.id.toString(),
 						name       	: model.name,
 						institution	: model.institution,
 						area 		: model.area,
@@ -468,7 +479,7 @@ define("rankings/awardview",
 									return {
 										isvoted  	: that.voted === attrs.id,
 										id 			: attrs.id.toString(),
-										url 		: "#/users/"+attrs.id.toString(),
+										url 		: "#/user/"+attrs.id.toString(),
 										name 		: attrs.name,
 										votes 		: that.getVotes(attrs.id)
 									}
@@ -545,7 +556,9 @@ define("rankings/awardview",
 			
 			//compilação do template com a sua informação
             var html = this.compileTextTemplate(this.usersVotesTemplate, context);
-
+			this.isMostVoted = this.votedIsOneOfMostVoted();
+            this.checkVoted();
+            
             this.refresher(html);
 		},
 
@@ -564,7 +577,23 @@ define("rankings/awardview",
     		$('#votes[value='+ this.voted+'] span').text(newVotes);
 
            	$('#vote-button[value='+ this.voted+'] i').remove();
-           	$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-check-sign"></i>');
+
+
+
+           	this.checkVoted();
+		},
+
+		/**
+       	Vericfica se o id do elemento que o utilizador votou está no array dos mais
+       	votados
+
+        @method votedIsOneOfMostVoted
+        @protected
+        @return {boolean} booleano que indica se o elemento votado é um dos mais votados
+        **/
+		votedIsOneOfMostVoted: function(){
+			
+			 return _.contains(this.modelsId, this.voted);
 		},
 
 		/**
@@ -581,7 +610,53 @@ define("rankings/awardview",
         	$('#votes[value='+ this.voted+'] span').text(newVotes);
 
         	$('#vote-button[value='+ this.voted+'] i').remove();
-        	$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-plus-sign"></i>');
+
+
+        	this.uncheckVoted()
+		},
+
+		/**
+        Trata dos comportamentos da página quando há um incremento de um voto,
+		num ambito de icons que assinalam o elemento em que o utilizador votou.
+		Neste caso, adiciona o check ao elemento que possuí o voto do utilizador.
+
+        @method checkVoted
+        @protected
+        **/
+		checkVoted: function(){
+			if(this.voted !== -1)
+		    {
+		    	if(this.isMostVoted)
+		    	{
+		    		$('#vote-button[value='+ this.voted+'] i').remove();
+           			$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-check-sign"></i>');
+		    	}
+		    	else
+		    		$('#vote-button[value='+ this.voted+'] .ui-btn.ui-btn-up-b.ui-shadow.ui-btn-corner-all.ui-btn-icon-notext').buttonMarkup({ icon: "check" });
+		    	
+		    }
+		},
+
+		/**
+        Trata dos comportamentos da página quando há um decremento de um voto,
+		num ambito de icons que assinalam o elemento em que o utilizador votou.
+		Neste caso, remove o check ao elemento que possuía o voto do utilizador.
+
+        @method uncheckVoted
+        @protected
+        **/
+		uncheckVoted: function(){
+			if(this.voted !== -1)
+		    {	
+		    	if(this.isMostVoted)
+		    	{
+		    		$('#vote-button[value='+ this.voted+'] i').remove();
+        			$('#vote-button[value='+ this.voted+'] .ui-btn-text').append('<i class="icon-plus-sign"></i>');
+		    	}
+		    	else
+		    		$('#vote-button[value='+ this.voted+'] .ui-btn.ui-btn-up-b.ui-shadow.ui-btn-corner-all.ui-btn-icon-notext').buttonMarkup({ icon: "plus" });
+		    	
+		    }
 		},
 
 		/**
@@ -596,6 +671,7 @@ define("rankings/awardview",
             {
 				if(this.voted !== -1)
 		        {
+		        	console.log(this.isMostVoted);
 		        	this.decrementVote();
 		        }
 
@@ -604,8 +680,10 @@ define("rankings/awardview",
 				var url = App.URL + "votes";
 
 				e.preventDefault();
+				//Verfica se o botão clicado pertence a um dos mais votados
+				//serve apenas para uma questão mudanças de icons
+				this.isMostVoted = $(e.currentTarget).hasClass("most-voted");
 	   			var id = parseInt($(e.currentTarget).attr("value"));
-
 
 	   			var votable_type = this.eventsType;
 
@@ -646,7 +724,6 @@ define("rankings/awardview",
 	                   	// options.success();
 	                  	that.showErrorOverlay({text:"Voto atribuído"});
 	                   	that.voted = id;
-
 	                   	that.incrementVote();
 	                },
 

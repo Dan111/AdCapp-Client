@@ -11,7 +11,7 @@
                   <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
               </div>
               <div class="ui-block-b">
-                  <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                  <span id="vote-button" class="most-voted" data-role="button" data-theme="f" value="{{id}}">
                     Votar 
                     {{#if isvoted }}
                       <i class="icon-check-sign"></i>
@@ -31,7 +31,7 @@
                   <h3 id="votes" value="{{id}}">Votos:  <span >{{votes}}</span></h3>
               </div>
               <div class="ui-block-b">
-                  <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
+                  <span id="vote-button" class="most-voted" data-role="button" data-theme="f" value="{{id}}">
                     Votar 
                     {{#if isvoted }}
                       <i class="icon-check-sign"></i>
@@ -51,49 +51,30 @@
       <br>
       <h2 id="awards-title">Outros</h2>
       <br>
-      
+      <ul data-role="listview" data-filter="true" data-split-icon="plus" data-split-theme="b" data-inset="true">
         {{#if isEvent}}
           {{#each others}}
-              <div class="others-events">
-                <h3 class=id="awards-title">{{title}}</h3>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                      <a href="{{url}}" data-role="button" data-theme="a">
-                          Página
-                      </a>
-                    </div>
-                    <div class="ui-block-b">
-                    <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
-                      Votos: <span id="votes" value="{{id}}"><span> {{votes}}</span></span>
-                      {{#if isvoted }}
-                        <i class="icon-check-sign"></i>
-                      {{else}}
-                        <i class="icon-plus-sign"></i>
-                      {{/if}}
-                    </span>            
-                    </div>
-                </div>
-              </div>
+            <li class="item"data-theme="a">
+              <a href="{{url}}">
+                <h2 class=id="awards-title">{{title}}</h2>
+                <p >Votos: <span id="votes" value="{{id}}" ><span > {{votes}}</span></span></p>
+              </a>
+              <a id="vote-button" data-position-to="window" value="{{id}}" ></a>
+            </li>
+
           {{/each}}
         {{else}}
           {{#each others}}
-              <div class="ui-grid-a">
-                  <div class="ui-block-a big-button">
-                    <a href="{{url}}" data-role="button" data-theme="a">
-                        <span class="other-name awards-name">{{getFirstAndLastName name}}</span>
-                        <span id="votes" class="other-votes" value="{{id}}"><span> {{votes}}</span></span>
-                      </a>
-                  </div>
-                  <div  class="ui-block-b small-button">
-                  <span id="vote-button" data-role="button" data-theme="f" value="{{id}}">
-                    {{#if isvoted }}
-                      <i class="icon-check-sign"></i>
-                    {{else}}
-                      <i class="icon-plus-sign"></i>
-                    {{/if}}
-                  </span>               
-                  </div>
-              </div>
+            <li class="item"data-theme="a">
+              <a href="{{url}}">
+                <h2>{{getFirstAndLastName name}}</h2>
+                <p >Votos: <span id="votes" value="{{id}}" ><span > {{votes}}</span></span></p>
+              </a>
+              <a id="vote-button" data-position-to="window" value="{{id}}" ></a>
+            </li>
+
           {{/each}}
         {{/if}}
+      </ul>
       {{/if}}
+

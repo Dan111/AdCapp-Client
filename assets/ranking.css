@@ -31,10 +31,28 @@
 
 }
 
-.ui-block-a.big-button{
-	width: 80% !important;
+.ui-li-count.user{
+	position: relative !important;
+	float: right;
+	top: 10px;
 }
 
-.ui-block-b.small-button{
-	width: 20% !important;
+.item{
+
+	margin-bottom: 10px !important;
+} 
+
+
+
+/*Lista de outros*/
+.item, .item .ui-btn-inner, .item a{
+	border-top-left-radius: 10px !important;
+	border-top-right-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+	border-bottom-right-radius: 10px !important;
+}
+
+/*botao dos workshops*/
+.big-titles.workshop{
+	margin-left: 8px;
 }

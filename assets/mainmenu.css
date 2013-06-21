@@ -1,12 +1,18 @@
 .square {
-	margin: 0px !important;
+
 	margin-bottom: 10px !important;
 	-moz-border-radius: 0px !important;
 	border-radius: 0px;
 	margin: 0px;
 	height: 130px;
 
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
+
+
 
 .odd{
 	margin-left:auto !important;
@@ -17,27 +23,35 @@
 
 
 .square.ui-btn-up-f{
-	background-color:transparent;
-	border: none;
-	color: black;
+	background-color: #34495e;
+	border: solid;
+	border-width: 1px;
+	border-color: #7f8c8d;
+	color: white;
  }
 
  .square.ui-btn-hover-f{
- 	background-color: #34495e;
-	border: none;
-	color: white;
+ 	background-color: transparent;
+	border: solid;
+	border-width: 1px;
+	border-color: #7f8c8d;
+	color: black;
  }
 
  .square.ui-btn-active{
- 	background-color: #34495e;
-	border: none;
-	color: white;
+ 	background-color: transparent;
+	border: solid;
+	border-width: 1px;
+	border-color: #7f8c8d;
+	color: black;
  }
 
   .square.ui-btn-down-f{
- 	background-color: #34495e;
-	border: none;
-	color: white;
+ 	background-color: transparent;
+	border: solid;
+	border-width: 1px;
+	border-color: #7f8c8d;
+	color: black;
  }
  
 .square .ui-btn-inner{
@@ -45,9 +59,28 @@
 }
 
 .square-info {
-	margin-left: 20px;
+	
+	margin-left: 15px;
 	position: relative;
 	bottom: 10px;
+}
+.some-titles{
+	margin-left: -5px;
+}
+
+p.big-titles{
+	margin-top: 8px;
+	
+}
+
+p.big-titles.social{
+	margin-left: 0px;
+	
+}
+
+p.big-titles.participants{
+	margin-left: 8px;
+	
 }
 
 .square-wrapper {
