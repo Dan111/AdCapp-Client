@@ -32,12 +32,11 @@ define("map/locals/localview",
             var self = this;
 
 			this.model = new LocalModel({id: modelId});
-            this.model.fetch({
-                success: function () {
+            this.model.fetch().done(
+                function () {
                     self.renderLayout();
                     self.render();
-                }
-            });
+                });
 
 		},
 

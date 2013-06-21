@@ -67,9 +67,13 @@ function ($, Backbone, _, App, BasicView) {
 
 			if(args.Personal)
 				this.localStorage =  new Backbone.LocalStorage('personal-agenda-backbone')
-			else
-        		//adiciona o id do modelo ao url, para o Backbone poder fazer fetch da informação
-				this.url = App.URL + "users/" + this.get("id") + "/schedule";
+            else
+            {
+                //adiciona o id do modelo ao url, para o Backbone poder fazer fetch da informação
+                this.url = App.URL + "users/" + this.get("id") + "/schedule";
+                if(this.get("id") !== 0)
+                    this.sync =  Backbone.cachingSync(Backbone.sync, 'personal-agenda-'+this.get("id"));
+            }
 
 
 		},

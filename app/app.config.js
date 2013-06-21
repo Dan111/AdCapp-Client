@@ -83,7 +83,7 @@ function (Backbone, $, _, Account) {
 	@static
 	@final
 	**/
-	app.startDate = null;
+	app.startDate = new Date(2012, 8, 6);
 
 
 	/**
@@ -94,7 +94,7 @@ function (Backbone, $, _, Account) {
 	@static
 	@final
 	**/
-	app.endDate = null;
+	app.endDate = new Date(2012, 8, 7);
 
 
 

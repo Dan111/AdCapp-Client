@@ -134,18 +134,14 @@ define("informations/eventslist/eventslistview",
 			this.listEvents = new EventCollection();
 
 
-			this.locals.fetch({
-				success: function () {
+			this.locals.fetch().done(
+				function () {
 					console.log("localsloaded");
 					self.listEvents.fetch().done(function () {
 				    	self.renderLayout();
 						self.render();
 			   		});
-				},
-				error: function () {
-					console.log("localsNOTloaded");
-				}
-			});
+				});
 
 			
 		},

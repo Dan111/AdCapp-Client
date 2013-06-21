@@ -53,9 +53,15 @@ function ($, Backbone, LocalStorage, listUser, App) {
         initialize: function (args){
 
             if(args.isSpeakers)
+            {
                 this.url = App.URL + "speakers";
+                this.sync = Backbone.cachingSync(Backbone.sync, 'speakers');
+            }
             else
+            {
                 this.url = App.URL + "participants";
+                this.sync = Backbone.cachingSync(Backbone.sync, 'participants');
+            }
 
             console.log('UserS');
         },

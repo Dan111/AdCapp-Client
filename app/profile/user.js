@@ -25,6 +25,15 @@ function ($, Backbone, App) {
         **/
 		url: App.URL + "users/",
 
+        /**
+        Alteração do método sync para utilizar o localStorage como cache
+
+        @property sync
+        @type Function
+        @private
+        **/
+        sync: Backbone.cachingSync(Backbone.sync, 'adcapp-user'),
+
 		/**
         Defaults dos atributos do modelo
 

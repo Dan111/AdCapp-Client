@@ -278,8 +278,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 			//Limites em termos de datas, sempre + e - 3 dias do que esta definido, para testes
 			//A definir que datas e como passa-las
-			this.backLimitDate = new Date(y, m, d-3);
-			this.forwardLimitDate = new Date(y, m, d+3);
+			this.backLimitDate = app.startDate;
+			this.forwardLimitDate = app.endDate;
 
 			this.toShowEvents = args.toShowEvents;
 			this.personalEvents = args.personalEvents;
@@ -631,6 +631,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			var today = new Date();
 			if(today < this.forwardLimitDate && today > this.backLimitDate)
 				this.$calendar.fullCalendar('today');
+			else if(today > this.forwardLimitDate)
+				this.$calendar.fullCalendar( 'gotoDate', this.forwardLimitDate);
+			else if(today < this.backLimitDate)
+				this.$calendar.fullCalendar( 'gotoDate', this.backLimitDate);
 		},
 
 		/**

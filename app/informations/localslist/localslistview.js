@@ -84,17 +84,13 @@ define("informations/localslist/localslistview",
 
 			this.locals = new LocalsCollection();
 
-			this.locals.fetch({
-				success: function () {
+			this.locals.fetch().done(
+				function () {
 					console.log("localsloaded");
 				    self.renderLayout();
 					self.render();
 
-				},
-				error: function () {
-					console.log("localsNOTloaded");
-				}
-			});
+				});
 
 			
 		},

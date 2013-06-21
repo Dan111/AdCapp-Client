@@ -104,12 +104,11 @@ define("informations/userslist/userslistview",
 
 			this.users = new ListUserCollection({isSpeakers: this.speakers});
 
-			this.users.fetch({
-				success: function () {
+			this.users.fetch().done(
+				function () {
 					self.renderLayout();
 					self.render();
-				}
-			});
+				});
 		},
 
 		/**

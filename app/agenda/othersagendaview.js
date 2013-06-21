@@ -134,16 +134,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
             this.otherPersonalAgenda = new PersonalAgenda({id: args.userId, Personal: false});
 
-            this.otherPersonalAgenda.fetch({
-                success: function () {
+            this.otherPersonalAgenda.fetch().done(
+                function () {
                     console.log("Other personal Events loaded");
                     self.renderLayout();
                     self.render();
-                },
-                error: function (){
-                    console.log("Other Fail to get events or don't have any");
-                }
-            });
+                });
 
         },
 

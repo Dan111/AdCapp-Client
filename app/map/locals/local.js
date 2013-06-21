@@ -10,6 +10,16 @@ function ($, Backbone, App) {
 
 		url: App.URL + "/locals/",
 //url: "http://lcatalaya.apiary.io/Locals/",
+
+		/**
+		Alteração do método sync para utilizar o localStorage como cache
+
+		@property sync
+		@type Function
+		@private
+		**/
+		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-local'),
+
 		defaults: {
 
 			id: null,

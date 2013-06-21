@@ -258,16 +258,12 @@ define("rankings/awardview",
 				this.modelsId = this.getMostVoted(this.votesArray);
 
 
-			this.modelCollection.fetch({
-				success: function () {
+			this.modelCollection.fetch().done(
+				function () {
 					if(self.hasVotes)
 						self.models = self.modelCollection.getByIds(self.modelsId);
 					AwardView.prototype.initialize.apply(self);
-				},
-				error: function (){
-					console.log("Fail ");
-				}
-			});	
+				});	
 		},
 
 		/**

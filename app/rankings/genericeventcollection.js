@@ -45,7 +45,7 @@ function ($, Backbone, LocalStorage, Paper, Keynote, Session, Workshop, App) {
             var type = this.typesCollectionInfo[args.type];
             this.model = type.model;
             this.url = App.URL + type.url;
-
+            this.sync =  Backbone.cachingSync(Backbone.sync, 'rankings-'+type.url);
 		},
 
 

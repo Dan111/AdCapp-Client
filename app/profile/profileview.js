@@ -154,12 +154,11 @@ define("profile/profileview",
             this.mycontacts.fetch();
 
             this.user = new UserModel({id: modelId});
-            this.user.fetch({
-                success: function () {
+            this.user.fetch().done(
+                function () {
                     self.renderLayout();
                     self.render();
-                }
-            });
+                });
         },
 
         /**
