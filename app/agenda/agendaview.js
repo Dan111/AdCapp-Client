@@ -20,7 +20,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
     /**
     View da página da agenda
 
-    @class AgendaView
+    @class agenda.AgendaView
+    @alternateClassName AgendaView
     @extends BasicView
     **/
     return BasicView.extend({
@@ -32,9 +33,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @type String
         @static
         @readonly
-        
+        @private
         **/
         id: "agenda-page",
+
 
         /**
         Nome da página da agenda
@@ -43,20 +45,22 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @type String
         @static
         @readonly
-        
+        @private
         **/     
         pageName: "Agenda",
+
 
         /**
         Template da agenda
 
         @property template 
         @type String
+        @static
         @readonly
-        @protected
-        
+        @private
         **/
         template: AgendaTemplate,
+
 
         /**
         Eventos lançados pela transição entre tabs,
@@ -65,34 +69,35 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property events
         @type Object
-        @protected
+        @static
+        @readonly
+        @private
         **/
         events: {
             'click #generalAgenda' : 'renderGeneral',
             'click #personalAgenda' : 'renderPersonal',
         },
 
+
         /**
         Modelo da agenda pessoal
 
         @property personalAgenda
         @type Backbone.Model
-        @readonly
-        @protected
-        
+        @private
         **/
         personalAgenda: null,
+
 
         /**
         Coleção dos eventos da conferência
 
         @property conferenceEvents
         @type Backbone.Collection
-        @readonly
-        @protected
-        
+        @private
         **/
         conferenceEvents: null,
+
 
         /**
         View que apresenta o tipo de agenda escolhido,
@@ -100,18 +105,16 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property calendarView
         @type Backbone.View
-        @readonly
-        @protected
-        
+        @private
         **/
         calendarView: null,
+
 
         /**
         Construtor da classe AgendaView. Faz o fecth da agenda personalizada,
         da coleção de eventos da conferência e faz o rendering da página
 
         @constructor
-        @class AgendaView
         **/
         initialize: function ()
         {
@@ -119,7 +122,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
             var self = this;
 
-console.log(App.account.isLogged());
+            console.log(App.account.isLogged());
             if(App.account.isLogged())
             {
 
@@ -152,7 +155,6 @@ console.log(App.account.isLogged());
         Faz o rendering do layout base da página da agenda
 
         @method render
-        @protected
         @chainable
         **/
         render: function () {
@@ -176,7 +178,6 @@ console.log(App.account.isLogged());
         Faz o rendering do calendário com todos os eventos da conferência
 
         @method renderGeneral
-        @protected
         **/
         renderGeneral: function() {
             this.calendarView.undelegateEvents();
@@ -187,7 +188,6 @@ console.log(App.account.isLogged());
         Faz o rendering do calendário com todos os eventos da agenda personalizada
 
         @method renderPersonal
-        @protected
         **/
         renderPersonal: function() {
             if(App.account.isLogged())

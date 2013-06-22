@@ -11,7 +11,8 @@ function ($, Backbone, _, App, BasicView) {
 	/**
     Modelo de agenda pessoal
 
-    @class PersonalAgenda
+    @class agenda.PersonalAgenda
+    @alternateClassName PersonalAgenda
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -21,22 +22,20 @@ function ($, Backbone, _, App, BasicView) {
 
         @property url 
         @type String
-        @static
-        @readonly
-        
+        @sprivate
         **/
 		url: null,
+
 
 		/**
         LocalStorage para fazer fecth do modelo
 
         @property localStorage 
         @type String
-        @static
-        @readonly
-        
+        @private
         **/
 		localStorage: null,
+
 
 		/**
         Defaults dos atributos do modelo
@@ -45,12 +44,13 @@ function ($, Backbone, _, App, BasicView) {
         @type Object
         @static
         @readonly
-        @protected
+        @private
         **/
 		defaults: {
 			id: -1,
 			chosen_events: null
 		},
+
 
 		/**
         Construtor do modelo. Verifca o booleano passado como parametro
@@ -58,10 +58,8 @@ function ($, Backbone, _, App, BasicView) {
         ou localStorage
 
         @constructor
-        @protected
-        @class PersonalAgenda
         @param {Object} args contém booleano para distinguir a agenda do utilizador do dispositivo ou de outro
-            @param {boolean} args.Personal booleano para distinguir a agenda do utilizador do dispositivo ou de outro
+        @param {boolean} args.Personal booleano para distinguir a agenda do utilizador do dispositivo ou de outro
         **/
 		initialize: function (args){
 
@@ -77,6 +75,7 @@ function ($, Backbone, _, App, BasicView) {
 
 
 		},
+
 
         /**
         Envia a agenda pessoal para o servidor
@@ -134,7 +133,6 @@ function ($, Backbone, _, App, BasicView) {
         um booleano
 
         @method hasEvent
-        @protected
         @param {Number} eventId id de um evento
         @return {boolean} booleano que indica se o evento está na agenda
         **/
@@ -149,7 +147,6 @@ function ($, Backbone, _, App, BasicView) {
 		representados pelos ids contidos no array
 
         @method hasEvents
-        @protected
         @param {Array} idsArray array de inteiros que representão id's de eventos
         @return {boolean} booleano que indica se os eventos estão na agenda
         **/
@@ -164,11 +161,12 @@ function ($, Backbone, _, App, BasicView) {
 			return result;
 		},
 
+
 		/**
         Remove o evento com o id passado da agenda pessoal
 
         @method removeEvent
-        @protected
+
         @param {Number} eventId id de um evento
         **/
 		removeEvent: function (eventId)
@@ -177,11 +175,11 @@ function ($, Backbone, _, App, BasicView) {
 			this.set("chosen_events", newArray);
 		}, 
 
+
 		/**
         Adiciona o evento com o id passado à agenda pessoal
 
         @method addEvent
-        @protected
         @param {Number} eventId id de um evento
         **/
 		addEvent: function (eventId)

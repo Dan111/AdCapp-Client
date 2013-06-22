@@ -19,7 +19,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 	/**
     View dos calendários
 
-    @class CalendarView
+    @class agenda.CalendarView
+    @alternateClassName CalendarView
     @extends BasicView
     **/
 	return BasicView.extend({
@@ -31,9 +32,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		@type String
 		@static
 		@readonly
-		
+		@private
 		**/
 		el: "#calendar-placeholder",
+
 
 		/**
         Id do elemento onde está o calendário, para fazer refresh 
@@ -42,197 +44,209 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property id 
         @type String
         @static
-        @readonly
-        
+		@readonly
+		@private
         **/
 		id: "calendar-placeholder",
+
 
         /**
         Template do calendário
 
         @property template 
         @type String
-        @readonly
-        @protected
-        
+        @static
+		@readonly
+		@private
         **/
 		template: CalendarPartial,
 
+
+		/**
+		Eventos relacionados com a mudança de dia
+
+		@property events
+		@type Object
+		@static
+		@readonly
+		@private
+		**/
 		events: {
 			'click #my-prev' : 'prev',
 			'click #my-next' : 'next',
 			'click #my-today' : 'today'
 		},
 
+
  		/**
         Dia corrente
 
         @property currentDay
         @type Date
-        @protected
-        
+        @private
         **/
 		currentDay: null,
+
 
  		/**
         Dia limite para fazer prev no calendário
 
         @property backLimitDate
         @type Date
-        @protected
-        
+        @private
         **/
 		backLimitDate: null,
+
 
  		/**
         Dia limite para fazer next no calendário
 
         @property forwardLimitDate
         @type Date
-        @protected
-        
+        @private
         **/
 		forwardLimitDate: null,
+
 
  		/**
         Elemento do calendário
 
         @property $calendar
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$calendar: null,
+
 
  		/**
         Elemento de remoção de evento do calendário
 
         @property $removeevent
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$removeevent: null,
+
 
  		/**
         Elemento de adição de evento do calendário
 
         @property $addevent
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$addevent: null,
+
 
 		/**
         Elemento do botão de remoção de evento do calendário
 
         @property $removeeventbutton
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$removeeventbutton: null,
+
 
 		/**
         Elemento do botão de adição de evento do calendário
 
         @property $addeventbutton
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$addeventbutton: null,
+
 
 		/**
         Elemento do link para o perfil do orientador do workshop
 
         @property $teacherlink
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$teacherlink: null,
+
 
 		/**
         Elemento do link para o perfil do autor de um paper
 
         @property $authorlink
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$authorlink: null,
+
 
 		/**
         Elemento anchor do link para o perfil do orientador do workshop
 
         @property $teacherlinkA
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$teacherlinkA: null,
+
 
 		/**
         Elemento anchor do link para o perfil do autor de um paper
 
         @property $authorlinkA
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$authorlinkA: null,
+
 
 		/**
         Elemento anchor do link para a página de um evento
 
         @property $eventlinkA
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$eventlinkA: null,
+
 
 		/**
         Elemento anchor do link para a página de um local
 
         @property $locallinkA
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$locallinkA: null,
+
 
 		/**
         Elemento input onde são digitadas pesquisas
 
         @property $searchbasic
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$searchbasic: null,
+
 
 		/**
         Elemento onde está o painel de pesquisa
 
         @property $searchpanel
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$searchpanel: null,
+
 
 		/**
         Elemento relativo aos pop-up's
 
         @property $popup
         @type jQueryWrapper
-        @protected
-        
+        @private
         **/
 		$popup: null,
+
 
 		/**
         Dicionário que guarda informações relativas aos tipos de
@@ -242,10 +256,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @type Object
         @static
         @readonly
-        @protected
-        
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-					"session": {url: '#sessions/'}};
+        @private
         **/
 		typesInfo: app.TYPESINFO,
 
@@ -257,13 +268,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		ao evento close do painel de pesquisa
 
         @constructor
-        @protected
-        @class CalendarView
         @param {Object} args collection de eventos, model de agenda e booleano
-			@param {EventCollection} args.toShowEvents Eventos a serem apresentados no calendário, Collection de Events
-			@param {PersonalAgenda} args.personalEvents Agenda pessoal, um Model personalagenda
-			@param {boolean} args.inPersonal Booleano que indica se estamos a atuar na agenda
-			personalizada do utilizador do dispositivo
+		@param {EventCollection} args.toShowEvents Eventos a serem apresentados no calendário, Collection de Events
+		@param {PersonalAgenda} args.personalEvents Agenda pessoal, um Model personalagenda
+		@param {boolean} args.inPersonal Booleano que indica se estamos a atuar na agenda personalizada do utilizador do dispositivo
         **/
 		initialize: function (args)
 		{
@@ -297,12 +305,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.render();
 		},
 
+
         /**
         Faz o rendering do calendar, com a ajuda o método fullCalendarSetter
 		passando a coleção de eventos a mostrar
 
         @method render
-        @protected
         @chainable
         **/
 		render: function () {
@@ -326,6 +334,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		},
 
+
 		/**
         Cria o calendário com os eventos passados, trata do binding
         de métodos a eventos relacionados com pop-up's e adição
@@ -333,7 +342,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         eficiência e decide em que dia o calendário é apresentado.
 
         @method fullCalendarSetter
-        @protected
+        @private
         @param {EventCollection} renderEvents colecção de eventos
         **/
 		fullCalendarSetter: function(renderEvents)
@@ -448,7 +457,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Altera o conteúdo de um pop-up consoante os atributos de um evento
 
         @method setPopUp
-        @protected
+        @private
         @param {Object} attributes atributos de um evento
         @example
         	{	
@@ -503,12 +512,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			this.$locallinkA.attr("href", "#local/" +  attributes.local_id);
 		},
 
+
 		/**
         Faz a filtragem de eventos a mostrar no calendário, consoante
         a informação vinda do template, ou seja, dos elementos input
 
         @method search
-        @protected
         **/
   		search: function() {
   			if(this.toShowEvents !== null)
@@ -557,7 +566,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         calendário
 
         @method treatEvents
-        @protected
+        @private
         @param {Event} eventobj modelo de um evento
         **/
 		treatEvents: function(eventobj) {
@@ -583,11 +592,12 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 		},
 
+
 		/**
         Retorna a cor de um evento consoante o seu tipo
 
         @method getColor
-        @protected
+        @private
         @param {String} type tipo de um evento
         @return {String} cor do tipo de evento
         **/
@@ -596,11 +606,11 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			return this.typesInfo[type].color;
 		},
 
+
 		/**
         Anda um dia para trás no calendário, consoante os limites
 
         @method prev
-        @protected
         **/
 		prev: function() {
 
@@ -613,19 +623,18 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         Anda um dia para a frente no calendário, consoante os limites
 
         @method next
-        @protected
         **/
 		next: function() {
 			if(this.$calendar.fullCalendar('getDate') < this.forwardLimitDate)
 				this.$calendar.fullCalendar('next');
 		},
 
+
 		/**
         Muda o dia visível do calendário, para o dia corrente, se este estiver
         nos limites dos dias da conferência
 
         @method today
-        @protected
         **/
 		today: function() {
 			var today = new Date();
@@ -637,11 +646,11 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				this.$calendar.fullCalendar( 'gotoDate', this.backLimitDate);
 		},
 
+
 		/**
         Remove um evento da agenda pessoal do utilizador do dispositivo
 
         @method removeEvent
-        @protected
         **/
 		removeEvent: function() {
 			var eventId = this.$removeeventbutton.attr("value").trim();
@@ -670,12 +679,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		},
 
 		
-
 		/**
         Adciona um evento à agenda pessoal do utilizador do dispositivo
 
         @method addEvent
-        @protected
         **/
 		addEvent: function() {
 			var eventId = this.$addeventbutton.attr("value").trim();

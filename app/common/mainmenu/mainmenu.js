@@ -5,8 +5,10 @@ define("common/mainmenu/mainmenu",
     "handlebars",
 
     "../basicview",
-    "app.config"
-], function ($, Backbone, Handlebars, BasicView, App) {
+    "app.config",
+
+    "text!./mainmenu.html"
+], function ($, Backbone, Handlebars, BasicView, App, MainMenuTemplate) {
 
     /**
     View do menu príncipal
@@ -60,7 +62,7 @@ define("common/mainmenu/mainmenu",
         @readonly
         @private
         **/
-        template: "mainmenu-template",
+        template: MainMenuTemplate,
 
 
         /**
@@ -124,7 +126,7 @@ define("common/mainmenu/mainmenu",
 
             var context = null;
 
-            var html = this.compileTemplate(this.template, context);
+            var html = this.compileTextTemplate(this.template, context);
 
             $("[data-role=content]").append(html);
             this.enhanceJQMComponentsAPI();
