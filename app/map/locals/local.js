@@ -1,7 +1,8 @@
 define([
     "jquery",
     "backbone",
-    "app.config"
+    "app.config",
+    "backbone.cachingsync"
 ], 
 
 function ($, Backbone, App) {

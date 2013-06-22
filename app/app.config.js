@@ -61,7 +61,7 @@ function (Backbone, $, _, Account) {
 	@static
 	@readonly
 	**/
-	app.confWebsite = "http://";
+	app.confWebsite = "http://fct.unl.pt";
 
 
 	/**

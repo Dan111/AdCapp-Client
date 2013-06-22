@@ -73,12 +73,17 @@ define("map/mapview",
       this.locals = new LocalCollection();
 
       this.locals.fetch().done(
-                function () {
-                    self.renderLayout();
-                    self.render();
-                    setTimeout(function() { _this.renderMap() }, 0);
-                }); 
-      
+
+        function () {
+          self.renderLayout();
+          self.render();
+          setTimeout(function() { _this.renderMap() }, 0);
+        }).fail(
+          function() {
+            console.log("error");
+          }
+        );     
+
     },
 
     center: function(lat, lng)
@@ -113,6 +118,8 @@ define("map/mapview",
 
         });
 
+        infoWindow.close(map);
+
         locals.forEach(function(model) { 
           if(_.contains(searchTypes, model.get("type")))
             markers[model.get("id")].setVisible(true);
@@ -128,11 +135,10 @@ define("map/mapview",
           console.log(firstLocal.get("type"));
         }
 
-        else
+        else if(param != '')
           this.showErrorOverlay({text: "Não foram encontrados resultados para a sua pesquisa", time: 3000});
 
-        $( "#searchpanel" ).panel( "close" ); 
-        
+        $( "#searchpanel" ).panel( "close" );
     },
 
 
@@ -166,8 +172,6 @@ define("map/mapview",
             map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
             var locals = this.locals;
-
-            var link;
 
             locals.forEach(function(model){ 
               var markerPos = new google.maps.LatLng(model.get("coord_x"), model.get("coord_y"));
