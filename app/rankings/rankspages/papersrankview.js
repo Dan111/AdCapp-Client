@@ -1,18 +1,19 @@
-define("rankings/speakersrankview",
+define("rankings/rankspages/papersrankview",
 [
     "jquery",
     "backbone",
     "underscore",
     "handlebars",
-    "./ranksinfo",
-    "./users",
-    "./awardview"
-], function ($, Backbone, _, Handlebars, RanksInfo, UsersCollection, AwardView) {
+    "rankings/ranksinfo",
+    "rankings/genericeventcollection",
+    "rankings/awardview"
+], function ($, Backbone, _, Handlebars, RanksInfo, GenericEventCollection, AwardView) {
 
 	/**
-	View da página de prémios dos oradores
+	View da página de prémios das palestras
 
-	@class SpeakersRankView
+	@class rankings.rankpages.PapersRankView
+	@alternateClassName PapersRankView
 	@extends AwardView
 	**/
 	return AwardView.extend({
@@ -38,7 +39,7 @@ define("rankings/speakersrankview",
 		@readonly
 		
 		**/
-		id: "user-award-page",
+		id: "paper-award-page",
 
 
 		/**
@@ -50,8 +51,7 @@ define("rankings/speakersrankview",
 		@readonly
 		
 		**/
-		pageName: "Prémios Oradores",
-
+		pageName: "Prémios Palestras",
 
 
 
@@ -61,24 +61,21 @@ define("rankings/speakersrankview",
 		chama o método getStarted para fazer o rendering da página
 
 		@constructor
-		@protected
-		@class SpeakersRankView
 		**/
 		initialize: function ()
 		{
 			_.bindAll(this);
 
 			var self = this;
-			this.ranksInfo = new RanksInfo({type:"user"});
+			this.ranksInfo = new RanksInfo({type:"paper"});
 			this.ranksInfo.fetch({
 				success: function () {
-					self.getStarted(AwardView, self, false, null, new UsersCollection());
+					self.getStarted(AwardView, self, true, app.TYPES.PAPER, new GenericEventCollection({type:"papers"}));
 				}
 			});
 
 			
-		},
-
+		}
 
 	});
 

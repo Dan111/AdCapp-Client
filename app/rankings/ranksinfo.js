@@ -10,7 +10,8 @@ function ($, Backbone, BasicView, App) {
 	/**
     Modelo de uma palestra
 
-    @class RankInfo
+    @class rankings.RankInfo
+    @alternateClassName RankInfo
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({

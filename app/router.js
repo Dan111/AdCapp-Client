@@ -459,7 +459,7 @@ function (Backbone) {
 		papersrank: function(){
 			console.log("ROUTE: rankings papers");
 
-			require(["rankings/papersrankview"], function (PapersRankView) {
+			require(["rankings/rankspages/papersrankview"], function (PapersRankView) {
 				new PapersRankView();
 			});
 			
@@ -474,7 +474,7 @@ function (Backbone) {
 		speakersrank: function(){
 			console.log("ROUTE: rankings speakers");
 
-			require(["rankings/speakersrankview"], function (SpeakersRankView) {
+			require(["rankings/rankspages/speakersrankview"], function (SpeakersRankView) {
 				new SpeakersRankView();
 			});
 			
@@ -489,7 +489,7 @@ function (Backbone) {
 		workshopsrank: function(){
 			console.log("ROUTE: rankings workshops");
 
-			require(["rankings/workshopsrankview"], function (WorkshopsRankView) {
+			require(["rankings/rankspages/workshopsrankview"], function (WorkshopsRankView) {
 				new WorkshopsRankView();
 			});
 		},
@@ -503,7 +503,7 @@ function (Backbone) {
 		keynotesrank: function(){
 			console.log("ROUTE: rankings keynotes");
 
-			require(["rankings/keynotesrankview"], function (KeynotesRankView) {
+			require(["rankings/rankspages/keynotesrankview"], function (KeynotesRankView) {
 				new KeynotesRankView();
 			});
 		},
@@ -517,7 +517,7 @@ function (Backbone) {
 		sessionsrank: function(){
 			console.log("ROUTE: rankings sessions");
 
-			require(["rankings/sessionsrankview"], function (SessionsRankView) {
+			require(["rankings/rankspages/sessionsrankview"], function (SessionsRankView) {
 				new SessionsRankView();
 			});
 		},

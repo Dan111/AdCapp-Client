@@ -14,7 +14,8 @@ function ($, Backbone, LocalStorage, Paper, Keynote, Session, Workshop, App) {
 	/**
     Coleção para todos os tipos de eventos
 
-    @class GenericEventCollection
+    @class rankings.GenericEventCollection
+    @alternateClassName GenericEventCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
@@ -30,7 +31,6 @@ function ($, Backbone, LocalStorage, Paper, Keynote, Session, Workshop, App) {
         **/
 		model: null,
 
-		//url: App.URL + "papers",
         url: "",
 
         typesCollectionInfo: {

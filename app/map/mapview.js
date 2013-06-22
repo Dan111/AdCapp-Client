@@ -72,16 +72,12 @@ define("map/mapview",
 
       this.locals = new LocalCollection();
 
-      this.locals.fetch({
-                success: function () {
+      this.locals.fetch().done(
+                function () {
                     self.renderLayout();
                     self.render();
                     setTimeout(function() { _this.renderMap() }, 0);
-                },
-                error: function() {
-                   console.log("error");
-                }
-            }); 
+                }); 
       
     },
 

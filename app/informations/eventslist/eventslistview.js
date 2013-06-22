@@ -17,7 +17,8 @@ define("informations/eventslist/eventslistview",
 	/**
 	View das páginas com listagens de eventos
 
-	@class EventsListView
+	@class informations.eventslist.EventsListView
+	@alternateClassName EventsListView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -78,8 +79,7 @@ define("informations/eventslist/eventslistview",
         @static
         @readonly
         @protected
-        
-				  "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+        @example  "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 				  "session": {url: '#session/'}},}
         **/
 		typesInfo: app.TYPESINFO,
@@ -92,8 +92,6 @@ define("informations/eventslist/eventslistview",
 		dispositivo.
 
 		@constructor
-		@protected
-		@class EventsListView
 		@param {Object} args contém um booleano, id da página e nome da página
 			@param {string} args.type string que indentifica o tipo dos eventos a apresentar
 			utilizar
@@ -149,8 +147,7 @@ define("informations/eventslist/eventslistview",
 		/**
 		Faz uma filtragem de eventos consoante o tipo e prepara-os para a listagem.
 		Ainda faz o rendering do layout das páginas de listagem de eventos,
-		passando o template e o contexto adequeados, sendo que o contexto
-		é composto 
+		passando o template e o contexto adequeados 
 
 		@method render
 		@protected
@@ -185,12 +182,13 @@ define("informations/eventslist/eventslistview",
 		@method treatEvents
 		@protected
 		@param {Event} event_obj modelo evento
-		@return {Object} 	url: url do evento,
-				 			name: nome do evento, 
-		    				start: data de início do evento na forma YYYY-MM-DD HH:mm, 
-		    				end: data de fim do evento na forma YYYY-MM-DD HH:mm,
-		    				local_name: nome da sala do evento, 
-		    				inagenda: booleano que indica se o evento está na agenda  
+		@return {Object} objecto com as características a apresentar do evento
+		@example url: url do evento,
+			 			name: nome do evento, 
+	    				start: data de início do evento na forma YYYY-MM-DD HH:mm, 
+	    				end: data de fim do evento na forma YYYY-MM-DD HH:mm,
+	    				local_name: nome da sala do evento, 
+	    				inagenda: booleano que indica se o evento está na agenda  
 		**/
 		treatEvents: function(event_obj){
 			var dateFormat = "YYYY-MM-DD HH:mm";

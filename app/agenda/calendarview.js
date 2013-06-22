@@ -666,10 +666,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 				//remove no modelo com o array
 				this.personalEvents.removeEvent(parseInt(eventId));
 				this.personalEvents.save();
-				
+				this.$popup.popup('close');
 				this.personalEvents.sendPersonalAgenda();
 
-				this.$popup.popup('close');
+				
 			}
 			else
 			{
@@ -695,10 +695,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
 				this.personalEvents.addEvent(parseInt(eventId));
 				this.personalEvents.save();
-				
+				this.$popup.popup('close');
 				this.personalEvents.sendPersonalAgenda();
 
-				this.$popup.popup('close');
+				
 			}
 			else
 			{

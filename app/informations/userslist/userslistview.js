@@ -12,7 +12,8 @@ define("informations/userslist/userslistview",
 	/**
 	View das páginas com listagens de oradores e participantes
 
-	@class UsersListView
+	@class informations.userslist.UsersListView
+	@alternateClassName UsersListView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -70,7 +71,6 @@ define("informations/userslist/userslistview",
 
 		@property cusers 
 		@type Backbone.Collection
-		@readonly
 		@protected
 		
 		**/
@@ -83,8 +83,6 @@ define("informations/userslist/userslistview",
 		feito o rendering necessário.
 
 		@constructor
-		@protected
-		@class UsersListView
 		@param {Object} args contém um booleano, id da página e nome da página
 			@param {boolean} args.isSpeakers Booleano que indentifica a collection que temos de
 			utilizar

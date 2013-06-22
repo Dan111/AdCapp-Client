@@ -10,14 +10,15 @@ define("informations/generalsearchview",
     "informations/userslist/listusers",
     "map/locals/locals",
 
-	"text!./searchpage.html",
-	"text!./_generalresults.html"
+	"text!./generalinfotemplates/searchpage.html",
+	"text!./generalinfotemplates/_generalresults.html"
 ], function ($, Backbone, _, Handlebars, Moment, BasicView, EventCollection, ListUserCollection, LocalsCollection, SearchPageTemplate, GeneralResultsPartial) {
 
 	/**
 	View abstracta das páginas de prémios
 
-	@class GeneralSearchView
+	@class informations.GeneralSearchView
+	@alternateClassName GeneralSearchView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -87,9 +88,6 @@ define("informations/generalsearchview",
         @readonly
         @protected
         
-					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
-					"session": {url: '#session/'}, "speaker": {url: '#user/'}, 
-					"participant":{url: '#user/'}, "local": {url: '#local/'}},
         **/
 		searchable: {"paper": {url: '#paper/'}, "workshop": {url: '#workshop/'}, 
 					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
@@ -113,8 +111,6 @@ define("informations/generalsearchview",
         Construtor da classe. Vai buscar a informação necessária paras as pesquisas e faz o render da página
 
         @constructor
-        @protected
-        @class GeneralSearchView
         **/
 		initialize: function ()
 		{
@@ -165,6 +161,7 @@ define("informations/generalsearchview",
 
 		/**
 		Faz o rendering da página sem resultados, ou seja, estado inicial
+		sem pesquisas efectuadas
 
 		@method render
 		@protected
@@ -197,8 +194,8 @@ define("informations/generalsearchview",
         @param {Array} conferenceEvents eventos resultantes da pesquisa
         @param {Array} participants participantes  resultantes da pesquisa
         @param {Array} speakers oradores resultantes da pesquisa
-        @param {Array} locals locais  resultantes da pesquisa
-        @return {Object} objecto que contem as listas de resultados de cada tipo pesquisável
+        @param {Array} locals locais resultantes da pesquisa
+        @return {Object} objecto que contém as listas de resultados de cada tipo pesquisável
         @example {
 				"participants" 	: [],
 				"speakers" 	  	: [],

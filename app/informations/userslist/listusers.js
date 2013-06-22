@@ -11,7 +11,8 @@ function ($, Backbone, LocalStorage, listUser, App) {
     /**
     Coleção de utilizadores para serem mostrados em lista
 
-    @class ListUserCollection
+    @class informations.userslist.ListUserCollection
+    @alternateClassName ListUserCollection
     @extends Backbone.Collection
     **/
     return Backbone.Collection.extend({
@@ -45,8 +46,6 @@ function ($, Backbone, LocalStorage, listUser, App) {
         e escolhe a url a utilizar no fecth da collection
 
         @constructor
-        @protected
-        @class ListUserCollection
         @param {Object} args contém booleano para distinguir oradores de participantes
             @param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
         **/

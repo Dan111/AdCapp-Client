@@ -8,15 +8,16 @@ define("rankings/awardview",
     "common/basicview",
     "app.config",
 
-    "text!./award.html",
-    "text!./awards.html",
-    "text!./usersvotes.html"
+    "text!./templates/award.html",
+    "text!./templates/awards.html",
+    "text!./templates/usersvotes.html"
 ], function ($, Backbone, _, Handlebars, EventModel, BasicView, App, AwardTemplate, AwardsTemplate, UserVotesTemplate) {
 
 	/**
 	View abstracta das páginas de prémios
 
-	@class AwardView
+	@class rankings.AwardView
+	@alternateClassName AwardView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -137,19 +138,17 @@ define("rankings/awardview",
 		@property votesArray
 		@type Array
 		@protected
-		
 		@example [{"id": 1, "votes":30}, {"id": 2, "votes":29}]
 		**/
 		votesArray: null,
 
 		/**
-		Array com o elementos apresenados na lista de premiados, representeados
+		Array com o elementos apresenados na lista de premiados, representados
 		pelo seu id
 
 		@property prizesArray
 		@type Array
 		@protected
-		
 		@example [1,2,3]
 		**/
 		prizesArray: null,
@@ -184,8 +183,7 @@ define("rankings/awardview",
         @static
         @readonly
         @protected
-        
-					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
+        @example	"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 					"session": {url: '#sessions/'}};
         **/
 		typesInfo: app.TYPESINFO,
@@ -210,8 +208,6 @@ define("rankings/awardview",
         Construtor da classe. Faz o render das páginas de prémios
 
         @constructor
-        @protected
-        @class AwardView
         **/
 		initialize: function ()
 		{

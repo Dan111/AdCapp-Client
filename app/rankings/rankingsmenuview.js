@@ -5,13 +5,14 @@ define("rankings/rankingsmenuview",
     "handlebars",
     "common/basicview",
 
-    "text!./rankings.html"
+    "text!./templates/rankings.html"
 ], function ($, Backbone, Handlebars, BasicView, RankingsTemplate) {
 
 	/**
 	View do menu de prémios
 
-	@class RankingsView
+	@class rankings.RankingsView
+	@alternateClassName RankingsView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -64,8 +65,6 @@ define("rankings/rankingsmenuview",
 		Construtor da classe. Faz o render da página
 
 		@constructor
-		@protected
-		@class EventView
 		**/
 		initialize: function ()
 		{

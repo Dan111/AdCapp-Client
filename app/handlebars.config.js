@@ -7,9 +7,9 @@ define([
     "app.config",
 
     "text!events/templates/_comment.html",
-    "text!informations/_generalresults.html",
-    "text!informations/_eventsresult.html",
-    "text!informations/_usersresult.html",
+    "text!informations/generalinfotemplates/_generalresults.html",
+    "text!informations/generalinfotemplates/_eventsresult.html",
+    "text!informations/generalinfotemplates/_usersresult.html",
     "text!agenda/_calendar.html",
     "text!profile/_userinfo.html"
 ], 

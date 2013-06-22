@@ -6,13 +6,14 @@ define("informations/maininfoview",
     "common/basicview",
     "events/common/events",
     
-    "text!./infomenu.html"
+    "text!./generalinfotemplates/infomenu.html"
 ], function ($, Backbone, Handlebars, BasicView, EventCollection, InfoMenuTemplate) {
 
  	/**
     View do menu de informações
 
-    @class MainInfoView
+    @class informations.MainInfoView
+    @alternateClassName MainInfoView
     @extends BasicView
     **/
 	return BasicView.extend({
@@ -65,8 +66,6 @@ define("informations/maininfoview",
         Construtor da classe. Faz o render da página
 
         @constructor
-        @protected
-        @class MainInfoView
         **/
 		initialize: function ()
 		{

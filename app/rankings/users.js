@@ -11,7 +11,8 @@ function ($, Backbone, LocalStorage, User, App) {
     /**
     Coleção de users
 
-    @class UsersCollection
+    @class rankings.UsersCollection
+    @alternateClassName UsersCollection
     @extends Backbone.Collection
     **/
     return Backbone.Collection.extend({

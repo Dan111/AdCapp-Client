@@ -9,7 +9,8 @@ function ($, Backbone) {
     Modelo que representa a informação de um utilizador/participantes 
     apresentada numa lista de utilizadores/participantes
 
-    @class ListUser
+    @class informations.userslist.ListUser
+    @alternateClassName ListUser
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({

@@ -91,7 +91,7 @@ function ($, Backbone, _, App, BasicView) {
             $.ajax({
                 method: "POST",
 
-                async: false,
+                async: true,
 
                 timeout: 5000,
 
@@ -103,10 +103,7 @@ function ($, Backbone, _, App, BasicView) {
 
 
                 beforeSend: function () {
-                    $.mobile.loading( 'show', {
-                            text: "A enviar",
-                            textVisible: true
-                    });
+                    $.mobile.loading( 'hide' );
                 },
 
                 complete: function () {
@@ -115,14 +112,11 @@ function ($, Backbone, _, App, BasicView) {
 
                 success: function () {
                     $.mobile.loading( 'hide' );
-                    // options.success();
-                    //that.showErrorOverlay({text:"Acção bem Sucedida"});
                     
                 },
 
                 error: function (){
                     $.mobile.loading( 'hide' );
-                    alert( "Erro no envio");
                     
                 }
             });

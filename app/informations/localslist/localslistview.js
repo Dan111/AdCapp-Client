@@ -14,7 +14,8 @@ define("informations/localslist/localslistview",
 	/**
 	View das páginas com listagens de locais
 
-	@class LocalsListView
+	@class informations.localslist.LocalsListView
+	@alternateClassName LocalsListView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -71,8 +72,6 @@ define("informations/localslist/localslistview",
 		chamado o render da página
 
 		@constructor
-		@protected
-		@class LocalsListView
         **/
 		initialize: function ()
 		{
@@ -128,8 +127,8 @@ define("informations/localslist/localslistview",
 
 		@method treatLocals
 		@protected
-		@param 
-		@return   
+		@param {Local} local_obj modelo do tipo Local
+		@return {Object} objecto com as características a apresentar do local
 		**/
 		treatLocals: function(local_obj){
 			
