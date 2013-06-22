@@ -62,6 +62,7 @@ define("map/mapview",
       infoWindow = new google.maps.InfoWindow({
           content: null
       });
+
       infoContent = new Array();
       markers = new Array();
       types = new Array();
@@ -69,6 +70,8 @@ define("map/mapview",
       var _this = this;
 
       this.localId = args.localId;
+      this.id += "-" + this.localId;
+
 
       this.locals = new LocalCollection();
 
@@ -103,6 +106,8 @@ define("map/mapview",
         var locals = this.locals;
         var that = this;
         var searchTypes = new Array();
+        var filteredLocals = new Array();
+        var hasResults = false;
 
         types.forEach(function(type){ 
           if ($("#" + type).is(":checked")) {
@@ -118,11 +123,14 @@ define("map/mapview",
 
         });
 
+
         infoWindow.close(map);
 
-        locals.forEach(function(model) { 
-          if(_.contains(searchTypes, model.get("type")))
+        locals.forEach(function(model) {
+          if(_.contains(searchTypes, model.get("type")) && (model.get("name").toUpperCase().indexOf(param.toUpperCase()) != -1 || param == '')) {
             markers[model.get("id")].setVisible(true);
+            hasResults = true;
+          }
           else
             markers[model.get("id")].setVisible(false);
         });
@@ -135,7 +143,7 @@ define("map/mapview",
           console.log(firstLocal.get("type"));
         }
 
-        else if(param != '')
+        if(!hasResults)
           this.showErrorOverlay({text: "Não foram encontrados resultados para a sua pesquisa", time: 3000});
 
         $( "#searchpanel" ).panel( "close" );
@@ -161,7 +169,6 @@ define("map/mapview",
 
           if(typeof centerLoc != 'undefined')
             mapCenter = new google.maps.LatLng(centerLoc.get("coord_x"), centerLoc.get("coord_y"));
-
 
             var myOptions = {
                 zoom:15,
@@ -197,6 +204,9 @@ define("map/mapview",
               types = _.union(types, model.get("type"));
 
              });
+
+          infoWindow.setContent(infoContent[centerLoc.get("id")]);
+          infoWindow.open(map, markers[centerLoc.get("id")]);
                        
       },
 
