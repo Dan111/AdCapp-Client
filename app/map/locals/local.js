@@ -2,7 +2,6 @@ define([
     "jquery",
     "backbone",
     "app.config",
-
     "backbone.cachingsync"
 ], 
 

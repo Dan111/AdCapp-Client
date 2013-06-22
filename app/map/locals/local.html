@@ -1,8 +1,6 @@
 <h1>{{local_name}}</h1>
 
-<br>
-
-<h3>Tipo: {{localType}}</h3>
+<h3>{{localType}}</h3>
 
 <br>
 
@@ -16,45 +14,55 @@
 
 
 <ul data-role="listview" data-inset="true" data-divider-theme="a">
-    <li data-role="list-divider">Sessões</li>
-	{{#each sessions}}
-        <li>
-          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
-            {{name}}
-          </a>
-        </li>
-    {{/each}}
-    <li data-role="list-divider">Papers</li>
-    {{#each papers}}
-        <li>
-          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
-            {{name}}
-          </a>
-        </li>
-    {{/each}}
+  {{#if sessions}}
+      <li data-role="list-divider">Sessões</li>
+    	{{#each sessions}}
+          <li>
+            <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+              {{name}}
+            </a>
+          </li>
+      {{/each}}
+  {{/if}}
+  {{#if papers}}
+      <li data-role="list-divider">Papers</li>
+      {{#each papers}}
+          <li>
+            <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+              {{name}}
+            </a>
+          </li>
+      {{/each}}
+  {{/if}}
+  {{#if keynotes}}
     <li data-role="list-divider">Keynotes</li>
-	{{#each keynotes}}
-        <li>
-          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
-            {{name}}
-          </a>
-        </li>
-    {{/each}}
-    <li data-role="list-divider">Workshops</li>
-    {{#each workshops}}
-        <li>
-          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
-            {{name}}
-          </a>
-        </li>
-    {{/each}}
-    <li data-role="list-divider">Eventos Sociais</li>
-    {{#each socials}}
-        <li>
-          <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
-            {{name}}
-          </a>
-        </li>
-    {{/each}}
+  	{{#each keynotes}}
+          <li>
+            <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+              {{name}}
+            </a>
+          </li>
+      {{/each}}
+    {{/if}}
+    {{#if workshops}}
+      <li data-role="list-divider">Workshops</li>
+      {{#each workshops}}
+          <li>
+            <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+              {{name}}
+            </a>
+          </li>
+      {{/each}}
+    {{/if}}
+    {{#if socials}}
+      <li data-role="list-divider">Eventos Sociais</li>
+      {{#each socials}}
+          <li>
+            <a href="#{{toLowerCase type}}/{{id}}" data-icon="arrow-r" data-iconpos="right">
+              {{name}}
+            </a>
+          </li>
+      {{/each}}
+    {{/if}}
 
 </ul>
