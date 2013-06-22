@@ -65,7 +65,6 @@ function ($, Backbone, BasicView, App) {
         do modelo a fazer fetch do servidor
 
         @constructor
-        @class Event
         **/
 		initialize: function (){
 

@@ -27,7 +27,7 @@ function (Backbone) {
 			"personalschedule/:id" : "othersagenda",
 			"maininfo"      : "maininfo",
 			"mainmenu"      : "mainmenu",
-			"maps(/:id)"		: "maps",
+			"maps(/:id)"	: "maps",
 
 			//listas
 			"speakers"      : "speakers",

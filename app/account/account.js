@@ -120,7 +120,10 @@ function ($, Backbone, _, BasicView) {
         @return {Number} Id do utilizador.
         **/
         getUserId: function (){
-            return this.get('profile')['id'];
+            if(this.isLogged())
+                return this.get('profile')['id'];
+            else
+                return 0;
         },
 
 

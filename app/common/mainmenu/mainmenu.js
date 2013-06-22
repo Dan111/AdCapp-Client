@@ -88,7 +88,8 @@ define("common/mainmenu/mainmenu",
         **/
         events: {
 
-            "click [href=#feedback]": "unauthorizedAccess"
+            "click [href=#feedback]": "unauthorizedAccess",
+            "click #user-profile-shortcut": "unauthorizedAccess"
 
         },
 
@@ -124,7 +125,10 @@ define("common/mainmenu/mainmenu",
         render: function () {
             var that = this;
 
-            var context = null;
+            var context = {
+                userId: App.account.getUserId(),
+                site: App.confWebsite
+            };
 
             var html = this.compileTextTemplate(this.template, context);
 
