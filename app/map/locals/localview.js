@@ -26,7 +26,7 @@ define("map/locals/localview",
 
 		pageName: "Local",
 
-		id: "local-page",
+		id: "local-page-",
 
 
 		initialize: function (args)
@@ -34,7 +34,8 @@ define("map/locals/localview",
 			_.bindAll(this);
 
 			var modelId = args.modelId;
-
+			this.id += modelId;
+			
             var self = this;
 
 			this.model = new LocalModel({id: modelId});
