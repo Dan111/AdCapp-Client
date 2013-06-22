@@ -71,7 +71,7 @@ function ($, Backbone, LocalStorage, listUser, App) {
 
         @method comparator
         @protected
-        @param {listUser} user modelo de informação de utilizador para lista
+        @param {ListUser} user modelo de informação de utilizador para lista
         @return {String} nome do user
         **/
         comparator: function( user ) {
@@ -85,7 +85,7 @@ function ($, Backbone, LocalStorage, listUser, App) {
         @method getEventsWithString
         @protected
         @param {String} string termo de filtragem
-        @return {Array} array de modelos listUser
+        @return {Array} array de modelos ListUser
         **/
         getUsersWithString: function(string){
             var lowerString = string.toLowerCase();

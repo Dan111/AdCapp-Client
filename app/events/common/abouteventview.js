@@ -85,7 +85,7 @@ define("events/common/abouteventview",
 		/**
 		Vetor com as informações dos oradores
 
-		@attribute speakers
+		@property speakers
 		@type {Array}
 		@private
 		@example

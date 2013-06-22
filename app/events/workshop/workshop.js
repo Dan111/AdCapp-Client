@@ -12,7 +12,8 @@ function ($, Backbone, Event, App) {
 	/**
     Modelo de um workshop
 
-    @class Workshop
+    @class events.workshop.Workshop
+    @alternateClassName Workshop
     @extends Event
     **/
 	return Event.extend({

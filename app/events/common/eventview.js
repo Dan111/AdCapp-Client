@@ -363,9 +363,9 @@ define("events/common/eventview",
 		@protected
 		@param {BasicView} view View da tab
 		@param {Object} name Id e nome da tab
-			@param {String} name.id Id da tab
-			@param {String} name.name Nome a ser apresentado pela tab
-		@param {pos} [pos=length do vector tabs] Posição que a tab deve ocupar na navbar
+		@param {String} name.id Id da tab
+		@param {String} name.name Nome a ser apresentado pela tab
+		@param {Number} [pos=length do vector tabs] Posição que a tab deve ocupar na navbar
 		**/
 		addTab: function (view, name, pos) { //TODO: colocar o pos a funcionar
 

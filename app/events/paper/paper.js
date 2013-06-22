@@ -79,7 +79,7 @@ function ($, Backbone, Event, App) {
 
 		@method voteQuestion
 		@param {Number} questionId Id da questão
-		@param {Function()} success Callback em caso de sucesso
+		@param {Function} success Callback em caso de sucesso
 		**/
 		voteQuestion: function (questionId, success) {
 

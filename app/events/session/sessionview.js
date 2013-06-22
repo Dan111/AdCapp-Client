@@ -15,7 +15,7 @@ define("events/session/sessionview",
 	/**
 	View da página de sessão
 
-	@class events,session.SessionView
+	@class events.session.SessionView
 	@alternateClassName SessionView
 	@extends EventView
 	**/
