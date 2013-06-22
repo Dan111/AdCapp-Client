@@ -23,8 +23,8 @@ define("rankings/sessionsrankview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -35,8 +35,8 @@ define("rankings/sessionsrankview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "session-award-page"
+		@readonly
+		
 		**/
 		id: "session-award-page",
 
@@ -47,8 +47,8 @@ define("rankings/sessionsrankview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Prémios Sessões"
+		@readonly
+		
 		**/
 		pageName: "Prémios Sessions",
 

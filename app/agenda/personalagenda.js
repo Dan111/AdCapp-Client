@@ -22,8 +22,8 @@ function ($, Backbone, _, App, BasicView) {
         @property url 
         @type String
         @static
-        @final
-        @default null
+        @readonly
+        
         **/
 		url: null,
 
@@ -33,8 +33,8 @@ function ($, Backbone, _, App, BasicView) {
         @property localStorage 
         @type String
         @static
-        @final
-        @default null
+        @readonly
+        
         **/
 		localStorage: null,
 
@@ -44,7 +44,7 @@ function ($, Backbone, _, App, BasicView) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @protected
         **/
 		defaults: {
@@ -135,7 +135,7 @@ function ($, Backbone, _, App, BasicView) {
 
         @method hasEvent
         @protected
-        @param {integer} eventId id de um evento
+        @param {Number} eventId id de um evento
         @return {boolean} booleano que indica se o evento está na agenda
         **/
 		hasEvent: function (eventId)
@@ -169,7 +169,7 @@ function ($, Backbone, _, App, BasicView) {
 
         @method removeEvent
         @protected
-        @param {integer} eventId id de um evento
+        @param {Number} eventId id de um evento
         **/
 		removeEvent: function (eventId)
 		{
@@ -182,7 +182,7 @@ function ($, Backbone, _, App, BasicView) {
 
         @method addEvent
         @protected
-        @param {integer} eventId id de um evento
+        @param {Number} eventId id de um evento
         **/
 		addEvent: function (eventId)
 		{

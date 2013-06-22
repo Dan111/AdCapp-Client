@@ -13,7 +13,8 @@ define("events/common/commentsview",
 	/**
 	View da tab 'Comentários' presente nas páginas dos eventos
 
-	@class CommentsView
+	@class events.common.CommentsView
+	@alternateClassName CommentsView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -23,9 +24,7 @@ define("events/common/commentsview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "#tab-content"
+		@private
 		**/
 		el: "#tab-content",
 
@@ -37,8 +36,8 @@ define("events/common/commentsview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "tab-content"
+		@readonly
+		@private
 		**/
 		id: "tab-content",
 
@@ -50,8 +49,8 @@ define("events/common/commentsview",
 		@property template 
 		@type String
 		@static
-		@final
-		@default "comments-tab-template"
+		@readonly
+		@private
 		**/
 		template: CommentsTemplate,
 
@@ -62,8 +61,8 @@ define("events/common/commentsview",
 		@property commentPartial
 		@type String
 		@static
-		@final
-		@default "comment-partial"
+		@readonly
+		@private
 		**/
 		commentPartial: CommentPartialTemplate,
 
@@ -74,7 +73,7 @@ define("events/common/commentsview",
 		@property events
 		@type Object
 		@static
-		@final
+		@readonly
 		@private
 		**/
 		events: {
@@ -87,41 +86,41 @@ define("events/common/commentsview",
 		/**
 		Nome a ser usado no botão do formulário (por exemplo, Novo Comentário)
 
-		@attribute title
+		@property title
 		@type {String}
 		@private
-		@required
 		**/
+		title: null,
 
 
 		/**
 		Vetor com os comentários
 
-		@attribute comments
-		@type {String}
+		@property comments
+		@type String
 		@private
-		@required
 		**/
+		comments: null,
 
 
 		/**
 		Modelo do evento ao qual os comentários pertencem
 
-		@attribute model
-		@type {String}
+		@property model
+		@type String
 		@private
-		@required
 		**/
+		model: null,
 
 
 		/**
 		URI dos comentários, a partir do URL do modelo
 
-		@attribute url
-		@type {String}
+		@property url
+		@type String
 		@private
-		@required
 		**/
+		url: null,
 
 
 		/**
@@ -129,13 +128,11 @@ define("events/common/commentsview",
 		ao qual estes pertencem.
 
 		@constructor
-		@class CommentsView
-		@protected
 		@param {Object} args Configuração da tab
-			@param {String} args.title Nome a ser usado no botão do formulário (por exemplo, Novo Comentário)
-			@param {String} args.comments Vetor com os comentários
-			@param {String} args.model Modelo do evento ao qual os comentários pertencem
-			@param {Array} args.url URI dos comentários, a partir do URL do modelo
+		@param {String} args.title Nome a ser usado no botão do formulário (por exemplo, Novo Comentário)
+		@param {String} args.comments Vetor com os comentários
+		@param {String} args.model Modelo do evento ao qual os comentários pertencem
+		@param {Array} args.url URI dos comentários, a partir do URL do modelo
 		@example
 			var args = {};
 
@@ -161,7 +158,6 @@ define("events/common/commentsview",
 		elementos do formulário de submissão de novos comentários
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function (){
@@ -189,7 +185,6 @@ define("events/common/commentsview",
 		fazendo aparecer o formulário de submissão de novos comentários
 
 		@method newComment
-		@protected
 		**/
 		newComment: function (){
 
@@ -207,7 +202,6 @@ define("events/common/commentsview",
 		escondendo o formulário de submissão de novos comentários
 
 		@method cancelComment
-		@protected
 		**/
 		cancelComment: function (){
 
@@ -226,7 +220,6 @@ define("events/common/commentsview",
 		Adiciona o comentário à lista casoo envio seja bem sucedido
 
 		@method submitComment
-		@protected
 		**/
 		submitComment: function (){
 
@@ -262,7 +255,6 @@ define("events/common/commentsview",
 		Remove a view e faz unbind de todos os eventos a ela associados
 
 		@method close
-		@protected
 		@deprecated
 		**/
 		close: function (){

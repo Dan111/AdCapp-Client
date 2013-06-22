@@ -17,7 +17,8 @@ define("profile/profileview",
     /**
     View da página de perfil 
 
-    @class ProfileView
+    @class profile.ProfileView
+    @alternateClassName ProfileView
     @extends BasicView
     **/
     return BasicView.extend({
@@ -27,22 +28,20 @@ define("profile/profileview",
 
         @property el 
         @type String
-        @static
-        @final
-        @default "div[data-role=content]"
+        @private
         **/
         el: "div[data-role=content]",
+
 
         /**
         Id da página de perfil
 
         @property id 
         @type String
-        @static
-        @final
-        @default "profile-page-"
+        @private
         **/
         id: "profile-page-",
+
 
         /**
         Nome da página de perfil
@@ -50,43 +49,47 @@ define("profile/profileview",
         @property pageName 
         @type String
         @static
-        @final
-        @default "Perfil"
+        @readonly
+        @private
         **/
         pageName: "Perfil",
+
 
         /**
         Template base do perfil
 
         @property template 
         @type String
-        @final
-        @protected
-        @default "profile-template"
+        @static
+        @readonly
+        @private
         **/
         template: ProfileBaseTemplate,
+
 
         /**
         Template da tab de informaões gerais
 
         @property generalInfoTemplate
         @type String
-        @final
-        @protected
-        @default GeneralInfoTemplate
+        @static
+        @readonly
+        @private
         **/        
         generalInfoTemplate: GeneralInfoTemplate,
+
 
         /**
         Template da tab de contactos sociais
 
         @property moreContactsTemplate 
         @type String
-        @final
-        @protected
-        @default MoreContactsTemplate
+        @static
+        @readonly
+        @private
         **/          
         moreContactsTemplate: MoreContactsTemplate,
+
 
         /**
         Dicionário que guarda informações relativas aos tipos de
@@ -95,24 +98,21 @@ define("profile/profileview",
         @property typesInfo
         @type Object
         @static
-        @final
-        @protected
-        @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
-                    "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
-                    "session": {url: '#sessions/'}};
+        @readonly
+        @private
         **/
         typesInfo: app.TYPESINFO,
+
 
         /**
         Modelo do perfil ao qual corresponde esta página
 
         @property user
         @type Backbone.Model
-        @final
-        @protected
-        @default null
+        @private
         **/
         user: null,
+
 
         /**
         Eventos lançados pela transição entre tabs
@@ -121,7 +121,9 @@ define("profile/profileview",
 
         @property events
         @type Object
-        @protected
+        @static
+        @readonly
+        @private
         **/
         events: {
 
@@ -131,16 +133,15 @@ define("profile/profileview",
 
         },
 
+
         /**
         Construtor da classe ProfileView, em que é passado o id do utilizador
         a apresentar. Faz o fetch da Collection de contactos, do Model
         do utilizador a apresentar e ainda o rendering da página
 
         @constructor
-        @protected
-        @class ProfileView
         @param {Object} args contém id do utilizador a apresentar
-            @param {integer} args.modelId id do utilizador a apresentar
+        @param {Number} args.modelId id do utilizador a apresentar
         **/
         initialize: function (args)
         {
@@ -161,11 +162,11 @@ define("profile/profileview",
                 });
         },
 
+
         /**
         Faz o rendering do layout base das páginas de perfil
 
         @method render
-        @protected
         @chainable
         **/
         render: function () {
@@ -206,7 +207,6 @@ define("profile/profileview",
         este esteja ou não na coleção de contactos.
 
         @method addRemoveUser
-        @protected
         **/
         addRemoveUser: function()
         {
@@ -237,11 +237,12 @@ define("profile/profileview",
             }
         },
 
+
         /**
         Trata da informação necessária de cada evento
 
         @method treatEvents
-        @protected
+        @private
         @return{Array} retorna um array de contextos de cada evento passado
         **/
         treatEvents: function(myEvents) {
@@ -256,11 +257,11 @@ define("profile/profileview",
             });
         },
 
+
         /**
         Faz o renderering da tab de informações gerais
 
         @method renderGeneral
-        @protected
         @chainable
         **/
         renderGeneral: function() {
@@ -299,11 +300,11 @@ define("profile/profileview",
             return this;
         },
 
+
         /**
         Faz o renderering da tab de contactos sociais do perfil
 
         @method renderContacts
-        @protected
         @chainable
         **/
         renderContacts: function() {

@@ -31,8 +31,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property id 
         @type String
         @static
-        @final
-        @default "others-agenda-page"
+        @readonly
+        
         **/
         id: "others-agenda-page",
 
@@ -42,8 +42,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property pageName 
         @type String
         @static
-        @final
-        @default "Agenda Pessoal"
+        @readonly
+        
         **/     
         pageName: "Agenda Pessoal",
 
@@ -52,9 +52,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property template 
         @type String
-        @final
+        @readonly
         @protected
-        @default OthersAgendaTemplate
+        
         **/
         template: OthersAgendaTemplate,
 
@@ -64,9 +64,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property personalAgenda
         @type Backbone.Model
-        @final
+        @readonly
         @protected
-        @default null
+        
         **/
         personalAgenda: null,
 
@@ -75,9 +75,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property conferenceEvents
         @type Backbone.Collection
-        @final
+        @readonly
         @protected
-        @default null
+        
         **/
         conferenceEvents: null,
 
@@ -87,9 +87,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property calendarView
         @type Backbone.View
-        @final
+        @readonly
         @protected
-        @default null
+        
         **/
         calendarView: null,
 

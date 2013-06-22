@@ -15,7 +15,8 @@ define("feedback/feedbackview",
     /**
     View do menu de feedback
 
-    @class FeedbackView
+    @class feedback.FeedbackView
+    @alternateClassName FeedbackView
     @extends BasicView
     **/
 	return BasicView.extend({
@@ -26,8 +27,8 @@ define("feedback/feedbackview",
         @property id 
         @type String
         @static
-        @final
-        @default "feedback-page"
+        @readonly
+        @private
         **/
         id: "feedback-page",
 
@@ -38,8 +39,8 @@ define("feedback/feedbackview",
         @property pageName 
         @type String
         @static
-        @final
-        @default "Feedback"
+        @readonly
+        @private
         **/
         pageName: "Feedback",
 
@@ -49,9 +50,9 @@ define("feedback/feedbackview",
 
         @property template 
         @type String
-        @final
-        @protected
-        @default "feedback-template"
+        @static
+        @readonly
+        @private
         **/
         template: FeedbackTemplate,
 
@@ -61,7 +62,9 @@ define("feedback/feedbackview",
 
         @property events
         @type Object
-        @protected
+        @static
+        @readonly
+        @private
         **/
         events: {
 
@@ -72,7 +75,6 @@ define("feedback/feedbackview",
         Inicializa a página de feedback. 
 
         @constructor
-        @class FeedbackView
         **/
         initialize: function () {
 
@@ -96,7 +98,6 @@ define("feedback/feedbackview",
         Faz o rendering da página de feedback.
 
         @method render
-        @protected
         @chainable
         **/
         render: function () {

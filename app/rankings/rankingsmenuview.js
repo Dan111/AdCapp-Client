@@ -22,8 +22,8 @@ define("rankings/rankingsmenuview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default $("[data-role=content]")
+		@readonly
+		
 		**/
 		el: $("[data-role=content]"),
 
@@ -33,8 +33,8 @@ define("rankings/rankingsmenuview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "rankings-page"
+		@readonly
+		
 		**/
 		id: "rankings-page",
 
@@ -44,8 +44,8 @@ define("rankings/rankingsmenuview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Prémios"
+		@readonly
+		
 		**/
 		pageName: "Prémios",
 
@@ -54,9 +54,9 @@ define("rankings/rankingsmenuview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default RankingsTemplate
+		
 		**/
 		template: RankingsTemplate,
 

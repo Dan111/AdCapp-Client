@@ -37,7 +37,7 @@ function (Backbone, $, _, Account) {
 	@property URL 
 	@type String
 	@static
-	@final
+	@readonly
 	**/
 	window.app.URL = "http://193.136.122.153/";
 
@@ -48,7 +48,7 @@ function (Backbone, $, _, Account) {
 	@property confName 
 	@type String
 	@static
-	@final
+	@readonly
 	**/
 	app.confName = "AdCapp";
 
@@ -59,7 +59,7 @@ function (Backbone, $, _, Account) {
 	@property confWebsite 
 	@type String
 	@static
-	@final
+	@readonly
 	**/
 	app.confWebsite = "http://";
 
@@ -70,7 +70,7 @@ function (Backbone, $, _, Account) {
 	@property confEmail 
 	@type String
 	@static
-	@final
+	@readonly
 	**/
 	app.confEmail = "adcapp.g22@gmail.com";
 
@@ -81,7 +81,7 @@ function (Backbone, $, _, Account) {
 	@property startDate 
 	@type Date
 	@static
-	@final
+	@readonly
 	**/
 	app.startDate = new Date(2012, 8, 6);
 
@@ -92,7 +92,7 @@ function (Backbone, $, _, Account) {
 	@property endDate 
 	@type Date
 	@static
-	@final
+	@readonly
 	**/
 	app.endDate = new Date(2012, 8, 7);
 
@@ -104,7 +104,7 @@ function (Backbone, $, _, Account) {
 	@property TYPES 
 	@type Object
 	@static
-	@final
+	@readonly
 	**/
 	app.TYPES = {
 		PAPER	: "Paper",
@@ -127,7 +127,7 @@ function (Backbone, $, _, Account) {
 	@property MSG 
 	@type Object
 	@static
-	@final
+	@readonly
 	**/
 	app.MSG = {
 		REGISTRATION_NEEDED: "Por favor, registe-se nas opções."

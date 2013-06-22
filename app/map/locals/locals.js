@@ -13,7 +13,8 @@ function ($, Backbone, LocalStorage, Local, App) {
 	/**
     Coleção de locais
 
-    @class LocalsCollection
+    @class map.locals.LocalsCollection
+    @alternateClassName LocalsCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
@@ -23,23 +24,33 @@ function ($, Backbone, LocalStorage, Local, App) {
 
         @property model 
         @type Backbone.Model
-        @final
-        @protected
-        @default Local
+        @static
+        @readonly
+        @private
         **/
 		model: Local,
 
+
+        /**
+        URL utilizado para obter os dados.
+
+        @property url
+        @type String
+        @static
+        @readonly
+        @private
+        **/
 		url: App.URL + "locals",
-//url: "http://lcatalaya.apiary.io/Locals",
+
 
         /**
         Alteração do método sync para utilizar o localStorage como cache
 
         @property sync
         @type Function
-        @private
         **/
         sync: Backbone.cachingSync(Backbone.sync, 'locals'),
+
 
 		initialize: function (){
 		},
@@ -49,7 +60,7 @@ function ($, Backbone, LocalStorage, Local, App) {
         Comparador de modelos
 
         @method comparator
-        @protected
+        @private
         @param {Local} local Modelo de um local
         @return {String} Nome do local
         **/
@@ -63,7 +74,6 @@ function ($, Backbone, LocalStorage, Local, App) {
         objectos que teem no nome a string passada
 
         @method getEventsWithString
-        @protected
         @param {String} string termo de filtragem
         @return {Array} array de modelos Local
         **/

@@ -8,7 +8,8 @@ function ($, Backbone) {
 	/**
     Modelo do contacto referente a um utilizador/participante
 
-    @class Contact
+    @class contacts.Contact
+    @alternateClassName Contact
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -20,8 +21,8 @@ function ($, Backbone) {
         @property idAttribute 
         @type String
         @static
-        @final
-        @default "user_id"
+        @readonly
+        @private
         **/
 		idAttribute: 'user_id',
 
@@ -31,8 +32,8 @@ function ($, Backbone) {
         @property defaults
         @type Object
         @static
-        @final
-        @protected
+        @readonly
+        @private
         **/
 		defaults: {
 

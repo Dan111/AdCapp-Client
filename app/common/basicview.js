@@ -12,7 +12,8 @@ define("common/basicview",
 	Contém código comum entre todas as views, como o rendering do layout, compilação de templates,
 	refrescamento do jQuery Mobile, ...
 
-	@class BasicView
+	@class common.BasicView
+	@alternateClassName BasicView
 	@extends Backbone.View
 	**/
 	return Backbone.View.extend({
@@ -24,8 +25,8 @@ define("common/basicview",
 		@property mainContainer 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+        @readonly
+        @protected
 		**/
 		mainContainer: "div[data-role=content]",
 
@@ -33,21 +34,25 @@ define("common/basicview",
 		/**
 		Id a ser usado no div da página
 
-		@attribute id
-		@type {String}
-		@protected
-		@required
+		@property id
+		@type String
+		@static
+        @readonly
+        @protected
 		**/
+		id: null,
 
 
 		/**
 		Nome da página que é exibido no header do layout
 
-		@attribute pageName
-		@type {String}
-		@protected
-		@required
+		@property pageName
+		@type String
+		@static
+        @readonly
+        @protected
 		**/
+		pageName: null,
 
 
 		/**
@@ -120,8 +125,8 @@ define("common/basicview",
 		@method showErrorOverlay
 		@static
 		@param {Object} options Configuração do popup
-			@param {String} options.text Mensagem a ser mostrada pelo popup
-			@param {Integer} [options.time=2000] Durante quanto tempo, em milisegundos, 
+		@param {String} options.text Mensagem a ser mostrada pelo popup
+		@param {Number} [options.time=2000] Durante quanto tempo, em milisegundos, 
 													deve o popup ser apresentado
 		@example
 			showErrorOverlay({text: "Erro", time: 5000})
@@ -151,7 +156,7 @@ define("common/basicview",
 		Inicia a transição de página do jQuery Mobile para a página corrente
 
 		@method enhanceJQMComponentsAPI
-		@private
+		@protected
 		**/
 		enhanceJQMComponentsAPI: function () {
 

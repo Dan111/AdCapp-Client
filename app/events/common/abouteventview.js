@@ -11,7 +11,8 @@ define("events/common/abouteventview",
 	/**
 	View da tab 'Sobre' presente nas páginas dos eventos
 
-	@class AboutEventView
+	@class events.common.AboutEventView
+	@alternateClassName AboutEventView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -21,9 +22,7 @@ define("events/common/abouteventview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "#tab-content"
+		@private
 		**/
 		el: "#tab-content",
 
@@ -35,8 +34,8 @@ define("events/common/abouteventview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "tab-content"
+		@readonly
+		@private
 		**/
 		id: "tab-content",
 
@@ -47,8 +46,8 @@ define("events/common/abouteventview",
 		@property template 
 		@type String
 		@static
-		@final
-		@default "event-about-tab-template"
+		@readonly
+		@private
 		**/
 		template: AboutEventTemplate,
 
@@ -56,31 +55,31 @@ define("events/common/abouteventview",
 		/**
 		Título da descrição ('Abstract', 'Sobre', 'Resumo', ...)
 
-		@attribute descName
-		@type {String}
+		@property descName
+		@type String
 		@private
-		@required
 		**/
+		descName: null,
 
 
 		/**
 		Conteúdo da descrição
 
-		@attribute description
-		@type {String}
+		@property description
+		@type String
 		@private
-		@required
 		**/
+		description: null,
 
 
 		/**
 		Título dos envolvidos ('Autor', 'Professor', 'Tutor', 'Orador', 'Anfitrião', ...)
 
-		@attribute speakersTitle
-		@type {String}
+		@property speakersTitle
+		@type String
 		@private
-		@required
 		**/
+		speakersTitle: null,
 
 
 		/**
@@ -89,7 +88,6 @@ define("events/common/abouteventview",
 		@attribute speakers
 		@type {Array}
 		@private
-		@required
 		@example
 			[
 				{
@@ -101,6 +99,7 @@ define("events/common/abouteventview",
 				}
 			]
 		**/
+		speakers: null,
 
 
 		/**
@@ -108,14 +107,11 @@ define("events/common/abouteventview",
 		o título dos envolvidos (se é autor, ou tutor, ou orador, etc).
 
 		@constructor
-		@class AboutEventView
-		@protected
 		@param {Object} args Configuração da tab
-			@param {String} args.descName Título da descrição ('Abstract', 'Sobre', 'Resumo', ...)
-			@param {String} args.description Conteúdo da descrição
-			@param {String} args.speakersTitle Título dos envolvidos ('Autor', 'Professor', 
-												'Tutor', 'Orador', 'Anfitrião', ...)
-			@param {Array} args.speakers Vetor com as informações dos oradores
+		@param {String} args.descName Título da descrição ('Abstract', 'Sobre', 'Resumo', ...)
+		@param {String} args.description Conteúdo da descrição
+		@param {String} args.speakersTitle Título dos envolvidos ('Autor', 'Professor', 'Tutor', 'Orador', 'Anfitrião', ...)
+		@param {Array} args.speakers Vetor com as informações dos oradores
 		@example
 			var args = {};
 
@@ -152,7 +148,6 @@ define("events/common/abouteventview",
 		Faz o rendering da tab 'Sobre'
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {

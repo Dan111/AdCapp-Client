@@ -28,8 +28,8 @@ define("informations/generalsearchview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: $("[data-role=content]"),
 
@@ -39,8 +39,8 @@ define("informations/generalsearchview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "search-page"
+		@readonly
+		
 		**/
 		id: "search-page",
 
@@ -50,8 +50,8 @@ define("informations/generalsearchview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Pesquisa Geral"
+		@readonly
+		
 		**/
 		pageName: "Pesquisa Geral",
 
@@ -60,9 +60,9 @@ define("informations/generalsearchview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default SearchPageTemplate
+		
 		**/
 		template: SearchPageTemplate,
 
@@ -71,9 +71,9 @@ define("informations/generalsearchview",
 
 		@property partial 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default GeneralResultsPartial
+		
 		**/
 		partial: GeneralResultsPartial,
 		
@@ -84,9 +84,9 @@ define("informations/generalsearchview",
         @property searchable
         @type Object
         @static
-        @final
+        @readonly
         @protected
-        @default {"paper": {url: '#paper/'}, "workshop": {url: '#workshop/'}, 
+        
 					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
 					"session": {url: '#session/'}, "speaker": {url: '#user/'}, 
 					"participant":{url: '#user/'}, "local": {url: '#local/'}},

@@ -9,7 +9,8 @@ function ($, Backbone, App) {
 	/**
     Modelo de utilizadores/participantes da conferência
 
-    @class UserModel
+    @class profile.User
+    @alternateClassName User
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -19,20 +20,19 @@ function ($, Backbone, App) {
 
         @property url 
         @type String
-        @static
-        @final
-        @default "App.URL + "users/""
+        @private
         **/
 		url: App.URL + "users/",
+
 
         /**
         Alteração do método sync para utilizar o localStorage como cache
 
         @property sync
         @type Function
-        @private
         **/
         sync: Backbone.cachingSync(Backbone.sync, 'adcapp-user'),
+
 
 		/**
         Defaults dos atributos do modelo
@@ -40,8 +40,8 @@ function ($, Backbone, App) {
         @property defaults
         @type Object
         @static
-        @final
-        @protected
+        @readonly
+        @private
         **/
 		defaults: {
 
@@ -61,13 +61,12 @@ function ($, Backbone, App) {
 
 		},
 
+
 		/**
         Construtor do modelo UserModel. Adiciona à url o id
         do modelo a fazer fetch do servidor
 
         @constructor
-        @protected
-        @class UserModel
         **/
 		initialize: function (){
 

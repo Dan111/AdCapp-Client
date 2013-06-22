@@ -14,7 +14,8 @@ define("account/optionsview",
 	/**
 	Página de registo do dispositivo
 
-	@class OptionsView
+	@class account.OptionsView
+	@alternateClassName OptionsView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -24,9 +25,7 @@ define("account/optionsview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -37,8 +36,8 @@ define("account/optionsview",
         @property id 
         @type String
         @static
-        @final
-        @default "options-page"
+        @readonly
+        @private
         **/
         id: "options-page",
 
@@ -49,8 +48,8 @@ define("account/optionsview",
         @property pageName 
         @type String
         @static
-        @final
-        @default "Opções"
+        @readonly
+        @private
         **/
         pageName: "Opções",
 
@@ -60,9 +59,9 @@ define("account/optionsview",
 
 		@property template 
 		@type String
-		@final
-		@protected
-		@default "options-template"
+		@static
+        @readonly
+        @private
 		**/
 		template: OptionsTemplate,
 
@@ -73,7 +72,6 @@ define("account/optionsview",
 		@property account 
 		@type Account
 		@private
-		@default null
 		**/
 		account: null,
 
@@ -83,8 +81,9 @@ define("account/optionsview",
 
 		@property submitButton 
 		@type String
-		@private
-		@default "#submit-button"
+		@static
+        @readonly
+        @private
 		**/
 		submitButton: "#submit-button",
 
@@ -94,8 +93,9 @@ define("account/optionsview",
 
 		@property cancelButton 
 		@type String
-		@private
-		@default "#cancel-button"
+		@static
+        @readonly
+        @private
 		**/
 		cancelButton: "#cancel-button",
 
@@ -105,8 +105,9 @@ define("account/optionsview",
 
 		@property resendButton 
 		@type String
-		@private
-		@default "#resend-button"
+		@static
+        @readonly
+        @private
 		**/
 		resendButton: "#resend-button",
 
@@ -116,8 +117,9 @@ define("account/optionsview",
 
 		@property emailForm 
 		@type String
-		@private
-		@default "#email-form"
+		@static
+        @readonly
+        @private
 		**/
 		emailForm: "#email-form",
 
@@ -127,8 +129,9 @@ define("account/optionsview",
 
 		@property codeForm 
 		@type String
-		@private
-		@default "#code-form"
+		@static
+        @readonly
+        @private
 		**/
 		codeForm: "#code-form",
 
@@ -138,7 +141,9 @@ define("account/optionsview",
 
 		@property events
 		@type Object
-		@protected
+		@static
+        @readonly
+        @private
 		**/
 		events: {
 
@@ -156,8 +161,6 @@ define("account/optionsview",
 		Construtor da página de opções
 
 		@constructor
-		@protected
-		@class OptionsView
 		**/
 		initialize: function ()
 		{
@@ -176,7 +179,6 @@ define("account/optionsview",
 		Faz o rendering do formulário das opções
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {
@@ -230,7 +232,6 @@ define("account/optionsview",
 		Função chamada quando o utilizador clica no botão de submissão de registo
 
 		@method registerDevice
-		@private
 		**/
 		registerDevice: function() {
 
@@ -252,7 +253,6 @@ define("account/optionsview",
 		Função chamada quando o utilizador clica no botão de cancelar o registo
 
 		@method cancelRegistration
-		@private
 		**/
 		cancelRegistration: function() {
 			$('#popupMenu').popup('close');
@@ -263,7 +263,6 @@ define("account/optionsview",
 		Função chamada quando o utilizador clica no botão de reenvio de código de registo
 
 		@method resendCode
-		@private
 		**/
 		resendCode: function() {
 
@@ -290,7 +289,6 @@ define("account/optionsview",
 		processo de guardar as opções localmente e no servidor
 
 		@method saveOptions
-		@private
 		**/
 		saveOptions: function () {
 			console.log("save options");

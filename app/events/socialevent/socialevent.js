@@ -11,7 +11,8 @@ function ($, Backbone, Event, App) {
 	/**
     Modelo de um evento social
 
-    @class SocialEvent
+    @class events.socialevent.SocialEvent
+    @alternateClassName SocialEvent
     @extends Event
     **/
 	return Event.extend({
@@ -22,7 +23,6 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/social_events/"
 		**/
 		url: App.URL + "social_events/",
 
@@ -32,7 +32,6 @@ function ($, Backbone, Event, App) {
 
 		@property sync
 		@type Function
-		@private
 		**/
 		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-social-event'),
 		
@@ -43,7 +42,7 @@ function ($, Backbone, Event, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -62,8 +61,6 @@ function ($, Backbone, Event, App) {
         Construtor do modelo. Adiciona ao URL o id da instância.
 
         @constructor
-        @protected
-        @class SocialEvent
         **/
 		initialize: function (){
 			this.url += this.id;

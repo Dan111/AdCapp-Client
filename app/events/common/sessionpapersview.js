@@ -11,7 +11,8 @@ define("events/common/sessionpapersview",
 	/**
 	View da tab 'Papers' presente na página de sessão
 
-	@class SessionPapersView
+	@class events.common.SessionPapersView
+	@alternateClassName SessionPapersView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -22,8 +23,8 @@ define("events/common/sessionpapersview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "#tab-content"
+		@readonly
+		@private
 		**/
 		el: "#tab-content",
 
@@ -35,8 +36,8 @@ define("events/common/sessionpapersview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "tab-content"
+		@readonly
+		@private
 		**/
 		id: "tab-content",
 
@@ -47,8 +48,8 @@ define("events/common/sessionpapersview",
 		@property template 
 		@type String
 		@static
-		@final
-		@default "session-papers-tab-template"
+		@readonly
+		@private
 		**/
 		template: SessionPapersTemplate,
 
@@ -56,10 +57,9 @@ define("events/common/sessionpapersview",
 		/**
 		Vetor com as informações dos papers
 
-		@attribute papers
-		@type {Array}
+		@property papers
+		@type Array
 		@private
-		@required
 		@example
 			[
 			    {
@@ -72,16 +72,15 @@ define("events/common/sessionpapersview",
 			    }
 			]
 		**/
+		papers: null,
 
 
 		/**
 		Inicializa o vetor com as informações das palestras da sessão.
 
 		@constructor
-		@class SessionPapersView
-		@protected
 		@param {Object} args Configuração da tab
-			@param {Array} args.papers Vetor com as informações dos papers
+		@param {Array} args.papers Vetor com as informações dos papers
 		**/
 		initialize: function (args) {
 			this.papers = args.papers;
@@ -92,7 +91,6 @@ define("events/common/sessionpapersview",
 		Faz o rendering da tab 'Papers'
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {

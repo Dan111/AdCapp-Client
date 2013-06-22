@@ -12,7 +12,8 @@ function ($, Backbone, _, BasicView) {
 	/**
     Guarda as configurações da aplicação definidas pelo utilizador.
 
-    @class Account
+    @class account.Account
+    @alternateClassName Account
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -23,8 +24,8 @@ function ($, Backbone, _, BasicView) {
         @property localStorage
         @type Backbone.LocalStorage
         @static
-        @final
-        @default new Backbone.LocalStorage('contacts-backbone')
+        @readonly
+        @private
         **/
 		localStorage: new Backbone.LocalStorage('account-backbone'),
 
@@ -35,7 +36,7 @@ function ($, Backbone, _, BasicView) {
         @property IMGUR_CLIENT_ID
         @type String
         @static
-        @final
+        @readonly
         @private
         **/
         IMGUR_CLIENT_ID: "96dbf82f933adfa",
@@ -47,7 +48,7 @@ function ($, Backbone, _, BasicView) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -138,6 +139,7 @@ function ($, Backbone, _, BasicView) {
         Devolve o código de registo do utilizador.
 
         @method getCode
+        @private
         @return {String} Código de registo do utilizador.
         **/
         getCode: function (){
@@ -149,7 +151,6 @@ function ($, Backbone, _, BasicView) {
         Regista o dispositivo no server
 
         @method registerDevice
-        @async
         @param {String} email Email do utilizador
         @param {String} code Código de registo do utilizador
         @param {Function} successCallback Função de callback em caso de sucesso
@@ -323,7 +324,6 @@ function ($, Backbone, _, BasicView) {
         Guarda as alterações feitas no perfil pessoal no servidor
 
         @method pushOptionsToServer
-        @async
         @param {Object} args Argumentos da função
             @param {Object} [args.options=profile] Os pares chave e valor a serem guardados no servidor
             @param {Function} [args.success] Função de callback em caso de sucesso
@@ -411,8 +411,6 @@ function ($, Backbone, _, BasicView) {
         Carrega a imagem passada como parâmetro para o Imgur
 
         @method uploadPhoto
-        @protected
-        @async
         @param {File} file Ficheiro da imagem a ser carregada
         @param {Function} successCallback Função de callback em caso de sucesso
         @param {Function} errorCallback Função de callback em caso de erro

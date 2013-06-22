@@ -23,8 +23,8 @@ define("rankings/speakersrankview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -35,8 +35,8 @@ define("rankings/speakersrankview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "user-award-page"
+		@readonly
+		
 		**/
 		id: "user-award-page",
 
@@ -47,8 +47,8 @@ define("rankings/speakersrankview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Prémios Oradores"
+		@readonly
+		
 		**/
 		pageName: "Prémios Oradores",
 

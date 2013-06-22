@@ -21,7 +21,7 @@ function ($, Backbone, BasicView, App) {
 		@property url
 		@type String
 		@private
-		@default "null"
+		
 		**/
 		url: null,
 
@@ -32,7 +32,7 @@ function ($, Backbone, BasicView, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -49,7 +49,7 @@ function ($, Backbone, BasicView, App) {
         @constructor
         @protected
         @class RankInfo
-        @param {Oject} args contém o tipo de ranking
+        @param {Object} args contém o tipo de ranking
             @param {String} args.type tipo de ranking
         @example "paper", "session", "user", "keynote" ou "workshop"
         **/

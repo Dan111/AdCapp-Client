@@ -23,8 +23,8 @@ define("rankings/keynotesrankview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -35,8 +35,8 @@ define("rankings/keynotesrankview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "keynote-award-page"
+		@readonly
+		
 		**/
 		id: "keynote-award-page",
 
@@ -47,8 +47,8 @@ define("rankings/keynotesrankview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Prémios Keynotes"
+		@readonly
+		
 		**/
 		pageName: "Prémios Keynotes",
 

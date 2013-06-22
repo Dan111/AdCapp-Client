@@ -18,7 +18,8 @@ define("events/common/eventview",
 	/**
 	View abstracta das páginas de informações de cada evento
 
-	@class EventView
+	@class events.common.EventView
+	@alternateClassName EventView
 	@extends BasicView
 	**/
 	return BasicView.extend({
@@ -28,9 +29,7 @@ define("events/common/eventview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@protected
 		**/
 		el: "div[data-role=content]",
 
@@ -40,9 +39,9 @@ define("events/common/eventview",
 
 		@property tabContainer 
 		@type String
-		@final
+		@static
+		@readonly
 		@protected
-		@default "#tab-content"
 		**/
 		tabContainer: "#tab-content",
 
@@ -52,9 +51,9 @@ define("events/common/eventview",
 
 		@property template 
 		@type String
-		@final
-		@protected
-		@default "event-template"
+		@static
+		@readonly
+		@private
 		**/
 		template: EventTemplate,
 
@@ -64,20 +63,21 @@ define("events/common/eventview",
 
 		@property aboutTabId 
 		@type String
-		@final
+		@static
+		@readonly
 		@protected
-		@default "about-tab"
 		**/
 		aboutTabId: "about-tab",
+
 
 		/**
 		Nome a ser inserido na tab 'Sobre'
 
 		@property aboutTabName 
 		@type String
-		@final
+		@static
+		@readonly
 		@protected
-		@default "Sobre"
 		**/
 		aboutTabName: "Sobre",
 
@@ -87,33 +87,36 @@ define("events/common/eventview",
 
 		@property commentsTabId 
 		@type String
-		@final
+		@static
+		@readonly
 		@protected
-		@default "comments-tab"
 		**/
 		commentsTabId: "comments-tab",
+
 
 		/**
 		Nome a ser inserido na tab 'Comentários'
 
 		@property commentsTabName 
 		@type String
-		@final
+		@static
+		@readonly
 		@protected
-		@default "Comentários"
 		**/
 		commentsTabName: "Comentários",
+
 
 		/**
 		Modelo do evento ao qual corresponde esta página
 
 		@property model 
 		@type Backbone.Model
-		@final
+		@static
+		@readonly
 		@protected
-		@default null
 		**/
 		model: null,
+
 
 		/**
 		Vector com as views de todas as tabs incluídas na página
@@ -121,9 +124,9 @@ define("events/common/eventview",
 		@property tabs 
 		@type Array
 		@private
-		@default null
 		**/
 		tabs: null,
+
 
 		/**
 		Vector de objectos com os campos id e name. Usado para gerar a navbar.
@@ -131,7 +134,6 @@ define("events/common/eventview",
 		@property tabNames 
 		@type Array
 		@private
-		@default null
 		@example
 			[
 				{
@@ -150,6 +152,8 @@ define("events/common/eventview",
 
 		@property events
 		@type Object
+		@static
+		@readonly
 		@protected
 		**/
 		events: {
@@ -166,8 +170,9 @@ define("events/common/eventview",
 
 		@property checkIcon 
 		@type String
-		@private
-		@default '<i id="check-event" class="icon-check-sign pull-right"></i>'
+		@static
+		@readonly
+		@protected
 		**/
 		checkIcon: '<i id="check-event" class="icon-check-sign pull-right"></i>',
 
@@ -217,7 +222,7 @@ define("events/common/eventview",
 		Devolve o contexto a ser usado no rendering
 
 		@method getContext
-		@protected
+		@private
 		@return {Object} Contexto do rendering
 		**/
 		getContext: function () {
@@ -240,7 +245,6 @@ define("events/common/eventview",
 		Faz o rendering do layout base das páginas de informações
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {
@@ -269,7 +273,6 @@ define("events/common/eventview",
 		Faz o rendering da tab 'Sobre'
 
 		@method renderAboutTab
-		@protected
 		@chainable
 		**/
 		renderAboutTab: function () {
@@ -286,7 +289,6 @@ define("events/common/eventview",
 		Faz o rendering da tab 'Comentários'
 
 		@method renderCommentsTab
-		@protected
 		@chainable
 		**/
 		renderCommentsTab: function () {
@@ -419,7 +421,6 @@ define("events/common/eventview",
 		presente na agenda pessoal
 
 		@method addRemoveEvent
-		@protected
 		**/
 		addRemoveEvent: function () {
 			var model = this.model.attributes;

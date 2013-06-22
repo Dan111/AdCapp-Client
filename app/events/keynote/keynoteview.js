@@ -12,7 +12,8 @@ define("events/keynote/keynoteview",
 	/**
 	View da página de keynote
 
-	@class KeynoteView
+	@class events.keynote.KeynoteView
+	@alternateClassName KeynoteView
 	@extends EventView
 	**/
 	return EventView.extend({
@@ -22,9 +23,7 @@ define("events/keynote/keynoteview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -34,9 +33,7 @@ define("events/keynote/keynoteview",
 
 		@property id 
 		@type String
-		@static
-		@final
-		@default "keynote-page"
+		@private
 		**/
 		id: "keynote-page-",
 
@@ -47,8 +44,8 @@ define("events/keynote/keynoteview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Keynote"
+		@readonly
+		@private
 		**/
 		pageName: "Keynote",
 
@@ -59,8 +56,8 @@ define("events/keynote/keynoteview",
 		@property descName 
 		@type String
 		@static
-		@final
-		@default "Descrição"
+		@readonly
+		@private
 		**/
 		descName: "Descrição",
 
@@ -71,8 +68,8 @@ define("events/keynote/keynoteview",
 		@property speakersTitle 
 		@type String
 		@static
-		@final
-		@default "Orador"
+		@readonly
+		@private
 		**/
 		speakersTitle: "Orador",
 
@@ -82,9 +79,8 @@ define("events/keynote/keynoteview",
 		e chama o construtor da superclasse.
 
 		@constructor
-		@class KeynoteView
 		@param {Object} args Parâmetros da view
-			@param {String} args.modelId ID do keynote a ser associado à view
+		@param {String} args.modelId ID do keynote a ser associado à view
 		**/
 		initialize: function (args)
 		{

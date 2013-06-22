@@ -27,8 +27,8 @@ define("rankings/awardview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -38,9 +38,9 @@ define("rankings/awardview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default AwardTemplate
+		
 		**/
 		template: AwardTemplate,
 
@@ -49,9 +49,9 @@ define("rankings/awardview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default AwardsTemplate
+		
 		**/
 		awardsTemplate: AwardsTemplate,
 
@@ -60,9 +60,9 @@ define("rankings/awardview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default UserVotesTemplate
+		
 		**/
 		usersVotesTemplate: UserVotesTemplate,
 
@@ -72,7 +72,7 @@ define("rankings/awardview",
 		@property model 
 		@type Array
 		@protected
-		@default []
+		
 		**/
 		models: [],
 
@@ -83,7 +83,7 @@ define("rankings/awardview",
 		@property isMostVoted
 		@type boolean
 		@protected
-		@default false
+		
 		**/
 		isMostVoted: false,
 
@@ -93,7 +93,7 @@ define("rankings/awardview",
 		@property hasVotes
 		@type boolean
 		@protected
-		@default false
+		
 		**/
 		hasVotes: false,
 
@@ -104,7 +104,7 @@ define("rankings/awardview",
 		@property isEvent
 		@type boolean
 		@protected
-		@default null
+		
 		**/
 		isEvent: null,
 
@@ -116,7 +116,7 @@ define("rankings/awardview",
 		@property eventsType
 		@type String
 		@protected
-		@default null
+		
 		**/
 		eventsType: null,
 
@@ -126,7 +126,7 @@ define("rankings/awardview",
 		@property modelCollection
 		@type Backbone.Collection
 		@protected
-		@default null
+		
 		**/
 		modelCollection: null,
 
@@ -137,7 +137,7 @@ define("rankings/awardview",
 		@property votesArray
 		@type Array
 		@protected
-		@default null
+		
 		@example [{"id": 1, "votes":30}, {"id": 2, "votes":29}]
 		**/
 		votesArray: null,
@@ -149,7 +149,7 @@ define("rankings/awardview",
 		@property prizesArray
 		@type Array
 		@protected
-		@default null
+		
 		@example [1,2,3]
 		**/
 		prizesArray: null,
@@ -160,7 +160,7 @@ define("rankings/awardview",
 		@property ranksInfo
 		@type RankInfo
 		@protected
-		@default null
+		
 		**/
 		ranksInfo: null,
 
@@ -169,9 +169,9 @@ define("rankings/awardview",
 		votou
 
 		@property voted
-		@type Integer
+		@type Number
 		@protected
-		@default -1
+		
 		**/
 		voted: -1,
 
@@ -182,9 +182,9 @@ define("rankings/awardview",
         @property typesInfo
         @type Object
         @static
-        @final
+        @readonly
         @protected
-        @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+        
 					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 					"session": {url: '#sessions/'}};
         **/
@@ -400,8 +400,8 @@ define("rankings/awardview",
 
         @method getVotes
         @protected
-        @param {Integer} id id de um elemento
-        @return {Integer} votos do elemento referente ao id passado
+        @param {Number} id id de um elemento
+        @return {Number} votos do elemento referente ao id passado
         **/
 		getVotes: function(id){
 			//Obtém o elemento com um dado id no array de votos

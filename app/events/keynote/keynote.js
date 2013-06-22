@@ -11,7 +11,8 @@ function ($, Backbone, Event, App) {
 	/**
     Modelo de um keynote
 
-    @class Keynote
+    @class events.keynote.Keynote
+    @alternateClassName Keynote
     @extends Event
     **/
 	return Event.extend({
@@ -22,7 +23,6 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/keynotes/"
 		**/
 		url: App.URL + "keynotes/",
 
@@ -32,7 +32,6 @@ function ($, Backbone, Event, App) {
 
 		@property sync
 		@type Function
-		@private
 		**/
 		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-keynote'),
 		
@@ -43,7 +42,7 @@ function ($, Backbone, Event, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -64,8 +63,6 @@ function ($, Backbone, Event, App) {
         Construtor do modelo. Adiciona ao URL o id da instância.
 
         @constructor
-        @protected
-        @class Keynote
         **/
 		initialize: function (){
 			this.url += this.id;

@@ -18,7 +18,7 @@ function (Backbone) {
 		@property routes
 		@type Object
 		@static
-		@final
+		@readonly
 		**/
 		routes: {
 			""              : "main",
@@ -197,7 +197,7 @@ function (Backbone) {
 		/**
 		Route da página de workshop
 
-		@method keynote
+		@method workshop
 		@param {Number} id Id do workshop
 		@private
 		**/
@@ -213,7 +213,7 @@ function (Backbone) {
 		/**
 		Route da página de workshop
 
-		@method keynote
+		@method social
 		@param {Number} id Id do workshop
 		@private
 		**/
@@ -408,7 +408,7 @@ function (Backbone) {
 		/**
 		Route do menu de notificações
 
-		@method contacts
+		@method notifications
 		@private
 		**/
 		notifications: function(){

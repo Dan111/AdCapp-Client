@@ -21,9 +21,9 @@ function ($, Backbone, LocalStorage, User, App) {
 
         @property model 
         @type Backbone.Model
-        @final
+        @readonly
         @protected
-        @default User
+        
         **/
         model: User,
 
@@ -47,7 +47,7 @@ function ($, Backbone, LocalStorage, User, App) {
 
         @method getById
         @protected
-        @param {integer} id id de um user
+        @param {Number} id id de um user
         @return {User} modelo com o id passado
         **/
         getById: function (id){

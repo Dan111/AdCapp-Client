@@ -11,7 +11,8 @@ function ($, Backbone, Event, App) {
 	/**
     Modelo de uma sessão
 
-    @class Session
+    @class events.session.Session
+    @alternateClassName Session
     @extends Backbone.Model
     **/
 	return Event.extend({
@@ -22,7 +23,6 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/sessions/"
 		**/
 		url: App.URL + "sessions/",
 
@@ -32,7 +32,6 @@ function ($, Backbone, Event, App) {
 
 		@property sync
 		@type Function
-		@private
 		**/
 		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-session'),
 
@@ -43,7 +42,7 @@ function ($, Backbone, Event, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -67,8 +66,6 @@ function ($, Backbone, Event, App) {
         Construtor do modelo. Adiciona ao URL o id da instância.
 
         @constructor
-        @protected
-        @class Session
         **/
 		initialize: function (){
 			this.url += this.id;
@@ -80,7 +77,6 @@ function ($, Backbone, Event, App) {
 		Coloca todos os ids dos eventos da sessão num vetor
 
 		@method arrayOfEventIds
-		@protected
 		@return {Array} Vetor de inteiros com os ids de evento das palestras da sessão
 		**/
 		arrayOfEventIds: function(){

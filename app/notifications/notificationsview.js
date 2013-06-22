@@ -15,7 +15,8 @@ define("notifications/notificationsview",
     /**
     View do menu de notificações
 
-    @class NotificationsView
+    @class notifications.NotificationsView
+    @alternateClassName NotificationsView
     @extends BasicView
     **/
 	return BasicView.extend({
@@ -26,8 +27,8 @@ define("notifications/notificationsview",
         @property id 
         @type String
         @static
-        @final
-        @default "notification-page"
+        @readonly
+        @private
         **/
         id: "notification-page",
 
@@ -38,8 +39,8 @@ define("notifications/notificationsview",
         @property pageName 
         @type String
         @static
-        @final
-        @default "Notificações"
+        @readonly
+        @private
         **/
         pageName: "Notificações",
 
@@ -49,9 +50,9 @@ define("notifications/notificationsview",
 
         @property template 
         @type String
-        @final
-        @protected
-        @default "notifications-template"
+        @static
+        @readonly
+        @private
         **/
         template: NotifTemplate,
 
@@ -62,7 +63,9 @@ define("notifications/notificationsview",
 
         @property events
         @type Object
-        @protected
+        @static
+        @readonly
+        @private
         **/
         events: {
             "expand .notif"             : "readNotif",
@@ -75,7 +78,6 @@ define("notifications/notificationsview",
         rendering da página. 
 
         @constructor
-        @class NotificationsView
         **/
         initialize: function () {
 
@@ -99,7 +101,6 @@ define("notifications/notificationsview",
         Faz o rendering de todas as notificações.
 
         @method render
-        @protected
         @chainable
         **/
         render: function () {
@@ -133,7 +134,6 @@ define("notifications/notificationsview",
         a marcar como lida para a coleção de notificações.
 
         @method readNotif
-        @protected
         @param {Event} e Evento lançado quando se expandiu a notificação
         **/
         readNotif: function (e) {
@@ -151,7 +151,6 @@ define("notifications/notificationsview",
         Função chamada quando se clica no botão 'Marcar Todas Como Lidas'
 
         @method markAllAsRead
-        @protected
         **/
         markAllAsRead: function () { //TODO: tornar mais eficiente
             $(".notif").trigger("expand").trigger("collapse");

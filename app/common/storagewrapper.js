@@ -7,7 +7,8 @@ define([
 /**
 Fornece uma camada de abstração para o localStorage
 
-@class StorageWrapper
+@class common.StorageWrapper
+@alternateClassName StorageWrapper
 **/
 function (Backbone, $, _) {
 
@@ -20,10 +21,8 @@ function (Backbone, $, _) {
 		@method load
 		@static
 		@param {Object} id Chave do valor que se pretende carregar.
-		@param {Object} defaultValue Valor predefinido para ser retornado caso a cahve
-									não se encontre presente na localStorage.
-		@return {Object} Valor associado à chave no localStorage ou defaultValue caso
-						não esteja definido.
+		@param {Object} defaultValue Valor predefinido para ser retornado caso a chave não se encontre presente na localStorage.
+		@return {Object} Valor associado à chave no localStorage ou defaultValue caso não esteja definido.
 		@example
 			StorageWrapper.load("points", 0)
 		**/

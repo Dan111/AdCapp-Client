@@ -22,8 +22,8 @@ define("informations/userslist/userslistview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -34,8 +34,8 @@ define("informations/userslist/userslistview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default ""
+		@readonly
+		
 		**/
 		id: "",
 
@@ -46,8 +46,8 @@ define("informations/userslist/userslistview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default ""
+		@readonly
+		
 		**/
 		pageName: "",
 
@@ -57,9 +57,9 @@ define("informations/userslist/userslistview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default UsersListTemplate
+		
 		**/
 		template: UsersListTemplate,
 		
@@ -70,9 +70,9 @@ define("informations/userslist/userslistview",
 
 		@property cusers 
 		@type Backbone.Collection
-		@final
+		@readonly
 		@protected
-		@default null
+		
 		**/
 		users: null,
 

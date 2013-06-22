@@ -30,8 +30,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 		@property el 
 		@type String
 		@static
-		@final
-		@default "#calendar-placeholder"
+		@readonly
+		
 		**/
 		el: "#calendar-placeholder",
 
@@ -42,8 +42,8 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property id 
         @type String
         @static
-        @final
-        @default "calendar-placeholder"
+        @readonly
+        
         **/
 		id: "calendar-placeholder",
 
@@ -52,9 +52,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @property template 
         @type String
-        @final
+        @readonly
         @protected
-        @default CalendarPartial
+        
         **/
 		template: CalendarPartial,
 
@@ -70,7 +70,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property currentDay
         @type Date
         @protected
-        @default null
+        
         **/
 		currentDay: null,
 
@@ -80,7 +80,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property backLimitDate
         @type Date
         @protected
-        @default null
+        
         **/
 		backLimitDate: null,
 
@@ -90,7 +90,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property forwardLimitDate
         @type Date
         @protected
-        @default null
+        
         **/
 		forwardLimitDate: null,
 
@@ -100,7 +100,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $calendar
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$calendar: null,
 
@@ -110,7 +110,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $removeevent
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$removeevent: null,
 
@@ -120,7 +120,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $addevent
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$addevent: null,
 
@@ -130,7 +130,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $removeeventbutton
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$removeeventbutton: null,
 
@@ -140,7 +140,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $addeventbutton
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$addeventbutton: null,
 
@@ -150,7 +150,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $teacherlink
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$teacherlink: null,
 
@@ -160,7 +160,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $authorlink
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$authorlink: null,
 
@@ -170,7 +170,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $teacherlinkA
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$teacherlinkA: null,
 
@@ -180,7 +180,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $authorlinkA
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$authorlinkA: null,
 
@@ -190,7 +190,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $eventlinkA
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$eventlinkA: null,
 
@@ -200,7 +200,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $locallinkA
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$locallinkA: null,
 
@@ -210,7 +210,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $searchbasic
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$searchbasic: null,
 
@@ -220,7 +220,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $searchpanel
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$searchpanel: null,
 
@@ -230,7 +230,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property $popup
         @type jQueryWrapper
         @protected
-        @default null
+        
         **/
 		$popup: null,
 
@@ -241,9 +241,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
         @property typesInfo
         @type Object
         @static
-        @final
+        @readonly
         @protected
-        @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+        
 					"social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 					"session": {url: '#sessions/'}};
         **/
@@ -558,7 +558,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 
         @method treatEvents
         @protected
-        @param {EventModel} eventobj modelo de um evento
+        @param {Event} eventobj modelo de um evento
         **/
 		treatEvents: function(eventobj) {
 

@@ -12,7 +12,8 @@ define("events/socialevent/socialeventview",
 	/**
 	View da página do evento social
 
-	@class SocialEventView
+	@class events.socialevent.SocialEventView
+	@alternateClassName SocialEventView
 	@extends EventView
 	**/
 	return EventView.extend({
@@ -22,9 +23,7 @@ define("events/socialevent/socialeventview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -34,9 +33,7 @@ define("events/socialevent/socialeventview",
 
 		@property id 
 		@type String
-		@static
-		@final
-		@default "social-page"
+		@private
 		**/
 		id: "social-page-",
 
@@ -47,8 +44,8 @@ define("events/socialevent/socialeventview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Evento Social"
+		@readonly
+		@private
 		**/
 		pageName: "Evento Social",
 
@@ -59,8 +56,8 @@ define("events/socialevent/socialeventview",
 		@property descName 
 		@type String
 		@static
-		@final
-		@default "Descrição"
+		@readonly
+		@private
 		**/
 		descName: "Descrição",
 
@@ -70,9 +67,7 @@ define("events/socialevent/socialeventview",
 
 		@property speakersTitle 
 		@type String
-		@static
-		@final
-		@default null
+		@private
 		**/
 		speakersTitle: null,
 
@@ -82,9 +77,8 @@ define("events/socialevent/socialeventview",
 		e chama o construtor da superclasse.
 
 		@constructor
-		@class SocialEventView
 		@param {Object} args Parâmetros da view
-			@param {String} args.modelId ID do evento social a ser associado à view
+		@param {String} args.modelId ID do evento social a ser associado à view
 		**/
 		initialize: function (args)
 		{

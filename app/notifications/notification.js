@@ -10,7 +10,8 @@ function ($, Backbone) {
 	/**
     Modelo de uma notificação
 
-    @class Notification
+    @class notifications.Notification
+    @alternateClassName Notification
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -21,7 +22,6 @@ function ($, Backbone) {
 		@property url
 		@type String
 		@private
-		@default "/notifications/"
 		**/
 		url: window.app.URL + "notifications/",
 
@@ -31,7 +31,6 @@ function ($, Backbone) {
 
 		@property sync
 		@type Function
-		@private
 		**/
 		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-notification'),
 
@@ -42,7 +41,7 @@ function ($, Backbone) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -55,8 +54,6 @@ function ($, Backbone) {
         Construtor do modelo. Adiciona ao URL o id da instância.
 
         @constructor
-        @protected
-        @class Notification
         **/
 		initialize: function () {
 			this.url += this.id;

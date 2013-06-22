@@ -11,30 +11,31 @@ function ($, Backbone, LocalStorage, Contact) {
 	/**
     Coleção de contactos
 
-    @class ContactCollection
+    @class contacts.ContactCollection
+    @alternateClassName ContactCollection
     @extends Backbone.Collection
     **/
 	return Backbone.Collection.extend({
+
 
 		/**
         Tipo do modelo utilizado na collection
 
         @property model 
         @type Backbone.Model
-        @final
+        @readonly
         @protected
-        @default Contact
+        
         **/
 		model: Contact,
+
 
 		/**
         LocalStorage para fazer fecth da collection
 
         @property localStorage
         @type Backbone.LocalStorage
-        @static
-        @final
-        @default new Backbone.LocalStorage('contacts-backbone')
+        @private
         **/
 		localStorage: new Backbone.LocalStorage('contacts-backbone'),
 
@@ -42,11 +43,12 @@ function ($, Backbone, LocalStorage, Contact) {
 		initialize: function (){
 		},
 
+
 		/**
         Comparador de modelos
 
         @method comparator
-        @protected
+        @private
         @param {Contact} contact modelo de um contacto
         **/
 		comparator: function ( contact ) {
@@ -58,8 +60,7 @@ function ($, Backbone, LocalStorage, Contact) {
         Verifica se um contacto está na collection
 
         @method hasContact
-        @protected
-        @param {integer} id id de um contacto
+        @param {Number} id id de um contacto
         @return {Contact} modelo com o id passado
         **/
 	    hasContact: function (id){
@@ -71,7 +72,6 @@ function ($, Backbone, LocalStorage, Contact) {
         Exporta os contactos da aplicação para o dispositivo
 
         @method exportContacts
-        @protected
         **/
         exportContacts: function (){
 
@@ -91,6 +91,7 @@ function ($, Backbone, LocalStorage, Contact) {
         não exista um outro contacto com o mesmo email
 
         @method addPhoneContact
+        @private
         @param {Contact} contacto a ser adicionado
         **/
         addPhoneContact: function (contact){
@@ -128,6 +129,7 @@ function ($, Backbone, LocalStorage, Contact) {
         dispositivo
 
         @method createPhoneContact
+        @private
         @param {Contact} contacto a ser criado
         **/
         createPhoneContact: function (contact){ //TODO: Adicionar social contacts e outras infos

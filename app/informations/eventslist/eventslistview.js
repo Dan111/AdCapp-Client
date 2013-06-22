@@ -27,8 +27,8 @@ define("informations/eventslist/eventslistview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -39,8 +39,8 @@ define("informations/eventslist/eventslistview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default ""
+		@readonly
+		
 		**/
 		id: "",
 
@@ -50,9 +50,9 @@ define("informations/eventslist/eventslistview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default EventsListTemplate
+		
 		**/
 		template: EventsListTemplate,
 
@@ -63,8 +63,8 @@ define("informations/eventslist/eventslistview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default ""
+		@readonly
+		
 		**/
 		pageName: "",
 
@@ -76,9 +76,9 @@ define("informations/eventslist/eventslistview",
         @property typesInfo
         @type Object
         @static
-        @final
+        @readonly
         @protected
-        @default {"paper": {color: '#2c3e50', url: '#paper/'}, "workshop": {color: '#16a085', url: '#workshop/'}, 
+        
 				  "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 				  "session": {url: '#session/'}},}
         **/

@@ -12,7 +12,8 @@ define("events/workshop/workshopview",
 	/**
 	View da página de workshop
 
-	@class WorkshopView
+	@class events.workshop.WorkshopView
+	@alternateClassName WorkshopView
 	@extends EventView
 	**/
 	return EventView.extend({
@@ -22,9 +23,7 @@ define("events/workshop/workshopview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -34,9 +33,7 @@ define("events/workshop/workshopview",
 
 		@property id 
 		@type String
-		@static
-		@final
-		@default "workshop-page"
+		@private
 		**/
 		id: "workshop-page-",
 
@@ -47,8 +44,8 @@ define("events/workshop/workshopview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Workshop"
+		@readonly
+		@private
 		**/
 		pageName: "Workshop",
 
@@ -59,8 +56,8 @@ define("events/workshop/workshopview",
 		@property descName 
 		@type String
 		@static
-		@final
-		@default "Descrição"
+		@readonly
+		@private
 		**/
 		descName: "Descrição",
 
@@ -71,8 +68,8 @@ define("events/workshop/workshopview",
 		@property speakersTitle 
 		@type String
 		@static
-		@final
-		@default "Tutores"
+		@readonly
+		@private
 		**/
 		speakersTitle: "Tutores",
 
@@ -82,9 +79,8 @@ define("events/workshop/workshopview",
 		e chama o construtor da superclasse.
 
 		@constructor
-		@class WorkshopView
 		@param {Object} args Parâmetros da view
-			@param {String} args.modelId ID da sessão a ser associada à view
+		@param {String} args.modelId ID da sessão a ser associada à view
 		**/
 		initialize: function (args)
 		{

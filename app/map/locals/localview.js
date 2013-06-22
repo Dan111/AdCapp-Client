@@ -11,7 +11,13 @@ define("map/locals/localview",
     "text!./local.html"
 ], function ($, Backbone, _, Handlebars, LocalModel, BasicView, LocalTemplate) {
 
+	/**
+    View da página de um local
 
+    @class map.locals.LocalView
+    @alternateClassName LocalView
+    @extends BasicView
+    **/
 	return BasicView.extend({
 
 		el: "div[data-role=content]",

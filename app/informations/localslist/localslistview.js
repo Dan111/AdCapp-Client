@@ -24,8 +24,8 @@ define("informations/localslist/localslistview",
 		@property el 
 		@type String
 		@static
-		@final
-		@default "div[data-role=content]"
+		@readonly
+		
 		**/
 		el: "div[data-role=content]",
 
@@ -36,8 +36,8 @@ define("informations/localslist/localslistview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default ""
+		@readonly
+		
 		**/
 		id: "locals-page",
 
@@ -46,9 +46,9 @@ define("informations/localslist/localslistview",
 
 		@property template 
 		@type String
-		@final
+		@readonly
 		@protected
-		@default LocalsListTemplate
+		
 		**/
 		template:LocalsListTemplate,
 
@@ -58,8 +58,8 @@ define("informations/localslist/localslistview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Locais"
+		@readonly
+		
 		**/
 		pageName: "Locais",
 

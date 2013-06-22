@@ -20,7 +20,7 @@ function ($, Backbone) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @protected
         **/
 		defaults: {

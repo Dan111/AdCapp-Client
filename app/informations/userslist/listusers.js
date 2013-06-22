@@ -21,9 +21,9 @@ function ($, Backbone, LocalStorage, listUser, App) {
 
         @property model 
         @type Backbone.Model
-        @final
+        @readonly
         @protected
-        @default listUser
+        
         **/
         model: listUser,
 
@@ -33,8 +33,8 @@ function ($, Backbone, LocalStorage, listUser, App) {
         @property url 
         @type String
         @static
-        @final
-        @default ""
+        @readonly
+        
         **/
         url: "",
 

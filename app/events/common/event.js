@@ -12,7 +12,8 @@ function ($, Backbone, BasicView, App) {
 	/**
     Modelo que representa um evento
 
-    @class Event
+    @class events.common.Event
+    @alternateClassName Event
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -22,19 +23,20 @@ function ($, Backbone, BasicView, App) {
 
         @property url 
         @type String
-        @static
-        @final
-        @default "App.URL + "events/""
+        @protected
         **/
 		url: App.URL + "events/",
+
 
         /**
         Tipo do evento
 
-        @attribute type
+        @property type
         @type String
         @protected
         **/
+        type: null,
+
 
 		/**
         Defaults dos atributos do modelo
@@ -42,7 +44,7 @@ function ($, Backbone, BasicView, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @protected
         **/
 		defaults: {
@@ -63,7 +65,6 @@ function ($, Backbone, BasicView, App) {
         do modelo a fazer fetch do servidor
 
         @constructor
-        @protected
         @class Event
         **/
 		initialize: function (){
@@ -77,11 +78,9 @@ function ($, Backbone, BasicView, App) {
         Submete um novo comentário na página do evento
 
         @method submitComment
-        @protected
-        @async
         @param {Object} options Configuração do comentário
             @param {String} options.url Onde o comentário deve ser colocado.
-            @param {Integer} options.text Conteúdo do comentário.
+            @param {Number} options.text Conteúdo do comentário.
             @param {Function()} options.success Função de callbak em caso de 
                                                 sucesso.
         @example

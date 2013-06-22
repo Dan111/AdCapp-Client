@@ -11,7 +11,8 @@ define("common/mainmenu/mainmenu",
     /**
     View do menu príncipal
 
-    @class MainMenuView
+    @class common.mainmenu.MainMenuView
+    @alternateClassName MainMenuView
     @extends BasicView
     **/
     return BasicView.extend({
@@ -21,11 +22,10 @@ define("common/mainmenu/mainmenu",
 
         @property el 
         @type String
-        @static
-        @final
-        @default $("[data-role=content]")
+        @private
         **/
         el: $("[data-role=content]"),
+
 
         /**
         Id da página
@@ -33,10 +33,11 @@ define("common/mainmenu/mainmenu",
         @property id 
         @type String
         @static
-        @final
-        @default "menu-page"
+        @readonly
+        @private
         **/
         id: "menu-page",
+
 
         /**
         Nome da página, apresentado no header
@@ -44,32 +45,34 @@ define("common/mainmenu/mainmenu",
         @property pageName 
         @type String
         @static
-        @final
-        @default "Menu"
+        @readonly
+        @private
         **/
         pageName: "Menu",
+
 
         /**
         Template da página
 
         @property template 
         @type String
-        @final
-        @protected
-        @default "mainmenu-template"
+        @static
+        @readonly
+        @private
         **/
         template: "mainmenu-template",
+
 
         /**
         Botão de menu
 
         @property $menubutton
-        @type Jquey Object
-        @protected
-        @default null
+        @type jQueryWrapper
+        @static
+        @readonly
+        @private
         **/
         $menubutton: null,
-
 
 
         /**
@@ -77,7 +80,9 @@ define("common/mainmenu/mainmenu",
 
         @property events
         @type Object
-        @protected
+        @static
+        @readonly
+        @private
         **/
         events: {
 
@@ -85,14 +90,13 @@ define("common/mainmenu/mainmenu",
 
         },
 
+
         /**
         Construtor da classe. Faz o render da página e coloca
         o booleano menu a false, querendo isto dizer que o menu
         de icons não está aberto
 
         @constructor
-        @protected
-        @class MainMenuView
         **/
         initialize: function ()
         {
@@ -107,12 +111,12 @@ define("common/mainmenu/mainmenu",
             
         },
 
+
         /**
         Faz o rendering do layout da página e ainda trata de activar eventos
         para o bom funcionamento da página
 
         @method render
-        @protected
         @chainable
         **/
         render: function () {
@@ -163,7 +167,6 @@ define("common/mainmenu/mainmenu",
         Fecha o menu de icons e faz um unbind 
 
         @method closePopup
-        @protected
         **/
         closePopup: function(){
             this.$menubutton.popup( "close" );
@@ -175,7 +178,7 @@ define("common/mainmenu/mainmenu",
         Posiciona o menu de icons consoante as dimensões da janela
 
         @method positioningPopUp
-        @protected
+        @private
         **/
         positioningPopUp: function(){
             var toppos=($(window).height()/2) - (this.$menubutton.height()/2);
@@ -188,7 +191,7 @@ define("common/mainmenu/mainmenu",
         Redimensiona o menu de icons consoante as dimensões da janela
 
         @method resizePopUp
-        @protected
+        @private
         **/
         resizePopUp: function(){
             this.$menubutton.width($(window).width());
@@ -198,7 +201,6 @@ define("common/mainmenu/mainmenu",
         Activa o evento que permite abrir e fechar o menu de icons
 
         @method onDeviceReady
-        @protected
         **/
         onDeviceReady: function() {
             var that = this;    
@@ -212,7 +214,6 @@ define("common/mainmenu/mainmenu",
         Trata da abertura e do fecho do menu de icons
 
         @method onMenuKeyDown
-        @protected
         **/
         onMenuKeyDown: function() {
             that = this;
@@ -240,6 +241,12 @@ define("common/mainmenu/mainmenu",
         },
 
 
+        /**
+        Função chamada quando um utilizador tenta aceder a uma funcionalidade que necessita de
+        registo sem estar registado
+
+        @method unauthorizedAccess
+        **/
         unauthorizedAccess: function () {
             console.log("unauthorized");
 

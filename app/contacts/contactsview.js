@@ -14,9 +14,9 @@ define("contacts/contactsview",
 	/**
 	View do menu de contactos da aplicação
 
-	@class ContactsView
+	@class contacts.ContactsView
+	@alternateClassName ContactsView
 	@extends BasicView
-	@main contacts
 	**/
 	return BasicView.extend({
 
@@ -25,9 +25,7 @@ define("contacts/contactsview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -38,8 +36,8 @@ define("contacts/contactsview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "contacts-page"
+        @readonly
+        @private
 		**/
 		id: "contacts-page",
 
@@ -50,8 +48,8 @@ define("contacts/contactsview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Contactos"
+        @readonly
+        @private
 		**/
 		pageName: "Contactos",
 
@@ -61,9 +59,9 @@ define("contacts/contactsview",
 
 		@property template 
 		@type String
-		@final
-		@protected
-		@default "contacts-template"
+		@static
+        @readonly
+        @private
 		**/
 		template: ContactsTemplate,
 
@@ -74,7 +72,9 @@ define("contacts/contactsview",
 
 		@property events
 		@type Object
-		@protected
+		@static
+        @readonly
+        @private
 		**/
 		events: {
 
@@ -90,7 +90,6 @@ define("contacts/contactsview",
 		contactos da colecção, para fazer o rerendering.
 
 		@constructor
-		@class ContactsView
 		**/
 		initialize: function (){
 
@@ -115,7 +114,6 @@ define("contacts/contactsview",
 		Faz o rendering dos contactos.
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function (){
@@ -141,7 +139,6 @@ define("contacts/contactsview",
 		um contacto.
 
 		@method removeContact
-		@protected
 		**/
 		removeContact: function (e){
 
@@ -157,7 +154,6 @@ define("contacts/contactsview",
 		Função chamada quando o utilizador clica no botão de 'Exportar Contactos'
 
 		@method exportContacts
-		@protected
 		**/
 		exportContacts: function (){ //TODO: Adicionar um popup de confirmação
 

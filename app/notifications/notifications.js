@@ -13,8 +13,9 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 	Colecção de notificações. Gere as notificações já lidas e informa o 
 	utilizador de novas.
 
-	@class NotificationCollection
-	@extends Backbone.View
+	@class notifications.NotificationCollection
+	@alternateClassName NotificationCollection
+	@extends Backbone.Collection
 	**/
 	return Backbone.Collection.extend({
 
@@ -23,10 +24,9 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 
         @property model
         @type Backbone.Model
-        @final
+        @readonly
         @static
         @private
-        @default Notification
         **/
 		model: Notification,
 
@@ -36,10 +36,9 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 
 		@property url
 		@type String
-		@final
+		@readonly
 		@static
 		@private
-		@default "/notifications"
 		**/
 		url: window.app.URL + "notifications",
 
@@ -50,10 +49,9 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 
 		@property readStorageID
 		@type String
-		@final
+		@readonly
 		@static
 		@private
-		@default "notif-read"
 		**/
 		readStorageID: 'notif-read',
 
@@ -64,7 +62,6 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 		@property read
 		@type Array
 		@private
-		@default []
 		**/
 		read: [],
 
@@ -76,10 +73,9 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 
 		@property prevLengthStorageID
 		@type String
-		@final
+		@readonly
 		@static
 		@private
-		@default 'notif-prev-length'
 		**/
 		prevLengthStorageID: 'notif-prev-length',
 
@@ -89,7 +85,6 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 		para o evento lançado nas atualizações dos dados.
 
 		@constructor
-		@class NotificationCollection
 		**/
 		initialize: function () {
 			//_.bindAll(this); //FUCK YOU!!!
@@ -132,7 +127,6 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 		Adiciona o id da notificação à lista de notificações lidas
 
 		@method markAsRead
-		@protected
 		@param {String|Number} notifId ID da notificação lida
 		**/
 		markAsRead: function (notifId) {
@@ -146,7 +140,6 @@ function ($, Backbone, _, Notification, StorageWrapper) {
 		Verifica se o id da notificação está na lista de notificações lidas
 
 		@method isRead
-		@protected
 		@param {String|Number} notifId ID da notificação
 		@return {Boolean} Retorna true se a notificação já foi lida
 		**/

@@ -23,7 +23,6 @@ function ($, Backbone, Event, App) {
 		@property url
 		@type String
 		@private
-		@default "/workshops/"
 		**/
 		url: App.URL + "workshops/",
 
@@ -33,7 +32,6 @@ function ($, Backbone, Event, App) {
 
 		@property sync
 		@type Function
-		@private
 		**/
 		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-workshop'),
 		
@@ -44,7 +42,7 @@ function ($, Backbone, Event, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {
@@ -65,8 +63,6 @@ function ($, Backbone, Event, App) {
         Construtor do modelo. Adiciona ao URL o id da instância.
 
         @constructor
-        @protected
-        @class Workshop
         **/
 		initialize: function (){
 			this.url += this.id;

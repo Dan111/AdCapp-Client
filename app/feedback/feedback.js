@@ -11,7 +11,8 @@ function ($, Backbone, App) {
 	/**
     Modelo de um keynote
 
-    @class Feedback
+    @class feedback.Feedback
+    @alternateClassName Feedback
     @extends Backbone.Model
     **/
 	return Backbone.Model.extend({
@@ -21,8 +22,9 @@ function ($, Backbone, App) {
 
 		@property url
 		@type String
-		@private
-		@default "/feedbacks/"
+		@static
+        @readonly
+        @private
 		**/
 		url: App.URL + "feedbacks/",
 
@@ -32,7 +34,6 @@ function ($, Backbone, App) {
 
 		@property sync
 		@type Function
-		@private
 		**/
 		sync: Backbone.cachingSync(Backbone.sync, 'adcapp-feedback'),
 		
@@ -43,7 +44,7 @@ function ($, Backbone, App) {
         @property defaults
         @type Object
         @static
-        @final
+        @readonly
         @private
         **/
 		defaults: {

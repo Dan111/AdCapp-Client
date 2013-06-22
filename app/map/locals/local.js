@@ -6,10 +6,16 @@ define([
 
 function ($, Backbone, App) {
 
+	/**
+    Modelo de um local
+
+    @class map.locals.Local
+    @alternateClassName Local
+    @extends Backbone.Model
+    **/
 	return Backbone.Model.extend({
 
 		url: App.URL + "/locals/",
-//url: "http://lcatalaya.apiary.io/Locals/",
 
 		/**
 		Alteração do método sync para utilizar o localStorage como cache

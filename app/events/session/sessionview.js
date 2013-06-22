@@ -15,7 +15,8 @@ define("events/session/sessionview",
 	/**
 	View da página de sessão
 
-	@class SessionView
+	@class events,session.SessionView
+	@alternateClassName SessionView
 	@extends EventView
 	**/
 	return EventView.extend({
@@ -25,9 +26,7 @@ define("events/session/sessionview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -37,9 +36,7 @@ define("events/session/sessionview",
 
 		@property id 
 		@type String
-		@static
-		@final
-		@default "session-page"
+		@private
 		**/
 		id: "session-page-",
 
@@ -50,8 +47,8 @@ define("events/session/sessionview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Sessão"
+		@readonly
+		@private
 		**/
 		pageName: "Sessão",
 
@@ -62,8 +59,8 @@ define("events/session/sessionview",
 		@property descName 
 		@type String
 		@static
-		@final
-		@default "Descrição"
+		@readonly
+		@private
 		**/
 		descName: "Descrição",
 
@@ -74,8 +71,8 @@ define("events/session/sessionview",
 		@property speakersTitle 
 		@type String
 		@static
-		@final
-		@default "Moderador"
+		@readonly
+		@private
 		**/
 		speakersTitle: "Moderador",
 
@@ -86,8 +83,8 @@ define("events/session/sessionview",
 		@property papersTabId 
 		@type String
 		@static
-		@final
-		@default "papers-tab"
+		@readonly
+		@private
 		**/
 		papersTabId: "papers-tab",
 
@@ -98,8 +95,8 @@ define("events/session/sessionview",
 		@property id 
 		@type String
 		@static
-		@final
-		@default "Papers"
+		@readonly
+		@private
 		**/
 		papersTabName: "Papers",
 
@@ -109,9 +106,7 @@ define("events/session/sessionview",
 
 		@property eventIds
 		@type Array
-		@static
-		@final
-		@default "null"
+		@private
 		**/
 		eventIds: null,
 
@@ -123,8 +118,9 @@ define("events/session/sessionview",
 
 		@property events
 		@type Object
-		@extends EventView.events
-		@protected
+		@static
+		@readonly
+		@private
 		**/
 		events: function(){
 			return _.extend({
@@ -139,9 +135,8 @@ define("events/session/sessionview",
 		e chama o construtor da superclasse.
 
 		@constructor
-		@class SessionView
 		@param {Object} args Parâmetros da view
-			@param {String} args.modelId ID da sessão a ser associada à view
+		@param {String} args.modelId ID da sessão a ser associada à view
 		**/
 		initialize: function (args)
 		{
@@ -167,7 +162,6 @@ define("events/session/sessionview",
 		Faz o rendering da tab 'Papers'
 
 		@method renderQuestionsTab
-		@protected
 		@chainable
 		**/
 		renderPapersTab: function () {
@@ -187,7 +181,6 @@ define("events/session/sessionview",
 		agenda contém um evento da sessão,se for o caso
 
 		@method render
-		@protected
 		**/
 		render: function (){
 			//Apenas para desfazer o check adicionado na view event, caso já tenha um dos papers na agenda
@@ -236,7 +229,6 @@ define("events/session/sessionview",
 		na agenda pessoal, adicona os que faltam.
 
 		@method addRemoveEvent
-		@protected
 		**/
 		addRemoveEvent: function (){
 			if(App.account.isLogged())

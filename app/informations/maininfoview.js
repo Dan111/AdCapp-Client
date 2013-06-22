@@ -23,8 +23,8 @@ define("informations/maininfoview",
         @property el 
         @type String
         @static
-        @final
-        @default $("[data-role=content]")
+        @readonly
+        
         **/
 		el: $("[data-role=content]"),
 
@@ -34,8 +34,8 @@ define("informations/maininfoview",
         @property id 
         @type String
         @static
-        @final
-        @default "maininfoId"
+        @readonly
+        
         **/
 		id: "maininfoId",
 
@@ -45,8 +45,8 @@ define("informations/maininfoview",
         @property pageName 
         @type String
         @static
-        @final
-        @default "Informações"
+        @readonly
+        
         **/
 		pageName: "Informações",
 
@@ -55,9 +55,9 @@ define("informations/maininfoview",
 
         @property template 
         @type String
-        @final
+        @readonly
         @protected
-        @default InfoMenuTemplate
+        
         **/
 		template: InfoMenuTemplate,
 

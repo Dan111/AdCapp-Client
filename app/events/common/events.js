@@ -16,7 +16,8 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
     /**
     Coleção de eventos
 
-    @class EventCollection
+    @class events.common.EventCollection
+    @alternateClassName EventCollection
     @extends Backbone.Collection
     **/
     return Backbone.Collection.extend({
@@ -26,11 +27,12 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
 
         @property model 
         @type Backbone.Model
-        @final
-        @protected
-        @default Event
+        @static
+        @readonly
+        @private
         **/
         model: Event,
+
 
         /**
         Url do servidor para fazer fecth da collection
@@ -38,12 +40,21 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         @property url 
         @type String
         @static
-        @final
-        @default App.URL + "events"
+        @readonly
+        @private
         **/
         url: App.URL + "events",
 
+
+        /**
+        LocalStorage para fazer fecth da collection
+
+        @property localStorage
+        @type Backbone.LocalStorage
+        @private
+        **/
         localStorage: null,
+
 
         /**
         Sync da colecção, que com a ajuda do cachingSync,
@@ -51,18 +62,14 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
 
         @property sync
         @type String
-        @static
-        @final
-        @default Backbone.cachingSync(Backbone.sync, 'events')
         **/
         sync: Backbone.cachingSync(Backbone.sync, 'events'),
         
+
         /**
         Construtor da coleção.
 
         @constructor
-        @protected
-        @class EventCollection
         **/
         initialize: function (){
             
@@ -75,7 +82,7 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         Comparador de modelos
 
         @method comparator
-        @protected
+        @private
         @param {Event} e Modelo de um evento
         @return {String} Nome do modelo
         **/
@@ -88,8 +95,7 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         Verifica se um evento está na collection
 
         @method hasEvent
-        @protected
-        @param {integer} id id de um evento
+        @param {Number} id id de um evento
         @return {Event} modelo Event
         **/
         hasEvent: function (id){
@@ -102,7 +108,6 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         caso contrário devolve null
 
         @method getEventByName
-        @protected
         @param {String} name nome de uma evento
         @return {Event} modelo Event
         **/
@@ -122,7 +127,6 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         objectos que teem no nome a string passada
 
         @method getEventsWithString
-        @protected
         @param {String} string termo de filtragem
         @return {Array} array de modelos Event
         **/
@@ -133,12 +137,12 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
                 });
         },
 
+
         /**
         Filtra a collection, consoantes os booleanos passados, que
         respresentão os tipos de evento
 
         @method getEventsOfType
-        @protected
         @param {Object} types contém tipos de eventos, cada um representado por um booleano
         @example {"paper": true, "workshop": false, "social": false, "keynote": false}
         @return {Array} array de modelos Event
@@ -161,7 +165,6 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
         está no array passado
 
         @method getEventsFromIdArray
-        @protected
         @param {Array} arrayOfEventsId array de id's de eventos
         @return {Array} array de modelos Event
         **/
@@ -171,22 +174,22 @@ function ($, Backbone, _, LocalStorage, CachingSync, Event, App) {
             });
         },
 
+
         /**
         Remove um evento da collection
 
         @method removeEvent
-        @protected
-        @param {integer} eventId id do evento a remover
+        @param {Number} eventId id do evento a remover
         **/
         removeEvent: function(eventId) {
             this.hasEvent(eventId).destroy();
         },
 
+
         /**
         Adiciona um evento à collection
 
         @method addEvent
-        @protected
         @param {Object} eventAttr atributos do evento a criar na collection
         **/
         addEvent: function(eventAttr) {

@@ -24,9 +24,9 @@ function ($, Backbone, LocalStorage, Paper, Keynote, Session, Workshop, App) {
 
         @property model 
         @type Backbone.Model
-        @final
+        @readonly
         @protected
-        @default null
+        
         **/
 		model: null,
 

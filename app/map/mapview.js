@@ -12,6 +12,13 @@ define("map/mapview",
 ], function ($, Backbone, _, Handlebars, GoogleMaps, BasicView, LocalCollection, MapsTemplate) {
 
 
+  /**
+  View da página do mapa
+
+  @class map.MapView
+  @alternateClassName MapView
+  @extends BasicView
+  **/
   return BasicView.extend({
 
     el: $("[data-role=content]"),

@@ -13,7 +13,8 @@ define("events/paper/paperview",
 	/**
 	View da página de palestra
 
-	@class PaperView
+	@class events.paper.PaperView
+	@alternateClassName PaperView
 	@extends EventView
 	**/
 	return EventView.extend({
@@ -23,9 +24,7 @@ define("events/paper/paperview",
 
 		@property el 
 		@type String
-		@static
-		@final
-		@default "div[data-role=content]"
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -35,9 +34,7 @@ define("events/paper/paperview",
 
 		@property id 
 		@type String
-		@static
-		@final
-		@default "paper-page"
+		@private
 		**/
 		id: "paper-page-",
 
@@ -48,8 +45,8 @@ define("events/paper/paperview",
 		@property pageName 
 		@type String
 		@static
-		@final
-		@default "Palestra"
+		@readonly
+		@private
 		**/
 		pageName: "Palestra",
 
@@ -60,8 +57,8 @@ define("events/paper/paperview",
 		@property descName 
 		@type String
 		@static
-		@final
-		@default "Abstract"
+		@readonly
+		@private
 		**/
 		descName: "Abstract",
 
@@ -72,8 +69,8 @@ define("events/paper/paperview",
 		@property speakersTitle 
 		@type String
 		@static
-		@final
-		@default "Autores"
+		@readonly
+		@private
 		**/
 		speakersTitle: "Autores",
 
@@ -84,8 +81,8 @@ define("events/paper/paperview",
 		@property questionsTabId 
 		@type String
 		@static
-		@final
-		@default "questions-tab"
+		@readonly
+		@private
 		**/
 		questionsTabId: "questions-tab",
 
@@ -96,8 +93,8 @@ define("events/paper/paperview",
 		@property questionsTabName 
 		@type String
 		@static
-		@final
-		@default "Perguntas"
+		@readonly
+		@private
 		**/
 		questionsTabName: "Perguntas",
 
@@ -108,8 +105,9 @@ define("events/paper/paperview",
 
 		@property events
 		@type Object
-		@extends EventView.events
-		@protected
+		@static
+		@readonly
+		@private
 		**/
 		events: function(){
 			return _.extend({
@@ -124,9 +122,8 @@ define("events/paper/paperview",
 		e chama o construtor da superclasse.
 
 		@constructor
-		@class PaperView
 		@param {Object} args Parâmetros da view
-			@param {String} args.modelId ID da palestra a ser associada à view
+		@param {String} args.modelId ID da palestra a ser associada à view
 		**/
 		initialize: function (args)
 		{
@@ -150,7 +147,6 @@ define("events/paper/paperview",
 		Faz o rendering da tab 'Perguntas'
 
 		@method renderQuestionsTab
-		@protected
 		@chainable
 		**/
 		renderQuestionsTab: function () {
@@ -167,7 +163,6 @@ define("events/paper/paperview",
 		Vota na questão correspondente.
 
 		@method voteQuestion
-		@protected
 		@param {Event} Evento lançado quando se clicou no botão
 		**/
 		voteQuestion: function (e) {
