@@ -111,6 +111,7 @@ define("common/mainmenu/mainmenu",
 
             self.renderLayout();
             self.render();
+            this.isWifiActive();
             
         },
 
