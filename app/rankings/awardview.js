@@ -549,9 +549,30 @@ define("rankings/awardview",
 			//compilação do template com a sua informação
             var html = this.compileTextTemplate(this.usersVotesTemplate, context);
 			this.isMostVoted = this.votedIsOneOfMostVoted();
-            this.checkVoted();
             
             this.refresher(html);
+            this.checkVoted();
+		},
+
+		/**
+       	Método que trata de acrescentar um value aos votos do elemento com um certo id
+
+        @method getVotes
+        @protected
+        @param {Number} id id de um elemento
+		@param {Number} value valor a somar
+        **/
+		setVotes: function(id, value)
+		{
+
+			//Obtém o elemento com um dado id no array de votos
+			var element = _.find(this.votesArray, function(obj){
+				return obj.id === id;
+			});
+
+			var oldVotes = element.votes;
+			element['votes'] = oldVotes + value;
+
 		},
 
 		/**
@@ -567,6 +588,8 @@ define("rankings/awardview",
            	$('#votes[value='+ this.voted+'] span').empty();
     		var newVotes = parseInt(votes) + 1;
     		$('#votes[value='+ this.voted+'] span').text(newVotes);
+
+			this.setVotes(this.voted, 1);
 
            	$('#vote-button[value='+ this.voted+'] i').remove();
 
@@ -600,6 +623,8 @@ define("rankings/awardview",
         	$('#votes[value='+ this.voted+'] span').empty();
         	var newVotes = parseInt(votes) - 1;
         	$('#votes[value='+ this.voted+'] span').text(newVotes);
+
+			this.setVotes(this.voted, -1);
 
         	$('#vote-button[value='+ this.voted+'] i').remove();
 
