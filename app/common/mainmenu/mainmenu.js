@@ -159,15 +159,26 @@ define("common/mainmenu/mainmenu",
             //Impede o scroll quando o popup está activo
             this.$menubutton.on( "popupafteropen", function( event, ui ) {
                 $("body").on("touchmove", false);
+                $("#exit").on("click", that.closeApp);
             } );
             
             //Volta a activar o scroll depois do popup fechar
             this.$menubutton.on( "popupafterclose", function( event, ui ) {
                 $("body").unbind("touchmove");
+                $("#exit").off("click", that.closeApp);
             } );
 
             return this;
 
+        },
+
+        /**
+        Fecha a aplicação
+
+        @method closeApp
+        **/
+        closeApp: function(){
+            device.exitApp(); 
         },
 
         /**

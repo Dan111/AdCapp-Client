@@ -13,6 +13,7 @@ require.config({
 		'handlebars.config' 	: 'handlebars.config',
 		'backbone.cachingsync'	: '../vendor/libs/backbone.cachingsync',
 		'burry'					: '../vendor/libs/burry',
+		'touchpunch'			: '../vendor/libs/jquery.ui.touch',
 		'app.config'			: 'app.config'
 	 
 	},
@@ -23,7 +24,8 @@ require.config({
 		'jquerymobile'			: ['jquery','jquerymobile.config'],
 		'handlebars.config' 	: ['handlebars'],
 		'backbone.cachingsync'	: ['burry'],
-		'fullcalendar'			: ['jquery']
+		'fullcalendar'			: ['jquery'],
+		'touchpunch'			: ['jquery']
 	}
 
 });

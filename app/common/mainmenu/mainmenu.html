@@ -74,8 +74,8 @@
 </div>
 
 <div data-role="popup" id="menu-button" data-theme="a" >
-<div class="ui-grid-a">
-  <div class="ui-block-a">
+<div class="ui-grid-b">
+  <div class="ui-block-a ">
     <a id="user-profile-shortcut" href="#user/{{userId}}" data-role="button" data-theme="a">
       Perfil
       <br>
@@ -83,8 +83,15 @@
     </a>
   </div>
   <div class="ui-block-b">
-    <a href="#options" data-role="button" data-theme="a">
-      Opções 
+    <a data-bypass="true" href="{{site}}" data-role="button" data-theme="a">
+      Site 
+      <br> 
+      <i class="icon-home"></i>
+    </a>
+  </div>
+  <div class="ui-block-c ">
+    <a class="options" href="#options" data-role="button" data-theme="a">
+      Opções
       <br> 
       <i class="icon-cog"></i>
     </a>
@@ -99,10 +106,10 @@
     </a>
   </div>
   <div class="ui-block-b">
-    <a data-bypass="true" href="{{site}}" data-role="button" data-theme="a">
-      Site 
+    <a id="exit" data-role="button" data-theme="a">
+      Sair
       <br> 
-      <i class="icon-home"></i>
+      <i class="icon-off"></i>
     </a>
   </div>
 </div>

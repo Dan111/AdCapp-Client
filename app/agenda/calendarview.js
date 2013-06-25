@@ -377,6 +377,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					},
 					editable: false,
 					events: treatedEvents,
+					eventAfterRender: function( event, element, view ) { 
+						// Add touch dragging to event element 
+						element.addTouch();
+				     },
 					eventRender: function(event, element) {
 						if(event.imageurl !== "")
 					        element.find("div.fc-event-time").append("<img src='" + event.imageurl +"' width='12' height='12'>");
