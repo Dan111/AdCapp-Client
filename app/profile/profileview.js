@@ -195,7 +195,7 @@ define("profile/profileview",
 
             
             if(this.mycontacts.hasContact(user.id))
-                $("#add-user span span").append('<i class="icon-check-sign pull-right"></i>');
+                $("#add-user span span span").append('<i class="icon-check-sign pull-right"></i>');
 
 
             return this;
@@ -227,13 +227,13 @@ define("profile/profileview",
             {
                 //Cria o contacto na collection 
                 this.mycontacts.create(attrs);
-                $("#add-user span span").append('<i class="icon-check-sign pull-right"></i>');
+                $("#add-user span span span").append('<i class="icon-check-sign pull-right"></i>');
             }
             else 
             {    
                 //retira o contacto da collection
                 hasContact.destroy();
-                $('#add-user span span .icon-check-sign').remove();  
+                $('#add-user span span span .icon-check-sign').remove();  
             }
         },
 

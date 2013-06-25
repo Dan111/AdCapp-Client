@@ -133,6 +133,14 @@ function (Backbone, $, _, Account) {
 		REGISTRATION_NEEDED: "Por favor, registe-se nas opções."
 	};
 
+	/**
+	Booleano que indica se o utilizador já foi avisado que tem o wi-fi desligado
+
+	@property hasAlerted
+	@type boolean
+	**/
+	app.hasAlerted = false;
+
 
 	/**
 	Atualiza as notificações, agenda pessoal e opções

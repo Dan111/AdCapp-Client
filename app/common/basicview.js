@@ -151,6 +151,33 @@ define("common/basicview",
 
 		},
 
+		/**
+		Apresenta um alert com uma mensagem a avisar que o o dispositivo
+		tem o wi-fi desligado e que este pode não conter a informação
+		pretendida devido a isso. Este aviso só é feito apenas uma vez
+		por sessão.
+
+		@method isWifiActive
+
+		**/
+		isWifiActive: function(){
+			if(!app.hasAlerted)
+			{
+			var networkState = navigator.connection.type;
+
+			var msg = "Como tem o wi-fi desligado, poderá não ter acesso a todas funcionalidades ou informações";
+
+			if(networkState !== Connection.WIFI)
+				navigator.notification.alert(
+    				msg,
+   					function (){
+   						app.hasAlerted = true;
+   					},
+   					'Alerta de rede Wi-fi'
+				);
+
+			}
+		},
 
 		/**
 		Inicia a transição de página do jQuery Mobile para a página corrente

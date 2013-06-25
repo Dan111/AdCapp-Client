@@ -145,7 +145,7 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
             this.conferenceEvents.fetch().done(function () {
                 self.renderLayout();
                 self.render();
-                
+                self.isWifiActive();
                });
 
 

@@ -74,6 +74,7 @@ define("rankings/rankingsmenuview",
 
 			self.renderLayout();
 			self.render();
+			this.isWifiActive();
 			
 		},
 
