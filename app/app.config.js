@@ -162,8 +162,6 @@ function (Backbone, $, _, Account) {
 			});
 		}
 
-		//app.account.pushOptionsToServer();
-
 		//TODO: actualizar agenda pessoal
 	};
 

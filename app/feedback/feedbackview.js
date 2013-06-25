@@ -88,7 +88,6 @@ define("feedback/feedbackview",
                     self.renderLayout();
                     self.setElement($(self.mainContainer));
                     self.render();
-                    self.isWifiActive();
                 }
             );
 

@@ -21,7 +21,7 @@ function (Backbone) {
 		@readonly
 		**/
 		routes: {
-			""              : "main",
+			""              : "mainmenu",
 			"index"         : "index",
 			"agenda"        : "agenda",
 			"personalschedule/:id" : "othersagenda",

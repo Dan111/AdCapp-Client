@@ -73,9 +73,7 @@ define("rankings/rankingsmenuview",
 			var self = this;
 
 			self.renderLayout();
-			self.render();
-			this.isWifiActive();
-			
+			self.render();			
 		},
 
 		/**

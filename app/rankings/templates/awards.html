@@ -16,7 +16,13 @@
       {{#each awards}}
           <li>
             <a href="{{url}}">
-              <img class="profile-pic" src="assets/morgan.jpg">
+
+              {{#if image}}
+                <img class="profile-pic" src="{{image}}" alt="Imagem do perfil" />
+              {{else}}
+                <img class="profile-pic" src="assets/morgan.jpg" alt="Imagem do perfil"/>
+              {{/if}}
+
               <h2 class="awards-name">{{name}}</h2>
               <p class="awards-name">{{institution}}</p>
               <p class="awards-name">{{area}}</p>

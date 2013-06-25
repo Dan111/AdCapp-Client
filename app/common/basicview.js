@@ -163,18 +163,18 @@ define("common/basicview",
 		isWifiActive: function(){
 			if(!app.hasAlerted)
 			{
-			var networkState = navigator.connection.type;
+				var networkState = navigator.connection.type;
 
-			var msg = "Como tem o wi-fi desligado, poderá não ter acesso a todas funcionalidades ou informações";
+				var msg = "Para uma melhor experiência, active o Wi-Fi.";
 
-			if(networkState !== Connection.WIFI)
-				navigator.notification.alert(
-    				msg,
-   					function (){
-   						app.hasAlerted = true;
-   					},
-   					'Alerta de rede Wi-fi'
-				);
+				if(networkState !== Connection.WIFI)
+					navigator.notification.alert(
+	    				msg,
+	   					function (){
+	   						app.hasAlerted = true;
+	   					},
+	   					'Alerta de rede Wi-fi'
+					);
 
 			}
 		},

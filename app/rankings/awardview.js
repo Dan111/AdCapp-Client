@@ -360,6 +360,7 @@ define("rankings/awardview",
 						name 		: attrs.name,
 						institution : attrs.institution,
 						area 		: attrs.area,
+						image		: attrs.image
 					};
 				});
 		},
@@ -435,6 +436,7 @@ define("rankings/awardview",
 						name       	: model.name,
 						institution	: model.institution,
 						area 		: model.area,
+						image		: model.image,
 						votes 		: that.getVotes(model.id),
 					};
 
@@ -727,7 +729,8 @@ define("rankings/awardview",
 	                beforeSend: function () {
 	                    $.mobile.loading( 'show', {
 	                            text: "A enviar",
-	                            textVisible: true
+	                            textVisible: true,
+	                            theme: 'd'
 	                    });
 	                },
 

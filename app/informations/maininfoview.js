@@ -74,7 +74,6 @@ define("informations/maininfoview",
 			
 			self.renderLayout();
 			self.render();
-            this.isWifiActive();
 		},
 
 		/**
