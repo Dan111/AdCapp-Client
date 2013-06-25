@@ -40,7 +40,7 @@ function ($, Backbone) {
 			user_name: 'Unknown',
 			user_id: -1,
 			email: 'Unknown',
-			image: 'None'
+			image: ''
 
 		},
 

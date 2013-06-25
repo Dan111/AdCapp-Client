@@ -22,7 +22,6 @@ function ($, Backbone, BasicView, App) {
 		@property url
 		@type String
 		@private
-		
 		**/
 		url: null,
 
@@ -48,8 +47,6 @@ function ($, Backbone, BasicView, App) {
         Construtor do modelo. Adiciona ao URL o tipo da instância.
 
         @constructor
-        @protected
-        @class RankInfo
         @param {Object} args contém o tipo de ranking
             @param {String} args.type tipo de ranking
         @example "paper", "session", "user", "keynote" ou "workshop"

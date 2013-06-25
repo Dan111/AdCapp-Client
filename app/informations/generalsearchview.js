@@ -28,9 +28,7 @@ define("informations/generalsearchview",
 
 		@property el 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		el: $("[data-role=content]"),
 
@@ -41,7 +39,7 @@ define("informations/generalsearchview",
 		@type String
 		@static
 		@readonly
-		
+		@private
 		**/
 		id: "search-page",
 
@@ -52,7 +50,7 @@ define("informations/generalsearchview",
 		@type String
 		@static
 		@readonly
-		
+		@private
 		**/
 		pageName: "Pesquisa Geral",
 
@@ -62,8 +60,8 @@ define("informations/generalsearchview",
 		@property template 
 		@type String
 		@readonly
-		@protected
-		
+		@static
+		@private
 		**/
 		template: SearchPageTemplate,
 
@@ -73,8 +71,8 @@ define("informations/generalsearchview",
 		@property partial 
 		@type String
 		@readonly
-		@protected
-		
+		@static
+		@private
 		**/
 		partial: GeneralResultsPartial,
 		
@@ -86,8 +84,7 @@ define("informations/generalsearchview",
         @type Object
         @static
         @readonly
-        @protected
-        
+        @private
         **/
 		searchable: {"paper": {url: '#paper/'}, "workshop": {url: '#workshop/'}, 
 					"socialevent": {url: '#social/'}, "keynote": {url: '#keynote/'},
@@ -99,7 +96,7 @@ define("informations/generalsearchview",
 
 		@property events
 		@type Object
-		@protected
+		@private
 		**/
 		events: {
 
@@ -164,7 +161,6 @@ define("informations/generalsearchview",
 		sem pesquisas efectuadas
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {
@@ -190,7 +186,7 @@ define("informations/generalsearchview",
         Método que trata da informação a ser apresentada na parte de resultados
 
         @method treatResults
-        @protected
+        @private
         @param {Array} conferenceEvents eventos resultantes da pesquisa
         @param {Array} participants participantes  resultantes da pesquisa
         @param {Array} speakers oradores resultantes da pesquisa
@@ -292,7 +288,6 @@ define("informations/generalsearchview",
         e por fim apresenta-os
 
         @method search
-        @protected
         **/
 		search: function() {
   				

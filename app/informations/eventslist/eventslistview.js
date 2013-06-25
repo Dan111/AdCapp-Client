@@ -27,9 +27,7 @@ define("informations/eventslist/eventslistview",
 
 		@property el 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -39,9 +37,7 @@ define("informations/eventslist/eventslistview",
 
 		@property id 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		id: "",
 
@@ -52,8 +48,8 @@ define("informations/eventslist/eventslistview",
 		@property template 
 		@type String
 		@readonly
-		@protected
-		
+		@static
+		@private
 		**/
 		template: EventsListTemplate,
 
@@ -63,9 +59,7 @@ define("informations/eventslist/eventslistview",
 
 		@property pageName 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		pageName: "",
 
@@ -78,7 +72,7 @@ define("informations/eventslist/eventslistview",
         @type Object
         @static
         @readonly
-        @protected
+        @private
         @example  "social": {color: '#8e44ad', url: '#social/'}, "keynote": {color: '#2ecc71', url: '#keynote/'},
 				  "session": {url: '#session/'}},}
         **/
@@ -93,10 +87,9 @@ define("informations/eventslist/eventslistview",
 
 		@constructor
 		@param {Object} args contém um booleano, id da página e nome da página
-			@param {string} args.type string que indentifica o tipo dos eventos a apresentar
-			utilizar
-            @param {String} args.id id da página
-            @param {String} args.pageName nome da página
+		@param {string} args.type string que indentifica o tipo dos eventos a apresentar utilizar
+        @param {String} args.id id da página
+        @param {String} args.pageName nome da página
         **/
 		initialize: function (args)
 		{
@@ -150,7 +143,6 @@ define("informations/eventslist/eventslistview",
 		passando o template e o contexto adequeados 
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {
@@ -180,7 +172,7 @@ define("informations/eventslist/eventslistview",
 		Faz o tratamento do evento passado, preparando-o para a listagem
 
 		@method treatEvents
-		@protected
+		@private
 		@param {Event} event_obj modelo evento
 		@return {Object} objecto com as características a apresentar do evento
 		@example url: url do evento,

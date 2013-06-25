@@ -48,18 +48,17 @@ define("rankings/awardview",
 		/**
 		Template da tab de premiados
 
-		@property template 
+		@property awardsTemplate 
 		@type String
 		@readonly
 		@protected
-		
 		**/
 		awardsTemplate: AwardsTemplate,
 
 		/**
 		Template da tab de votos de utilizadores
 
-		@property template 
+		@property usersVotesTemplate 
 		@type String
 		@readonly
 		@protected

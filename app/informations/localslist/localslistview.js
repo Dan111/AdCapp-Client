@@ -24,9 +24,7 @@ define("informations/localslist/localslistview",
 
 		@property el 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -38,7 +36,7 @@ define("informations/localslist/localslistview",
 		@type String
 		@static
 		@readonly
-		
+		@private
 		**/
 		id: "locals-page",
 
@@ -49,7 +47,7 @@ define("informations/localslist/localslistview",
 		@type String
 		@readonly
 		@protected
-		
+		@private
 		**/
 		template:LocalsListTemplate,
 
@@ -60,7 +58,7 @@ define("informations/localslist/localslistview",
 		@type String
 		@static
 		@readonly
-		
+		@private
 		**/
 		pageName: "Locais",
 
@@ -99,7 +97,6 @@ define("informations/localslist/localslistview",
 		dos locais a ser apresentada e depois faz o rendering da página
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {
@@ -126,7 +123,7 @@ define("informations/localslist/localslistview",
 		Faz o tratamento do local passado, preparando-o para a listagem
 
 		@method treatLocals
-		@protected
+		@private
 		@param {Local} local_obj modelo do tipo Local
 		@return {Object} objecto com as características a apresentar do local
 		**/

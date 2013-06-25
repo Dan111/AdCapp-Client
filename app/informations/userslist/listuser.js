@@ -22,7 +22,7 @@ function ($, Backbone) {
         @type Object
         @static
         @readonly
-        @protected
+        @private
         **/
 		defaults: {
 			id: 0,

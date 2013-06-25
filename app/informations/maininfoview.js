@@ -23,9 +23,7 @@ define("informations/maininfoview",
 
         @property el 
         @type String
-        @static
-        @readonly
-        
+        @private
         **/
 		el: $("[data-role=content]"),
 
@@ -36,7 +34,7 @@ define("informations/maininfoview",
         @type String
         @static
         @readonly
-        
+        @private
         **/
 		id: "maininfoId",
 
@@ -47,7 +45,7 @@ define("informations/maininfoview",
         @type String
         @static
         @readonly
-        
+        @private
         **/
 		pageName: "Informações",
 
@@ -56,9 +54,9 @@ define("informations/maininfoview",
 
         @property template 
         @type String
+        @static
         @readonly
-        @protected
-        
+        @private
         **/
 		template: InfoMenuTemplate,
 
@@ -82,7 +80,6 @@ define("informations/maininfoview",
         Faz o rendering do layout da página 
 
         @method render
-        @protected
         @chainable
         **/
 		render: function () {

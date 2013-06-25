@@ -183,7 +183,6 @@ define("events/common/eventview",
 
 		@constructor
 		@protected
-		@class EventView
 		**/
 		initialize: function ()
 		{

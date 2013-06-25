@@ -3,7 +3,13 @@
   {{#each contacts}}
     <li>
           <a href="#user/{{user_id}}">
-            <img class="profile-pic" src="assets/morgan.jpg">
+            
+            {{#if image}}
+              <img class="profile-pic" src="{{image}}" alt="Profile"/>
+            {{else}}
+              <img class="profile-pic" src="assets/morgan.jpg" alt="Profile"/>
+            {{/if}}
+
             <h2>{{user_name}}</h2>
             <a data-bypass="true" href="mailto:{{email}}" type="button" data-inline="true" data-mini="true" data-theme="f">
               <i class="icon-envelope-alt icon-large"></i> Enviar E-mail

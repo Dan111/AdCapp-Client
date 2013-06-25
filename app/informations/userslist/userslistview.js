@@ -22,9 +22,7 @@ define("informations/userslist/userslistview",
 
 		@property el 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		el: "div[data-role=content]",
 
@@ -34,9 +32,7 @@ define("informations/userslist/userslistview",
 
 		@property id 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		id: "",
 
@@ -46,9 +42,7 @@ define("informations/userslist/userslistview",
 
 		@property pageName 
 		@type String
-		@static
-		@readonly
-		
+		@private
 		**/
 		pageName: "",
 
@@ -60,7 +54,7 @@ define("informations/userslist/userslistview",
 		@type String
 		@readonly
 		@protected
-		
+		@private
 		**/
 		template: UsersListTemplate,
 		
@@ -71,8 +65,7 @@ define("informations/userslist/userslistview",
 
 		@property cusers 
 		@type Backbone.Collection
-		@protected
-		
+		@private
 		**/
 		users: null,
 
@@ -117,7 +110,6 @@ define("informations/userslist/userslistview",
 		participantes.
 
 		@method render
-		@protected
 		@chainable
 		**/
 		render: function () {

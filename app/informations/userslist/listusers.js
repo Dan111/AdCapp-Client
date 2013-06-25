@@ -23,8 +23,8 @@ function ($, Backbone, LocalStorage, listUser, App) {
         @property model 
         @type Backbone.Model
         @readonly
-        @protected
-        
+        @static
+        @private
         **/
         model: listUser,
 
@@ -33,9 +33,9 @@ function ($, Backbone, LocalStorage, listUser, App) {
 
         @property url 
         @type String
-        @static
         @readonly
-        
+        @static
+        @private
         **/
         url: "",
 
@@ -47,7 +47,7 @@ function ($, Backbone, LocalStorage, listUser, App) {
 
         @constructor
         @param {Object} args contém booleano para distinguir oradores de participantes
-            @param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
+        @param {boolean} args.isSpeakers booleano para distinguir oradores de participantes
         **/
         initialize: function (args){
 
@@ -69,7 +69,7 @@ function ($, Backbone, LocalStorage, listUser, App) {
         Comparador de modelos
 
         @method comparator
-        @protected
+        @private
         @param {ListUser} user modelo de informação de utilizador para lista
         @return {String} nome do user
         **/
@@ -82,7 +82,6 @@ function ($, Backbone, LocalStorage, listUser, App) {
         objectos que teem no nome, na instituição ou na area a string passada
 
         @method getEventsWithString
-        @protected
         @param {String} string termo de filtragem
         @return {Array} array de modelos ListUser
         **/
