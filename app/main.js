@@ -57,7 +57,7 @@ function (Backbone, $, Router, configHandlebars, configApp) {
 		Backbone.history.start();
 
 		//Mostra o body só depois do jqm ter inicializado
-		$("body").show();
+		//$("body").show();
 
 	});
 
@@ -77,3 +77,29 @@ function (Backbone, $, Router, configHandlebars, configApp) {
 	});
 
 });
+
+//Comentários para gerar a documentação gerar a herança correctamente
+
+/**
+View do Backbone
+
+@class Backbone.View
+**/
+
+/**
+Collection do Backbone
+
+@class Backbone.Collection
+**/
+
+/**
+Model do Backbone
+
+@class Backbone.Model
+**/
+
+/**
+Router do Backbone
+
+@class Backbone.Router
+**/

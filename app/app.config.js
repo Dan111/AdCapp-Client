@@ -138,6 +138,7 @@ function (Backbone, $, _, Account) {
 
 	@property hasAlerted
 	@type boolean
+	@static
 	**/
 	app.hasAlerted = false;
 

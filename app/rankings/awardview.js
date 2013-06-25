@@ -558,7 +558,7 @@ define("rankings/awardview",
 		/**
        	Método que trata de acrescentar um value aos votos do elemento com um certo id
 
-        @method getVotes
+        @method setVotes
         @protected
         @param {Number} id id de um elemento
 		@param {Number} value valor a somar
