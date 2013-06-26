@@ -8,7 +8,8 @@ require([
 	"jquerymobile",
 	"jquerymobile.config",
 	"backbone.localStorage",
-	"fullcalendar"
+	"fullcalendar",
+	"touchpunch"
 ],
 
 /**

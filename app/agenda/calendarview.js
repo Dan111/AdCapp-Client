@@ -278,14 +278,9 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			_.bindAll(this);
 
 			var self = this;
-			//Data do dia em que estamos, para testes
-			var d = 6;
-			var m = 8;//meses no javascript date são de 0-11
-			var y = 2012;
-			this.date = new Date(y,m,d);
 
-			//Limites em termos de datas, sempre + e - 3 dias do que esta definido, para testes
-			//A definir que datas e como passa-las
+			this.date = new Date();
+
 			this.backLimitDate = app.startDate;
 			this.forwardLimitDate = app.endDate;
 
@@ -377,6 +372,10 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 					},
 					editable: false,
 					events: treatedEvents,
+					eventAfterRender: function( event, element, view ) { 
+						// Add touch dragging to event element 
+						element.addTouch();
+				     },
 					eventRender: function(event, element) {
 						if(event.imageurl !== "")
 					        element.find("div.fc-event-time").append("<img src='" + event.imageurl +"' width='12' height='12'>");
@@ -449,7 +448,14 @@ function ($, Backbone, _, Handlebars, FullCalendar, Moment, EventCollection, Per
 			if(this.currentDay !== null)
 				this.$calendar.fullCalendar( 'gotoDate', this.currentDay );
 			else
-				this.$calendar.fullCalendar( 'gotoDate', this.date );
+			{
+				if(this.date  > this.forwardLimitDate)
+					this.$calendar.fullCalendar( 'gotoDate', this.forwardLimitDate);
+				else if(this.date < this.backLimitDate)
+					this.$calendar.fullCalendar( 'gotoDate', this.backLimitDate);
+				else
+					this.$calendar.fullCalendar( 'gotoDate', this.date );
+			}
 
 		},
 

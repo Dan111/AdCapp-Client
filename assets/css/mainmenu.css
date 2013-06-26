@@ -98,3 +98,7 @@ p.big-titles.participants{
 	width: 50px;
 }
 
+.options{
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
