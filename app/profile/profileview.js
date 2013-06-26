@@ -195,7 +195,7 @@ define("profile/profileview",
 
             
             if(this.mycontacts.hasContact(user.id))
-                $("#add-user span span span").append('<i class="icon-check-sign pull-right"></i>');
+                $("#add-user span span span").append('<i class="icon-check-sign my-custom"></i>');
 
 
             return this;
@@ -227,7 +227,7 @@ define("profile/profileview",
             {
                 //Cria o contacto na collection 
                 this.mycontacts.create(attrs);
-                $("#add-user span span span").append('<i class="icon-check-sign pull-right"></i>');
+                $("#add-user span span span").append('<i class="icon-check-sign my-custom"></i>');
             }
             else 
             {    

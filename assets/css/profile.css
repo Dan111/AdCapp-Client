@@ -33,11 +33,7 @@ a{
  	line-height:30px;
 }
 
-.pull-right{
-	float: right;
+.my-custom{
+	position: relative;
+	left: 5px;
 }
-
-.pull-left{
-	float: left;
-}
-
