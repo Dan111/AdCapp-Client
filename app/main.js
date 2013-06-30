@@ -5,12 +5,12 @@ require([
 	"handlebars.config",
 	"app.config",
 
+	"fastclick",
 	"jquerymobile",
 	"jquerymobile.config",
 	"backbone.localStorage",
 	"fullcalendar",
-	"touchpunch",
-	"fastclick"
+	"touchpunch"
 ],
 
 /**
@@ -18,7 +18,7 @@ Classe principal que trata de inicializar a app
 
 @class Main
 **/
-function (Backbone, $, Router, configHandlebars, configApp, JQM, JQMCONFIG, LocalStorage, FullCalendar, Touchpunch, FastClick) {
+function (Backbone, $, Router, configHandlebars, configApp, FastClick) {
 
 	$(function () {
 
