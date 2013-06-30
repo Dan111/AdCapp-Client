@@ -159,7 +159,7 @@ define("contacts/contactsview",
 
 			this.contacts.exportContacts();
 
-			this.showErrorOverlay({text: "Contactos Exportados"});
+			this.showErrorOverlay({text: "Contactos exportados para o dispositivo."});
 		}
 
 
