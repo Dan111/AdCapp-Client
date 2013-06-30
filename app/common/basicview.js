@@ -167,7 +167,7 @@ define("common/basicview",
 
 				var msg = "Para uma melhor experiência, active o Wi-Fi.";
 
-				if(networkState !== Connection.WIFI)
+				if(networkState === Connection.NONE || networkState === Connection.CELL)
 					navigator.notification.alert(
 	    				msg,
 	   					function (){

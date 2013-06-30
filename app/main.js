@@ -9,7 +9,8 @@ require([
 	"jquerymobile.config",
 	"backbone.localStorage",
 	"fullcalendar",
-	"touchpunch"
+	"touchpunch",
+	"fastclick"
 ],
 
 /**
@@ -17,7 +18,7 @@ Classe principal que trata de inicializar a app
 
 @class Main
 **/
-function (Backbone, $, Router, configHandlebars, configApp) {
+function (Backbone, $, Router, configHandlebars, configApp, JQM, JQMCONFIG, LocalStorage, FullCalendar, Touchpunch, FastClick) {
 
 	$(function () {
 
@@ -62,6 +63,10 @@ function (Backbone, $, Router, configHandlebars, configApp) {
 
 	});
 
+	//Carrega o fastclickpara subtituir os click's por tap's
+	$(function() {
+	    FastClick.attach(document.body);
+	});
 	
 	//Redireciona os links <a> para o router do Backbone
 	$(document).on("click", "a[href]:not([data-bypass])", function(evt) {

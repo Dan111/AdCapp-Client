@@ -14,6 +14,7 @@ require.config({
 		'backbone.cachingsync'	: '../vendor/libs/backbone.cachingsync',
 		'burry'					: '../vendor/libs/burry',
 		'touchpunch'			: '../vendor/libs/jquery.ui.touch',
+		'fastclick'				: '../vendor/libs/fastclick',
 		'app.config'			: 'app.config'
 	 
 	},
